@@ -1,0 +1,1026 @@
+{
+  "nonprofits": [
+    {
+      "EIN": 43138428,
+      "NAME": "MELROSE MASSACHUSETTS TELEVISION",
+      "STREET": "360 MAIN ST",
+      "CITY": "MELROSE",
+      "STATE": "MA",
+      "ZIP": "02176-4623",
+      "ACTIVITY": "Described in section 170(b)1)(a)(vi) of the Code; Radio or television broadcasting",
+      "CLASSIFICATION": "Charitable Organization",
+      "DEDUCTIBILITY": 1,
+      "SUBSECTION": 3,
+      "NTEE_CD": "0",
+      "SORT_NAME": "0",
+      "validated":true,
+      "data": {
+        "name": "MELROSE MASSACHUSETTS TELEVISION",
+        "hero": {
+          "src": "/static/assets/images/5672087be97cb2bb8e59ad897a14ea35.jpg"
+        },
+        "default_hero": {
+          "src": "/static/assets/images/nonoprofit-base-hero.jpg"
+        },
+        "about": "We are an international confederation of 17 like-minded charitable organizations working together to bring about lasting solutions to poverty and injustice. We work with partners around the world to make a difference in the lives of people in need.",
+        "slogan": "",
+        "website": "https://www.oxfam.org",
+        "city": "MELROSE, MA",
+        "email": "info@oxfam.org",
+        "ein": "20-1059569",
+        "background_cover": "/static/assets/images/nonprofit-base-hero.jpg",
+        "logo": {
+          "src": "/static/assets/images/nonprofit-base-logo.png"
+        },
+        "media": [
+          { "id": "1", "type": "image", "src": "/static/assets/images/nonprofit-image-1.jpg" },
+          { "id": "2", "type": "image", "src": "/static/assets/images/nonprofit-image-2.jpg" },
+          { "id": "3", "type": "image", "src": "/static/assets/images/nonprofit-image-3.jpg" },
+          { "id": "4", "type": "image", "src": "/static/assets/images/nonprofit-image-4.png" },
+          { "id": "5", "type": "image", "src": "/static/assets/images/nonprofit-image-5.png" },
+          { "id": "6", "type": "image", "src": "/static/assets/images/nonprofit-image-6.jpg" },
+          { "id": "7", "type": "image", "src": "/static/assets/images/nonprofit-image-7.jpg" },
+          { "id": "8", "type": "image", "src": "/static/assets/images/nonprofit-image-8.jpg" },
+          { "id": "9", "type": "image", "src": "/static/assets/images/nonprofit-image-9.jpg" },
+          { "id": "10", "type": "image", "src": "/static/assets/images/nonprofit-image-10.jpg" },
+          { "id": "11", "type": "image", "src": "/static/assets/images/nonprofit-image-11.jpg" },
+          { "id": "12", "type": "image", "src": "/static/assets/images/nonprofit-image-12.jpg" },
+          { "id": "13", "type": "image", "src": "/static/assets/images/nonprofit-image-13.jpg" },
+          { "id": "14", "type": "image", "src": "/static/assets/images/nonprofit-image-14.jpg" },
+          { "id": "15", "type": "image", "src": "/static/assets/images/nonprofit-image-15.jpg" },
+          { "id": "16", "type": "image", "src": "/static/assets/images/nonprofit-image-16.jpg" },
+          { "id": "17", "type": "image", "src": "/static/assets/images/nonprofit-image-17.jpg" },
+          { "id": "18", "type": "image", "src": "/static/assets/images/nonprofit-image-18.png" },
+          { "id": "19", "type": "image", "src": "/static/assets/images/nonprofit-image-19.jpg" },
+          { "id": "20", "type": "image", "src": "/static/assets/images/nonprofit-image-20.jpg" },
+          { "id": "21", "type": "video", "src": "qXPzeJQua5k" },
+          { "id": "22", "type": "video", "src": "lE-y7FuJT8E" }
+        ]
+      }
+    }
+  ],
+  "updates": [
+    {
+      "id": 18,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "content": "<p>Latest update. Mauris nec pharetra massa. Nulla facilisi. Nulla at scelerisque ante. Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Quisque feugiat gravida faucibus. Praesent eget nisl bibendum, suscipit odio vitae, euismod nisl. Ut varius aliquam semper. Quisque ac aliquam leo. Suspendisse et rhoncus neque.</p><p>Ut eleifend leo eu est lobortis, nec lobortis magna fringilla. Nullam nec condimentum libero. Vivamus et tristique est, vitae venenatis tellus. Duis tempus nibh justo, at mattis turpis rhoncus ut. Morbi ac est id ex feugiat lacinia a sit amet arcu. Maecenas sit amet eros tellus. Ut sit amet mattis neque. Nunc leo risus, vulputate pellentesque interdum facilisis, suscipit ac sapien. Morbi volutpat ac turpis a blandit. Maecenas ultricies quis nunc vitae aliquam.</p><p>Nulla facilisi. Proin congue imperdiet volutpat. Vivamus quis enim a neque consequat dictum et sed lacus. Vestibulum aliquam vel metus non egestas. Duis ligula lacus, tincidunt a quam non, porta cursus elit. Nunc at fermentum quam. Duis ut elit justo. In eget pulvinar sapien. Cras interdum orci a pellentesque faucibus. Maecenas nec enim ac velit commodo faucibus. Nam vitae lorem sollicitudin, sodales eros ac, congue nibh. Aenean laoreet semper convallis. Vestibulum pharetra, purus non elementum convallis, lectus neque consequat magna, et dictum metus ante non lacus. Quisque scelerisque ex sit amet euismod semper.</p><p>Integer sed ante vitae arcu luctus ultrices. Donec iaculis est ut turpis malesuada, eu bibendum libero malesuada. Sed et fermentum est. Sed sit amet consequat nibh. Mauris posuere mi eu sapien vestibulum, ac viverra urna dictum. Vestibulum finibus enim et pharetra fringilla. Curabitur molestie, dui vitae lobortis dignissim, elit massa facilisis arcu, a lobortis odio felis et sem. Mauris lectus quam, varius in scelerisque ac, condimentum eget nisi. Sed ac vulputate purus, sit amet aliquam lacus. Sed eget euismod arcu. Quisque maximus, sapien at blandit vestibulum, lectus purus sagittis dui, vitae lacinia arcu sapien ut urna. Nunc laoreet mi eget libero condimentum ultricies. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517915925000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My fourth week of volunteering"
+    },
+    {
+      "id": 12,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "content": "<p>Mauris nec pharetra massa. Nulla facilisi. Nulla at scelerisque ante. Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Quisque feugiat gravida faucibus. Praesent eget nisl bibendum, suscipit odio vitae, euismod nisl. Ut varius aliquam semper. Quisque ac aliquam leo. Suspendisse et rhoncus neque.</p><p>Ut eleifend leo eu est lobortis, nec lobortis magna fringilla. Nullam nec condimentum libero. Vivamus et tristique est, vitae venenatis tellus. Duis tempus nibh justo, at mattis turpis rhoncus ut. Morbi ac est id ex feugiat lacinia a sit amet arcu. Maecenas sit amet eros tellus. Ut sit amet mattis neque. Nunc leo risus, vulputate pellentesque interdum facilisis, suscipit ac sapien. Morbi volutpat ac turpis a blandit. Maecenas ultricies quis nunc vitae aliquam.</p><p>Nulla facilisi. Proin congue imperdiet volutpat. Vivamus quis enim a neque consequat dictum et sed lacus. Vestibulum aliquam vel metus non egestas. Duis ligula lacus, tincidunt a quam non, porta cursus elit. Nunc at fermentum quam. Duis ut elit justo. In eget pulvinar sapien. Cras interdum orci a pellentesque faucibus. Maecenas nec enim ac velit commodo faucibus. Nam vitae lorem sollicitudin, sodales eros ac, congue nibh. Aenean laoreet semper convallis. Vestibulum pharetra, purus non elementum convallis, lectus neque consequat magna, et dictum metus ante non lacus. Quisque scelerisque ex sit amet euismod semper.</p><p>Integer sed ante vitae arcu luctus ultrices. Donec iaculis est ut turpis malesuada, eu bibendum libero malesuada. Sed et fermentum est. Sed sit amet consequat nibh. Mauris posuere mi eu sapien vestibulum, ac viverra urna dictum. Vestibulum finibus enim et pharetra fringilla. Curabitur molestie, dui vitae lobortis dignissim, elit massa facilisis arcu, a lobortis odio felis et sem. Mauris lectus quam, varius in scelerisque ac, condimentum eget nisi. Sed ac vulputate purus, sit amet aliquam lacus. Sed eget euismod arcu. Quisque maximus, sapien at blandit vestibulum, lectus purus sagittis dui, vitae lacinia arcu sapien ut urna. Nunc laoreet mi eget libero condimentum ultricies. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517415125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My first week of volunteering"
+    },
+    {
+      "id": 13,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "content": "<p>Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517395125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My second week of volunteering"
+    },
+    {
+      "id": 14,
+      "author_id": 24,
+      "fundraiser_id": 255,
+      "content": "<p>Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517395125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My second week of volunteering"
+    },
+    {
+      "id": 15,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "content": "<p>Y Mauris nec pharetra massa. Nulla facilisi. Nulla at scelerisque ante. Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Quisque feugiat gravida faucibus. Praesent eget nisl bibendum, suscipit odio vitae, euismod nisl. Ut varius aliquam semper. Quisque ac aliquam leo. Suspendisse et rhoncus neque.</p><p>Ut eleifend leo eu est lobortis, nec lobortis magna fringilla. Nullam nec condimentum libero. Vivamus et tristique est, vitae venenatis tellus. Duis tempus nibh justo, at mattis turpis rhoncus ut. Morbi ac est id ex feugiat lacinia a sit amet arcu. Maecenas sit amet eros tellus. Ut sit amet mattis neque. Nunc leo risus, vulputate pellentesque interdum facilisis, suscipit ac sapien. Morbi volutpat ac turpis a blandit. Maecenas ultricies quis nunc vitae aliquam.</p><p>Nulla facilisi. Proin congue imperdiet volutpat. Vivamus quis enim a neque consequat dictum et sed lacus. Vestibulum aliquam vel metus non egestas. Duis ligula lacus, tincidunt a quam non, porta cursus elit. Nunc at fermentum quam. Duis ut elit justo. In eget pulvinar sapien. Cras interdum orci a pellentesque faucibus. Maecenas nec enim ac velit commodo faucibus. Nam vitae lorem sollicitudin, sodales eros ac, congue nibh. Aenean laoreet semper convallis. Vestibulum pharetra, purus non elementum convallis, lectus neque consequat magna, et dictum metus ante non lacus. Quisque scelerisque ex sit amet euismod semper.</p><p>Integer sed ante vitae arcu luctus ultrices. Donec iaculis est ut turpis malesuada, eu bibendum libero malesuada. Sed et fermentum est. Sed sit amet consequat nibh. Mauris posuere mi eu sapien vestibulum, ac viverra urna dictum. Vestibulum finibus enim et pharetra fringilla. Curabitur molestie, dui vitae lobortis dignissim, elit massa facilisis arcu, a lobortis odio felis et sem. Mauris lectus quam, varius in scelerisque ac, condimentum eget nisi. Sed ac vulputate purus, sit amet aliquam lacus. Sed eget euismod arcu. Quisque maximus, sapien at blandit vestibulum, lectus purus sagittis dui, vitae lacinia arcu sapien ut urna. Nunc laoreet mi eget libero condimentum ultricies. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517415125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My first week of volunteering"
+    },
+    {
+      "id": 16,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "content": "<p>X Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517395125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My second week of volunteering"
+    },
+    {
+      "id": 17,
+      "author_id": 24,
+      "fundraiser_id": 255,
+      "content": "<p>Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1517395125000,
+      "fullname": "Alison Baxley",
+      "name": "Alison",
+      "title": "My second week of volunteering"
+    }
+  ],
+  "comments": [
+    {
+      "id": 22,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "avatar": "https://volunteerathon__fundraiser2.surge.sh/fundraiser/avatar.png",
+      "comment": "<p>This is great that you’re doing this good deed to help other people in need. I myself have needed help in the past and gladly, I have found this site.</p>",
+      "timestamp": 1517415125000,
+      "fullname": "Mark Twain",
+      "name": "Alison",
+      "replies": [
+        {
+          "id": 23,
+          "author_id": 24,
+          "fundraiser_id": 254,
+          "reply_to": 22,
+          "avatar": null,
+          "comment": "<p>Indeed, that’s fantastic.</p>",
+          "timestamp": 1526504544000,
+          "fullname": "George Gerschwinn",
+          "name": "George"
+        },
+        {
+          "id": 24,
+          "author_id": 24,
+          "fundraiser_id": 254,
+          "reply_to": 22,
+          "avatar": null,
+          "comment": "<p>Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+          "timestamp": 1521504544000,
+          "fullname": "Dave Weckl",
+          "name": "Dave"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "reply_to": 22,
+      "avatar": null,
+      "comment": "<p>Indeed, that’s fantastic.</p>",
+      "timestamp": 1526504544000,
+      "fullname": "Jen Zuckerberg",
+      "name": "Jen"
+    },
+    {
+      "id": 26,
+      "author_id": 24,
+      "fundraiser_id": 254,
+      "reply_to": 22,
+      "avatar": null,
+      "comment": "<p>Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p>",
+      "timestamp": 1521504544000,
+      "fullname": "Martin Luc-Defau",
+      "name": "Martin"
+    }
+  ],
+  "donations": [
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 721,
+      "amount": 625,
+      "fullname": "Francisca Morana",
+      "firstname": "Francisca",
+      "lastname": "Morana",
+      "avatar": "/static/assets/images/donor-1.jpg",
+      "timestamp": 1521504544000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 722,
+      "amount": 550,
+      "fullname": "Ariadna Beckenbauer",
+      "firstname": "Ariadna",
+      "lastname": "Beckenbauer",
+      "avatar": "/static/assets/images/donor-3.jpg",
+      "timestamp": 1526504544000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 723,
+      "amount": 400,
+      "fullname": "Andreas Higgins",
+      "firstname": "Andreas",
+      "lastname": "Higgins",
+      "avatar": "/static/assets/images/donor-4.jpg",
+      "timestamp": 1526504944000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 724,
+      "amount": 350,
+      "fullname": "Luisa Lane",
+      "firstname": "Luisa",
+      "lastname": "Lane",
+      "avatar": "/static/assets/images/donor-5.jpg",
+      "timestamp": 1526504944000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 725,
+      "amount": 220,
+      "fullname": "Martin Fitzgerald",
+      "firstname": "Martin",
+      "lastname": "Fitzgerald",
+      "avatar": "/static/assets/images/donor-6.jpg",
+      "timestamp": 1526504944000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 254,
+      "nonprofit_ein": 43138428,
+      "user_id": 726,
+      "amount": 180,
+      "fullname": "Sandra Martignon",
+      "firstname": "Sandra",
+      "lastname": "Martignon",
+      "avatar": "/static/assets/images/donor-10.jpg",
+      "timestamp": 1526504944000,
+      "public": true
+    },
+    {
+      "fundraiser_id": 255,
+      "nonprofit_ein": 43138427,
+      "user_id": 726,
+      "amount": 180,
+      "fullname": "Sandra Martignon",
+      "firstname": "Sandra",
+      "lastname": "Martignon",
+      "avatar": "/static/assets/images/donor-10.jpg",
+      "timestamp": 1526504944000,
+      "public": true
+    }
+  ],
+  "users_public": [
+    {
+      "email": "sandra@martignon.com",
+      "social_login": null,
+      "user_id": 726
+    },
+    {
+      "email": "john@email.com",
+      "social_login": null,
+      "user_id": 729
+    },
+    {
+      "email": "john@twitter.com",
+      "social_login": "twitter",
+      "user_id": 721
+    }
+  ],
+  "users_protected": [
+    {
+      "email": "john@email.com",
+      "firstname": "John",
+      "lastname": "Doe",
+      "fullname": "Jony Ive",
+      "avatar": "/static/assets/images/donor-5.jpg",
+      "social_login": null,
+      "user_id": 729,
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "payment_methods": [
+        {
+          "id": 2431524,
+          "method": "card",
+          "last_four": 4123,
+          "expiration_month": 9,
+          "expiration_year": 20
+        },
+        {
+          "id": 2431525,
+          "method": "card",
+          "last_four": 6124,
+          "expiration_month": 3,
+          "expiration_year": 18
+        }
+      ],
+      "fundraisers": [
+        {
+          "id": 254,
+          "name": "Tutoring children for the future",
+          "started": 1526504944000,
+          "raised": 2325,
+          "donors_count": 12
+        },
+        {
+          "id": 255,
+          "name": "Yet another fundraiser",
+          "started": 1526504944000,
+          "raised": 120,
+          "donors_count": 4
+        }
+      ],
+      "nonprofits": [
+        {
+          "ein": 43138428,
+          "name": "MELROSE MASSACHUSETTS TELEVISION",
+          "raised": 2325,
+          "donors_count": 12
+        },
+        {
+          "ein": 43178037,
+          "name": "THE NORTH ATTLEBORO FIREBARN PRESERVATION SOCIETY INC",
+          "raised": 1325,
+          "donors_count": 6
+        }
+      ],
+      "donations": [
+        {
+          "id": 12343,
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "id": 12344,
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526503944000,
+          "public": true
+        },
+        {
+          "id": 12345,
+          "fundraiser_id": null,
+          "nonprofit_ein": 43138428,
+          "amount": 120,
+          "timestamp": 1526501944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "email": "john@doe.com",
+      "firstname": "John",
+      "lastname": "Doe",
+      "fullname": "John Doe",
+      "avatar": null,
+      "social_login": null,
+      "user_id": 730,
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "payment_methods": [],
+      "fundraisers": [],
+      "nonprofits": [],
+      "donations": []
+    }
+  ],
+  "donors": [
+    {
+      "fullname": "Sandra Martignon",
+      "firstname": "Sandra",
+      "lastname": "Martignon",
+      "amount": 2445,
+      "avatar": "/static/assets/images/donor-10.jpg",
+      "total_raised": 2445,
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "fullname": "Francisca Morana",
+      "firstname": "Francisca",
+      "lastname": "Morana",
+      "amount": 2325,
+      "avatar": "/static/assets/images/donor-1.jpg",
+      "total_raised": 2325,
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "fullname": "John Twitter",
+      "firstname": "Roxana",
+      "lastname": "Marinovich",
+      "amount": 2445,
+      "avatar": "/static/assets/images/donor-3.jpg",
+      "total_raised": 2325,
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "fullname": "John Facebook",
+      "firstname": "John",
+      "lastname": "Morana",
+      "avatar": "/static/assets/images/donor-5.jpg",
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "fundraiser_count": 1,
+      "total_raised": 2325,
+      "amount": 2325,
+      "fundraisers": [
+        {
+          "fundraiser_id": 256,
+          "started": 1526504944000,
+          "raised": 2325
+        }
+      ],
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "fullname": "John Email",
+      "firstname": "John",
+      "lastname": "Morana",
+      "avatar": "/static/assets/images/donor-9.jpg",
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "fundraiser_count": 1,
+      "total_raised": 2325,
+      "amount": 2325,
+      "fundraisers": [
+        {
+          "fundraiser_id": 256,
+          "started": 1526504944000,
+          "raised": 2325
+        }
+      ],
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    },
+    {
+      "fullname": "John Doe",
+      "firstname": "John",
+      "lastname": "Doe",
+      "avatar": "/static/assets/images/donor-1.jpg",
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "fundraiser_count": 1,
+      "total_raised": 2325,
+      "amount": 2325,
+      "payment_methods": [],
+      "fundraisers": [
+        {
+          "fundraiser_id": 256,
+          "started": 1526504944000,
+          "raised": 2325
+        }
+      ]
+    },
+    {
+      "fullname": "John Gmail",
+      "firstname": "John",
+      "lastname": "Morana",
+      "avatar": "/static/assets/images/donor-1.jpg",
+      "created": 1526504944000,
+      "updated": 1526504944000,
+      "fundraiser_count": 1,
+      "total_raised": 2325,
+      "amount": 2325,
+      "fundraisers": [
+        {
+          "fundraiser_id": 256,
+          "started": 1526504944000,
+          "raised": 2325
+        }
+      ],
+      "donations": [
+        {
+          "fundraiser_id": 254,
+          "nonprofit_ein": 43138427,
+          "amount": 625,
+          "timestamp": 1526504944000,
+          "public": true
+        },
+        {
+          "fundraiser_id": 255,
+          "nonprofit_ein": 43138427,
+          "amount": 180,
+          "timestamp": 1526504944000,
+          "public": true
+        }
+      ]
+    }
+  ],
+  "fundraisers": [
+    {
+      "fundraiser_id": 254,
+      "user_id": 721,
+      "nonprofit_ein": 43138428,
+      "name": "Tutoring children for the future",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "intro_text": "<p>Mauris nec pharetra massa. Nulla facilisi. Nulla at scelerisque ante. Nam at nisi vel odio fringilla ultrices. Phasellus quis nunc consectetur, ullamcorper sapien ut, condimentum risus. Quisque feugiat gravida faucibus. Praesent eget nisl bibendum, suscipit odio vitae, euismod nisl. Ut varius aliquam semper. Quisque ac aliquam leo. Suspendisse et rhoncus neque.</p><p>Ut eleifend leo eu est lobortis, nec lobortis magna fringilla. Nullam nec condimentum libero. Vivamus et tristique est, vitae venenatis tellus. Duis tempus nibh justo, at mattis turpis rhoncus ut. Morbi ac est id ex feugiat lacinia a sit amet arcu. Maecenas sit amet eros tellus. Ut sit amet mattis neque. Nunc leo risus, vulputate pellentesque interdum facilisis, suscipit ac sapien. Morbi volutpat ac turpis a blandit. Maecenas ultricies quis nunc vitae aliquam.</p><p>Nulla facilisi. Proin congue imperdiet volutpat. Vivamus quis enim a neque consequat dictum et sed lacus. Vestibulum aliquam vel metus non egestas. Duis ligula lacus, tincidunt a quam non, porta cursus elit. Nunc at fermentum quam. Duis ut elit justo. In eget pulvinar sapien. Cras interdum orci a pellentesque faucibus. Maecenas nec enim ac velit commodo faucibus. Nam vitae lorem sollicitudin, sodales eros ac, congue nibh. Aenean laoreet semper convallis. Vestibulum pharetra, purus non elementum convallis, lectus neque consequat magna, et dictum metus ante non lacus. Quisque scelerisque ex sit amet euismod semper.</p><p>Integer sed ante vitae arcu luctus ultrices. Donec iaculis est ut turpis malesuada, eu bibendum libero malesuada. Sed et fermentum est. Sed sit amet consequat nibh. Mauris posuere mi eu sapien vestibulum, ac viverra urna dictum. Vestibulum finibus enim et pharetra fringilla. Curabitur molestie, dui vitae lobortis dignissim, elit massa facilisis arcu, a lobortis odio felis et sem. Mauris lectus quam, varius in scelerisque ac, condimentum eget nisi. Sed ac vulputate purus, sit amet aliquam lacus. Sed eget euismod arcu. Quisque maximus, sapien at blandit vestibulum, lectus purus sagittis dui, vitae lacinia arcu sapien ut urna. Nunc laoreet mi eget libero condimentum ultricies. Phasellus quam augue, congue ac est ac, rutrum tincidunt nibh.</p><p>Nam quis ligula nibh. Duis viverra at diam a sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque ullamcorper nisl et metus dictum viverra. Nam vel iaculis est. Nunc elementum in mauris convallis auctor. Mauris ac enim felis. Sed eget venenatis purus. Nam varius mattis massa.</p><p>Integer rhoncus pretium molestie. Morbi bibendum iaculis volutpat. Morbi id velit lobortis, porttitor neque et, ornare turpis. Sed at tincidunt enim, nec lobortis sapien. Donec posuere, ante at rhoncus euismod, enim libero porta turpis, vel blandit lacus lacus tempus urna. Ut quis lacus eleifend, interdum lorem at, sollicitudin ligula. Suspendisse vel lectus consectetur, gravida dui blandit, molestie erat. Phasellus sit amet mauris sapien. Curabitur vitae tempor elit. Duis id ultricies leo. Nunc quam erat, euismod viverra facilisis eu, rutrum viverra arcu. Quisque porta, orci eget congue hendrerit, quam libero porta diam, vel dictum mauris risus eget nibh. Ut at mi risus. Aliquam in dignissim augue. Vestibulum eros leo, sollicitudin consectetur ipsum ac, rutrum lacinia tortor.</p><p>Nam ullamcorper arcu sed euismod cursus. Nam pretium ultricies lacus. Aliquam auctor diam velit, id consectetur nulla ultrices a. Maecenas pretium arcu in placerat rutrum. Morbi fringilla lectus id magna ullamcorper, eget gravida odio hendrerit. Vivamus non aliquet eros. Phasellus eget lectus at libero tincidunt sollicitudin. Nam interdum vitae justo molestie imperdiet.</p>",
+      "picture": "/static/assets/images/fundraiser-hero-3x2.jpg",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-3x2.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-1.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-1x1.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-2.jpg"},
+          { "id": "5", "type": "image","src": "/static/assets/images/fundraiser-hero-4.jpg"},
+          { "id": "6", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "7", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "8", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "9", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "10", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Carol",
+        "fullname": "Joan Engelman",
+        "location": "Youngstown, Ohio, US",
+        "email": "john@email.com",
+        "avatar": {
+          "id": "1",
+          "type": "image",
+          "src": "/static/assets/images/donor-8.jpg"
+        }
+      },
+      "nonprofit": {
+        "logo_square": "/static/assets/images/fundraiser-feed-the-children-logo-square.png",
+        "logo": {
+          "src": "/static/assets/images/fundraiser-feed-the-children-logo.png"
+        },
+        "name": "MELROSE MASSACHUSETTS TELEVISION",
+        "website": "https://melrose-massachusetts.tv",
+        "EIN": 43138428,
+        "STREET": "360 MAIN ST",
+        "CITY": "MELROSE",
+        "STATE": "MA",
+        "ZIP": "02176-4623",
+        "ACTIVITY": "Described in section 170(b)1)(a)(vi) of the Code; Radio or television broadcasting",
+        "CLASSIFICATION": "Charitable Organization",
+        "DEDUCTIBILITY": 1,
+        "SUBSECTION": 3,
+        "NTEE_CD": "0",
+        "SORT_NAME": "0"        
+      },
+      "giving_levelsx": [
+        { "id": 231, "amount": 10, "tagline": "Per mile", "description": "For every 10 dollars spent, I will run a mile!" },
+        { "id": 232, "amount": 25, "tagline": "Donor", "description": "Thank you for your donation!" },
+        { "id": 233, "amount": 50, "tagline": "Shirt sponsor", "description": "Donate $50 and your name will go on the back of my race shirt as a sponsor!" },
+        { "id": 234, "amount": 100, "tagline": "Per mile", "description": "If you donate $100, your name will go on the back of my shirt as a sponsor and you'll get a t-shirt!" }
+      ],
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 1250,
+        "donors": 6,
+        "goal": 12000,
+        "daysLeft": 131
+      },
+      "updates_count": 5,
+      "comments_count": 6,
+      "donations_count": 6,
+      "shared_count": 12
+    },
+    {
+      "fundraiser_id": 255,
+      "nonprofit_ein": 43138428,
+      "user_id": 721,
+      "name": "Etiam maximus turpis",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-1.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-1x1.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-2.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-4.jpg"},
+          { "id": "5", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "1", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Martina",
+        "fullname": "Martina Friedrichstrasse",
+        "location": "Youngstown, Ohio, US"
+      },
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 3250,
+        "donors": 6,
+        "goal": 9400,
+        "daysLeft": 31
+      }
+    },
+    {
+      "fundraiser_id": 256,
+      "nonprofit_ein": 43138428,
+      "fundraiser_id": 722,
+      "name": "Cras feugiat consectetur sem",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-1x1.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-2.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-4.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "5", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "6", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "7", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "8", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Ingrid",
+        "fullname": "Ingrid Kertzman",
+        "location": "Youngstown, Ohio, US"
+      },
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 250,
+        "donors": 6,
+        "goal": 1900,
+        "daysLeft": 131
+      }
+    },
+    {
+      "fundraiser_id": 257,
+      "nonprofit_ein": 43138428,
+      "name": "Nullam nec cursus est",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-2.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-4.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "5", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "6", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "7", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Sabina",
+        "fullname": "Sabina Rückbauer",
+        "location": "Youngstown, Ohio, US"
+      },
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 3250,
+        "donors": 6,
+        "goal": 6000,
+        "daysLeft": 131
+      }
+    },
+    {
+      "fundraiser_id": 258,
+      "nonprofit_ein": 43138428,
+      "name": "Tutoring children for the future",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-4.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "5", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "6", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Carol",
+        "fullname": "Carol Engelman",
+        "location": "Youngstown, Ohio, US"
+      },
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 1250,
+        "donors": 6,
+        "goal": 12000,
+        "daysLeft": 131
+      }
+    },
+    {
+      "fundraiser_id": 259,
+      "nonprofit_ein": 999943138428,
+      "name": "Tutoring children for the future",
+      "description": "Praesent bibendum gravida diam faucibus lobortis. Nulla a leo id mauris fringilla dictum dictum vitae ligula. Etiam maximus turpis vel dolor venenatis malesuada. Duis eget rutrum elit. Fusce elementum tempor condimentum. Cras feugiat consectetur sem, non scelerisque nisi. Donec eu magna a ante imperdiet accumsan. In tempus laoreet mi aliquet fermentum. Nullam nec cursus est. Nulla dapibus dolor fermentum hendrerit lobortis. ",
+      "data": {
+        "media": [
+          { "id": "1", "type": "image","src": "/static/assets/images/fundraiser-hero-4x3.jpg"},
+          { "id": "2", "type": "image","src": "/static/assets/images/fundraiser-hero-5.jpg"},
+          { "id": "3", "type": "image","src": "/static/assets/images/fundraiser-hero-9x16.jpg"},
+          { "id": "4", "type": "image","src": "/static/assets/images/fundraiser-hero-16x9.jpg"},
+          { "id": "5", "type": "video","src": "NbpRu-yzNfs"}
+        ]
+      },
+      "participant": {
+        "name": "Carol",
+        "fullname": "Carol Engelman",
+        "location": "Youngstown, Ohio, US"
+      },
+      "profilePicUrl": "https://vthon__nonprofit-generic.surge.sh/feed-the-children/profile-pic.jpg",
+      "currentStats": {
+        "hours": 100,
+        "donated": 1250,
+        "donors": 6,
+        "goal": 12000,
+        "daysLeft": 131
+      }
+    }
+  ],
+  "default": {
+    "data": {
+      "default_hero": {
+        "src": "/static/assets/images/nonoprofit-base-hero.jpg"
+      }
+    }
+  },
+  "pages": [
+    {
+      "page_name": "home",
+      "hero": {
+        "headline": "<span class=\"text-line-1\">Raise money</span><br> <span class=\"text-line-2\">while doing</span><br> <span class=\"text-line-3\">good!</span>",
+        "imgsrc": "/static/assets/images/home-hero.jpg",
+        "cta": "Join NOW! It's FUN…",
+        "tagline": "Want to make a far greater impact with your time?"
+      },
+      "section2": {
+        "headline": "The old way is OK",
+        "tagline": "If you do one of these and invite people to support you:",
+        "boxes": [
+          {
+            "imgsrc": "/static/assets/images/home-walkathon.jpg",
+            "title": "Walkathon"
+          },
+          {
+            "imgsrc": "/static/assets/images/home-bikeathon.jpg",
+            "title": "Bikeathon"
+          },
+          {
+            "imgsrc": "/static/assets/images/home-charity-run.jpg",
+            "title": "Charity Run"
+          }
+        ],
+        "results": [
+          {
+            "iconsrc": "/static/assets/images/icon-money-t.png",
+            "headline": "You raise some money",
+            "tagline": "The average walkathon, bikeathon and charity run raises $600 for charity."
+          }
+        ]
+      },
+      "section3": {
+        "headline": "The new way quadruples the benefits",
+        "tagline": "If you do a Volunteerathon&trade; and invite people to support you:",
+        "boxes": [
+          {
+            "images": [
+              {
+                "imgsrc": "/static/assets/images/s3-3.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-4.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-5.jpg"
+              }
+            ],
+            "title": ""
+          },
+          {
+            "images": [
+              {
+                "imgsrc": "/static/assets/images/s3-1.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-6.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-7.jpg"
+              }
+            ],
+            "title": ""
+          },
+          {
+            "images": [
+              {
+                "imgsrc": "/static/assets/images/s3-2.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-8.jpg"
+              },
+              {
+                "imgsrc": "/static/assets/images/s3-9.jpg"
+              }
+            ],
+            "title": ""
+          }
+        ],
+        "results": [
+          {
+            "iconsrc": "/static/assets/images/icon-money-t.png",
+            "duplicate": false,
+            "headline": "You raise more money",
+            "tagline": "People will donate larger amounts to your fundraiser if you spend your time serving others than if you walk, run or bike."
+          },
+          {
+            "iconsrc": "/static/assets/images/icon-money-t.png",
+            "duplicate": true,
+            "headline": "More of it goes to charity",
+            "tagline": "About 15% of proceeds of bikeathons etc. go to event admin and credit card costs. In a Volunteerathon™, only 4% goes to those. The extra 11% goes to charity."
+          },
+          {
+            "iconsrc": "/static/assets/images/icon-money-bag-t.png",
+            "duplicate": false,
+            "headline": "You save a nonprofit lots of money",
+            "tagline": "If you volunteer 100 hours instead of training to ride or run long-distance, you save a nonprofit $1,200 to $1,800. That triples or quadruples your impact."
+          },
+          {
+            "iconsrc": "/static/assets/images/icon-smiley-t.png",
+            "duplicate": false,
+            "headline": "You'll be happier",
+            "tagline": "You’ll be more satisifed serving others than walking or running, and you’ll be happier from creating a bigger impact."
+          },
+          {
+            "iconsrc": "/static/assets/images/icon-smiley-t.png",
+            "duplicate": true,
+            "headline": "Your friends will be happier",
+            "tagline": "People are happier about donating their money when your time is spent volunteering than when your time is spent walking or biking."
+          }
+        ],
+        "bottomline": "That’s five wins instead of one for the same amount of effort"
+      },
+      "section4": {
+        "headline": "A big opportunity for good",
+        "boxes": [
+          {
+            "imgsrc": "/static/assets/images/s4-volunteers-red.jpg",
+            "tagline": "The average Volunteerathon&trade; raises $700, which is higher than the $600 the average walkathon/bikeathon raises. This is because people on average will donate more if your time is helping a nonprofit than if you're exercising.",
+            "reverse": false
+          },
+          {
+            "imgsrc": "/static/assets/images/s4-multiply-logo.jpg",
+            "tagline": "If you volunteer 60 hours, you save a nonprofit about $700. If you spend another hour emailing invites and raise the $700 average, you'll double your impact in only 1/60th of the time. Would you rather contribute $700 in 60 hours or $1,400 in 61 hours?",
+            "reverse": true
+          },
+          {
+            "imgsrc": "/static/assets/images/s4-spread-the-word.jpg",
+            "tagline": "A Volunteerathon&trade; also raises awareness about your cause. Some of the people you invite will be more likely to donate to or volunteer for that cause in the future. So the impact of doing a Volunteerathon&trade; over normal volunteering is more than double.",
+            "reverse": false
+          },
+          {
+            "imgsrc": "/static/assets/images/s4-money-stack-red.jpg",
+            "tagline": "100 million people volunteer each year. They’re putting in the same effort as a walkathon, but they’re not generating any donations from it. If even 10% make their next volunteering be a “Volunteerathon&trade;” and invite their friends to be sponsors and raise $700, that is $7 billion in donations per year.",
+            "reverse": true
+          }
+        ]
+      }
+    }
+  ],
+  "common": {
+    "nonprofit": {
+      "intro": "In social fundraisers like bikeathons, you spend about 100 hours training to ride or walk long-distances, and raise about $600. In a volunteerathon, you raise the same, yet use the 100 hours to volunteer, saving a nonprofit $1,200 in expenses. This means you generate $1,800: triple the impact of a normal fundraiser. Your sponsors will be happier, the nonprofits will be happier, the people being helped will be happier, and you’ll be happier. It’s a win-win-win-win of happiness."
+    },
+    "fundraiser": {
+      "fundraiser_header": "A nonprofit fundraiser to raise money for:"
+    },
+    "footerMenuLinks": [
+      {
+        "heading": "Volunteerathon&trade;",
+        "links": [
+          { "name": "Home", "href": "#" },
+          { "name": "Volunteering", "href": "#" },
+          { "name": "Nonprofits", "href": "#" },
+          { "name": "Tips", "href": "#" }
+        ]
+      },
+      {
+        "heading": "About us",
+        "links": [
+          { "name": "The team", "href": "#" },
+          { "name": "Our mission", "href": "#" },
+          { "name": "Careers", "href": "#" },
+          { "name": "Donate", "href": "/nonprofit/830374559" }
+        ]
+      },
+      {
+        "heading": "User area",
+        "links": [
+          { "name": "Login", "href": "#" },
+          { "name": "Register", "href": "#" },
+          { "name": "Technical support", "href": "#" },
+          { "name": "Start an event", "href": "#" }
+        ]
+      },
+      {
+        "heading": "Recent posts",
+        "links": [
+          { "name": "How NOT to start a movement", "href": "#" },
+          { "name": "Volunteering for good", "href": "#" },
+          { "name": "Every effort counts", "href": "#" },
+          { "name": "Running a charity for the win", "href": "#" }
+        ]
+      }
+    ],
+    "maxGoodSites": [
+      { "name": "Volunteerathon", "href": "#" },
+      { "name": "Quitathon", "href": "#" },
+      { "name": "Loseathon", "href": "#" },
+      { "name": "Give it up for Good", "href": "#" },
+      { "name": "Vacation for Good", "href": "#" },
+      { "name": "Waterathon", "href": "#" },
+      { "name": "Christmas for Good", "href": "#" },
+      { "name": "MLK Day for Good", "href": "#" },
+      { "name": "The Lent Site", "href": "#" },
+      { "name": "Valentines for Good", "href": "#" },
+      { "name": "Fools for Good", "href": "#" },
+      { "name": "Resolutions for Good", "href": "#" },
+      { "name": "Run for good", "href": "#" },
+      { "name": "Bike for Good", "href": "#" },
+      { "name": "Walk for Good", "href": "#" },
+      { "name": "Birthdays for Good", "href": "#" },
+      { "name": "Polar Plunge for Good", "href": "#" },
+      { "name": "Bake for Good", "href": "#" }
+    ]
+
+
+  }
+}
+

@@ -1,0 +1,510 @@
+.unselectable {
+  user-select: none;
+}
+
+.is-success {
+  background-color: $color-emphasis-alt !important;
+
+  &:hover {
+    background-color: $color-emphasis-alt-modified !important;
+  }
+}
+
+.hide-on-load {
+  display: none;
+}
+
+.hide-me-but-leave-me {
+  display: none !important;
+
+  @include breakpoint($desktop) {
+    display: block !important;
+    visibility: hidden;
+  }
+}
+
+.page-wrapper {
+  padding: 40px 0;
+  position: relative;
+
+  &.secondary-section {
+    padding-top: 30px;
+  }
+}
+
+blockquote {
+  font-size: 24px;
+  font-style: italic;
+}
+
+.container {
+  margin: 0 20px;
+
+  @include breakpoint($tablet) {
+    margin: auto;
+  }
+
+  @include breakpoint($desktop) {
+    margin: auto;
+    width: $max-combo-wrapper-width; //960px
+  }
+
+  @include breakpoint($fullhd) {
+    width: $max-fluid-container-width; //1152px
+  }
+
+  &.is-fluid {
+    width: 100%;
+    padding: 0 3%;
+    margin: 0 auto;
+
+    @include breakpoint($mobile) {
+      max-width: $max-flickity-width; //620px;
+    }
+
+    @include breakpoint($tablet) {
+      padding: 0;
+    }
+    @include breakpoint($widescreen) {
+      width: $max-fluid-container-width; //1152px
+    }
+    @include breakpoint($fullhd) {
+      max-width: $max-fluid-container-width;
+      width: $max-container-width; //1344px
+    }
+  }
+
+}
+
+.content-container {
+  position: static !important;
+}
+
+.navbar >.container .navbar-brand {
+  margin-left: 0 !important;
+}
+
+.label {
+  font-weight: 400 !important;
+}
+
+.logo-badge {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  h3 {
+    color: $color-text;
+    font-size: 18px;
+    padding-bottom: 0;
+  }
+}
+
+
+/* cards */
+.card {
+  padding: 0;
+  margin: 10px;
+  border: 10px solid white;
+
+  .card-content {
+    height: calc(80vw - 30px);
+    border: none;
+    background-size: cover;
+    background-position: center;
+
+    &.bg-position-right {
+      background-position: right center;
+    }
+
+    @include breakpoint($tablet) {
+      height: calc(255px);
+    }
+
+    @include breakpoint($widescreen) {
+      height: calc(325px);
+    }
+
+    &.card-taller {
+      @include breakpoint($tablet) {
+        height: 275px;
+      }
+      @include breakpoint($widescreen) {
+        height: 255px;
+      }
+    }
+
+  }
+
+  &.card-loop {
+    position: relative;
+    height: calc(80vw - 30px);
+
+    @include breakpoint($tablet) {
+      height: calc(299px);
+    }
+
+    @include breakpoint($widescreen) {
+      height: calc(275px);
+    }
+
+    .card-content {
+      position: absolute;
+      width: 100%;
+
+      @include breakpoint($mobile) {
+        height: calc(80vw - 56px);
+      }
+    }
+  }
+}
+
+.select {
+  select {
+    width: 100%;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+.share-button {
+  height: 23px;
+  width: 129px;
+}
+
+.tabs.is-toggle li.is-active a {
+  background-color: $color-medium-gray !important;
+  border-color: $color-medium-gray !important;
+}
+
+.flickity-page-dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
+  padding-bottom: 5px;
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 3px;
+    border-radius: 12px;
+    background: rgba($color-medium-gray, 0.6);
+    color: transparent;
+    text-indent: -10000px;
+    transition: background-color 0.2s ease-in-out;
+
+    &.is-selected {
+      background: $color-medium-gray;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: rgba($color-medium-gray, 0.9);
+    }
+  }
+}
+
+.white-bg {
+  background: $white;
+}
+
+/* Share tools colors */
+.share-facebook {
+  svg {
+    path {
+      fill: $color-share-facebook !important;
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-gray !important;
+      }
+    }
+  }
+}
+
+.share-twitter {
+  svg {
+    path {
+      fill: $color-share-twitter !important;
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-gray !important;
+      }
+    }
+  }
+}
+
+.share-email {
+  svg {
+    path {
+      fill: $color-share-instagram !important;
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-gray !important;
+      }
+    }
+  }
+}
+
+.share-linkedin {
+  svg {
+    path {
+      fill: $color-share-linkedin !important;
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-gray !important;
+      }
+    }
+  }
+}
+
+.share-instagram {
+  svg {
+    path {
+      fill: $color-share-instagram !important;
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-gray !important;
+      }
+    }
+  }
+}
+
+.share-icon-gray {
+  svg {
+    path {
+      fill: $color-silver;
+      transition: fill 0.2s ease-in-out;
+    }
+
+    &:hover {
+      path {
+        fill: $color-medium-gray;
+      }
+    }
+  }  
+}
+
+/* body classes for modal */
+body.no-scroll {
+  overflow: hidden;
+  height: 100%;
+  width: 100vw;
+  position: fixed;
+}
+.modal-content {
+  padding: 30px;
+  background: white;
+  border: 1px solid gray;
+}
+
+.modal {
+  z-index: 101;
+  .modal-background {
+    background: rgba($white, 0.9);
+  }
+  .modal-content {
+    margin-top: 5vh;
+    box-shadow: 0 0 50px rgba($color-text, 0.3);
+    max-height: calc(90vh);
+    border: none;
+    border-radius: 20px;
+    width: 880px;
+    &.small-modal {
+      width: 640px;
+      text-align: left;
+    }
+    &.large-modal {
+      width: 90%;
+      max-width: 1190px;
+    }
+    &.medium-modal {
+      width: 90%;
+      max-width: 800px;
+      @include breakpoint($mobile) {
+        width: 100%;
+      }
+    }
+
+  }
+  .modal-close {
+    position: absolute;
+    background: rgba($color-text, 0.3);
+    right: 7px;
+    top: 7px;
+  }
+}
+
+.modal-title {
+  text-align: center;
+}
+
+
+/* form */
+.input-line {
+  margin-bottom: 10px;
+  &:first-child {
+    margin-top: 0px;
+  }
+  @include breakpoint($tablet) {
+    margin-bottom: 25px !important;
+
+    &.custom-amount-wrapper {
+      margin-bottom: 20px;
+    }
+  }
+  &.email-input-wrapper {
+    margin-bottom: 0;
+    @include breakpoint($tablet) {
+      margin-bottom: 10px;
+    }
+  }
+  &:last-child {
+    margin-bottom: 25px !important;
+  }
+}
+
+.input-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0;
+  @include breakpoint($tablet) {
+    justify-content: flex-end;
+    padding-top: 0;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+
+  .input-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 1;
+  }
+  .input {
+    padding-left: 40px;
+  }
+}
+
+.form-column__input-column {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  line-height: 2.25em;
+  padding-bottom: 0;
+}
+
+.small-text {
+  display: block;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.donate-view {
+  .page-title {
+    text-align: center;
+    color: $color-text;
+    font-weight: bold;
+    &__first {
+      display: block;
+      font-weight: bold;
+      font-size: 30px;
+      margin-bottom: 10px;
+
+      @include breakpoint($tablet) {
+        margin-bottom: 0;
+      }
+    }
+    &__second {
+      color: $color-emphasis-alt;      
+    }
+  }
+}
+
+.parent__nonprofit {
+  .page-title {
+    &__first {
+      font-weight: normal;
+      font-size: 26px;
+    }
+  }
+}
+
+.editable-error-message-wrapper {
+  padding-top: 0;
+  margin-bottom: 20px;
+}
+.editable-error-message {
+  color: red;
+  transform: translateY(-1em);
+}
+
+.title-centered,
+p.is-centered {
+  text-align: center;
+}
+
+.action-icon-wrapper {
+  svg {
+    path {
+      transition: fill 0.2s ease-in-out;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    svg {
+      path {
+        fill: $color-medium-gray;
+      }
+    }
+  }
+}
+
+.centered-content {
+  .container > p {
+    text-align: center;
+  }
+}
+
+.style-paragraph {
+  font-size: 20px;
+  margin-bottom: 20px;
+}

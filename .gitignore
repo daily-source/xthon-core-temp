@@ -1,0 +1,11 @@
+.DS_Store
+dist/
+node_modules/
+src/tests/unit/coverage
+npm-debug.log
+yarn-error.log
+.idea
+*.iml
+.env
+.env.test
+!.env.example
