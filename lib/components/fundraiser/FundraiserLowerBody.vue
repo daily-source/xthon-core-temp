@@ -445,7 +445,7 @@ export default {
           userId: this.fundraiser.UserId
         }).then(() => {})
           .catch(err => {
-            console.log('err: ', err)
+            console.log("err: ", err)
           })
       }
     },

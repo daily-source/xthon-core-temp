@@ -10,7 +10,7 @@ const sassResourcesLoader = {
   loader: 'sass-resources-loader',
   options: {
     resources: [
-      path.resolve(__dirname, '../src/assets/scss/base.scss')
+      path.resolve(__dirname, '../lib/assets/scss/base.scss')
     ]
   }
 }
@@ -28,7 +28,7 @@ module.exports = {
   resolve: {
     alias: {
       'public': path.resolve(__dirname, '../public'),
-      'Components': path.resolve(__dirname, '../src/components')
+      'Components': path.resolve(__dirname, '../lib/components')
     }
   },
   resolveLoader: {
