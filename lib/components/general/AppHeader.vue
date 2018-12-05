@@ -3,7 +3,7 @@
     <div class="container is-fluid">
       <div class="header__inner">
         <div class="random-words">
-          <router-link to="/explore">Explore</router-link>
+          <router-link to="/explore">ExploreX</router-link>
         </div>
         <div class="random-words">
           Volunteer
