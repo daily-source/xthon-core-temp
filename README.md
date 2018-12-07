@@ -3,6 +3,14 @@
 Vue-powered template featuring SSR, hot reloading, linting, fake json server, and tests, based on Evan You's [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0).
 
 
+## Tag version
+
+Remember to create a tag and push it
+git tag v0.0.23
+git push origin <tag_name>
+
+Also change the corresponding dependency in the container's package.json file
+
 ## Build Setup
 
 **Requires Node.js 9+**
