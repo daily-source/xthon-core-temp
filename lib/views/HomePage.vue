@@ -45,11 +45,11 @@ export default {
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
     AppHeader: () => import("Components/general/AppHeader.vue"),
-    HomeHero: () => import("Components/home/HomeHero.vue"),
+    HomeHero: () => import("Components/Volunteerathon/HomeHero.vue"),
     TopMenu: () => import("Components/general/TopMenu.vue"),
-    HomeSection2: () => import("Components/home/HomeSection2.vue"),
-    HomeSection3: () => import("Components/home/HomeSection3.vue"),
-    HomeSection4: () => import("Components/home/HomeSection4.vue"),
+    HomeSection2: () => import("Components/Volunteerathon/HomeSection2.vue"),
+    HomeSection3: () => import("Components/Volunteerathon/HomeSection3.vue"),
+    HomeSection4: () => import("Components/Volunteerathon/HomeSection4.vue"),
     NonprofitForm: () => import("Components/nonprofit/NonprofitForm.vue")
   },
 
