@@ -34,8 +34,9 @@
             <p class="button-wrapper" v-if="canEdit">
               <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing">Edit this fundraiser</a>
             </p>
-            <p>{{fundraiser.User.firstName}} will volunteer {{fundraiser.fundraiserDetails.hours}} hours {{fundraiser.communityWork}} for <a rel="noopener" target="_blank" :href="fundraiser.Nonprofit.url">{{fundraiser.Nonprofit.name}}</a> to raise money for the same nonprofit.</p>
-            <p class="fundraiser-pledge__subheading">Please sponsor {{fundraiser.User.firstName}}'s Volunteerathon</p>
+            <slot name="copytext"></slot>
+            <p class="fundraiser-pledge__subheading"><slot name="effortstext">Please support {{fundraiser.User.firstName}}'s efforts</slot>
+            </p>
           </div>
           <div class="button fundraiser-pledge__cta is-success is-large">
             <DonateAction
