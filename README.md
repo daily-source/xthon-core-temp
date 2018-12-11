@@ -9,7 +9,11 @@ Remember to create a tag and push it
 git tag v0.0.23
 git push origin <tag_name>
 
-Also change the corresponding dependency in the container's package.json file
+Also change the corresponding dependency in the container's package.json file.
+
+
+Ensure to commit the changes here in the library before commiting the changes to the main repository (or container).
+
 
 ## Build Setup
 
