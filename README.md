@@ -12,7 +12,7 @@ git push origin <tag_name>
 Also change the corresponding dependency in the container's package.json file.
 
 
-Ensure to commit the changes here in the library before commiting the changes to the main repository (or container).
+Ensure to commit the changes here in the library before commiting the changes to the main repository (or container), and also update (bump) the library version.
 
 
 ## Build Setup
