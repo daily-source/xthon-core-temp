@@ -162,7 +162,7 @@ export default {
     TopMenu: () => import("Components/general/TopMenu.vue"),
     NonprofitAjaxSearch: () => import("Components/general/NonprofitAjaxSearch.vue"),
     NonprofitFundraisers: () => import("Components/nonprofit/NonprofitFundraisers.vue"),
-    NonprofitForm: () => import("Components/nonprofit/NonprofitForm.vue"),
+    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue"),
     WaysSupport: () => import("Components/explore/WaysSupport.vue")
   },
   data () {

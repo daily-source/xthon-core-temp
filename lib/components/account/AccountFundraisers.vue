@@ -69,7 +69,7 @@ export default {
   },
   components: {
     Modal: () => import("Components/general/Modal.vue"),
-    NonprofitForm: () => import("Components/nonprofit/NonprofitForm.vue"),
+    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue"),
     UserDialog: () => import("Components/general/UserDialog.vue")
   },
   computed: {
