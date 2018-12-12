@@ -33,8 +33,8 @@
     transition: opacity 0.3s ease-in-out;
 
     @include breakpoint($widescreen) {
-      right: unset;
-      bottom: unset;
+      right: auto;
+      bottom: auto;
       top: 20px;
       left: calc((100vw - 960px)/2 - 110px);
     }
@@ -102,7 +102,7 @@ export default {
       var nonpScrolltop = this.$refs.nonpToolbar.getBoundingClientRect()
       var top = window.pageYOffset || document.documentElement.scrollTop
       var docHeight = (document.height !== undefined) ? document.height : document.body.offsetHeight
-      if (nonpScrolltop.y < 93 && top < docHeight - 1000) {
+      if (nonpScrolltop.top < 93 && top < docHeight - 1000) {
         this.isVisible = true
       } else {
         this.isVisible = false

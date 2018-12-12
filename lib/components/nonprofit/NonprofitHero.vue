@@ -256,7 +256,7 @@ export default {
         padding: 15px 20px;
       }
       @include breakpoint($tablet) {
-        min-width: unset;
+        min-width: auto;
         margin-left: 10px;
         padding: 15px 20px;
       }

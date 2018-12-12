@@ -237,7 +237,9 @@ export default {
     text-align: left;
     margin-bottom: 30px;
     margin-top: 0;
-    flex: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
