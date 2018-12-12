@@ -25,7 +25,7 @@ export default {
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
     AppHeader: () => import("Components/general/AppHeader.vue"),
-    NonprofitForm: () => import("Components/nonprofit/NonprofitForm.vue")
+    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue")
   },
   /**
    * This uses vue-meta in order to render the tags in the page. For the home page, it uses

@@ -50,7 +50,7 @@ export default {
     HomeSection2: () => import("Components/Volunteerathon/HomeSection2.vue"),
     HomeSection3: () => import("Components/Volunteerathon/HomeSection3.vue"),
     HomeSection4: () => import("Components/Volunteerathon/HomeSection4.vue"),
-    NonprofitForm: () => import("Components/nonprofit/NonprofitForm.vue")
+    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue")
   },
 
   /**
