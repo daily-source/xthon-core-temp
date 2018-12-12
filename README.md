@@ -1,18 +1,21 @@
-# Volunteerathon Front-end Vue SSR
+# xthon-core library
 
-Vue-powered template featuring SSR, hot reloading, linting, fake json server, and tests, based on Evan You's [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0).
-
+Vue-powered standalone and library that can be used to power sites like Volunteerathon, GiveItUpForGood, RideForGood, etc. 
 
 ## Tag version
 
-Remember to create a tag and push it
-git tag v0.0.23
-git push origin <tag_name>
+If there are changes to the package.json file in the library, these need to be reflected in the parent. Bump the version in the library following (https://semver.org/)[https://semver.org/] guidelines, commit and push to the remote. After that, create a tag and push it to the remote:
+```
+git tag -a v0.0.25
+git push origin v.0.0.25
+```
 
-Also change the corresponding dependency in the container's package.json file.
+Then, update the library version in the container's package.json file to reflect that exact version:
+```
+"xthon-core": "github:dailysourceorg/xthon-core#0.0.25"
+```
 
-
-Ensure to commit the changes here in the library before commiting the changes to the main repository (or container), and also update (bump) the library version.
+Note: ensure to commit the changes here in the library before commiting the changes to the main repository (or container), and also update (bump) the library version.
 
 
 ## Build Setup
@@ -27,9 +30,6 @@ npm install # or yarn
 # serve in dev mode, with hot reload at localhost:8080
 # this will also start a fake json server at localhost:8080/api serving static assets at localhost:8080/static
 npm run dev
-
-# build for production
-npm run build
 
 # serve in production mode
 npm start
