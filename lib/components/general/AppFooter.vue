@@ -131,7 +131,7 @@
 
 <script>
 import Icons from "Components/general/Icons.vue"
-import * as sharer from "../../util/sharer.js"
+import * as sharer from "Core/util/sharer.js"
 
 export default {
   components: {
