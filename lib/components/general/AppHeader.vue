@@ -17,12 +17,12 @@
         </div>
         <div class="logo__wrapper">
           <router-link to="/" exact>
-            <img class="logo" src="~public/logo-300x53.png" alt="logo" width="300" height="53">
+            <img class="logo" src="Public/logo-300x53.png" alt="logo" width="300" height="53">
           </router-link>
         </div>
         <div class="logo__wrapper centered">
           <router-link to="/" exact>
-            <img class="logo" src="~public/logo-300x53.png" alt="logo" width="300" height="53">
+            <img class="logo" src="Public/logo-300x53.png" alt="logo" width="300" height="53">
           </router-link>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
@@ -34,7 +34,7 @@
         <div class="max-good" @click="toggleOtherMaxGoodSites()" :class="{ 'active': showingMaxGoodSites }">
           <span class="small">Powered by </span>
           <div class="max-good__submenu-wrapper">
-            <img src="~public/max-good-logo-150x18.png" width="150" height="18" alt="">
+            <img src="Public/max-good-logo-150x18.png" width="150" height="18" alt="">
             <ul class="other-max-good-sites">
               <li>
                 <span class="other-sites-arrow" :class="{ 'turn': showingMaxGoodSites }">

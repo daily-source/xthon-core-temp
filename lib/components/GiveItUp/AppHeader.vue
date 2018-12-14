@@ -36,7 +36,7 @@
     <div class="container">
       <div class="header-top d-flex justify-content-between align-items-center py-1">
         <router-link to="/" class="logo-link">
-          <img src="~public/logo-giveitup-1286x321.png" alt="CalendarForGood">
+          <img src="@/assets/img/logo-giveitup-1286x321.png" alt="CalendarForGood">
         </router-link>
         <div class="header-top__nav-section">
           <ul class="nav justify-content-end">
@@ -91,6 +91,6 @@
 
 <script>
 export default {
-  name: 'AppHeader'
-}
+  name: 'AppHeader',
+};
 </script>

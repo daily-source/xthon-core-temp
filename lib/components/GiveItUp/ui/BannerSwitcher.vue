@@ -49,8 +49,8 @@
         <div class="row mb-3">
           <div class="col-md-4 mb-3" v-for="(img,index) in bgImages" :key="index">
             <img
-              class="img-fluid" 
-              :src="require(`@/assets/${img.imgName}`)" 
+              class="img-fluid"
+              :src="require(`@/assets/${img.imgName}`)"
               :alt="`Background Image Placeholder ${index}`"
               @click="handleImageSelected(index)"
             >
@@ -71,7 +71,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'BannerSwitcher',
 
@@ -80,49 +81,49 @@ export default {
       open: false,
       overlayHideTrigger: true,
       overlayShowTrigger: false,
-      url: ''
-    }
+      url: '',
+    };
   },
 
   computed: {
     ...mapState({
-      bgImages: state => state.bannerSwitcher.bannerImages
-    })
+      bgImages: state => state.bannerSwitcher.bannerImages,
+    }),
   },
 
   methods: {
     toggleSwitcher() {
       this.open = !this.open;
-      if( this.open ) {
+      if (this.open) {
         this.overlayHideTrigger = false,
         setTimeout(() => {
-          this.overlayShowTrigger = true 
-        }, 100 )
+          this.overlayShowTrigger = true;
+        }, 100);
       } else {
         this.overlayShowTrigger = false,
-        setTimeout( () => {
-          this.overlayHideTrigger = true
-        }, 150)
+        setTimeout(() => {
+          this.overlayHideTrigger = true;
+        }, 150);
       }
     },
 
-    handleImageSelected( index ) {
-      this.switchBannerImage( index )
-      this.toggleSwitcher()
+    handleImageSelected(index) {
+      this.switchBannerImage(index);
+      this.toggleSwitcher();
     },
 
-    handleImageUrlSelected( ) {
-      if( this.url ) {
-        this.switchBannerImageUrl( this.url )
+    handleImageUrlSelected() {
+      if (this.url) {
+        this.switchBannerImageUrl(this.url);
       }
 
-      this.toggleSwitcher()
+      this.toggleSwitcher();
     },
 
     ...mapActions({
       switchBannerImage: 'bannerSwitcher/switchBannerImage',
       switchBannerImageUrl: 'bannerSwitcher/switchBannerImageUrl',
     }),
-  }
-}
+  },
+};
 </script>

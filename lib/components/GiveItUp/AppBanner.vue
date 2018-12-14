@@ -30,7 +30,7 @@
             </li>
             <li>
               <Icons iconwidth="24px" iconheight="24px" icon="hash" color="#fff" class="icon" />
-              <span>How much to give up and for how long</span>              
+              <span>How much to give up and for how long</span>
             </li>
           </ul>
         </div>
@@ -46,7 +46,7 @@
             </li>
             <li>
               <Icons iconwidth="24px" iconheight="24px" icon="hash" color="#fff" class="icon" />
-              <span>For how long</span>              
+              <span>For how long</span>
             </li>
             <li>
               <Icons iconwidth="24px" iconheight="24px" icon="heart" color="#fff" class="icon" />
@@ -65,7 +65,7 @@
             </li>
             <li>
               <Icons iconwidth="24px" iconheight="24px" icon="hash" color="#fff" class="icon" />
-              <span>How much to give up and for how long</span>              
+              <span>How much to give up and for how long</span>
             </li>
           </ul>
         </div>
@@ -80,7 +80,7 @@
             </li>
             <li>
               <Icons iconwidth="18px" iconheight="18px" icon="hash" color="#fff" class="icon" />
-              <span>How much to give up and for how long.</span>              
+              <span>How much to give up and for how long.</span>
             </li>
             <li>
               <Icons iconwidth="18px" iconheight="18px" icon="heart" color="#fff" class="icon" />
@@ -95,48 +95,46 @@
 </template>
 
 <script>
-import Icons from "Components/general/Icons.vue"
-import { mapState } from 'vuex'
+import Icons from '@/components/general/Icons.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'AppBanner',
 
   components: {
-    Icons
+    Icons,
   },
 
-  props: ["disableHero"],
+  props: ['disableHero'],
 
   computed: {
     ...mapState({
-      currentBg: state => state.bannerSwitcher ? state.bannerSwitcher.current : '',
+      currentBg: state => (state.bannerSwitcher ? state.bannerSwitcher.current : ''),
     }),
-    version () {
-      return this.$route.query.version
-    }
+    version() {
+      return this.$route.query.version;
+    },
   },
 
   methods: {
-    imagePath( imgName ) {
-      return require('public/images/' + imgName )
+    imagePath(imgName) {
+      return require(`@/assets/img/images/${imgName}`);
     },
 
     getBgImage() {
       if (this.disableHero) {
-        return
+        return;
       }
-      if( this.currentBg ) {
-        if( this.currentBg.type == 'local' ) {
-          return this.imagePath( this.currentBg.imgName )
-        } else {
-          return this.currentBg.imgUrl
+      if (this.currentBg) {
+        if (this.currentBg.type == 'local') {
+          return this.imagePath(this.currentBg.imgName);
         }
-      } else {
-        return this.imagePath( 'banner-img-1.jpg' );
+        return this.currentBg.imgUrl;
       }
+      return this.imagePath('banner-img-1.jpg');
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -368,7 +366,7 @@ export default {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          align-items: center;          
+          align-items: center;
         }
       }
     }
@@ -384,7 +382,7 @@ export default {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          align-items: center;          
+          align-items: center;
         }
       }
     }
@@ -400,7 +398,7 @@ export default {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          align-items: center;          
+          align-items: center;
         }
       }
     }
@@ -416,7 +414,7 @@ export default {
           display: flex;
           flex-direction: row;
           justify-content: center;
-          align-items: center;          
+          align-items: center;
         }
       }
     }
