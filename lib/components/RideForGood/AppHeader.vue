@@ -1,12 +1,12 @@
 <template>
   <header class="site-header" id="site-header">
     <div class="container">
-      <div class="header-top d-flex justify-content-between align-items-center py-1">
+      <div class="header-top">
         <router-link to="/" class="logo-link">
           <img src="@/assets/img/logo-rideforgood-400x139.png" alt="CalendarForGood">
         </router-link>
         <div class="header-top__nav-section">
-          <ul class="nav justify-content-end">
+          <ul class="nav is-flex">
             <li class="nav-item">
               <router-link to="/register" class="nav-link px-1">Register</router-link>
             </li>
@@ -14,21 +14,21 @@
               <router-link to="/login" class="nav-link px-1 pr-0">Login</router-link>
             </li>
           </ul>
-          <ul class="nav social-nav justify-content-end">
+          <ul class="nav social-nav is-flex">
             <li class="nav-item">
-              <a href="#" class="nav-link bg-facebook">
+              <a href="#" class="nav-link">
                 <i class="fab fa-facebook-f"></i>
                 <span class="sr-only">Facebook</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link bg-twitter">
+              <a href="#" class="nav-link">
                 <i class="fab fa-twitter"></i>
                 <span class="sr-only">Twitter</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link bg-instagram">
+              <a href="#" class="nav-link">
                 <i class="fab fa-instagram"></i>
                 <span class="sr-only">Instagram</span>
               </a>
@@ -66,24 +66,56 @@ export default {
   #site-header {
     background-color: white;
   }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .25em;
+    padding-bottom: 0.25em;
+
+    .nav {
+      justify-content: flex-end;
+      margin-left: -0.25em;
+
+      .nav-item {
+        padding-left: .25em;
+        padding-right: .25em;
+      }
+    }
+  }
+
   .logo-link {
     img {
       max-width: 200px;
     }
   }
+
   .navbar {
-    background-color: transparent !important;
-    @include breakpoint($mobile) {
-      display: none;
+    min-height: auto;
+    background-color: $primary !important;
+
+    > .container {
+      min-height: auto;
     }
-  }
-  .navbar-nav {
-    .nav-item{
+
+    #navbar-content {
+      flex-grow: 1;
+    }
+
+    .navbar-nav {
+      display: flex;
+
       .nav-link {
+        display: inline-block;
         color: #fff;
         padding: 1rem !important;
       }
-      &:last-child {
+
+      .nav-item:last-child {
+        margin-left: auto;
+        background-color: $secondary;
+
         .nav-link {
           padding: 1rem 1.5rem !important;
           font-weight: 700;
@@ -91,9 +123,8 @@ export default {
           text-transform: uppercase;
         }
       }
+      
     }
   }
-  .container {
-    margin: 0 auto;
-  }
+
 </style>
