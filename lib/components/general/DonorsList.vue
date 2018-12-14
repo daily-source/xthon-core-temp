@@ -93,7 +93,7 @@
       </div>
     </div>
     <section class="donors-list" v-if="donations.length && layout === 'horizontal'">
-      <div class="containerx">
+      <div class="container">
         <h2 v-html="sectionTitle"></h2>
         <div class="donors-list__wrapper columns is-mobile is-multiline">
           <div class="donors-list__donor column is-2-desktop is-6-mobile" ref="wideDonorColumn" v-for="donation in donations.slice(0, limit)">
