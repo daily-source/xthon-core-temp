@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import Icons from '@/components/general/Icons.vue';
+import Icons from 'Components/general/Icons.vue';
 import { mapState } from 'vuex';
 
 export default {
