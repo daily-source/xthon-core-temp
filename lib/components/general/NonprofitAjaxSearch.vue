@@ -30,7 +30,7 @@
 import VueSelect from "vue-select"
 import debounce from "lodash/debounce"
 
-const IRSSearchAPI = process.env.IRS_SEARCH_API_URL
+const IRSSearchAPI = process.env.VUE_APP_IRS_SEARCH_API_URL || process.env.IRS_SEARCH_API_URL
 
 export default {
   props: ["standalone", "placeholder", "defaultValue"],
