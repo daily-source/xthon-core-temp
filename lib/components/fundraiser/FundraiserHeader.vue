@@ -90,7 +90,7 @@ export default {
     font-size: 18px;
     margin-bottom: 10px;
 
-    @include breakpoint($mobile) {
+    @include mobile {
       display: none;
     }
 
@@ -111,7 +111,7 @@ export default {
   }
   &__img {
     max-height: 70px;
-    @include breakpoint($mobile) {
+    @include mobile {
       display: none;
     }
     @include tablet {

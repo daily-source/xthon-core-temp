@@ -256,7 +256,7 @@ li {
   text-align: center;
   margin: 20px 0;
 
-  @include breakpoint($mobile) {
+  @include mobile {
     margin: 30px 0;
   }
 }

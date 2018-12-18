@@ -292,7 +292,7 @@ export default {
 }
 
 .image-control {
-  @include breakpoint($mobile) {
+  @include mobile {
     margin-top: -20px;
     margin-bottom: 20px;
   }

@@ -144,7 +144,7 @@ export default {
     }
   }
   &__left {
-    @include breakpoint($mobile) {
+    @include mobile {
       padding-left: 0 !important;
     }
   }
@@ -159,7 +159,7 @@ export default {
 .fundraiser-photo-section {
   width: 100vw;
 
-  @include breakpoint($mobile) {
+  @include mobile {
     max-width: $max-flickity-width - 22px;
     margin-left: 0;
   }
@@ -179,7 +179,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
 
-    @include breakpoint($mobile) {
+    @include mobile {
       max-width: $max-flickity-width;
     }
 

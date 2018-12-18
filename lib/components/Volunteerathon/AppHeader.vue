@@ -71,7 +71,7 @@
 
       &.turn {
         svg {
-          @include breakpoint($mobile) {
+          @include mobile {
             transition: transform 0.2s ease-in-out;
             transform: rotate(180deg);
           }
@@ -227,7 +227,7 @@
     opacity: 1;
     z-index: 1;
 
-    @include breakpoint($mobile) {
+    @include mobile {
       padding-left: 9px;
     }
 

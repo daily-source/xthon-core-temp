@@ -119,7 +119,7 @@ export default {
   display: flex;
 
   &.is-editing {
-    @include breakpoint($mobile) {
+    @include mobile {
       display: block;
     }    
   }
@@ -146,7 +146,7 @@ export default {
   }
 
   &__subscribe {
-    @include breakpoint($mobile) {
+    @include mobile {
       margin-top: 20px;
       .button {
         white-space: normal;
@@ -202,7 +202,7 @@ export default {
     }
     &.is-editing {
       width: 600px;
-      @include breakpoint($mobile) {
+      @include mobile {
         width: 100%;
       }      
     }

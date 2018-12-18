@@ -116,7 +116,7 @@ export default {
 
 <style lang="scss">
 .modal-viewer__outer-wrapper {
-  @include breakpoint($mobile) {
+  @include mobile {
     .modal-content {
       margin: 0;
     }

@@ -127,4 +127,10 @@ export default {
     }
   }
 
+  .header-nav {
+    @include mobile {
+      display: none;
+    }
+  }
+
 </style>

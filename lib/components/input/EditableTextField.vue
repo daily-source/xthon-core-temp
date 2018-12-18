@@ -172,13 +172,13 @@ export default {
   }
 }
 .column.is-11-mobile {
-  @include breakpoint($mobile) {
+  @include mobile {
     padding-bottom: 0;
   }
 }
 .column.is-7-mobile,
 .column.is-5-mobile {
-  @include breakpoint($mobile) {
+  @include mobile {
     padding-top: 0;
   }
 }

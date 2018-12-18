@@ -41,7 +41,7 @@
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
       </div>
-      <div class="container columns">
+      <div class="container columns center">
         <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
@@ -183,6 +183,10 @@ export default {
     }
   }
 
+  .container.center {
+    margin: auto;
+  }
+
   &__nonprofit-name {
     font-size: 30px;
     color: $color-text;
@@ -250,7 +254,7 @@ export default {
       box-shadow: 1px 1px 10px rgba($color-text, 0.5);
       transition: background-color 0.2s ease-in-out;
 
-      @include breakpoint($mobile) {
+      @include mobile {
         min-width: 40vw;
         margin-left: 10px;
         padding: 15px 20px;
@@ -301,7 +305,7 @@ export default {
       right: 0;
       top: -20px;
 
-      @include breakpoint($mobile) {
+      @include mobile {
         top: 80px;
       }
     }

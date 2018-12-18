@@ -6,7 +6,7 @@
   }
   .navbar {
     background-color: transparent !important;
-    @include breakpoint($mobile) {
+    @include mobile {
       display: none;
     }
   }

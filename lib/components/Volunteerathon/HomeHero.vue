@@ -28,7 +28,7 @@ export default {
   min-height: 41vh;
   position: relative;
 
-  @include breakpoint($mobile) {
+  @include mobile {
     min-height: 42vh;
   }
 
@@ -52,7 +52,7 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
 
-    @include breakpoint($mobile) {
+    @include mobile {
       background-size: cover;
       background-repeat: no-repeat;
       height: 40vh;
@@ -84,7 +84,7 @@ export default {
       top: 17px;
       font-size: 26px;
 
-      @include breakpoint($mobile) {
+      @include mobile {
         top: 0;
       }
 
@@ -111,7 +111,7 @@ export default {
   bottom: 13vw;
   position: absolute;
 
-  @include breakpoint($mobile) {
+  @include mobile {
     bottom: 3vw;
   }
 

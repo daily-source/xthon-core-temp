@@ -225,7 +225,7 @@ ul {
     }
   }
   th {
-    @include breakpoint($mobile) {
+    @include mobile {
       padding: .5em .25em;
     }
   }

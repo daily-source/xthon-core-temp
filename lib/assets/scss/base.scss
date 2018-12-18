@@ -41,16 +41,6 @@ $color-emphasis-alt-modified: #6AA537;
 $white: #FFFFFF;
 $max-flickity-width: 620px;
 
-// Breakpoints
-$mobile: ( max:  768px );
-
-@mixin breakpoint($map) {
-  $query: "";
-  @if map-has-key($map, min) { $query: append($query, "(min-width: #{map-get($map, min)})") }
-  @if map-has-key($map, min) and map-has-key($map, max) { $query: append($query, "and") }
-  @if map-has-key($map, max) { $query: append($query, "(max-width: #{map-get($map, max)})") }
-  @media screen and #{$query} { @content; }
-}
 
 // Widths and containers
 $max-container-width: 1344px;
