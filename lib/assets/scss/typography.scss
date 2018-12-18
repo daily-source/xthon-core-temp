@@ -53,7 +53,7 @@ html body {
     font-weight: normal;
     margin-bottom: 20px;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       font-size: 34px;
       line-height: 1.4;
     }
@@ -88,16 +88,16 @@ html body {
     font-weight: 400;
     line-height: 1;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       top: 18px;
       font-size: 30px;
     }
 
-    @include breakpoint($desktop) {
+    @include desktop {
       font-size: 32px;
     }
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       font-size: 50px;
     }
 

@@ -28,7 +28,7 @@
   top: 0;
   left: 0;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     position: static;
   }
 }
@@ -38,13 +38,13 @@
 }
 .navbar-burger {
   z-index: 200;
-  @include breakpoint($tablet) {
+  @include tablet {
     display: none !important;
   }
 }
 
 .navbar {
-  @include breakpoint($tablet) {
+  @include tablet {
     background: $color-emphasis-alt;
     padding-bottom: 3px;
     min-height: 45px;
@@ -79,7 +79,7 @@
 .navbar-menu {
   position: absolute;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     display: flex;
     background: transparent !important;
     box-shadow: none !important;

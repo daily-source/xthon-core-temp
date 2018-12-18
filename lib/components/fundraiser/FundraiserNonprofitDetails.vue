@@ -53,7 +53,7 @@ export default {
     width: 140px;
     margin: 15px auto;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       margin: 0 24px 0 0;
     }
 
@@ -84,7 +84,7 @@ export default {
       align-items: center;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       text-align: left;
       display: flex;
       flex-direction: row;

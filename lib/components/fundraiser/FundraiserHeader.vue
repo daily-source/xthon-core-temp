@@ -56,7 +56,7 @@ export default {
     margin-bottom: 10px;
     padding-top: 10px;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-bottom: 5px;
     }
     &.is-editing {
@@ -67,7 +67,7 @@ export default {
   .container {
     padding-top: 40px;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       background: $white;
       border-right: 1px solid $color-light-gray;
       border-left: 1px solid $color-light-gray;
@@ -79,7 +79,7 @@ export default {
   display: flex;
   text-align: center;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     flex-direction: row;
     justify-content: center;
   }
@@ -94,7 +94,7 @@ export default {
       display: none;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-bottom: 0;
     }
 
@@ -114,7 +114,7 @@ export default {
     @include breakpoint($mobile) {
       display: none;
     }
-    @include breakpoint($tablet) {
+    @include tablet {
       max-height: 20px;
     }
   }

@@ -266,18 +266,18 @@ export default {
     }
   }
   &__about {
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 50%;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       width: 66.66667%;
     }
   }
   &__icons {
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 50%;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       width: 33.33333%;
     }
   }
@@ -294,7 +294,7 @@ export default {
     overflow: hidden;
     transform: translateX(-20px);
 
-    @include breakpoint($tablet) {
+    @include tablet {
       transform: translateX(0);
       width: 100%;
       height: 0;
@@ -302,7 +302,7 @@ export default {
       text-align: left;
     }
     &.short-wrapper {
-      @include breakpoint($tablet) {
+      @include tablet {
         width: calc(990px*0.8/3);
       }
 
@@ -314,12 +314,12 @@ export default {
     background-size: cover;
     background-position: center;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       width: calc(990px*0.8/3);
       height: calc(990px*0.8/3*3/4);
       border-right: 4px solid $white;
     }
-    @include breakpoint($fullhd) {
+    @include fullhd {
       width: calc(1140px*0.8/3);
       height: calc(1140px*0.8/3*3/4);
       border-right: 4px solid $white;
@@ -343,7 +343,7 @@ export default {
   font-size: 20px;
   line-height: 1.5;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 70px;
   }
 

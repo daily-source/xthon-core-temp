@@ -150,18 +150,18 @@ export default {
     }
   }
   &__about {
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 50%;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       width: 66.66667%;
     }
   }
   &__icons {
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 50%;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       width: 33.33333%;
     }
   }
@@ -194,7 +194,7 @@ export default {
   font-size: 20px;
   line-height: 1.5;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 70px;
   }
 

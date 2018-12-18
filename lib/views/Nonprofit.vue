@@ -305,7 +305,7 @@ export default {
   border-radius: 10px;
   display: flex;
   font-size: 18px;
-  @include breakpoint ($tablet) {
+  include tablet {
     font-size: 24px;
     width: 40%;
     max-width: 450px;
@@ -317,7 +317,7 @@ export default {
   font-size: 20px;
   line-height: 1.5;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 70px;
   }
 

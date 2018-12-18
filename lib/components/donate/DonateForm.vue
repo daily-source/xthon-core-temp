@@ -384,7 +384,7 @@ export default {
 
 .instructions {
   font-size: 14px;
-  @include breakpoint($tablet) {
+  @include tablet {
     font-size: 16px;
   }
 }

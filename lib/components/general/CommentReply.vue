@@ -117,7 +117,7 @@ textarea {
   font-size: 16px;
   width: 260px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     width: 340px;
   }
 }
@@ -125,7 +125,7 @@ textarea {
 .input-name {
   width: 200px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     width: auto;
   }
 }
@@ -137,7 +137,7 @@ textarea {
 }
 
 .button {
-  @include breakpoint($tablet) {
+  @include tablet {
     margin-left: 20px;
   }
 }

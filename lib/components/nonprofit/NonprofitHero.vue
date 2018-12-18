@@ -158,7 +158,7 @@ export default {
     padding: 0;
     min-width: 90%;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       min-width: 0;
       width: 100vw;
     }
@@ -171,10 +171,10 @@ export default {
     height: 140px;
     top: 20px;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       left: 20px;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       top: unset;
       left: unset;
       bottom: -80px;
@@ -191,12 +191,12 @@ export default {
     padding-bottom: 20px;
     padding: 0;
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       padding-left: 140px;
       margin-bottom: 30px;
     }
 
-    @include breakpoint($fullhd) {
+    @include fullhd {
       padding-left: 220px;
       margin-bottom: 30px;
     }
@@ -222,7 +222,7 @@ export default {
       bottom: 190px;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-top: 10px;
       text-align: right;
       position: static;
@@ -232,7 +232,7 @@ export default {
       justify-content: flex-end;
     }
 
-    @include breakpoint($desktop) {
+    @include desktop {
       height: 100%;
     }
 
@@ -255,12 +255,12 @@ export default {
         margin-left: 10px;
         padding: 15px 20px;
       }
-      @include breakpoint($tablet) {
+      @include tablet {
         min-width: auto;
         margin-left: 10px;
         padding: 15px 20px;
       }
-      @include breakpoint($widescreen) {
+      @include widescreen {
         margin-left: 10px;
         padding: 15px 20px;
       }
@@ -309,7 +309,7 @@ export default {
   &__cta-manage {
     font-size: 12px;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       background: transparent;
       width: 100%;
     }

@@ -77,7 +77,7 @@
 
     .column {
       padding: 0.2em 0.75rem;
-      @include breakpoint($tablet) {
+      @include tablet {
         padding: 0.2em;
         &:first-child {
           padding-left: 0.75rem;

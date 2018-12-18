@@ -137,7 +137,7 @@ export default {
 
 .share-toolbar {
   &__share-wrapper {
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-left: 80px !important;
     }
   }

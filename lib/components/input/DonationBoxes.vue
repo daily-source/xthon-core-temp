@@ -84,7 +84,7 @@ export default {
   margin-bottom: 10px;
   justify-content: center;
 
-  @include breakpoint ($tablet) {
+  include tablet {
     max-width: 400px;
     margin-bottom: 30px;
     margin-left: auto;

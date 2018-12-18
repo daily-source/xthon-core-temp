@@ -295,7 +295,7 @@ export default {
 .form-column {
   &__wrapper {
     margin-top: 0;
-    @include breakpoint($tablet) {
+    @include tablet {
       line-height: 42px;
     }
 
@@ -303,7 +303,7 @@ export default {
       padding-top: 0;
       padding-bottom: 0;
       margin-bottom: 5px;
-      @include breakpoint($tablet) {
+      @include tablet {
         margin-bottom: 0;
       }
     }
@@ -360,7 +360,7 @@ h1 {
   max-width: $max-combo-wrapper-width;
   margin: 0 auto;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     display: flex;
     padding: 0 7%;
   }
@@ -390,7 +390,7 @@ h1 {
   font-style: italic;
   font-size: 17px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     text-align: left;
   }
 }
@@ -411,7 +411,7 @@ h1 {
 }
 
 .bubbles-wrapper {
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 2%;
   }
 }

@@ -22,7 +22,7 @@
     border-radius: 20px;
     overflow: hidden;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       display: block;
     }
 

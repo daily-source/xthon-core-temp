@@ -246,7 +246,7 @@ export default {
 <style scoped lang="scss">
 section {
   margin: 30px 0;
-  @include breakpoint($tablet) {
+  @include tablet {
     margin: 50px 0;
   }
   &:last-child {
@@ -268,7 +268,7 @@ section {
     font-size: 28px;
     color: $color-text;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       font-size: 38px;
     }
   }
@@ -335,7 +335,7 @@ section {
     &.title-blue {
       color: $color-emphasis;
     }
-    @include breakpoint($tablet) {
+    @include tablet {
       font-size: 38px;
     }
   }

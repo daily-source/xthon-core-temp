@@ -59,7 +59,7 @@ export default {
       font-size: 18px;
       transition: color 0.2s ease-in-out;
 
-      @include breakpoint($desktop) {
+      @include desktop {
         line-height: 18px;
         min-height: 38px;
         max-height: 38px;

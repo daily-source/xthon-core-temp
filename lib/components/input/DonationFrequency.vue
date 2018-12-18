@@ -65,7 +65,7 @@ export default {
   flex: 1;
   margin-top: 30px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 100px;
     margin-top: 10px;
   }

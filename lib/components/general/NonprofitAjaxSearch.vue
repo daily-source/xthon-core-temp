@@ -115,7 +115,7 @@ export default {
       .open-indicator {
         bottom: 7px;
       }
-      @include breakpoint($tablet) {
+      @include tablet {
         .open-indicator {
           bottom: 12px;
         }        

@@ -65,7 +65,7 @@
   font-size: 24px;
   font-style: italic;
 
-  @include breakpoint($desktop) {
+  @include desktop {
     border-bottom: none;
   }
 

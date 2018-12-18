@@ -17,7 +17,7 @@
 .hide-me-but-leave-me {
   display: none !important;
 
-  @include breakpoint($desktop) {
+  @include desktop {
     display: block !important;
     visibility: hidden;
   }
@@ -40,16 +40,16 @@ blockquote {
 .container {
   margin: 0 20px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     margin: auto;
   }
 
-  @include breakpoint($desktop) {
+  @include desktop {
     margin: auto;
     width: $max-combo-wrapper-width; //960px
   }
 
-  @include breakpoint($fullhd) {
+  @include fullhd {
     width: $max-fluid-container-width; //1152px
   }
 
@@ -62,13 +62,13 @@ blockquote {
       max-width: $max-flickity-width; //620px;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       padding: 0;
     }
-    @include breakpoint($widescreen) {
+    @include widescreen {
       width: $max-fluid-container-width; //1152px
     }
-    @include breakpoint($fullhd) {
+    @include fullhd {
       max-width: $max-fluid-container-width;
       width: $max-container-width; //1344px
     }
@@ -118,19 +118,19 @@ blockquote {
       background-position: right center;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       height: calc(255px);
     }
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       height: calc(325px);
     }
 
     &.card-taller {
-      @include breakpoint($tablet) {
+      @include tablet {
         height: 275px;
       }
-      @include breakpoint($widescreen) {
+      @include widescreen {
         height: 255px;
       }
     }
@@ -141,11 +141,11 @@ blockquote {
     position: relative;
     height: calc(80vw - 30px);
 
-    @include breakpoint($tablet) {
+    @include tablet {
       height: calc(299px);
     }
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       height: calc(275px);
     }
 
@@ -374,7 +374,7 @@ body.no-scroll {
   &:first-child {
     margin-top: 0px;
   }
-  @include breakpoint($tablet) {
+  @include tablet {
     margin-bottom: 25px !important;
 
     &.custom-amount-wrapper {
@@ -383,7 +383,7 @@ body.no-scroll {
   }
   &.email-input-wrapper {
     margin-bottom: 0;
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-bottom: 10px;
     }
   }
@@ -397,7 +397,7 @@ body.no-scroll {
   align-items: center;
   justify-content: center;
   padding-bottom: 0;
-  @include breakpoint($tablet) {
+  @include tablet {
     justify-content: flex-end;
     padding-top: 0;
   }
@@ -449,7 +449,7 @@ body.no-scroll {
       font-size: 30px;
       margin-bottom: 10px;
 
-      @include breakpoint($tablet) {
+      @include tablet {
         margin-bottom: 0;
       }
     }

@@ -148,7 +148,7 @@ export default {
     // align-items: center;
     // justify-content: center;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       height: 450px;
     }
 
@@ -174,7 +174,7 @@ export default {
       z-index: 10;
       color: #fff;
 
-      @include breakpoint($tablet) {
+      @include tablet {
         max-width: 55%;
       }
 
@@ -225,7 +225,7 @@ export default {
       li {
         display: flex;
         margin-bottom: 20px;
-        @include breakpoint($tablet) {
+        @include tablet {
           justify-content: center;
           align-items: end;
           width: 30%;
@@ -260,7 +260,7 @@ export default {
       li {
         display: flex;
         margin-bottom: 20px;
-        @include breakpoint($tablet) {
+        @include tablet {
           justify-content: center;
           align-items: end;
           width: 30%;
@@ -291,7 +291,7 @@ export default {
       li {
         display: flex;
         margin-bottom: 20px;
-        @include breakpoint($tablet) {
+        @include tablet {
           justify-content: center;
           align-items: end;
           width: 30%;
@@ -326,7 +326,7 @@ export default {
       li {
         display: flex;
         margin-bottom: 20px;
-        @include breakpoint($tablet) {
+        @include tablet {
           justify-content: center;
           align-items: end;
           width: 30%;
@@ -349,7 +349,7 @@ export default {
     text-align: left;
     margin: 0 auto;
     font-size: 24px;
-    @include breakpoint($tablet) {
+    @include tablet {
       font-weight: bold;
       font-size: 28px;
       width: 40%;
@@ -360,7 +360,7 @@ export default {
       font-size: 20px;
       font-weight: 300;
       margin-top: 30px;
-      @include breakpoint($tablet) {
+      @include tablet {
         width: 100%;
         ul {
           display: flex;
@@ -376,7 +376,7 @@ export default {
       font-size: 20px;
       font-weight: 300;
       margin-top: 30px;
-      @include breakpoint($tablet) {
+      @include tablet {
         width: 100%;
         ul {
           display: flex;
@@ -392,7 +392,7 @@ export default {
       font-size: 20px;
       font-weight: 300;
       margin-top: 30px;
-      @include breakpoint($tablet) {
+      @include tablet {
         width: 100%;
         ul {
           display: flex;
@@ -408,7 +408,7 @@ export default {
       font-size: 20px;
       font-weight: 300;
       margin-top: 30px;
-      @include breakpoint($tablet) {
+      @include tablet {
         width: 100%;
         ul {
           display: flex;

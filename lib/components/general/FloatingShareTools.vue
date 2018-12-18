@@ -32,20 +32,20 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       right: auto;
       bottom: auto;
       top: 20px;
       left: calc((100vw - 960px)/2 - 110px);
     }
 
-    @include breakpoint($fullhd) {
+    @include fullhd {
       left: calc((100vw - 1152px)/2 - 100px);
     }
     h5 {
       display: none;
       color: $color-text;
-      @include breakpoint($widescreen) {
+      @include widescreen {
         display: block;
         font-size: 14px;
       }
@@ -58,7 +58,7 @@
     justify-content: center;
     width: 100%;
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       flex-direction: column;
     }
   }

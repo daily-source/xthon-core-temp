@@ -91,7 +91,7 @@
       text-align: right;
       border: 1px solid $color-light-gray;
 
-      @include breakpoint($widescreen) {
+      @include widescreen {
         top: 30px;
       }
 
@@ -99,7 +99,7 @@
         opacity: 1;
         z-index: 24;
 
-        @include breakpoint($widescreen) {
+        @include widescreen {
           opacity: 0;
           z-index: -1;
         }
@@ -110,11 +110,11 @@
         min-width: 65vw;
         transition: background-color 0.2s ease-in-out;
 
-        @include breakpoint($desktop) {
+        @include desktop {
           min-width: 40vw;
         }
 
-        @include breakpoint($widescreen) {
+        @include widescreen {
           min-width: 300px;
         }
 
@@ -148,7 +148,7 @@
     overflow: visible;    
   }
 
-  @include breakpoint($tablet) {
+  @include tablet {
     width: auto;
   }
   .small {
@@ -163,7 +163,7 @@
     align-items: flex-start;
   }
 
-  @include breakpoint($desktop) {
+  @include desktop {
     flex-direction: column;
     &:hover {
       max-height: auto;
@@ -204,7 +204,7 @@
   position: relative;
   font-size: 16px;
 
-  @include breakpoint($desktop) {
+  @include desktop {
     flex-direction: row;
   }
 
@@ -231,7 +231,7 @@
       padding-left: 9px;
     }
 
-    @include breakpoint($desktop) {
+    @include desktop {
       width: auto;
       order: unset;
       opacity: 0;
@@ -247,7 +247,7 @@
       margin: 0 auto;
       opacity: 0;
 
-      @include breakpoint($desktop) {
+      @include desktop {
         width: 100%;
         order: unset;
         padding-top: 5px;
@@ -279,7 +279,7 @@
         max-height: 49px;        
       }
 
-      @include breakpoint($tablet) {
+      @include tablet {
         img {
           max-width: 300px;
           max-height: 53px;        

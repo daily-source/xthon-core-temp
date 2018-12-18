@@ -62,7 +62,7 @@ export default {
     background-size: cover;
     background-position: center;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       height: 450px;
     }
 
@@ -88,7 +88,7 @@ export default {
       z-index: 10;
       color: #fff;
 
-      @include breakpoint($tablet) {
+      @include tablet {
         max-width: 55%;
       }
 
@@ -99,7 +99,7 @@ export default {
         font-size: 40px;
         color: $color-emphasis-alt;
         padding: 15px;
-        @include breakpoint($tablet) {
+        @include tablet {
           max-width: 400px;
         }
         &.version_undefined {

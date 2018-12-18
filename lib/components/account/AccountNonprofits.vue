@@ -102,7 +102,7 @@ export default {
   }
 }
 .nonprofit-search-field-wrapper.standalone {
-  @include breakpoint($tablet) {
+  @include tablet {
     margin-left: -0.75em;
   }
 }

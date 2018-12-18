@@ -84,7 +84,7 @@ export default {
         width: auto;
         max-width: 140px;
 
-        @include breakpoint($tablet) {
+        @include tablet {
           max-width: 180px;
         }
       }
@@ -92,7 +92,7 @@ export default {
   }
 
   &.vertical {
-    @include breakpoint($tablet) {
+    @include tablet {
       min-width: 27%;
       max-width: 33%;
       margin-bottom: 10px;
@@ -115,11 +115,11 @@ export default {
     text-align: center;
     margin: 10px 0;
     align-items: center;
-    @include breakpoint($tablet) {
+    @include tablet {
       padding: 0 3%;
     }
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       padding: 0 4%;
     }
 
@@ -127,16 +127,16 @@ export default {
       width: auto;
       max-width: 140px;
 
-      @include breakpoint($desktop) {
+      @include desktop {
         max-width: 120px;
       }
 
-      @include breakpoint($widescreen) {
+      @include widescreen {
         max-width: 140px;
       }
     }
 
-    @include breakpoint($desktop) {
+    @include desktop {
       display: flex;
       flex-direction: row;
       margin: 10px 0;
@@ -146,14 +146,14 @@ export default {
       flex-direction: row-reverse;
 
       .icon-wrapper {
-        @include breakpoint($desktop) {
+        @include desktop {
           text-align: right;
         }
       }
     }
 
     .icon-wrapper {
-      @include breakpoint($desktop) {
+      @include desktop {
         text-align: left;
       }
     }
@@ -161,12 +161,12 @@ export default {
     p {
       font-size: 16px !important;
 
-      @include breakpoint($desktop) {
+      @include desktop {
         font-size: 20px !important;
         text-align: left;
       }
 
-      @include breakpoint($fullhd) {
+      @include fullhd {
         font-size: 22px !important;
       }
     }

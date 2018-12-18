@@ -167,7 +167,7 @@ export default {
   text-align: right;
 }
 .is-multiline {
-  @include breakpoint($tablet) {
+  @include tablet {
     margin-bottom: 0;
   }
 }

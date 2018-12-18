@@ -202,7 +202,7 @@ p {
       font-size: 30px;
       margin-bottom: 10px;
 
-      @include breakpoint($tablet) {
+      @include tablet {
         margin-bottom: 0;
       }
     }

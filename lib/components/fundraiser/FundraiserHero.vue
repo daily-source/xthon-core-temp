@@ -139,7 +139,7 @@ export default {
 <style scoped lang="scss">
 .fundraiser-content {
   &__wrapper {
-    @include breakpoint($tablet) {
+    @include tablet {
       padding-top: 20px !important;
     }
   }
@@ -149,7 +149,7 @@ export default {
     }
   }
   &__right {
-    @include breakpoint($tablet) {
+    @include tablet {
       padding-left: 6px;
       display: flex;
     }
@@ -164,7 +164,7 @@ export default {
     margin-left: 0;
   }
 
-  @include breakpoint($tablet) {
+  @include tablet {
     transform: translateX(0);
     width: calc(100% - 30px);
     height: 0;
@@ -183,7 +183,7 @@ export default {
       max-width: $max-flickity-width;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 102%;
       height: 0;
       padding-bottom: calc(100% * 2/3);
@@ -198,7 +198,7 @@ export default {
     background-position: center;
     margin-right: 2.5vw;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       width: calc(5vw);
       height: calc(5vw*3/4);
       margin-right: 0.5vw;
@@ -219,7 +219,7 @@ export default {
         flex: 1;
       }
     }
-    @include breakpoint($tablet) {
+    @include tablet {
       height: 100%;
       padding-bottom: 0;
       overflow: hidden;
@@ -233,7 +233,7 @@ export default {
   font-size: 17px;
   text-align: center;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     text-align: left;
     margin-bottom: 30px;
     margin-top: 0;

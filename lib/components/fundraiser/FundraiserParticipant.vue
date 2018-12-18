@@ -134,7 +134,7 @@ export default {
     margin-bottom: 10px;
     display: flex;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-top: 10px;
       font-size: 24px;
     }
@@ -196,7 +196,7 @@ export default {
     background-size: cover;
     background-position: center center;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       width: 120px;
       height: 120px;
     }

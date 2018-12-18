@@ -35,7 +35,7 @@ export default {
   }
   &__list-wrapper {
     margin-left: 0;
-    @include breakpoint($tablet) {
+    @include tablet {
       margin-left: 30px;
     }
     li {

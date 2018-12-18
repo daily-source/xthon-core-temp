@@ -303,19 +303,19 @@ textarea {
 .layout-title {
   display: inline-block;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     min-width: 750px;
     max-width: 900px;
     width: auto;
   }
   &.is-editing-true {
-    @include breakpoint($tablet) {
+    @include tablet {
       min-width: 600px;
     }
   }
   .action-icons-wrapper {
     position: static;
-    @include breakpoint($tablet) {
+    @include tablet {
       position: absolute;
       right: 0;
       top: 4px;

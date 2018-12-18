@@ -67,7 +67,7 @@ h3.tagline {
 }
 
 .columns {
-  @include breakpoint($tablet) {
+  @include tablet {
     justify-content: center;
     display: flex;
   }

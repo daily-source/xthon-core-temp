@@ -32,15 +32,15 @@ export default {
     min-height: 42vh;
   }
 
-  @include breakpoint($tablet) {
+  @include tablet {
     min-height: 41vh;
   }
 
-  @include breakpoint($widescreen) {
+  @include widescreen {
     min-height: 33vw;
   }
 
-  @include breakpoint($fullhd) {
+  @include fullhd {
     min-height: 34vw;
   }
 
@@ -58,17 +58,17 @@ export default {
       height: 40vh;
     }
 
-    @include breakpoint($tablet) {
+    @include tablet {
       background-size: contain;
       background-position: center;
       height: 38vh;
     }
 
-    @include breakpoint($desktop) {
+    @include desktop {
       height: 42vh;
     }
 
-    @include breakpoint($widescreen) {
+    @include widescreen {
       background-size: contain;
       min-height: 34vw;
       background-position: center;
@@ -88,7 +88,7 @@ export default {
         top: 0;
       }
 
-      @include breakpoint($widescreen) {
+      @include widescreen {
         font-size: 34px;
       }
     }
@@ -115,23 +115,23 @@ export default {
     bottom: 3vw;
   }
 
-  @include breakpoint($tablet) {
+  @include tablet {
     bottom: 10vw;
     margin-bottom: 2px;
   }
 
-  @include breakpoint($desktop) {
+  @include desktop {
     font-size: 28px;
     bottom: 5vw;
   }
 
-  @include breakpoint($fullhd) {
+  @include fullhd {
     bottom: 7vw;
   }
 }
 
 .content-container {
-  @include breakpoint($desktop) {
+  @include desktop {
     max-width: 70%;
   }
 }

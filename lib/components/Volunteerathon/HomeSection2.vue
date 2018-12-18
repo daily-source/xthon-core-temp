@@ -98,7 +98,7 @@ h1 {
 .columns {
   margin-top: 5px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     justify-content: flex-start;
     display: flex;
   }
@@ -106,10 +106,10 @@ h1 {
 
 .card {
   .card-content {
-    @include breakpoint($tablet) {
+    @include tablet {
       height: calc(252px - 30px);
     }    
-    @include breakpoint($fullhd) {
+    @include fullhd {
       height: calc(302px - 30px);
     }    
   }
@@ -138,7 +138,7 @@ h1 {
   p {
     padding: 0 35px;
 
-    @include breakpoint($fullhd) {
+    @include fullhd {
       padding: 0 45px;
     }
   }

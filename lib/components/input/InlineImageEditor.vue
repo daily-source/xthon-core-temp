@@ -388,7 +388,7 @@ export default {
 }
 .nonprofit-hero__logo-wrapper {
   top: -370px;
-  @include breakpoint($desktop) {
+  @include desktop {
     top: -120px;
   }
 }
@@ -400,7 +400,7 @@ export default {
   }
   &.is-open-true {
     .image-control {
-      @include breakpoint($tablet) {
+      @include tablet {
         width: 300px;
         position: absolute;
         z-index: 20;
@@ -409,7 +409,7 @@ export default {
         margin-top: 0;
       }
       &.hero-image {
-        @include breakpoint($tablet) {
+        @include tablet {
           position: static;
           margin-top: 10px;
           margin-left: 10px;

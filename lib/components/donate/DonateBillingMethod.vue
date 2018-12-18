@@ -212,11 +212,11 @@ export default {
   &:first-child {
     margin-top: 0px;
   }
-  @include breakpoint($tablet) {
+  @include tablet {
     margin-bottom: 20px;
   }
   &.input-card-code {
-    @include breakpoint($tablet) {
+    @include tablet {
       display: flex;
       flex-direction: row;
       align-items: center;      
@@ -235,7 +235,7 @@ export default {
   margin-top: 30px;
   margin-bottom: 20px;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     padding: 0 100px;
     margin-top: 10px;
   }

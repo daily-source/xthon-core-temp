@@ -189,14 +189,14 @@ export default {
 .fundraiser {
   background-color: $color-fundraiser-bg;
 
-  @include breakpoint($tablet) {
+  @include tablet {
     background-color: $color-fundraiser-bg;
   }
 
   .is-fluid.white-bg {
     background-color: $white;
 
-    @include breakpoint($tablet) {
+    @include tablet {
       padding: 0 50px 20px;
     }
   }
