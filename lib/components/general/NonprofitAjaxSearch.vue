@@ -104,6 +104,7 @@ export default {
       text-align: left;
       padding-right: 50px;
       width: 100%;
+      background: transparent !important;
     }
     .dropdown-toggle {
       height: 38px;
@@ -111,6 +112,7 @@ export default {
       display: flex;
       .clear {
         bottom: 14px;
+        line-height: 36px;
       }
       .open-indicator {
         bottom: 7px;
@@ -132,12 +134,17 @@ export default {
     li {
       padding-left: 0px;
       padding-right: 0px;
+      &.active.highlight {
+        background: $color-medium-gray !important;
+      }
       a {
         display: block;
         white-space: normal;
-        margin-bottom: 10px;
+        margin-bottom: 4px;
+        background: none !important;
       }
       .selection {
+        padding-top: 4px;
         line-height: 20px;
         overflow: auto;
       }
