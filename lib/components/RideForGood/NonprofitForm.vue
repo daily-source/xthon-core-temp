@@ -9,7 +9,7 @@
             </div>
             <div class="column is-5 form-column__input-column">
               <div class="control input-wrapper">
-                <Icons icon="chart-line-variant" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
+                <Icons icon="chart" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
                 <input class="input" type="number" name="action" placeholder=""
                   :required="true"
                   v-model="form.howManyMiles"
@@ -287,7 +287,10 @@ h1 {
 
 
 .input-wrapper .input-icon {
-  top: 0;
+  @include mobile {
+    top: 11px;
+  }
+  top: 5px;
 }
 
 .radio + .radio {

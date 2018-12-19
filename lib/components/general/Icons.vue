@@ -18,8 +18,14 @@
     <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'email'">
       <path :fill="color" d="M4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4M12,11L20,6H4L12,11M4,18H20V8.37L12,13.36L4,8.37V18Z" />
     </svg>
+    <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'calendar'">
+      <path :fill="color" d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z" />
+    </svg>
     <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'check'">
       <path :fill="color" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+    </svg>
+    <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'chart'">
+      <path :fill="color" d="M3.5,18.5L9.5,12.5L13.5,16.5L22,6.92L20.59,5.5L13.5,13.5L9.5,9.5L2,17L3.5,18.5Z" />
     </svg>
     <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'gmail'">
       <path :fill="color" d="M20,18H18V9.25L12,13L6,9.25V18H4V6H5.2L12,10.25L18.8,6H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />

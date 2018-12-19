@@ -17,20 +17,17 @@
           <ul class="nav social-nav is-flex">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-facebook-f"></i>
-                <span class="sr-only">Facebook</span>
+                <Icons iconwidth="16px" iconheight="16px" icon="facebook" color="#FFFFFF" class=""/>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-twitter"></i>
-                <span class="sr-only">Twitter</span>
+                <Icons iconwidth="16px" iconheight="16px" icon="twitter" color="#FFFFFF" class=""/>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-instagram"></i>
-                <span class="sr-only">Instagram</span>
+                <Icons iconwidth="16px" iconheight="16px" icon="instagram" color="#FFFFFF" class=""/>
               </a>
             </li>
           </ul>
@@ -57,8 +54,14 @@
 </template>
 
 <script>
+import Icons from "Components/general/Icons.vue"
+
 export default {
   name: 'AppHeader',
+
+  components: {
+    Icons
+  }
 };
 </script>
 
@@ -130,6 +133,22 @@ export default {
   .header-nav {
     @include mobile {
       display: none;
+    }
+  }
+
+  .social-nav {
+    .icon-wrapper {
+      background: $color-emphasis-alt;
+      border-radius: 30px;
+      height: 24px;
+      width: 24px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      align-content: center;
+      svg {
+        flex: 1 !important;
+      }
     }
   }
 
