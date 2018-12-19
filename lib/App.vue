@@ -11,7 +11,7 @@
     -->
     <nav class="fake-menu">
       <router-link to="/nonprofit/43178037">Nonprofit (Generic)</router-link>
-      <router-link to="/nonprofit/43138428">Nonprofit (Claimed)</router-link>
+      <router-link to="/nonprofit/237069110">Nonprofit (Claimed)</router-link>
       <router-link to="/fundraiser/8">Fundraiser (8)</router-link>
       <router-link to="/fundraiser/6">Fundraiser (6)</router-link>
       <router-link to="/nonprofit/99999943138428">nonexistent Nonprofit</router-link>

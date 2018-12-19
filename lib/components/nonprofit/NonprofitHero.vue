@@ -195,8 +195,13 @@ export default {
     padding-bottom: 20px;
     padding: 0;
 
-    @include widescreen {
+    @include tablet {
       padding-left: 140px;
+      margin-bottom: 30px;
+    }
+
+    @include widescreen {
+      padding-left: 200px;
       margin-bottom: 30px;
     }
 

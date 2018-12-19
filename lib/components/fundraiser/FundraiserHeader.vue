@@ -17,8 +17,8 @@
       </h1>
       <div class="fundraiser-nonprofit" v-if="!editing">
         <h2 class="fundraiser-nonprofit__subtitle">A fundraiser supporting the nonprofit:
-          <figure class="fundraiser-nonprofit__logo" v-if="fundraiser.nonprofit">
-            <img class="fundraiser-nonprofit__img" :src="fundraiser.nonprofit.logo_square" alt="">
+          <figure class="fundraiser-nonprofit__logo" v-if="fundraiser.Nonprofit">
+            <img class="fundraiser-nonprofit__img" :src="fundraiser.Nonprofit.logo_square" alt="">
           </figure>
           <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`" v-html="fundraiser.Nonprofit.data.name || fundraiser.Nonprofit.NAME"></router-link>
         </h2>
