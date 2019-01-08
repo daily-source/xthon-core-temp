@@ -17,19 +17,34 @@
           <ul class="nav social-nav is-flex">
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-facebook-f"></i>
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='facebook'
+                />
                 <span class="sr-only">Facebook</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-twitter"></i>
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='twitter'
+                />
                 <span class="sr-only">Twitter</span>
               </a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fab fa-instagram"></i>
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='instagram'
+                />
                 <span class="sr-only">Instagram</span>
               </a>
             </li>
@@ -57,8 +72,14 @@
 </template>
 
 <script>
+import Icon from 'Components/general/Icons'
+
 export default {
   name: 'AppHeader',
+
+  components: {
+    Icon,
+  },
 };
 </script>
 

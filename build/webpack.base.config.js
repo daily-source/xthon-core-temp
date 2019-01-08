@@ -123,6 +123,12 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin(), */
         new ExtractTextPlugin({
           filename: 'common.[chunkhash].css'
+        }),
+        new GoogleFontsPlugin({
+          fonts: [
+            { family: "Montserrat", variants: ["400", "500", "600", "700", "900"] },
+            { family: "Poppins", variants: [ "400", "500", "700" ] }
+          ]
         })
       ]
     : [

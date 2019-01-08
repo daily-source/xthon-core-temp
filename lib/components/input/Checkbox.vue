@@ -10,14 +10,28 @@
       :for="`${$attrs.id}`"
       class='custom-control__label'
     >
-      {{ label }}  
+      {{ label }}
+      <span>
+        <icon
+          icon='check'
+          :iconwidth='16'
+          :iconheight='16'
+          color='#fff'
+        />
+      </span>
     </label>
   </div>
 </template>
 
 <script>
+import Icon from 'Components/general/Icons'
+
 export default {
   name: 'Checkbox',
+
+  components: {
+    Icon,
+  },
 
   props: {
     label: {
@@ -40,15 +54,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="scss">
-  .custom-control--checkbox {
-    & .custom-control__label {
-      &:after {
-        content: '\f00c';
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-      }
-    }
-  }
-</style>

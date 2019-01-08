@@ -10,7 +10,8 @@
       :for="`${$attrs.id}`"
       class='custom-control__label'
     >
-      {{ label }}  
+      {{ label }}
+      <span></span>
     </label>
   </div>
 </template>
@@ -48,15 +49,24 @@ export default {
   .custom-control--radio {
     .custom-control__label {
       &:before,
-      &:after {
+      span {
         border-radius: 100%;
       }
 
-      &:after {
-        content: '\f111';
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        color: $primary;
+      span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+
+        &:before {
+          content: '';
+          display: block;
+          width: 40%;
+          height: 40%;
+          border-radius: 100%;
+          background-color: #fff;
+        }
       }
     }
 
@@ -64,10 +74,6 @@ export default {
         &:checked ~ .custom-control__label {
         &:before {
           background-color: transparent;
-        }
-
-        &:after {
-          opacity: 1;
         }
       }
     }
