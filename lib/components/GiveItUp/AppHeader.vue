@@ -23,7 +23,7 @@
                   color='#233e84'
                   icon='facebook'
                 />
-                <span class="sr-only">Facebook</span>
+                <span class="is-sr-only">Facebook</span>
               </a>
             </li>
             <li class="nav-item">
@@ -34,7 +34,7 @@
                   color='#233e84'
                   icon='twitter'
                 />
-                <span class="sr-only">Twitter</span>
+                <span class="is-sr-only">Twitter</span>
               </a>
             </li>
             <li class="nav-item">
@@ -45,7 +45,7 @@
                   color='#233e84'
                   icon='instagram'
                 />
-                <span class="sr-only">Instagram</span>
+                <span class="is-sr-only">Instagram</span>
               </a>
             </li>
           </ul>
