@@ -28,7 +28,8 @@ module.exports = {
   resolve: {
     alias: {
       'public': path.resolve(__dirname, '../public'),
-      'Components': path.resolve(__dirname, '../lib/components')
+      'Components': path.resolve(__dirname, '../lib/components'),
+      'Core': path.resolve(__dirname, '../lib')
     }
   },
   resolveLoader: {
