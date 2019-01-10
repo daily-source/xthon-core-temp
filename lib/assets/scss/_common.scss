@@ -45,15 +45,6 @@ blockquote {
     margin: auto;
   }
 
-  @include desktop {
-    margin: auto;
-    width: $max-combo-wrapper-width; //960px
-  }
-
-  @include fullhd {
-    width: $max-fluid-container-width; //1152px
-  }
-
   &.is-fluid {
     width: 100%;
     padding: 0 3%;
