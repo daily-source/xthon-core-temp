@@ -38,8 +38,6 @@ blockquote {
 }
 
 .container {
-  padding: 0 15px;
-
   @include tablet {
     margin: auto;
   }
