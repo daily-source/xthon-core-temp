@@ -60,8 +60,8 @@ blockquote {
       width: $max-fluid-container-width !important; //1152px
     }
     @include fullhd {
-      max-width: $max-fluid-container-width !important;
-      width: $max-container-width; //1344px
+      max-width: $max-container-width !important;
+      width: $max-container-width !important; //1344px
     }
   }
 
