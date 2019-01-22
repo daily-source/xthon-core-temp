@@ -1,0 +1,48 @@
+// Add only non-css vars, not rules, or they will be imported many times.
+$font-primary: "Lato", sans-serif;
+$font-secondary: "Source Sans Pro", sans-serif;
+
+// Colors
+$color-text: #000507;
+$color-text-blue: #00B0EA;
+$color-text-green: #8AC557;
+$color-medium-gray: #676767;
+$color-medium-light-gray: #B0B1B3;
+$color-dark-gray: #343532;
+$color-gray: #676767;
+$color-bglight: #FFFFFF;
+$color-light-gray: #F0F0F0;
+$color-silver: #C0C0C0;
+$color-light-bg: #E8F1EF;
+$color-fundraiser-bg: #F9FAFB;
+$color-lightest-gray: #FBFBFB;
+$color-lightest-green: #F7FCF0;
+$color-brownish: #f5f1e0;
+$color-blueish: #E8F1EF;
+
+$color-share-facebook: #3b5998;
+$color-share-twitter: #1DA1F2;
+$color-share-linkedin: #0077B5;
+$color-share-instagram: #e4405f;
+$color-share-email: #DB4437;
+$color-share-gmail: #DB4437;
+$blue: $color-text-blue;
+
+$color-emphasis: $color-text-blue;
+$color-emphasis-alt: $color-text-green;
+$color-emphasis-alt-modified: #6AA537;
+$white: #FFFFFF;
+$max-flickity-width: 620px;
+
+
+// Widths and containers
+$max-container-width: 1344px;
+$max-fluid-container-width: 1162px;
+$max-combo-wrapper-width: 960px;
+
+// Forms
+$checkbox-border-color: $color-medium-light-gray !default;
+
+$primary: $color-medium-light-gray;
+
+$success: blue;
