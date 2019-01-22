@@ -1,3 +1,10 @@
+@import '~bulma/sass/utilities/initial-variables';
+@import '~bulma/sass/utilities/functions';
+@import '~bulma/sass/utilities/derived-variables';
+@import '~bulma/sass/utilities/animations';
+@import '~bulma/sass/utilities/mixins';
+@import '~bulma/sass/utilities/controls'; 
+
 // Add only non-css vars, not rules, or they will be imported many times.
 $font-primary: "Lato", sans-serif;
 $font-secondary: "Source Sans Pro", sans-serif;
