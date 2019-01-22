@@ -2,14 +2,6 @@
   user-select: none;
 }
 
-.is-success {
-  background-color: $color-emphasis-alt !important;
-
-  &:hover {
-    background-color: $color-emphasis-alt-modified !important;
-  }
-}
-
 .hide-on-load {
   display: none;
 }

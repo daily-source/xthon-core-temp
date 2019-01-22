@@ -45,7 +45,5 @@ $checkbox-border-color: $color-medium-light-gray !default;
 
 $primary: $color-medium-light-gray;
 
-
-
-$success: blue;
-
+// Override bulma vars
+$success: $color-emphasis;
