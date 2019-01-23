@@ -2,14 +2,6 @@
   user-select: none;
 }
 
-.is-success {
-  background-color: $color-emphasis-alt !important;
-
-  &:hover {
-    background-color: $color-emphasis-alt-modified !important;
-  }
-}
-
 .hide-on-load {
   display: none;
 }
@@ -38,20 +30,10 @@ blockquote {
 }
 
 .container {
-  margin: 0 20px;
   padding: 0 15px;
 
   @include tablet {
     margin: auto;
-  }
-
-  @include desktop {
-    margin: auto;
-    width: $max-combo-wrapper-width; //960px
-  }
-
-  @include fullhd {
-    width: $max-fluid-container-width; //1152px
   }
 
   &.is-fluid {
@@ -70,8 +52,8 @@ blockquote {
       width: $max-fluid-container-width !important; //1152px
     }
     @include fullhd {
-      max-width: $max-fluid-container-width !important;
-      width: $max-container-width; //1344px
+      max-width: $max-container-width !important;
+      width: $max-container-width !important; //1344px
     }
   }
 

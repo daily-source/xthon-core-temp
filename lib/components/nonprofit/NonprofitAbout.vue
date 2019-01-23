@@ -287,6 +287,9 @@ export default {
     .icon {
       margin-bottom: 20px;
     }
+    &.column {
+      padding: 0;
+    }
   }
   &__media-wrapper {
     width: calc(100vw);
