@@ -131,7 +131,7 @@ export default {
         }
         return this.currentBg.imgUrl;
       }
-      return this.imagePath('banner-img-1.jpg');
+      return this.imagePath('banner-img-0.jpg');
     },
   },
 };

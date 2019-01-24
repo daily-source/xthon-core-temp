@@ -1,45 +1,12 @@
-<style lang="scss">
-  .logo-link {
-    img {
-      max-width: 200px;
-    }
-  }
-  .navbar {
-    background-color: transparent !important;
-    @include mobile {
-      display: none;
-    }
-  }
-  .navbar-nav {
-    .nav-item{
-      .nav-link {
-        color: #fff;
-        padding: 1rem !important;
-      }
-      &:last-child {
-        .nav-link {
-          padding: 1rem 1.5rem !important;
-          font-weight: 700;
-          letter-spacing: .4px;
-          text-transform: uppercase;
-        }
-      }
-    }
-  }
-  .container {
-    margin: 0 auto;
-  }
-</style>
-
 <template>
   <header class="site-header" id="site-header">
     <div class="container">
-      <div class="header-top d-flex justify-content-between align-items-center py-1">
+      <div class="header-top">
         <router-link to="/" class="logo-link">
           <img src="@/assets/img/logo-giveitup-1286x321.png" alt="CalendarForGood">
         </router-link>
         <div class="header-top__nav-section">
-          <ul class="nav justify-content-end">
+          <ul class="nav is-flex">
             <li class="nav-item">
               <router-link to="/register" class="nav-link px-1">Register</router-link>
             </li>
@@ -47,33 +14,48 @@
               <router-link to="/login" class="nav-link px-1 pr-0">Login</router-link>
             </li>
           </ul>
-          <ul class="nav social-nav justify-content-end">
+          <ul class="nav social-nav is-flex">
             <li class="nav-item">
-              <a href="#" class="nav-link bg-facebook">
-                <i class="fab fa-facebook-f"></i>
-                <span class="sr-only">Facebook</span>
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='facebook'
+                />
+                <span class="is-sr-only">Facebook</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link bg-twitter">
-                <i class="fab fa-twitter"></i>
-                <span class="sr-only">Twitter</span>
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='twitter'
+                />
+                <span class="is-sr-only">Twitter</span>
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link bg-instagram">
-                <i class="fab fa-instagram"></i>
-                <span class="sr-only">Instagram</span>
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#233e84'
+                  icon='instagram'
+                />
+                <span class="is-sr-only">Instagram</span>
               </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div class="header-nav bg-primary">
-      <nav class="navbar navbar-expand-lg py-0">
+    <div class="header-nav">
+      <nav class="navbar">
         <div class="container">
-          <div class="collapse navbar-collapse" id="navbar-content">
+          <div id="navbar-content">
             <ul class="navbar-nav w-100">
               <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
               <li class="nav-item"><router-link to="/" class="nav-link">About Us</router-link></li>
@@ -90,7 +72,80 @@
 </template>
 
 <script>
+import Icon from 'Components/general/Icons'
+
 export default {
   name: 'AppHeader',
+
+  components: {
+    Icon,
+  },
 };
 </script>
+
+<style lang="scss">
+  #site-header {
+    background-color: white;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: .25em;
+    padding-bottom: 0.25em;
+
+    .nav {
+      justify-content: flex-end;
+      margin-left: -0.25em;
+
+      .nav-item {
+        padding-left: .25em;
+        padding-right: .25em;
+      }
+    }
+  }
+
+  .logo-link {
+    img {
+      max-width: 200px;
+    }
+  }
+
+  .navbar {
+    min-height: auto;
+    background-color: $primary !important;
+
+    > .container {
+      min-height: auto;
+    }
+
+    #navbar-content {
+      flex-grow: 1;
+    }
+
+    .navbar-nav {
+      display: flex;
+
+      .nav-link {
+        display: inline-block;
+        color: #fff;
+        padding: 1rem !important;
+      }
+
+      .nav-item:last-child {
+        margin-left: auto;
+        background-color: $secondary;
+
+        .nav-link {
+          padding: 1rem 1.5rem !important;
+          font-weight: 700;
+          letter-spacing: .4px;
+          text-transform: uppercase;
+        }
+      }
+      
+    }
+  }
+
+</style>
