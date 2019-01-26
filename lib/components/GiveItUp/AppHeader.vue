@@ -265,6 +265,8 @@ export default {
 		}
 
 		&-menu {
+			margin-right: 0 !important;
+
 			@include mobile {
 				position: fixed;
 				top: 0;
