@@ -79,8 +79,46 @@
 						<navbar-item to='/about'>About Us</navbar-item>
 						<navbar-item to='/volunteer'>Volunteer</navbar-item>
 						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
-						<navbar-item to='/contact'>Conact Us</navbar-item>
+						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
+						<navbar-item to='/contact'>Contact Us</navbar-item>
+						<navbar-item to='/register' item-class='navbar-item--mobile'>Register</navbar-item>
+						<navbar-item to='/login' item-class='navbar-item--mobile'>Login</navbar-item>
 						<navbar-item to='/donate' item-class='navbar-item--push-left navbar-item--last has-text-weight-bold is-uppercase'>Donate</navbar-item>
+          <ul class="nav social-nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='facebook'
+                />
+                <span class="is-sr-only">Facebook</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='twitter'
+                />
+                <span class="is-sr-only">Twitter</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='instagram'
+                />
+                <span class="is-sr-only">Instagram</span>
+              </a>
+            </li>
+          </ul>
 						<button 
 							class='navbar-menu__close-button is-text button'
 							@click='toggleShowNavMobile'
@@ -216,6 +254,14 @@ export default {
 			@include mobile {
 				color: #fff !important;
 			}
+			
+			&--mobile {
+				display: none;
+
+				@include mobile {
+					display: block;
+				}
+			}
 		}
 
 		&-menu {
@@ -241,11 +287,37 @@ export default {
 				position: absolute;
 				top: 0;
 				right: 0;
+				display: none;
+
+				@include mobile {
+					display: inline-block;
+				}
 
 				&:hover,
 				&:focus {
 					color: #000;
 					background-color: transparent;
+				}
+			}
+
+			.social-nav {
+				display: none;
+				margin-top: .5em;
+				margin-bottom: .5em;
+				text-align: center;
+				justify-content: center;
+
+				.nav-link {
+					color: #fff !important;
+
+					.icon-wrapper {
+						padding-right: .5em;
+						padding-left: .5em;
+					}
+				}
+
+				@include mobile {
+					display: flex;
 				}
 			}
 		}

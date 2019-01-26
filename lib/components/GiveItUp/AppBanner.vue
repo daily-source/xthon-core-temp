@@ -152,6 +152,10 @@ export default {
       height: 450px;
     }
 
+		@include mobile {
+			height: calc(95vh - 75px);
+		}
+
     &:before {
       content: '';
       position: absolute;
@@ -182,6 +186,10 @@ export default {
         font-family: 'Poppins';
         font-weight: 700;
         line-height: 1.4;
+
+				@include mobile {
+					font-size: 1.25rem !important;
+				}
       }
 
       ol {
@@ -193,6 +201,10 @@ export default {
           counter-increment: counter;
           font-weight: 700;
           margin-bottom: .25em;
+
+					@include mobile {
+						font-size: 1rem;
+					}
 
           &:last-child {
             margin-bottom: 0;
