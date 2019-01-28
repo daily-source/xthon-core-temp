@@ -269,8 +269,6 @@ export default {
 		&__message-container,
 		&__additional-details {
 			width: 100% !important;
-			max-width: 55% !important;
-			flex-basis: 55% !important;
 			margin-bottom: .625em;
 			margin-left: auto;
 			margin-right: auto;
@@ -285,8 +283,21 @@ export default {
 			}
 		}
 
-		&__counter:not(:last-child) {
-			margin-bottom: 8px !important;
+		&__counter {
+			margin-left: auto;
+			margin-right: auto;
+
+			&:not(:last-child) {
+				margin-bottom: 8px !important;
+			}
+		}
+
+		&__counters {
+			.counter-widget {
+				&__date-wrap {
+					max-width: 45% !important;
+				}
+			}
 		}
 
 		&__title {
