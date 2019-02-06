@@ -1,27 +1,12 @@
 <template>
     <div class="counter-page-creator">
-      <form @submit.prevent='handleSubmit'>
-        <div class="columns counter-page-creator__columns">
-          <div class="column is-7">
-            Choose a non-profit for your widget to donate towards:
-          </div>
-          <nonprofit-ajax-search 
-            placeholder='Search...'
-            @selected='handleNonprofitSelected'
-          />
-        </div>
-        <div class="columns counter-page-creator__columns">
-          <div class="column is-7">
-            Customize your title:
-          </div>
-          <div class="column">
-            <div class="select">
-              <select 
-                name="title"   
-                class="select is-block"
-                v-model='widget.counterId'
-              >
-                <option 
+      <form @submit.prevent='handleSubmit' class='counter-page-creator-form'>
+        <div class='field counter-page-creator-form__field'>
+          <label for='title' class='counter-page-creator-form__label'>Change your title: </label>
+          <div class='control counter-page-creator-form__control'>
+            <div class='select'>
+              <select name='title' id='title'>
+                 <option 
                   v-for='(counter, index) in counters' 
                   :key='index' 
                   :value='counter.id'
@@ -31,12 +16,28 @@
               </select>
             </div>
           </div>
-				</div>
-        <div class="counter-page-creator__ft-img-chooser counter-page-creator__columns">
-					<p class='has-text-weight-bold has-text-centered'>Choose an image to use as a background <br> <small class='has-text-weight-normal'>Select an image by clicking on the next and previous arrows. The image on the center is selected.</small></p>
+        </div>
+        <div class='field counter-page-creator-form__field'>
+          <label for='nonprofit' class='counter-page-creator-form__label'>Pick a nonprofit your widget will raise money for: </label>
+          <div class='control counter-page-creator-form__control'>
+            <nonprofit-ajax-search 
+              :placeholder='"Type a nonprofit to search..."'              
+              @selected='handleNonprofitSelected'
+              class='counter-page-creator-form__nonprofit-search'
+            />
+          </div>
+        </div>
+        <div class='field counter-page-creator-form__field'>
+          <label for='message' class='counter-page-creator-form__label'>Add a custom message (optional): </label>
+          <div class='control counter-page-creator-form__control'>
+            <input type='text' name='message' id='message' class='input' placeholder='Type a message here'>
+          </div>
+        </div>
+        <div class='field counter-page-creator-form__field is-block'>
+          <p class='has-text-weight-bold'>Click on the image you want to use: </p>
 					<theme-chooser
             :counter-id='widget.counterId'
-            type='slider'
+            type='columns'
 						@change='handleSliderChange'
           />
         </div>
@@ -109,31 +110,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .counter-page-creator {
-    margin-top: 2rem;
-  }
+.counter-page-creator-form {
+  margin-bottom: 1em;
 
-  .counter-page-creator__columns {
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+  &__field {
+    display: flex;
     align-items: center;
-  }
 
-  .counter-page-creator__img {
-    width: 100%;
-    cursor: pointer;
-    filter: brightness(.7);
-    border-radius: 4px;
-    transition: filter .2s ease;
+    &:not(:last-child) {
+      padding-bottom: 1em;
+    }
 
-    &--selected,
-    &:hover {
-      filter: brightness(1);
+    p {
+      font-size: 1rem;
     }
   }
 
-	.btn-container {
-		margin-top: 1em;
-	}
+  &__label {
+    flex-basis: 40%;
+    max-width: 40%;
+    font-weight: 700;
+  }
+
+  &__control {
+    flex-grow: 1;
+  }
+
+  &__nonprofit-search {
+    padding: 0;
+  }
+
+  .select {
+    display: block;
+  }
+}
 </style>
