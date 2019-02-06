@@ -26,7 +26,7 @@ export default {
 	mixins: [imageSrc],
 
   props: {
-    widgetId: {
+		widgetId: {
       type: Number,
 			default: 1,
     }
@@ -86,11 +86,11 @@ export default {
 
   .banner__contents {
     position: absolute;
-    left: 8%;
+    left: 6%;
     bottom: 30px;
 
 		@include fullhd {
-			left: 11%;
+			left: 9%;
 		}
 
     .counter-widget {
