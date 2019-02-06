@@ -134,6 +134,10 @@ export default {
 
   &__control {
     flex-grow: 1;
+
+    @include fullhd {
+      max-width: 600px;
+    }
   }
 
   &__nonprofit-search {
