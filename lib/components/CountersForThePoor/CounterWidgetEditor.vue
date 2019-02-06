@@ -41,6 +41,7 @@ export default {
       required: false,
 			default: () => {
 				return {
+					name: 'large',
 					width: 800,
 					label: 'Large',
 					className: 'large',

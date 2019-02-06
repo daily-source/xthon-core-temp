@@ -1,7 +1,7 @@
 <template>
   <div 
-    :class="['counter-widget', {'counter-widget--edit': edit}, `counter-widget--${size}`]"
-    :style='{width: `${sizes[size].width}px`}'  
+    :class="['counter-widget', {'counter-widget--edit': edit}, `counter-widget--${size.className}`]"
+		:style='{width: "`${size.width}px`"}'
   >
     <div class="counter-widget__title-container">
       <h2 class="counter-widget__title">
@@ -33,7 +33,8 @@
     </div>
     <div class='counter-widget__additional-details'>
       <div class='counter-widget__nonprofit-details' v-if='edit || nonprofit.NAME'>
-        <p>Donations from this widget go to the nonprofit: <span class='counter-widget__nonprofit-name is-block has-text-weight-bold'>{{ nonprofit.NAME || "CHOOSE A NONPROFIT BELOW" }}</span></p>
+        <p v-if='size.className === "large"'>Donations from this screen go to the nonprofit: <span class='counter-widget__nonprofit-name is-block has-text-weight-bold'>{{ nonprofit.NAME || "CHOOSE A NONPROFIT BELOW" }}</span></p>
+        <p v-if='size.className === "medium"'>Donations from this go to the nonprofit: <span class='counter-widget__nonprofit-name is-block has-text-weight-bold'>{{ nonprofit.NAME || "CHOOSE A NONPROFIT BELOW" }}</span></p>
       </div>
       <div class='counter-widget__button-container'>
         <router-link to='/' class='button counter-widget__button'>
@@ -164,7 +165,12 @@ export default {
       } else if (this.widget.size) {
         return this.widget.size
       } else {
-        return 'large'
+				return {
+					name: 'large',
+					width: 800,
+					className: 'large',
+					label: 'Large',
+				}
       }
     },
 
@@ -376,7 +382,7 @@ export default {
 			}
 
 			.counter-widget__date-wrap {
-				max-width: 100% !important;
+				max-width: 100%;
 			}
     }
 
@@ -393,7 +399,7 @@ export default {
     flex-direction: column;
 
     .counter-widget__counters {
-      margin-bottom: 1em;
+      margin-bottom: 1.5rem;
     }
 
     .counter-widget__title {

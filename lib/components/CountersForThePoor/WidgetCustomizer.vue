@@ -100,6 +100,7 @@ export default {
     return {
       noImage: false,   
       size: {
+				name: 'large',
         label: 'Large',
         width: 800,
 				className: 'large',
@@ -124,11 +125,12 @@ export default {
 
   computed: {
     widgetData () {
-      const { counterId, message, nonprofit } = this
+      const { counterId, message, nonprofit, size } = this
       return {
         counterId,
         message,
         nonprofit,
+				size,
       }
     },
 
