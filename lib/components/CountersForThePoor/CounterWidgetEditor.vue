@@ -93,9 +93,13 @@ export default {
 
     /**
      * Widget height is calculated by the defined width divided 
-		 * by the defined widthHeightRatio.
+		 * by the defined widthHeightRatio except for 300px size.
      */
     height () {
+      if (this.widgetData.size.name === 'small') {
+        return 'auto'
+      }
+
       return this.size.width / this.widthHeightRatio
 		},
     /**
