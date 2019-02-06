@@ -233,6 +233,10 @@ export default {
   .widget-customizer__featured-images-wrapper {
     margin-top: 1em;
     margin-bottom: 1em;
+
+    p {
+      font-size: 1rem;
+    }
   }
 
   .widget-customizer__images {
