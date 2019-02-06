@@ -101,7 +101,17 @@
         </g>
       </g>
     </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 4" v-if='icon === "minus"'>
+      <path id="minus" d="M86.088,224H65.912a2,2,0,0,0,0,4H86.088a2,2,0,0,0,0-4Z" transform="translate(-64 -224)" :fill="color"/>
+    </svg>
 
+    <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 32" v-if='icon === "map-marker"'>
+      <g id="iconfinder_71_Pin_106156" transform="translate(-64)">
+        <g id="Group_6" data-name="Group 6" transform="translate(64)">
+          <path id="Path_3" data-name="Path 3" d="M76,0A12,12,0,0,0,64,12c0,6.627,12,20,12,20S88,18.627,88,12A12,12,0,0,0,76,0Zm0,20a8,8,0,1,1,8-8A8,8,0,0,1,76,20Z" transform="translate(-64)" :fill="color"/>
+        </g>
+      </g>
+    </svg>
   </div>
 </template>
 
