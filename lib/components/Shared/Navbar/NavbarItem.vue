@@ -1,15 +1,3 @@
-<template functional>
-	<router-link 
-		:to='props.to' 
-		:class='`navbar-item ${props.itemClass}`' 
-		:active-class='`is-active ${props.activeClass}`'
-		:exact='props.exact'
-		:exact-active-class='`navbar-item--exact ${props.exactActiveClass}`'
-	>
-		<slot></slot>
-	</router-link>
-</template>
-
 <script>
 export default {
 	name: 'NavbarItem',
@@ -60,6 +48,58 @@ export default {
 			required: false,
 			default: '',
 		},
+
+		/**
+		 * Specifies if the link is external
+		 */
+		external: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
+
+		/**
+		 * Specifies the behavior of the link on click.
+		 */
+		target: {
+			type: Boolean,
+			required: false,
+			default: null,
+		}
+	},
+
+	render (createElement) {
+		if (this.external) {
+			return createElement(
+				'a', 
+				{ 
+					class: `navbar-item ${this.itemClass}`,
+					attrs: {
+						href: this.to,
+						target: this.target,
+					},
+				},
+				this.$slots.default
+			)
+		}
+
+		console.log("Not External")
+		return createElement(
+			'router-link', 
+			{
+				class: `navbar-item ${this.itemClass}`,
+				attrs: {
+					target: this.target,
+				},
+				props: {
+					to: this.to,
+					exactActiveClass: this.exactActiveClass,
+					activeClass: this.activeClass,
+					exact: this.exact,
+				},
+			},
+			this.$slots.default
+		)
 	},
 }
 </script>
