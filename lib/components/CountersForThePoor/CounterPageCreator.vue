@@ -30,7 +30,15 @@
         <div class='field counter-page-creator-form__field'>
           <label for='message' class='counter-page-creator-form__label'>Add a custom message (optional): </label>
           <div class='control counter-page-creator-form__control'>
-            <input type='text' name='message' id='message' class='input' placeholder='Type a message here'>
+            <input 
+              type='text' 
+              name='message' 
+              id='message' 
+              class='input' 
+              placeholder='Type a message here'
+              :maxlength="55"
+              v-model='widget.message'
+            >
           </div>
         </div>
         <div class='field counter-page-creator-form__field is-block'>
@@ -71,25 +79,26 @@ export default {
 
   data () {
     return {
+      themeId: 0,
       widget: {
         nonprofit: null,
-        featuredImg: 0,
 				counterId: 1,
         rate: 3,
-        themeId: 0,
+        message: '',
       },
     }
   },
 
   methods: {
 		async handleSubmit () {
-      const page = await this.createPage(this.widget)
+      const {widget, themeId} = this
+      const page = await this.createPage({widget, themeId})
 
-      this.$router.push({ name: 'page', params: { id: page.id } })
+      this.$router.push({ name: 'counter-custom-page', params: { pageId: page.id } })
     },
 
-		handleSliderChange (val, index) {
-      this.widget.themeId = index
+		handleSliderChange (val) {
+      this.themeId = val
     },
     
     handleNonprofitSelected (val) {
