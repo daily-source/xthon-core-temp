@@ -251,37 +251,47 @@ export default {
 		}
 
 		&-item {
-			@include mobile {
-				color: #fff !important;
-			}
+			color: #fff;
 			
 			&--mobile {
-				display: none;
+				display: block;
 
-				@include mobile {
-					display: block;
+				@include tablet {
+					display: none;
 				}
 			}
 		}
 
 		&-menu {
 			margin-right: 0 !important;
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 500px;
+			max-width: 80%;
+			height: 100%;
+			display: block !important;
+			padding-top: 1em;
+			padding-bottom: 1em;
+			background-color: $primary;
+			transition: right .35s ease;
 
-			@include mobile {
-				position: fixed;
-				top: 0;
-				right: -100%;
-				width: 500px;
-				max-width: 80%;
-				height: 100%;
-				display: block !important;
-				padding-top: 1em;
-				padding-bottom: 1em;
-				background-color: $primary;
-				transition: right .35s ease;
 
-				&.is-active {
-					right: 0;
+			@include tablet {
+				position: static;
+				max-width: 100%;
+				height: auto;
+				width: 100%;
+				display: flex !important;
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+
+			&.is-active {
+				right: 0;
+
+				@include tablet {
+					right: auto;
 				}
 			}
 
@@ -289,10 +299,10 @@ export default {
 				position: absolute;
 				top: 0;
 				right: 0;
-				display: none;
+				display: inline-block;
 
-				@include mobile {
-					display: inline-block;
+				@include tablet {
+					display: none;
 				}
 
 				&:hover,
@@ -308,6 +318,11 @@ export default {
 				margin-bottom: .5em;
 				text-align: center;
 				justify-content: center;
+				display: flex;
+
+				@include tablet {
+					display: none;
+				}
 
 				.nav-link {
 					color: #fff !important;
@@ -316,10 +331,6 @@ export default {
 						padding-right: .5em;
 						padding-left: .5em;
 					}
-				}
-
-				@include mobile {
-					display: flex;
 				}
 			}
 		}

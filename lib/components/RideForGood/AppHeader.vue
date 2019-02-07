@@ -131,8 +131,10 @@ export default {
   }
 
   .header-nav {
-    @include mobile {
-      display: none;
+    display: none;
+    
+    @include tablet {
+      display: block;
     }
   }
 

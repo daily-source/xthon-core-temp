@@ -139,7 +139,7 @@ export default {
 
 <style lang="scss">
   #banner {
-    height: 100vh;
+		height: calc(95vh - 75px);
     position: relative;
     // background-image: url('../assets/banner-img-1.jpg');
     background-size: cover;
@@ -151,10 +151,6 @@ export default {
     @include tablet {
       height: 450px;
     }
-
-		@include mobile {
-			height: calc(95vh - 75px);
-		}
 
     &:before {
       content: '';
@@ -186,9 +182,10 @@ export default {
         font-family: 'Poppins';
         font-weight: 700;
         line-height: 1.4;
+				font-size: 1.25rem !important;
 
-				@include mobile {
-					font-size: 1.25rem !important;
+				@include tablet {
+					font-size: 28px !important;
 				}
       }
 
@@ -197,13 +194,13 @@ export default {
         counter-reset: counter;
 
         li {
-          font-size: 1.25rem;
+          font-size: 1ren;
           counter-increment: counter;
           font-weight: 700;
           margin-bottom: .25em;
 
-					@include mobile {
-						font-size: 1rem;
+					@include desktop {
+						font-size: 1.25rem;
 					}
 
           &:last-child {

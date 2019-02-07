@@ -71,14 +71,14 @@ export default {
 	}
 
 	&--last {
-		background-color: $secondary;
-		padding-left: 1.25em;	
-		padding-right: 1.25em;	
+		color: #fff !important;
+		padding-left: .75em;
+		padding-right: .75em;	
 
-		@include mobile {
-			color: #fff !important;
-			padding-left: .75em;
-			padding-right: .75em;
+		@include tablet {
+			background-color: $secondary;
+			padding-left: 1.25em;	
+			padding-right: 1.25em;
 		}
 	}
 }
