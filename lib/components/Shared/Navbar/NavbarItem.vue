@@ -62,13 +62,17 @@ export default {
 		 * Specifies the behavior of the link on click.
 		 */
 		target: {
-			type: Boolean,
+			type: String,
 			required: false,
 			default: null,
 		}
 	},
 
 	render (createElement) {
+		/**
+		 * TODO: Find out to make this render function better because as you can see
+		 * there are two return statements but with the same createElement functions
+		 */
 		if (this.external) {
 			return createElement(
 				'a', 
@@ -83,7 +87,6 @@ export default {
 			)
 		}
 
-		console.log("Not External")
 		return createElement(
 			'router-link', 
 			{
@@ -98,7 +101,7 @@ export default {
 					exact: this.exact,
 				},
 			},
-			this.$slots.default
+			this.$slots.default,
 		)
 	},
 }
@@ -110,15 +113,21 @@ export default {
 		margin-left: auto;
 	}
 
-	&--last {
+	&--special {
 		color: #fff !important;
 		padding-left: .75em;
 		padding-right: .75em;	
+		text-transform: uppercase;
+		font-weight: 700;
 
 		@include tablet {
 			background-color: $secondary;
 			padding-left: 1.25em;	
 			padding-right: 1.25em;
+		}
+
+		&:not(:last-of-type) {
+			margin-right: .25em;
 		}
 	}
 }
