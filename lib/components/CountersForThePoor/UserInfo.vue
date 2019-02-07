@@ -71,8 +71,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import Icon from '@/components/general/Icons'
 import vue2Dropzone from 'vue2-dropzone'
+
+import Icon from 'Components/general/Icons'
 
 export default {
   name: 'UserInfo',
