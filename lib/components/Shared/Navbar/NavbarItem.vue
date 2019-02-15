@@ -1,3 +1,26 @@
+<template functional>
+	<div class='navbar-item-wrapper'>
+		<router-link 
+			v-if='!props.external'
+			:class='`navbar-item ${props.itemClass}`'
+			:target='props.target'
+			:to='props.to'
+			:exact-active-class='props.exactActiveClass'
+			:active-class='props.activeClass'
+			:exact='props.exact'
+		>
+			<slot></slot>
+		</router-link>
+		<a
+			:class='`navbar-item ${props.itemClass}`'
+			:target='props.target'
+			:href='props.to'
+			v-else
+		>
+		</a>
+	</div>
+</template>
+
 <script>
 export default {
 	name: 'NavbarItem',
@@ -65,49 +88,17 @@ export default {
 			type: String,
 			required: false,
 			default: null,
-		}
-	},
-
-	render (createElement) {
-		/**
-		 * TODO: Find out to make this render function better because as you can see
-		 * there are two return statements but with the same createElement functions
-		 */
-		if (this.external) {
-			return createElement(
-				'a', 
-				{ 
-					class: `navbar-item ${this.itemClass}`,
-					attrs: {
-						href: this.to,
-						target: this.target,
-					},
-				},
-				this.$slots.default
-			)
-		}
-
-		return createElement(
-			'router-link', 
-			{
-				class: `navbar-item ${this.itemClass}`,
-				attrs: {
-					target: this.target,
-				},
-				props: {
-					to: this.to,
-					exactActiveClass: this.exactActiveClass,
-					activeClass: this.activeClass,
-					exact: this.exact,
-				},
-			},
-			this.$slots.default,
-		)
+		},
 	},
 }
 </script>
 
 <style lang='scss' scoped>
+.navbar-item-wrapper {
+	display: flex;
+	align-items: stretch;
+}
+
 .navbar-item {
 	&--push-left {
 		margin-left: auto;
