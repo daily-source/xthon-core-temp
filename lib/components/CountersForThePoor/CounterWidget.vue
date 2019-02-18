@@ -1,6 +1,6 @@
 <template>
   <div 
-    :class="['counter-widget', {'counter-widget--edit': edit}, `counter-widget--${size.className}`]"
+    :class="['counter-widget']"
 		:style='{width: "`${size.width}px`"}'
   >
     <div class="counter-widget__title-container">
@@ -82,6 +82,17 @@ export default {
       type: Boolean,
       required: false,
     },
+
+    showNonprofitAdditionalDetails: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    size: {
+      type: Object,
+      required: true,
+    },
   },
 
   mixins: [imageSrc],
@@ -158,21 +169,6 @@ export default {
         return value
       }
     },
-    
-    size () {
-      if (this.widgetData && this.widgetData.size) {
-        return this.widgetData.size
-      } else if (this.widget.size) {
-        return this.widget.size
-      } else {
-				return {
-					name: 'large',
-					width: 800,
-					className: 'large',
-					label: 'Large',
-				}
-      }
-    },
 
     counterId () {
       return (this.widgetData && this.widgetData.counterId) || this.widget.counterId
@@ -223,52 +219,69 @@ export default {
 
 	&__nonprofit-name {
 		display: block;
-	}
-}
-
-.counter-widget__title {
-  color: inherit;
-  font-size: 1.375rem;
-  font-weight: 800;
-}
-
-.counter-widget__title-container {
-  font-family: $headings-font-family;
-  font-size: 1.375rem;
-  font-weight: 800;
-  text-align: center;
-
-  .counter-widget--edit & {
-    text-transform: capitalize;
-  }
-}
-
-.counter-widget__title-container {
-  text-align: left;
-}
-
-.counter-widget__counters, 
-.counter-widget__message-container,
-.counter-widget__additional-details {
-  padding-left: .5rem;
-}
-
-
-.counter-widget__counter {
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  
-  &:last-child {
-    margin-bottom: 0;
   }
 
-  .counter-widget:not(.counter-widget--edit) & {
+  &__title {
+    color: inherit;
     font-size: 1.25rem;
+    font-weight: 800;
+    font-family: $headings-font-family;
+    text-transform: capitalize;
+
+    @include tablet {
+      font-size: 1.375rem;
+    }
+
+    @include desktop {
+      font-size: 1.875rem;
+    }
 
     @include fullhd {
-      font-size: 1.5rem;
+      font-size: 2.125rem;
     }
+  }
+
+  &__counters, 
+  &__message-container,
+  &__additional-details {
+    padding-left: .5rem;
+  }
+
+  &__counter {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+
+    @include desktop {
+      font-size: 1.5rem;
+      flex-basis: 45%;
+      max-width: 45%;
+    }
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button-container {
+    max-width: 50%;
+    flex-basis: 50%;
+    text-align: center;
+  }
+
+  &__message {
+    color: inherit;
+  }
+
+  &__date-wrap {
+    max-width: 100%;
+  }
+
+  &__counters {
+    margin-bottom: 1.5em;
+    max-width: 100%;
+    flex-basis: 100%;
   }
 }
 
@@ -288,59 +301,6 @@ export default {
   align-self: flex-end;
 }
 
-.counter-widget__details-right {
-  flex-wrap: wrap;
-  flex-direction: column;
-  flex-grow: 1;
-
-  @media (min-width: 600px) {
-    flex-direction: row;
-  }
-}
-
-.counter-widget-details__image {
-  margin-bottom: 1rem;
-  > img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-}
-
-.counter-widget--edit {
-  .counter-widget__details-right {
-    justify-content: center;
-  }
-
-  .counter-widget__title {
-    text-transform: capitalize;
-    max-width: 80%;
-
-		@include fullhd {
-			max-width: 95%;
-		}
-  }
-}
-
-.counter-widget__editable-field {
-  position: relative;
-
-  .button.counter-widget__edit-button {
-    position: absolute;
-    top: -10px;
-    right: -1rem;
-    border-radius: 100%;
-    box-shadow: 0 2px 16px 2px rgba(0,0,0,.2) !important
-  }
-}
-
-.counter-widget__title-container {
-  .counter-widget__edit-button {
-    right: 0;
-    top: 0;
-  }
-}
-
 .button {
   background-color: $primary;
   color: #fff;
@@ -352,64 +312,4 @@ export default {
     background-color: $secondary;
   }
 }
-</style>
-
-<style lang='scss'>
-  .counter-widget__message {
-    color: inherit;
-  }
-
-  .counter-widget--large {
-    .counter-widget__details {
-      flex-direction: row;
-    }
-
-    .counter-widget__counters {
-      margin-bottom: 0;
-			max-width: 100%;
-			flex-basis: 100%;
-
-			.counter-widget__counter {
-				flex-basis: 45%;
-				flex-shrink: 0;
-				flex-grow: 1;
-				max-width: 45%;
-
-				@include fullhd {
-					flex-basis: 45%;
-					max-width: 45%;
-				}
-			}
-
-			.counter-widget__date-wrap {
-				max-width: 100%;
-			}
-    }
-
-    .counter-widget__title {
-      font-size: 1.875rem;
-
-      @include fullhd {
-        font-size: 2.125rem;
-      }
-    }
-  }
-
-  .counter-widget__details {
-    flex-direction: column;
-
-    .counter-widget__counters {
-      margin-bottom: 1.5rem;
-    }
-
-    .counter-widget__title {
-      font-size: 1.125rem;
-    }
-  }
-
-  .counter-widget__button-container {
-		max-width: 50%;
-		flex-basis: 50%;
-		text-align: center;
-  }
 </style>

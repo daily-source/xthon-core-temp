@@ -123,8 +123,10 @@ export default {
   margin-bottom: 1em;
 
   &__field {
-    display: flex;
-    align-items: center;
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
 
     &:not(:last-child) {
       padding-bottom: 1em;

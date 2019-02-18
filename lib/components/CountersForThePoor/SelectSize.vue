@@ -11,7 +11,7 @@
         :key='index' 
         :value="index"
       >
-        {{ size.label + ' (' + size.width + 'px)' }}
+        {{ size.label + ' (' + size.width + ')' }}
       </option>
     </select>
   </div>

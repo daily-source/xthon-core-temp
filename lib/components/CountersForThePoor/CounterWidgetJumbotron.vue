@@ -1,5 +1,12 @@
 <template>
-	<div :class='["counter-widget-jumbotron",  { "counter-widget-jumbotron--no-img": !bgImage }]'>
+	<div 
+		:class='[
+			"counter-widget-jumbotron",  
+			{ "counter-widget-jumbotron--no-img": !bgImage },
+			`counter-widget-jumbotron--${size.className}`,
+		]'
+		:style='{width: `${size.width}`, height: `${height}${heightUnit}`}'
+	>
 		<div 
 			:class='["counter-widget-jumbotron__logo-container", logoPositionClass]' 
 			v-if='showLogo'
@@ -14,6 +21,7 @@
 				:class='`counter-widget--${color}`'
 				:widget-data='widgetData'
 				:edit='edit'
+				:size='size'
 			/>
 		</div>
 		<div class='counter-widget-jumbotron__img-container' v-if='bgImage'>
@@ -24,8 +32,8 @@
 
 <script>
 import { mapState } from 'vuex'
-
 import { difference } from 'lodash'
+
 import CounterWidget from 'Components/CountersForThePoor/CounterWidget'
 
 export default {
@@ -60,7 +68,6 @@ export default {
 				]
 				return difference(value, choices).length === 0
 			},
-
 			default: () => {
 				return ['top', 'left']
 			},
@@ -91,6 +98,19 @@ export default {
 			default: 0,
 		},
 
+		size: {
+			type: Object,
+			required: false,
+			default: () => {
+				return {
+					name: 'full',
+					label: 'Full',
+					width: '100%',
+					className: 'full',
+				}
+			}
+		},
+
 		widgetData: {
 			type: Object,
 			required: false,
@@ -104,7 +124,9 @@ export default {
 	},
 
 	data () {
-		return {}
+		return {
+			widthHeightRatio: 1.58,
+		}
 	},
 
 	computed: {
@@ -122,6 +144,36 @@ export default {
 				return `counter-widget-jumbotron__logo-container--${position}`
 			}
 		},
+		
+    /**
+     * Widget height is calculated by the defined width divided 
+		 * by the defined widthHeightRatio except for 300px size.
+     */
+    height () {			
+      if (this.size.name === 'small' || this.size.name === 'full') {
+        return '100%'
+			}
+			
+			const unitlessWidth = parseInt(this.size.width)
+
+      return unitlessWidth / this.widthHeightRatio
+		},
+		
+		/**
+		 * The measurement unit that was used in the width. This returns an empty
+		 * string when the size is small or full
+		 */
+		heightUnit () {
+			if (this.size.name === 'small' || this.size.name === 'full') {
+        return ''
+			}
+
+			// Gets the unit that was used for the width.
+			const stringLength = this.size.width.length
+			const unit = this.size.width.substr(stringLength - 2, stringLength);
+
+			return unit
+		},
 
 		...mapState({
 			color (state) {
@@ -134,42 +186,35 @@ export default {
 
 <style scoped lang='scss'>
 .counter-widget-jumbotron {
+	$self: &;
 	position: relative;
+	min-height: 360px;
 
 	&--no-img {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		
-		.counter-widget-jumbotron__widget {
+		#{ $self }__widget {
 			background-color: transparent;
-		}
-	}
-
-	&__logo-container {
-		position: absolute;
-		top: .25em;
-		max-width: 300px;
-		left: 0;
-		right: 0;
-		margin-left: auto;
-		margin-right: auto;
-
-		&--right {
-			margin-right: 0 !important;
-		}
-
-		&--left {
-			margin-left: 0 !important;
 		}
 	}
 
 	&__img-container {
 		margin-left: -1.5rem;
 		margin-right: -1.5rem;
+		overflow: hidden;
+		height: 100%;
+		position: absolute;
+
+		@include tablet {
+			position: static;
+		}
 
 		img {
 			width: 100%;
+			height: 100%;
+			object-fit: cover;
 			display: block;
 			max-width: initial;
 			object-position: right center;
@@ -179,53 +224,69 @@ export default {
 	&__widget {
 		position: absolute;
 		z-index: 10;
+		top: 50%;
+		transform: translate(0, -50%);
+		height: 100%;
+		display: flex;
+		align-items: center;
 
-		&.top,
-		&.center,
-		&.center-y {
-			top: 2em;	
-		}
+		@include tablet {
+			display: block;
+			top: unset;
+			transform: none;
+			height: auto; 
 
-		&.left, 
-		&.center {
-			left: 1em;
-		}
-
-		&.right,
-		&.center{
-			right: 1em;
-		}
-
-		&.center {
-			height: 100%;
-			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			.counter-widget {
-				margin-left: auto;
-				margin-right: auto;
+			&.top,
+			&.center,
+			&.center-y {
+				top: 2em;	
 			}
-		}
-
-		&.center-y {
-			display: flex;
-			height: 100%;
-			align-items: center;
-		}
-
-		&.bottom {
-			bottom: 2em;
+	
+			&.left, 
+			&.center {
+				left: 1em;
+			}
+	
+			&.right,
+			&.center{
+				right: 1em;
+			}
+	
+			&.center {
+				height: 100%;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+	
+				.counter-widget {
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+	
+			&.center-y {
+				display: flex;
+				height: 100%;
+				align-items: center;
+			}
+	
+			&.bottom {
+				bottom: 2em;
+			}
 		}
 	}
 
 	.counter-widget {
 		padding: 1em;
-		padding: 1.5rem 2rem;
+		padding: 1rem;
+		border-radius: 4px;
+
+		@include tablet {
+			padding: 1.5rem 2rem;
+		}
 		// background-color: rgba(3, 0, 0, 0.28);
 		// border: 2px solid $primary;
-		border-radius: 4px;
 
 		// &--primary {
 		// 	border-color: $primary;
@@ -234,115 +295,6 @@ export default {
 		// &--secondary {
 		// 	border-color: $secondary;
 		// }
-	}
-}
-</style>
-
-<style lang="scss">
-.counter-widget-jumbotron--no-img {
-	padding: 1.5em;
-
-	.counter-widget-edit & {
-		border-radius: $border-radius;
-		border: 2px solid #3a3a3a;
-		box-shadow: 0 2px 18px 0 rgba(0,0,0,.2);
-	}
-
-	.counter-widget-jumbotron__widget {
-		position: static !important;
-		max-width: 100%;
-	}
-
-	.counter-widget {
-		color: #000;
-		position: static !important;
-		max-width: 100% !important;
-		margin-left: auto;
-		margin-right: auto;
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-		padding-top: 1em !important;
-		padding-bottom: 0 !important;
-
-
-		&__counters,
-		&__message-container,
-		&__additional-details {
-			width: 100% !important;
-			margin-bottom: .625em;
-			margin-left: auto;
-			margin-right: auto;
-		} 
-
-		&__message-container,
-		&__additional-details {
-			p {
-				font-size: 18px !important; 
-				margin-bottom: 8px !important;
-				text-align: center;
-			}
-		}
-
-		&__counter {
-			margin-left: auto;
-			margin-right: auto;
-
-			&:not(:last-child) {
-				margin-bottom: 8px !important;
-			}
-		}
-
-		&__counters {
-			.counter-widget {
-				&__date-wrap {
-					max-width: 45% !important;
-				}
-			}
-		}
-
-		&__title {
-			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
-			max-width: 70% !important;
-			margin-bottom: 8px !important;
-			font-size: 30px !important;
-		}
-
-		&__counter {
-			font-size: 24px !important;
-		}
-
-		&__button-container {
-			text-align: center;
-			max-width: 100% !important;
-		}
-
-		&-counter {
-			&__date {
-				font-size: 18px !important;
-			}
-		}
-	}
-
-	.counter-widget__details {
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.counter-widget-jumbotron__logo-container {
-		position: static !important;
-		max-width: 270px !important;
-	}
-
-	.counter-widget__message-container,
-	.counter-widget__additional-details {
-		p {
-			margin-bottom: .625rem;
-		}
-	}
-	.button {
-		color: #000;
 	}
 }
 </style>

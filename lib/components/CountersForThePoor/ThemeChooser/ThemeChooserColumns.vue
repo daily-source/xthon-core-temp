@@ -51,6 +51,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// TODO: Make this a global mixin.
 @mixin selected-effect ($color, $border-color: transparent, $border-color-selected: $primary) {
   border: 2px solid $border-color;
   border-radius: $border-radius;
@@ -105,11 +106,17 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   &__column--no-img {
     display: flex;
     align-items: stretch;
+    min-height: 260px;
+
+    @include tablet {
+      min-height: auto;
+    }
   }
 
   &-no-img__text {

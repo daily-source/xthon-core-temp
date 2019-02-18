@@ -101,6 +101,7 @@
         </g>
       </g>
     </svg>
+    
     <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 4" v-if='icon === "minus"'>
       <path id="minus" d="M86.088,224H65.912a2,2,0,0,0,0,4H86.088a2,2,0,0,0,0-4Z" transform="translate(-64 -224)" :fill="color"/>
     </svg>

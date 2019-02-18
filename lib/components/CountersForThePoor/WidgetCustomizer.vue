@@ -1,11 +1,17 @@
 <template>
   <div class="widget-customizer">
     <div class="widget-customizer__widget-container">
-      <counter-widget-editor 
+      <counter-widget-jumbotron 
         :widget-id='widgetId'
-        :theme='selectedTheme'
+        :bg-image='backgroundImg'
+        :widget-position='["bottom", "left"]'
+        :size='size'
         :widget-data='widgetData'
-				:size='size'
+        :show-logo='true'
+        :edit='true'
+        :color-id='selectedTheme.colorId'
+        :logo-position='selectedTheme.logoPosition'
+        :class='`widget-customizer__counter-widget ${themeClassName}`'
       />
     </div>
     <div class="widget-customizer__images">
@@ -71,15 +77,27 @@
 
 <script>
 import { mapState } from 'vuex'
+import imageSrc from 'Core/util/imageSrc'
 
-import CounterWidgetEditor from 'Components/CountersForThePoor/CounterWidgetEditor'
+import CounterWidgetJumbotron from 'Components/CountersForThePoor/CounterWidgetJumbotron'
 import CounterSelect from 'Components/CountersForThePoor/CounterSelect'
 import SelectSize from 'Components/CountersForThePoor/SelectSize'
 import ThemeChooser from 'Components/CountersForThePoor/ThemeChooser'
 import NonprofitAjaxSearch from 'Components/general/NonprofitAjaxSearch'
 
+
 export default {
   name: 'WidgetCustomizer',
+
+  components: {
+    CounterSelect,
+    SelectSize,
+    ThemeChooser,
+    NonprofitAjaxSearch,
+    CounterWidgetJumbotron,
+  },
+
+  mixins: [imageSrc],
 
   props: {
     widgetId: {
@@ -88,23 +106,16 @@ export default {
     },
   },
 
-  components: {
-    CounterWidgetEditor,
-    CounterSelect,
-    SelectSize,
-    ThemeChooser,
-    NonprofitAjaxSearch,
-  },
-
   data () {
     return {
       noImage: false,   
       size: {
 				name: 'large',
         label: 'Large',
-        width: 800,
+        width: '800px',
 				className: 'large',
       },
+      imgFolderName: 'widget-imgs/',
       color: 'black-and-white',
       nonprofit: null,
       counterId: null,
@@ -125,21 +136,25 @@ export default {
 
   computed: {
     widgetData () {
-      const { counterId, message, nonprofit, size } = this
+      const { counterId, message, nonprofit } = this
       return {
         counterId,
         message,
         nonprofit,
-				size,
       }
     },
 
-    selectedTheme () {
-      if (this.chooserSelectedTheme) {
-        return this.chooserSelectedTheme
-      } else {
-        return this.themes.find(theme => theme.id == this.widget.themeId)
+    /**
+     * Theme class name
+     */
+    themeClassName () {
+      const { name } = this.selectedTheme
+
+      if (name) {
+        return `counter-widget-jumbotron--${name}`
       }
+
+      return 'counter-widget-jumbotron--default'
     },
 
     ...mapState({
@@ -153,8 +168,22 @@ export default {
         return state.counterwidgets.counters.find(counter => counter.id == id)
       },
 
-      themes (state) {
-        return state.counterwidgets.themes
+      selectedTheme (state) {
+        if (this.chooserSelectedTheme) {
+          return this.chooserSelectedTheme
+        }
+
+        return state.counterwidgets.themes.find(theme => theme.id == this.widget.themeId)
+      },
+
+      backgroundImg (state) {
+        const { backgroundImageId } = this.selectedTheme
+
+        if (backgroundImageId || backgroundImageId === 0) {
+          return this.getImageSrc(state.counterwidgets.backgroundImages[backgroundImageId])
+        }
+
+        return null
       },
     }),
   },
@@ -162,22 +191,35 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-  .widget {
+.widget-customizer {
+  &__widget-container {
+    display: none;
+
+    // TODO: Maybe add another breakpoint for largest widget size and make use of Bulma's breakpoint mixin?
+    @media (min-width: 800px)  {
+      display: block;
+    }
+  }
+
+  &__counter-widget {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 3rem;
   }
 
-  .counter-widget {
-		color: #333;
-		background-color: #fff;
-		box-shadow: 0 2px 8px 2px rgba(0,0,0,.3);
-    padding: 1.5rem;
-    border: 2px solid $color-gray;
-    border-radius: $border-radius;
+  &__images {
+    margin-top: 1em;
   }
 
-  .widget-customizer__fields {
+  &__featured-images-wrapper {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  &__fields {
     display: flex;
     flex-wrap: wrap;
 
@@ -189,15 +231,23 @@ export default {
 
     .field {
       width: 100%;
-      margin-top: 1em;
-			display: flex;
-			align-items: center;
+
+      @include tablet {
+        margin-top: 1em;
+        display: flex;
+        align-items: center;
+      }
     }
 
     &-label {
       display: inline-block;
-			min-width: 40%;
+      min-width: 40%;
       font-weight: 700 !important;
+      margin-bottom: .5em;
+
+      @include tablet {
+        margin-bottom: 0;
+      }
     }
 
     .field-input {
@@ -206,11 +256,11 @@ export default {
       flex-shrink: 1;
     }
 
-		.control,
-		.counters-select__wrap {
-			flex-grow: 1;
-			flex-shrink: 1;
-		}
+    .control,
+    .counters-select__wrap {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
 
     .button-container {
       width: 100%;
@@ -230,16 +280,19 @@ export default {
     padding-bottom: 0;
   }
 
-  .widget-customizer__featured-images-wrapper {
-    margin-top: 1em;
-    margin-bottom: 1em;
-
-    p {
-      font-size: 1rem;
-    }
+  .counter-widget {
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 8px 2px rgba(0,0,0,.3);
+    padding: 1.5rem;
+    border: 2px solid $color-gray;
+    border-radius: $border-radius;
   }
 
-  .widget-customizer__images {
-    margin-top: 1em;
+  .widget {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
   }
+}
 </style>

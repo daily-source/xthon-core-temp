@@ -74,10 +74,14 @@ export default {
   .banner {
     position: relative;
     background-size: cover;
-    background-position: center;
+    background-position: right;
     background-attachment: fixed;
     height: 95vh;
-    margin-bottom: 2rem;
+		margin-bottom: 2rem;
+
+		@include tablet {
+			background-position: center;
+		}
   }
 
   .banner__img {
@@ -86,8 +90,12 @@ export default {
 
   .banner__contents {
     position: absolute;
-    left: 6%;
-    bottom: 30px;
+		bottom: 30px;
+		left: 0;
+
+		@include tablet {			
+			left: 6%;
+		}
 
 		@include fullhd {
 			left: 9%;

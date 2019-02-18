@@ -1,5 +1,6 @@
 <template>
   <div class='featured-image-chooser__wrapper'>
+    <!-- TODO: On mobile, set the component to the ThemeChooserSlider instead of the column chooser -->
     <component 
       :is='component'
 			:selected='selected'
