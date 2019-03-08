@@ -26,10 +26,10 @@
           </router-link>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
-          <LogInModal
+          <LogInModalAuth0
             layout="app-header"
             :register="false"
-          ></LogInModal>
+          ></LogInModalAuth0>
         </div>
         <div class="max-good" @click="toggleOtherMaxGoodSites()" :class="{ 'active': showingMaxGoodSites }">
           <span class="small">Powered by </span>
@@ -51,6 +51,56 @@
     </div>
   </div>
 </template>
+
+<script>
+import Icons from "Components/general/Icons.vue"
+import LogInModalAuth0 from "Components/general/LogInModalAuth0.vue"
+
+export default {
+  name: "AppHeader",
+  components: {
+    Icons,
+    LogInModalAuth0
+  },
+  props: ["layout"],
+  data () {
+    return {
+      showSearchBar: false,
+      showingMaxGoodSites: false,
+      maxGoodSites: [
+        { name: "Volunteerathon", href: "#" },
+        { name: "Quitathon", href: "#" },
+        { name: "Loseathon", href: "#" },
+        { name: "Give it up for Good", href: "#" },
+        { name: "Vacation for Good", href: "#" },
+        { name: "Waterathon", href: "#" },
+        { name: "Christmas for Good", href: "#" },
+        { name: "MLK Day for Good", href: "#" },
+        { name: "The Lent Site", href: "#" },
+        { name: "Valentines for Good", href: "#" },
+        { name: "Fools for Good", href: "#" },
+        { name: "Resolutions for Good", href: "#" },
+        { name: "Run for good", href: "#" },
+        { name: "Bike for Good", href: "#" },
+        { name: "Walk for Good", href: "#" },
+        { name: "Birthdays for Good", href: "#" },
+        { name: "Polar Plunge for Good", href: "#" },
+        { name: "Bake for Good", href: "#" }
+      ]
+    }
+  },
+  methods: {
+    toggleOtherMaxGoodSites () {
+      this.showingMaxGoodSites = !this.showingMaxGoodSites
+    }
+  },
+  computed: {
+    loggedIn () {
+      return this.$store.state.user.loggedIn
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .other-max-good-sites {
@@ -302,53 +352,3 @@
 }
 
 </style>
-
-<script>
-import Icons from "Components/general/Icons.vue"
-import LogInModal from "Components/general/LogInModal.vue"
-
-export default {
-  name: "AppHeader",
-  components: {
-    Icons,
-    LogInModal
-  },
-  props: ["layout"],
-  data () {
-    return {
-      showSearchBar: false,
-      showingMaxGoodSites: false,
-      maxGoodSites: [
-        { name: "Volunteerathon", href: "#" },
-        { name: "Quitathon", href: "#" },
-        { name: "Loseathon", href: "#" },
-        { name: "Give it up for Good", href: "#" },
-        { name: "Vacation for Good", href: "#" },
-        { name: "Waterathon", href: "#" },
-        { name: "Christmas for Good", href: "#" },
-        { name: "MLK Day for Good", href: "#" },
-        { name: "The Lent Site", href: "#" },
-        { name: "Valentines for Good", href: "#" },
-        { name: "Fools for Good", href: "#" },
-        { name: "Resolutions for Good", href: "#" },
-        { name: "Run for good", href: "#" },
-        { name: "Bike for Good", href: "#" },
-        { name: "Walk for Good", href: "#" },
-        { name: "Birthdays for Good", href: "#" },
-        { name: "Polar Plunge for Good", href: "#" },
-        { name: "Bake for Good", href: "#" }
-      ]
-    }
-  },
-  methods: {
-    toggleOtherMaxGoodSites () {
-      this.showingMaxGoodSites = !this.showingMaxGoodSites
-    }
-  },
-  computed: {
-    loggedIn () {
-      return this.$store.state.user.loggedIn
-    }
-  }
-}
-</script>
