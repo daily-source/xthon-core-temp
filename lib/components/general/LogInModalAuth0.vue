@@ -18,7 +18,7 @@
           <p class="is-centered" v-if="!loggedIn">Please log in with your email and password:</p>
         </slot>
         <div class="centered">
-          <p v-if="loggedIn">You are logged in as {{user.auth0.nickname || user.auth0.given_name}}</p>
+          <p v-if="loggedIn">You are logged in as {{user.auth0.name}}</p>
           <UserManagementLinks
             v-if="loggedIn"
             layout="header"
@@ -98,10 +98,9 @@ export default {
   },
 
   created () {
-    console.log('listening to event')
     this.$eventHub.$on('set_user', (payload) => {
       this.$store.dispatch('SET_USER', { user: payload.user })
-      console.log('payload event: ', payload)
+      this.requestBackendData()
     })
   },
 
@@ -123,9 +122,17 @@ export default {
     triggerExternalSignup () {
       this.$auth.signup()
     },
-
-    setUser () {
-      this.$auth.setUser()
+    requestBackendData () {
+      console.log('requesting backend auth')
+      Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
+        headers: {'Authorization': `Bearer ${this.$auth.accessToken}`}
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(e => {
+        console.log("err: ", e)
+      })
     },
 
     // old methods
@@ -142,6 +149,7 @@ export default {
       this.$emit("modal:close")
     },
     logUserOut () {
+      this.$auth.logout()
       this.$store.commit("LOG_OFF", { status: false })
       this.closeLoginBox()
     },
