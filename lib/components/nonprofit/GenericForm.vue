@@ -14,6 +14,26 @@
         <form v-on:keyup.enter="">
           <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Select field:</label>
+            </div>
+            <div class="column is-5">
+              <div class="field">
+                <div class="control">
+                  <div class="select is-primary">
+                    <select>
+                      <option value="Value 1">Value 1</option>
+                      <option value="Value 2">Value 2</option>
+                      <option value="Value 3">Value 3</option>
+                      <option value="Value 4">Value 4 with a very large text</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
               <label :for="`input-email_${_uid}`" class="label">How many miles will you ride:</label>
             </div>
             <div class="column is-5 form-column__input-column">
@@ -83,11 +103,11 @@
             <div class="column is-5 form-column__label-column">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.ownRide" value="own">
-                Your own ride
+                Radio 1
               </label>
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.ownRide" value="event">
-                Part of an existing event
+                Radio 2 - adds a field below it
               </label>
             </div>
           </div>
@@ -153,7 +173,7 @@
             <div class="column is-12 form-column__label-column form-column__left-padded">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="same">
-                same nonprofit as above
+                Radio 1
               </label>
             </div>
           </div>
@@ -161,7 +181,7 @@
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
-                a different nonprofit:
+                Radio 2/inline option:
               </label>
             </div>
             <transition name="fade">
@@ -182,7 +202,7 @@
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
-                independent service:
+                Radio 3/inline option:
               </label>
             </div>
             <transition name="fade">
