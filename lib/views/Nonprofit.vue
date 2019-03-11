@@ -17,8 +17,9 @@
       v-on:edit:open="enableEdition()"
       v-on:edit:close="closeEdition()"
     ></NonprofitHero>
-    <NonprofitForm submit-button-label="Submit">
-    </NonprofitForm>
+    <GenericForm submit-button-label="Submit" :bubbles="true">
+      <div slot="heading"><h1 class="h1-alt">Change the world in 3 easy steps:</h1></div>
+    </GenericForm>
 
     <FloatingShareTools text="Check out this nonprofit!" via="Volunteerathon" title="Share this" />
 
@@ -119,7 +120,7 @@ export default {
     FloatingShareTools: () => import("Components/general/FloatingShareTools.vue"),
     NonprofitAbout: () => import("Components/nonprofit/NonprofitAbout.vue"),
     NonprofitFundraisers: () => import("Components/nonprofit/NonprofitFundraisers.vue"),
-    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue"),
+    GenericForm: () => import("Components/nonprofit/GenericForm.vue"),
     RegisterOrLoginModal,
     ClaimNonprofitModal
   },
@@ -332,4 +333,10 @@ export default {
   }
 }
 
+h1 {
+  &.h1-alt {
+    color: $color-emphasis-alt-2;
+  }
+
+}
 </style>

@@ -117,6 +117,97 @@
           >Continue</button>
         </form>
       </div>
+
+      <div class="form-wrapper">
+        <form v-on:keyup.enter="validateSubmit()">
+          <div class="columns form-column__wrapper form-column__extra-padded is-multiline">
+            <div class="column is-5 form-column__label-column"><label class="label">Donations will go to this nonprofit:</label></div>
+            <NonprofitAjaxSearch
+              v-if="canRender"
+              v-on:selected="setNonprofit($event)"
+              :default-value="getDefaultNonprofit()"
+              :standalone="false"
+            ></NonprofitAjaxSearch>
+            <transition name="slide-fade">
+              <div class="column is-5 is-offset-5 is-pulled-left" v-if="nonprofitErrorMessage">
+                <span class="editable-error-message">{{nonprofitErrorMessage}}</span>
+              </div>
+            </transition>
+          </div>
+          <div class="columns form-column__wrapper">
+            <div class="column form-column__label-column">
+              <label class="label">I will volunteer
+                <div class="control inline-field">
+                  <input class="input" type="number" min="0" max="9999" name="number-of-hours" placeholder="100" v-model="form.hours">
+                </div>
+                hours for:
+              </label>
+              <transition name="slide-fade">
+                <div class="editable-error-message form-column__label-column" v-if="hoursErrorMessage">
+                  {{hoursErrorMessage}}
+                </div>
+              </transition>
+            </div>
+          </div>
+          <div class="columns form-column__wrapper">
+            <div class="column is-12 form-column__label-column form-column__left-padded">
+              <label class="radio">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="same">
+                same nonprofit as above
+              </label>
+            </div>
+          </div>
+          <div class="columns form-column__wrapper is-multiline">
+            <div class="column is-5 form-column__label-column form-column__left-padded">
+              <label class="radio">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
+                a different nonprofit:
+              </label>
+            </div>
+            <transition name="fade">
+              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'different'">
+                <div class="control">
+                  <input class="input" type="text" name="project_action" placeholder="Enter name of a nonprofit" v-model="form.differentNonprofit">
+                </div>
+              </div>
+            </transition>
+            <transition name="slide-fade">
+              <div class="column is-7 is-offset-5 editable-error-message is-padded-top form-column__label-column"
+                v-if="form.nonprofitIs === 'different' && targetNonprofitErrorMessage"
+              >{{targetNonprofitErrorMessage}}</div>
+            </transition>
+
+          </div>
+          <div class="columns form-column__wrapper is-multiline">
+            <div class="column is-5 form-column__label-column form-column__left-padded">
+              <label class="radio">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
+                independent service:
+              </label>
+            </div>
+            <transition name="fade">
+              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'independent'">
+                <div class="control">
+                  <input class="input" type="text" name="project_action" placeholder="Enter what you will be doing" v-model="form.independentNonprofit">
+                </div>
+              </div>
+            </transition>
+            <transition name="slide-fade">
+              <div class="column is-7 is-offset-5 editable-error-message is-padded-top form-column__label-column"
+                v-if="form.nonprofitIs === 'independent' && targetNonprofitErrorMessage"
+              >{{targetNonprofitErrorMessage}}</div>
+            </transition>
+          </div>
+          <div class="editable-error-message form-column__label-column form-column__left-padded ">{{nonprofitIsErrorMessage}}</div>
+          <p class="help pad-more">To find volunteer opportunities, <a rel="noopener" href="http://aqua.dailysource.org/donation/helpcreatethis" target="_blank">click here</a></p>
+          <button
+            class="button is-success is-large"
+            type="submit"
+            @click.prevent="validateSubmit()"
+            >{{submitButtonLabel}}</button>
+        </form>
+      </div>
+
     </div>
   </div>
 </template>
@@ -159,6 +250,102 @@ export default {
   methods: {
     setNonprofit($event) {
       console.log($event)
+    },
+    validateNonprofit () {
+      const nonprofit = this.form.nonprofit
+      if (!nonprofit) {
+        this.nonprofitErrorMessage = "Please select a nonprofit to donate to"
+        return false
+      } else {
+        this.nonprofitErrorMessage = ""
+        return true
+      }
+    },
+    getDefaultNonprofit () {
+      if (this.form.nonprofit) {
+        return this.form.nonprofit
+      } else {
+        return null
+      }
+    },
+    validateHours () {
+      const hours = this.form.hours
+      if (!hours) {
+        this.hoursErrorMessage = "This field is required"
+        return false
+      } else {
+        this.hoursErrorMessage = ""
+        return true
+      }
+    },
+    validateNonprofitIs () {
+      const nonprofitIs = this.form.nonprofitIs
+      if (!nonprofitIs) {
+        this.nonprofitIsErrorMessage = "Please choose one of the options above"
+        return false
+      } else {
+        this.nonprofitIsErrorMessage = ""
+        return true
+      }
+    },
+    validateTargetNonprofit () {
+      if (this.form.nonprofitIs === "different") {
+        if (!this.form.differentNonprofit) {
+          this.targetNonprofitErrorMessage = "This field is required"
+          return false
+        } else {
+          this.targetNonprofitErrorMessage = ""
+          return true
+        }
+      } else if (this.form.nonprofitIs === "independent") {
+        if (!this.form.independentNonprofit) {
+          this.targetNonprofitErrorMessage = "This field is required"
+          return false
+        } else {
+          this.targetNonprofitErrorMessage = ""
+          return true
+        }
+      } else {
+        return true
+      }
+    },
+    validateAllFields () {
+      if (this.validateNonprofit() && this.validateHours() && this.validateNonprofitIs() && this.validateTargetNonprofit()) {
+        return true
+      } else {
+        return false
+      }
+    },
+    validateSubmit () {
+      if (this.validateAllFields()) {
+        this.userDialogModal = true
+        this.submitData()
+      }
+    },
+    submitData () {
+      const form = this.form
+      this.$store.dispatch("SUBMIT_NONPROFIT_FORM", { form: form })
+        .then(data => {
+          this.userDialogModal = false
+          this.clearFormLocalStorage()
+          console.log("success: ", data)
+        })
+        .catch(err => {
+          this.userDialogModal = false
+          console.log("error: ", err)
+        })
+    },
+    setNonprofit (event) {
+      this.form.nonprofit = event
+      this.validateNonprofit()
+      this.syncFormWithLocalStorage()
+    },
+    syncFormWithLocalStorage () {
+      window.localStorage.setItem("nonprofitForm", JSON.stringify(this.form))
+    },
+    clearFormLocalStorage () {
+      window.localStorage.removeItem("nonprofitForm")
+      this.form = {}
     }
   },
   computed: {
