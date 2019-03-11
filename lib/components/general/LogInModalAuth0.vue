@@ -123,7 +123,6 @@ export default {
       this.$auth.signup()
     },
     requestBackendData () {
-      console.log('requesting backend auth')
       Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
         headers: {'Authorization': `Bearer ${this.$auth.accessToken}`}
       })
