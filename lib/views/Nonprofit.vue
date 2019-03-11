@@ -18,7 +18,6 @@
       v-on:edit:close="closeEdition()"
     ></NonprofitHero>
     <NonprofitForm submit-button-label="Submit">
-      <div slot="heading"><h1>Change the world in 3 easy steps:</h1></div>
     </NonprofitForm>
 
     <FloatingShareTools text="Check out this nonprofit!" via="Volunteerathon" title="Share this" />

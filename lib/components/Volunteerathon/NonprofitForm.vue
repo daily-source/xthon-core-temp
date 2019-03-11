@@ -21,7 +21,7 @@
       v-on:error="unauthorize()"
     ></DonatePasswordModal>
 
-    <slot name="heading"><h1>Change the world in 3 easy steps:</h1></slot>
+    <slot name="heading"><h1 class="h1-alt">Change the world in 3 easy steps:</h1></slot>
     <div class="container">
       <div class="columns combo-wrapper is-multiline bubbles-wrapper">
         <ComboBox iconsrc="/public/images/check.png" duplicate="false" :large="true">
@@ -353,6 +353,10 @@ export default {
 h1 {
   color: $color-emphasis;
   margin-bottom: 40px;
+
+  &.h1-alt {
+    color: orange;
+  }
 }
 
 .combo-wrapper {
