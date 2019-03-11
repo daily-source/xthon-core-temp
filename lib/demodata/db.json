@@ -956,7 +956,7 @@
   ],
   "common": {
     "nonprofit": {
-      "intro": "In social fundraisers like bikeathons, you spend about 100 hours training to ride or walk long-distances, and raise about $600. In a volunteerathon, you raise the same, yet use the 100 hours to volunteer, saving a nonprofit $1,200 in expenses. This means you generate $1,800: triple the impact of a normal fundraiser. Your sponsors will be happier, the nonprofits will be happier, the people being helped will be happier, and you’ll be happier. It’s a win-win-win-win of happiness."
+      "intro": "<p>In this section, we should normally put an introduction to and explanation of the fundraising activity. These margins/indents and font sizes usually work well, but you can adjust the margin and font sizes as needed to make the section look nice. Sometimes we also have bulleted items like:</p><ul><li>But they can be used for other lists</li><li>They are not required, so it’s fine to delete them</li><li>If you have many bullets, or if the text in them is long, you might need to increase the empty space between each bullet a little</li><li>IMPORTANT: change the color of heading below this to one of the colors in the logo</li></ul>"
     },
     "fundraiser": {
       "fundraiser_header": "A nonprofit fundraiser to raise money for:"

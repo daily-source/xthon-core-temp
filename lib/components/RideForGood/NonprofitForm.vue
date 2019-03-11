@@ -1,6 +1,15 @@
 <template>
   <div class="page-wrapper">
     <div class="container">
+      <slot name="heading"></slot>
+      <div class="columns combo-wrapper is-multiline bubbles-wrapper" v-if="bubbles">
+        <ComboBox iconsrc="/public/images/check.png" duplicate="false" :large="true">
+        </ComboBox>
+        <ComboBox iconsrc="/public/images/invite.png" duplicate="false" :large="true">
+        </ComboBox>
+        <ComboBox iconsrc="/public/images/act.png" duplicate="false" :large="true">
+        </ComboBox>
+      </div>
       <div class="form-wrapper">
         <form v-on:keyup.enter="">
           <div class="columns form-column__wrapper  is-multiline">
@@ -116,7 +125,7 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: ["submitButtonLabel", "enableNonprofitSearch"],
+  props: ["submitButtonLabel", "enableNonprofitSearch", "bubbles"],
   /**
    * Uses dynamic import to speed up page performance.
    * See https://webpack.js.org/guides/code-splitting/ for reference.

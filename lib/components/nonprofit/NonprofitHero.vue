@@ -94,8 +94,7 @@
         </div>
       </div>
       <div class="container">
-        <div class="nonprofit-intro" v-if="common.nonprofit">
-          {{common.nonprofit.intro}}
+        <div class="nonprofit-intro allow-html" v-if="common.nonprofit" v-html="common.nonprofit.intro">
         </div>
       </div>
     </section>

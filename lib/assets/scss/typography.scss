@@ -127,3 +127,18 @@ h4.lower-body-right-column__title {
   color: $color-emphasis-alt;
   line-height: 1;
 }
+
+.allow-html {
+  ul {
+    padding: 0 30px;
+
+    @include tablet {
+      padding: 0 60px;
+    }
+  }
+  li {
+    list-style-type: disc;
+    margin-left: 10px;
+    font-size: 20px;
+  }  
+}
