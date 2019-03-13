@@ -132,7 +132,6 @@ export default {
       this.$auth.signup()
     },
     requestBackendData () {
-      console.log('this Bearer: ', this.$store.state.user)
       Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
         headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
       })
@@ -143,6 +142,8 @@ export default {
         console.log("err: ", e)
       })
     },
+
+
 
     // old methods
     setEmail (event) {
