@@ -3,24 +3,25 @@
     <div class="container">
       <slot name="heading"></slot>
       <div class="columns combo-wrapper is-multiline bubbles-wrapper" v-if="bubbles">
-        <ComboBox iconsrc="/public/images/check.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/check.png')" duplicate="false" :large="true">
         </ComboBox>
-        <ComboBox iconsrc="/public/images/invite.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/invite.png')" duplicate="false" :large="true">
         </ComboBox>
-        <ComboBox iconsrc="/public/images/act.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/act.png')" duplicate="false" :large="true">
         </ComboBox>
       </div>
       <div class="form-wrapper">
         <form v-on:keyup.enter="">
           <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
-              <label :for="`input-email_${_uid}`" class="label">Select field:</label>
+              <label :for="`input-email_${_uid}`" class="label">Dropdown Menu:</label>
             </div>
             <div class="column is-5">
               <div class="field">
                 <div class="control">
                   <div class="select is-primary">
                     <select>
+                      <option value='' selected disabled>Please select</option>
                       <option value="Value 1">Value 1</option>
                       <option value="Value 2">Value 2</option>
                       <option value="Value 3">Value 3</option>
@@ -32,7 +33,7 @@
             </div>
           </div>
 
-          <div class="columns form-column__wrapper  is-multiline">
+          <!-- <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
               <label :for="`input-email_${_uid}`" class="label">How many miles will you ride:</label>
             </div>
@@ -45,11 +46,30 @@
                 >
               </div>
             </div>
+          </div> -->
+
+
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Text Input:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <input class="input" type="text" name="action" placeholder="">
+            </div>
           </div>
 
           <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
-              <label :for="`input-email_${_uid}`" class="label">Start location:</label>
+              <label :for="`input-email_${_uid}`" class="label">Text Input with placeholder:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <input class="input" type="text" name="action" placeholder="DEVELOPER: edit this text">
+            </div>
+          </div>
+          
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Text Input with icon:</label>
             </div>
             <div class="column is-5 form-column__input-column">
               <div class="control input-wrapper">
@@ -64,12 +84,13 @@
 
           <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
-              <label :for="`input-email_${_uid}`" class="label">End location:</label>
+              <label :for="`input-email_${_uid}`" class="label">Text Input with icon and placeholder:</label>
             </div>
             <div class="column is-5 form-column__input-column">
               <div class="control input-wrapper">
                 <Icons icon="location" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-                <input class="input" type="text" name="action" placeholder=""
+                <input class="input" type="text" name="action" 
+                  placeholder="Developer: edit this text"
                   :required="true"
                   v-model="form.endLocation"
                 >
@@ -79,7 +100,42 @@
 
           <div class="columns form-column__wrapper  is-multiline">
             <div class="column is-5 form-column__label-column">
-              <label :for="`input-email_${_uid}`" class="label">Date of the event:</label>
+              <label :for="`input-email_${_uid}`" class="label"># only entry with up/down arrows:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <input-pure-number
+                v-model='form.sampleNumberInput'
+              />
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Same but with placeholder:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <input class="input" type="number" placeholder="Type number or use arrows">
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Same but with placeholder + icon:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <div class="control input-wrapper">
+                <Icons icon="chart" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
+                <input class="input" type="Number" name="action" 
+                  placeholder="Type number or use arrows"
+                  :required="true"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Datepicker Input:</label>
             </div>
             <div class="column is-5 form-column__input-column">
               <div class="control input-wrapper">
@@ -89,24 +145,84 @@
             </div>
           </div>
 
+          <div class="columns form-column__wrapper  is-multiline">
+            <div class="column is-5 form-column__label-column">
+              <label :for="`input-email_${_uid}`" class="label">Datepicker Input with placeholder:</label>
+            </div>
+            <div class="column is-5 form-column__input-column">
+              <div class="control input-wrapper">
+                <Icons icon="calendar" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
+                <datetime 
+                  v-model="form.date"
+                  placeholder='Click to pick date'
+                />
+              </div>
+            </div>
+          </div>
+
           <div class="columns form-column__wrapper  is-multiline" v-if="enableNonprofitSearch">
-            <div class="column is-5 form-column__label-column"><label class="label">Pick a nonprofit:</label></div>
+            <div class="column is-5 form-column__label-column"><label class="label">Nonprofit Search:</label></div>
             <NonprofitAjaxSearch
               v-if="canRender"
               v-on:selected="setNonprofit($event)"
               :standalone="false"
+              placeholder='Type to search for a nonprofit'
             ></NonprofitAjaxSearch>
           </div>
 
-          <div class="columns form-column__wrapper is-multiline">
-            <div class="column is-5 form-column__label-column"><label class="label">Is this:</label></div>
+          <div class="columns form-column__wrapper  is-multiline" v-if="enableNonprofitSearch">
+            <div class="column is-5 form-column__label-column"><label class="label">Checkboxes:</label></div>
+            <div class="column is-5 form-column__label-column">
+              <label class="checkbox">
+                <input type="checkbox">
+                Checkbox 1
+              </label>
+              <label class="checkbox">
+                <input type="checkbox">
+                Checkbox 2
+              </label>
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper  is-multiline" v-if="enableNonprofitSearch">
+            <div class="column is-5 form-column__label-column"><label class="label">Radio in same row:</label></div>
             <div class="column is-5 form-column__label-column">
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.ownRide" value="own">
+                <input 
+                  type="radio"
+                  v-model='form.inlineRadio'
+                  value='1'
+                >
                 Radio 1
               </label>
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.ownRide" value="event">
+                <input 
+                  type="radio"
+                  v-model='form.inlineRadio'
+                  value='2'
+                >
+                Radio 2
+              </label>
+              <label class="radio">
+                <input 
+                  type="radio"
+                  v-model='form.inlineRadio'
+                  value='3'
+                >
+                Radio 3
+              </label>
+            </div>
+          </div>
+
+          <div class="columns form-column__wrapper is-multiline">
+            <div class="column is-5 form-column__label-column"><label class="label">Sample radio inputs:</label></div>
+            <div class="column is-5 form-column__label-column radio-blocks">
+              <label class="radio">
+                <input type="radio" name="non-profit-is" v-model="form.sampleRadio" value="1">
+                Radio 1
+              </label>
+              <label class="radio">
+                <input type="radio" name="non-profit-is" v-model="form.sampleRadio" value="2">
                 Radio 2 - adds a field below it
               </label>
             </div>
@@ -114,7 +230,7 @@
 
 
           <transition name="slide-fade">
-            <div class="columns form-column__wrapper  is-multiline" v-if="form.ownRide === 'event'">
+            <div class="columns form-column__wrapper  is-multiline" v-if="form.sampleRadio === '2'">
               <div class="column is-5 form-column__label-column">
                 <label :for="`input-email_${_uid}`" class="label">Name of the event</label>
               </div>
@@ -130,37 +246,14 @@
             </div>
           </transition>
 
-          <button
-            class="button is-success is-large"
-            type="submit"
-            @click.prevent="validateSubmit()"
-          >Continue</button>
-        </form>
-      </div>
-
-      <div class="form-wrapper">
-        <form v-on:keyup.enter="validateSubmit()">
-          <div class="columns form-column__wrapper form-column__extra-padded is-multiline">
-            <div class="column is-5 form-column__label-column"><label class="label">Donations will go to this nonprofit:</label></div>
-            <NonprofitAjaxSearch
-              v-if="canRender"
-              v-on:selected="setNonprofit($event)"
-              :default-value="getDefaultNonprofit()"
-              :standalone="false"
-            ></NonprofitAjaxSearch>
-            <transition name="slide-fade">
-              <div class="column is-5 is-offset-5 is-pulled-left" v-if="nonprofitErrorMessage">
-                <span class="editable-error-message">{{nonprofitErrorMessage}}</span>
-              </div>
-            </transition>
-          </div>
           <div class="columns form-column__wrapper">
             <div class="column form-column__label-column">
-              <label class="label">I will volunteer
-                <div class="control inline-field">
+              <label class="label">
+                Radio groups:
+                <!-- <div class="control inline-field">
                   <input class="input" type="number" min="0" max="9999" name="number-of-hours" placeholder="100" v-model="form.hours">
                 </div>
-                hours for:
+                hours for: -->
               </label>
               <transition name="slide-fade">
                 <div class="editable-error-message form-column__label-column" v-if="hoursErrorMessage">
@@ -181,13 +274,13 @@
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
-                Radio 2/inline option:
+                Radio 2 - adds inline field:
               </label>
             </div>
             <transition name="fade">
               <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'different'">
                 <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="Enter name of a nonprofit" v-model="form.differentNonprofit">
+                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.differentNonprofit">
                 </div>
               </div>
             </transition>
@@ -202,13 +295,13 @@
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
                 <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
-                Radio 3/inline option:
+                Radio 3 - adds inline field:
               </label>
             </div>
             <transition name="fade">
               <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'independent'">
                 <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="Enter what you will be doing" v-model="form.independentNonprofit">
+                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.independentNonprofit">
                 </div>
               </div>
             </transition>
@@ -219,13 +312,36 @@
             </transition>
           </div>
           <div class="editable-error-message form-column__label-column form-column__left-padded ">{{nonprofitIsErrorMessage}}</div>
-          <p class="help pad-more">To find volunteer opportunities, <a rel="noopener" href="http://aqua.dailysource.org/donation/helpcreatethis" target="_blank">click here</a></p>
+          <button
+            class="button is-success is-large"
+            type="submit"
+            @click.prevent="validateSubmit()"
+          >Continue</button>
+        </form>
+      </div>
+
+      <!-- <div class="form-wrapper">
+        <form v-on:keyup.enter="validateSubmit()">
+          <div class="columns form-column__wrapper form-column__extra-padded is-multiline">
+            <div class="column is-5 form-column__label-column"><label class="label">Donations will go to this nonprofit:</label></div>
+            <NonprofitAjaxSearch
+              v-if="canRender"
+              v-on:selected="setNonprofit($event)"
+              :default-value="getDefaultNonprofit()"
+              :standalone="false"
+            ></NonprofitAjaxSearch>
+            <transition name="slide-fade">
+              <div class="column is-5 is-offset-5 is-pulled-left" v-if="nonprofitErrorMessage">
+                <span class="editable-error-message">{{nonprofitErrorMessage}}</span>
+              </div>
+            </transition>
+          </div>
           <button
             class="button is-success is-large"
             type="submit"
             @click.prevent="validateSubmit()"
             >{{submitButtonLabel}}</button>
-        </form>
+        </form> -->
       </div>
 
     </div>
@@ -234,6 +350,7 @@
 
 <script>
 import Icons from "Components/general/Icons.vue"
+import InputPureNumber from "Components/input/InputPureNumber"
 
 export default {
   props: ["submitButtonLabel", "enableNonprofitSearch", "bubbles"],
@@ -243,6 +360,7 @@ export default {
    */
   components: {
     Icons,
+    InputPureNumber,
     ComboBox: () => import("Components/general/ComboBox.vue"),
     NonprofitAjaxSearch: () => import("Components/general/NonprofitAjaxSearch.vue")
   },
@@ -452,7 +570,7 @@ h1 {
 }
 
 .form-wrapper {
-  max-width: 760px;
+  max-width: 950px;
   margin: 20px auto 0;
 
   button[type=submit] {
@@ -509,7 +627,17 @@ h1 {
   top: 5px;
 }
 
-.radio + .radio {
-  margin-left: 0;
+.radio-blocks {
+  .radio + .radio {
+    margin-left: 0;
+  }
+}
+
+  .radio + .radio {
+    margin-left: 1em;
+  }
+
+.checkbox + .checkbox {
+  margin-left: 1em;
 }
 </style>

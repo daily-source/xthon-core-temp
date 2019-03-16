@@ -116,14 +116,14 @@ export default {
     return {
       showSocialMedia: false,
       boxes1: [
-        { title: "Volunteer", imgsrc: "/static/assets/images/support/hands-circle.jpeg", text: "We have many volunteer opportunities including writing, marketing, research, web development and more.", cta: "See details.", link: "https://www.volunteermatch.org/search/org63665.jsp", target: "external" },
-        { title: "Donate", imgsrc: "/static/assets/images/support/heart-donate.jpeg", text: "We help nonprofits do great things for the world. We rely on donations from kind people like you to make it possible.", cta: "Please donate now.", link: "/nonprofit/830374559/donate", target: "app" },
-        { title: "Spread the word", imgsrc: "/static/assets/images/support/social-media.png", text: "Please let people know about our nonprofit on social media by clicking the buttons above to follow or like us.", cta: "For more sharing options, click here.", link: "/share", target: "modal" }
+        { title: "Volunteer", imgsrc: require('Public/img/support/hands-circle.jpeg'), text: "We have many volunteer opportunities including writing, marketing, research, web development and more.", cta: "See details.", link: "https://www.volunteermatch.org/search/org63665.jsp", target: "external" },
+        { title: "Donate", imgsrc: require('Public/img/support/heart-donate.jpeg'), text: "We help nonprofits do great things for the world. We rely on donations from kind people like you to make it possible.", cta: "Please donate now.", link: "/nonprofit/830374559/donate", target: "app" },
+        { title: "Spread the word", imgsrc: require('Public/img/support/social-media.png'), text: "Please let people know about our nonprofit on social media by clicking the buttons above to follow or like us.", cta: "For more sharing options, click here.", link: "/share", target: "modal" }
       ],
       boxes2: [
-        { title: "Volunteer", imgsrc: "/static/assets/images/support/hands-circle.jpeg", text: "We have many volunteer opportunities including writing, marketing, research, web development and more.", cta: "See details.", link: "https://www.volunteermatch.org/search/org63665.jsp", target: "external" },
-        { title: "Donate", imgsrc: "/static/assets/images/support/heart-donate.jpeg", text: "We help nonprofits do great things for the world. We rely on donations from kind people like you to make it possible.", cta: "Please donate now.", link: "/nonprofit/830374559/donate", target: "app" },
-        { title: "Spread the word", imgsrc: "/static/assets/images/support/social-media.png", text: "Please spread the word on social media with the buttons above to friend and like us.", cta: "To see all sharing options, click here.", link: "/share", target: "modal" }
+        { title: "Volunteer", imgsrc: require('Public/img/support/hands-circle.jpeg'), text: "We have many volunteer opportunities including writing, marketing, research, web development and more.", cta: "See details.", link: "https://www.volunteermatch.org/search/org63665.jsp", target: "external" },
+        { title: "Donate", imgsrc: require('Public/img/support/heart-donate.jpeg'), text: "We help nonprofits do great things for the world. We rely on donations from kind people like you to make it possible.", cta: "Please donate now.", link: "/nonprofit/830374559/donate", target: "app" },
+        { title: "Spread the word", imgsrc: require('Public/img/support/social-media.png'), text: "Please spread the word on social media with the buttons above to friend and like us.", cta: "To see all sharing options, click here.", link: "/share", target: "modal" }
       ]
     }
   }

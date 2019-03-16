@@ -6,7 +6,9 @@
           <router-link to="/explore">Explore</router-link>
         </div>
         <div class="random-words">
-          Volunteer
+          <router-link to='/fundraiser'>
+            {{ volunteerText || 'Volunteer' }}
+          </router-link>
         </div>
         <div class="user-space__search">
           <div class="user-space__search-wrapper">
@@ -16,14 +18,50 @@
           </div>
         </div>
         <div class="logo__wrapper">
-          <router-link to="/" exact>
-            <img class="logo" src="Public/logo-300x53.png" alt="logo" width="300" height="53">
-          </router-link>
+          <div class='logo' v-if='!generic'>
+            <router-link to="/">
+              <img class="logo" :src="require('Public/logo-300x53.png')" alt="logo" width="300" height="53">
+            </router-link>
+          </div>
+          <div class='logo__slider' v-else>
+            <flickity
+              :options='flickityOptions'
+            >
+              <div 
+                class='logo__slide'
+                v-for='(logo, index) in headerLogos'
+                :key='index'
+              >
+                <img
+                  :src='logo'
+                  :class='`logo__slide-img logo__slide-img-${index}`' 
+                >
+              </div>
+            </flickity>
+          </div>
         </div>
         <div class="logo__wrapper centered">
-          <router-link to="/" exact>
-            <img class="logo" src="Public/logo-300x53.png" alt="logo" width="300" height="53">
-          </router-link>
+          <div class='logo' v-if='!generic'>
+            <router-link to="/">
+              <img class="logo" :src="require('Public/logo-300x53.png')" alt="logo" width="300" height="53">
+            </router-link>
+          </div>
+          <div class='logo__slider' v-else>
+            <flickity
+              :options='flickityOptions'
+            >
+              <div 
+                class='logo__slide'
+                v-for='(logo, index) in headerLogos'
+                :key='index'
+              >
+                <img
+                  :src='logo'
+                  :class='`logo__slide-img logo__slide-img-${index}`' 
+                >
+              </div>
+            </flickity>
+          </div>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
           <LogInModal
@@ -34,7 +72,7 @@
         <div class="max-good" @click="toggleOtherMaxGoodSites()" :class="{ 'active': showingMaxGoodSites }">
           <span class="small">Powered by </span>
           <div class="max-good__submenu-wrapper">
-            <img src="Public/max-good-logo-150x18.png" width="150" height="18" alt="">
+            <img :src="require('Public/max-good-logo-150x18.png')" width="150" height="18" alt="">
             <ul class="other-max-good-sites">
               <li>
                 <span class="other-sites-arrow" :class="{ 'turn': showingMaxGoodSites }">
@@ -246,12 +284,47 @@
       position: absolute;
       margin: 0 auto;
       opacity: 0;
+      left: 0;
+      right: 0;
 
       @include desktop {
+        max-width: 250px;
+        margin-left: auto;
+        margin-right: auto;
         width: 100%;
         order: unset;
         padding-top: 5px;
         opacity: 1;
+      }
+    }
+  }
+
+  .logo__slider {
+    .logo__slide {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &-img {
+        transform: scale(.8);
+      }
+
+      &-img-0,
+      &-img-7,
+      &-img-8,
+      &-img-9 {
+        transform: scale(1);
+      }
+
+      &-img-5 {
+        max-height: none !important;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 50px;
       }
     }
   }
@@ -300,21 +373,42 @@
     animation: fadeHighlight 7s ease-in-out;
   }
 }
-
 </style>
+
+<style lang='scss'>
+.logo__slider {
+  .flickity-prev-next-button {
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    transition: all .2s ease;
+  }
+
+  &:hover {
+    .flickity-prev-next-button {
+      opacity: 1;
+    }
+  }
+}
+</style>
+
 
 <script>
 import Icons from "Components/general/Icons.vue"
 import LogInModal from "Components/general/LogInModal.vue"
+import Flickity from "Components/plugins/Flickity"
 
 export default {
   name: "AppHeader",
   components: {
     Icons,
-    LogInModal
+    LogInModal,
+    Flickity,
   },
-  props: ["layout"],
+  props: ["layout", "generic", "volunteerText"],
   data () {
+    const baseUrl = process.env.VUE_APP_BASE_URL;
+
     return {
       showSearchBar: false,
       showingMaxGoodSites: false,
@@ -337,7 +431,23 @@ export default {
         { name: "Birthdays for Good", href: "#" },
         { name: "Polar Plunge for Good", href: "#" },
         { name: "Bake for Good", href: "#" }
-      ]
+      ],
+      headerLogos: [
+        `${baseUrl}img/other-sites/max-good.png`,  
+        `${baseUrl}img/other-sites/optionsforgood.png`,   
+        `${baseUrl}img/other-sites/calendarforgood.png`,
+        `${baseUrl}img/other-sites/forthepoor.png`,
+        `${baseUrl}img/other-sites/volunteerathon.png`,
+        `${baseUrl}img/other-sites/quitathon.jpg`,
+        `${baseUrl}img/other-sites/give-it-up-for-good.png`,
+        `${baseUrl}img/other-sites/run-for-good.png`,
+        `${baseUrl}img/other-sites/charitable-columbus.png`,
+        `${baseUrl}img/other-sites/st-patricks-sharing.png`,
+      ],
+      flickityOptions: {
+        pageDots: false,
+        wrapAround: true,
+      },
     }
   },
   methods: {

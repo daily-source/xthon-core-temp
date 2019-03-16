@@ -1,4 +1,4 @@
-<template>
+tempalte<template>
   <div>
     <section class="nonprofit-hero">
       <InlineImageEditor
@@ -19,11 +19,7 @@
         type="avatar"
         v-on:edition:open="newImageOpenId = $event"
         v-on:edition:close="newImageOpenId = null"
-        v-if='!generic'
       ></InlineImageEditor>
-      <div class='nonprofit-hero__hero-wrapper' v-else>
-        <generic-nonprofit-hero />
-      </div>
       <div class="container nonprofit-hero__hero-container">
         <InlineImageEditor
           class="nonprofit-hero__logo-wrapper"
@@ -111,40 +107,13 @@ import ShareBox from "Components/general/ShareBox.vue"
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "common", "nonprofit", "editing", "generic"],
-  props: {
-    common: {
-      type: Object,
-      required: true,
-      default: () => {
-        return {}
-      }
-    },
-    nonprofit: {
-      type: Object,
-      required: true,
-      default: () => {
-        return {}
-      }
-    },
-    editing: {
-      type: Boolean,
-      rqeuired: false,
-      default: false,
-    },
-    generic: {
-      type: Boolean,
-      required: false,
-      default: false,
-    }
-  },
+  props: [ "common", "nonprofit", "editing" ],
   components: {
     DonateAction,
     Icons,
     ShareBox,
     InlineFieldEditor: () => import("Components/input/InlineFieldEditor.vue"),
-    InlineImageEditor: () => import("Components/input/InlineImageEditor.vue"),
-    GenericNonprofitHero: () => import("Components/nonprofit/GenericNonprofitHero"),
+    InlineImageEditor: () => import("Components/input/InlineImageEditor.vue")
   },
   data () {
     return {
