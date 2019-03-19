@@ -190,6 +190,7 @@
               <label class="radio">
                 <input 
                   type="radio"
+                  name='radio-same-row'
                   v-model='form.inlineRadio'
                   value='1'
                 >
@@ -198,6 +199,7 @@
               <label class="radio">
                 <input 
                   type="radio"
+                  name='radio-same-row'
                   v-model='form.inlineRadio'
                   value='2'
                 >
@@ -218,11 +220,11 @@
             <div class="column is-5 form-column__label-column"><label class="label">Sample radio inputs:</label></div>
             <div class="column is-5 form-column__label-column radio-blocks">
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.sampleRadio" value="1">
+                <input type="radio" name="sample-radio" v-model="form.sampleRadio" value="1">
                 Radio 1
               </label>
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.sampleRadio" value="2">
+                <input type="radio" name="sample-radio" v-model="form.sampleRadio" value="2">
                 Radio 2 - adds a field below it
               </label>
             </div>
@@ -235,13 +237,10 @@
                 <label :for="`input-email_${_uid}`" class="label">Name of the event</label>
               </div>
               <div class="column is-5 form-column__input-column">
-                <div class="control input-wrapper">
-                  <Icons icon="bike" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
                   <input class="input" type="text" name="action" placeholder=""
                     :required="true"
                     v-model="form.eventName"
                   >
-                </div>
               </div>
             </div>
           </transition>
@@ -265,7 +264,7 @@
           <div class="columns form-column__wrapper">
             <div class="column is-12 form-column__label-column form-column__left-padded">
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="same">
+                <input type="radio" name="non-profit-is" v-model="form.radioGroup" value="1">
                 Radio 1
               </label>
             </div>
@@ -273,20 +272,20 @@
           <div class="columns form-column__wrapper is-multiline">
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
+                <input type="radio" name="non-profit-is" v-model="form.radioGroup" value="2">
                 Radio 2 - adds inline field:
               </label>
             </div>
             <transition name="fade">
-              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'different'">
+              <div class="column is-7 form-column__input-column" v-if="form.radioGroup === '2'">
                 <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.differentNonprofit">
+                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.radioGroupSampleInput">
                 </div>
               </div>
             </transition>
             <transition name="slide-fade">
               <div class="column is-7 is-offset-5 editable-error-message is-padded-top form-column__label-column"
-                v-if="form.nonprofitIs === 'different' && targetNonprofitErrorMessage"
+                v-if="form.radioGroup === '2' && targetNonprofitErrorMessage"
               >{{targetNonprofitErrorMessage}}</div>
             </transition>
 
@@ -294,14 +293,14 @@
           <div class="columns form-column__wrapper is-multiline">
             <div class="column is-5 form-column__label-column form-column__left-padded">
               <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
+                <input type="radio" name="non-profit-is" v-model="form.radioGroup" value="3">
                 Radio 3 - adds inline field:
               </label>
             </div>
             <transition name="fade">
-              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'independent'">
+              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === '3'">
                 <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.independentNonprofit">
+                  <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.radioGroupSampleInput2">
                 </div>
               </div>
             </transition>
@@ -319,31 +318,6 @@
           >Continue</button>
         </form>
       </div>
-
-      <!-- <div class="form-wrapper">
-        <form v-on:keyup.enter="validateSubmit()">
-          <div class="columns form-column__wrapper form-column__extra-padded is-multiline">
-            <div class="column is-5 form-column__label-column"><label class="label">Donations will go to this nonprofit:</label></div>
-            <NonprofitAjaxSearch
-              v-if="canRender"
-              v-on:selected="setNonprofit($event)"
-              :default-value="getDefaultNonprofit()"
-              :standalone="false"
-            ></NonprofitAjaxSearch>
-            <transition name="slide-fade">
-              <div class="column is-5 is-offset-5 is-pulled-left" v-if="nonprofitErrorMessage">
-                <span class="editable-error-message">{{nonprofitErrorMessage}}</span>
-              </div>
-            </transition>
-          </div>
-          <button
-            class="button is-success is-large"
-            type="submit"
-            @click.prevent="validateSubmit()"
-            >{{submitButtonLabel}}</button>
-        </form> -->
-      </div>
-
     </div>
   </div>
 </template>
@@ -639,5 +613,15 @@ h1 {
 
 .checkbox + .checkbox {
   margin-left: 1em;
+}
+
+.radio,
+.checkbox {
+  line-height: 1.25;
+  display: inline-flex;
+  align-items: center;
+  input {
+    margin-right: .25em;
+  }
 }
 </style>

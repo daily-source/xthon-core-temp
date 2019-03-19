@@ -10,7 +10,7 @@
       v-model="selected"
     >
       <template slot="no-options">
-        Type to search nonprofits...
+        {{ dropdownPlaceholder || '' }}
       </template>
       <template slot="option" slot-scope="option">
         <div class="d-center selection">
@@ -33,7 +33,7 @@ import debounce from "lodash/debounce"
 const IRSSearchAPI = process.env.VUE_APP_IRS_SEARCH_API_URL || process.env.IRS_SEARCH_API_URL
 
 export default {
-  props: ["standalone", "placeholder", "defaultValue"],
+  props: ["standalone", "placeholder", "defaultValue", "dropdownPlaceholder"],
   components: {
     VueSelect
   },
