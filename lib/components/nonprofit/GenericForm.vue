@@ -140,7 +140,7 @@
             <div class="column is-5 form-column__input-column">
               <div class="control input-wrapper">
                 <Icons icon="calendar" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-                <datetime v-model="form.date"></datetime>
+                <datetime v-model="form.date1"></datetime>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@
               <div class="control input-wrapper">
                 <Icons icon="calendar" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
                 <datetime 
-                  v-model="form.date"
+                  v-model="form.date2"
                   placeholder='Click to pick date'
                 />
               </div>
@@ -276,7 +276,7 @@
                 Radio 2 - adds inline field:
               </label>
             </div>
-            <transition name="fade">
+            <transition name="slide-fade">
               <div class="column is-7 form-column__input-column" v-if="form.radioGroup === '2'">
                 <div class="control">
                   <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.radioGroupSampleInput">
@@ -297,8 +297,8 @@
                 Radio 3 - adds inline field:
               </label>
             </div>
-            <transition name="fade">
-              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === '3'">
+            <transition name="slide-fade">
+              <div class="column is-7 form-column__input-column" v-if="form.radioGroup === '3'">
                 <div class="control">
                   <input class="input" type="text" name="project_action" placeholder="DEVELOPER - edit this placeholder text" v-model="form.radioGroupSampleInput2">
                 </div>
@@ -622,6 +622,15 @@ h1 {
   align-items: center;
   input {
     margin-right: .25em;
+  }
+}
+</style>
+
+<style lang="scss">
+.explore__wrapper {
+  .box-wrapper{
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 </style>

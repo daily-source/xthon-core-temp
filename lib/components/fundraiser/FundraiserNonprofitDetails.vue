@@ -1,6 +1,6 @@
 <template>
   <div class="fundraiser-nonprofit-organization__wrapper" v-if="fundraiser.participant">
-    <p>{{ fundraiser.description }}</p>
+    <p>{{ fundraiser.introText }}</p>
     <p><span v-html="fundraiser.participant.name"></span> is raising money for: </p>
     <div class="this-nonprofit__wrapper">
       <figure class="fundraiser-lower__logo-wrapper" v-if="fundraiser.Nonprofit.data">
@@ -12,7 +12,7 @@
         ></LazyLoadedImage>
       </figure>
       <div class="this-nonprofit__right-side">
-        <span class="this-nonprofit__title" v-html="fundraiser.Nonprofit.name"></span>
+        <span class="this-nonprofit__title" v-html="fundraiser.Nonprofit.NAME"></span>
         <div class="fundraiser-lower__button-wrapper">
           <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`">
             <button class="button button-style is-warning">View profile</button>
