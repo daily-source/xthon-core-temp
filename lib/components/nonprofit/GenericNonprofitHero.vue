@@ -10,7 +10,11 @@
         v-for='(photo, index) in bannerPhotos'
         :key='index'
       >
-        <img :src='photo' :alt='`Generic Banner Photo #${index + 1}`'>
+        <img 
+          :src='photo' 
+          :alt='`Generic Banner Photo #${index + 1}`'
+          :class='`generic-nonprofit-hero__photo-${index}`'
+        >
       </div>
     </flickity>
   </div>
@@ -63,6 +67,12 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__photo {
+    &-35 {
+      object-position: top;
+    }
   }
 }
 </style>
