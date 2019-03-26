@@ -7573,6 +7573,11 @@ requires-port@^1.0.0:
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
+resize-detector@^0.1.9:
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/resize-detector/-/resize-detector-0.1.10.tgz#1da3f961aa5f914ccbcfd3752d52fd45beeb692c"
+  integrity sha512-iLcXC8A6Fb0DfA+TRiywrK/0A22bFqkhntjMJMEzXDA4XkcEkfwpNbv7W8iewUiD0xYIaeiXOfiEehTqGKsUFw==
+
 resolve-from@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-1.0.1.tgz#26cbfe935d1aeeeabb29bc3fe5aeb01e93d44226"
@@ -9212,6 +9217,14 @@ vue-datetime@^1.0.0-beta.8:
   version "1.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/vue-datetime/-/vue-datetime-1.0.0-beta.10.tgz#788a1c2deefa3e14fbf549373ec00ebde707596a"
   integrity sha512-/wJkj95JSzWqH0Ja4JpXX6I+fXo2A34GCtsx00vR5RjNxk3++93rg7G4ZlI3MFo807zH9bIxXfIohbAZgnAWbQ==
+
+vue-echarts@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/vue-echarts/-/vue-echarts-4.0.1.tgz#3d3a14f53119701bba09545a68b17cf0689cad29"
+  integrity sha512-JgvIcr/btz4bAkafVm0aLyfkAdhGf2T8VIdESd2264Mlr5w0dZ0IOG3BJCvtznIlBJMiwQXAztc27Y3KGKdF5Q==
+  dependencies:
+    lodash "^4.17.11"
+    resize-detector "^0.1.9"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
