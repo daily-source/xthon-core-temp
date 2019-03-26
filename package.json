@@ -1,6 +1,6 @@
 {
   "name": "xthon-core",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "main": "main.js",
   "description": "A Vue.js skeleton including SSR, vue-meta and tests. Based on vue-hackernews-2.0 by Evan You.",
   "author": "Camilo Delvasto <camilodelvasto@gmail.com>",
@@ -23,7 +23,7 @@
   "dependencies": {
     "array-to-tree": "^3.3.0",
     "axios": "^0.18.0",
-    "bulma": "^0.7.1",
+    "bulma": "0.7.4",
     "compression": "^1.7.1",
     "dotenv": "^5.0.1",
     "echarts": "^4.2.1",
