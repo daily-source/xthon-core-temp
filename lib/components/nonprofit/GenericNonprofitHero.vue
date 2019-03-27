@@ -70,8 +70,8 @@ export default {
   }
 
   &__photo {
-    &-35 {
-      object-position: top;
+    &-34 {
+      object-position: center;
     }
   }
 }

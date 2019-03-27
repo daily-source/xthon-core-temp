@@ -149,8 +149,8 @@ export default {
     background-size: cover;
     background-position: bottom center;
     position: relative;
-    max-height: 390px;
-    min-height: 390px;
+    max-height: 420px;
+    min-height: 420px;
   }
 
   &__hero-container {
