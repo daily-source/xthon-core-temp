@@ -2,8 +2,8 @@
   <section id="banner" class='banner'>
     <img src="@/assets/img/banner-img.jpg" class='banner__background' alt="Banner Image">
     <div class="banner__contents">
-      <h2 class="has-text-weight-bold has-text-uppercase">THIS IS AN EYE-OPENING EXERCISE</h2>
-      <p>Pretend you rule the world and get to decide how many people are considered rich, poor and middle class. There are only two rules. One is no double standards. No having one standard for French people and another for Haitian people. The numbers below fully adjust for costs of living, so $1,000 buys the same amount in every country. To learn how experts can easily calculate this, click here. The other rule is the average person not be placed lower or higher than middle class. So a maximum of 49% can be in the rich levels and 49% in the poor levels.</p>
+      <h2 class="has-text-weight-bold has-text-uppercase">AN EYE-OPENING EXERCISE</h2>
+      <p>Pretend you rule the world and you get to decide who is considered rich, poor and middle class. There are only two rules. One is: no double standards. No having one standard for African people and another for European people. The other rule is the average person not be placed lower or higher than middle class.</p>
     </div>
   </section>
 </template>
@@ -48,9 +48,16 @@
     max-width: 70%;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    h2 {
+      font-size: 28px;
+    }
 
     p {
       color: #fff;
+      font-size: 1.125rem;
     }
   }
 }

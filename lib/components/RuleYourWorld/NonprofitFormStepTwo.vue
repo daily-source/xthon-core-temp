@@ -4,7 +4,7 @@
       <h2 class="nonprofit-form__title">
         ENTER YOUR DECISIONS BELOW
       </h2>
-      <p>As ruler of the world, you get to decide: when the richest two groups make donations, what percentage of the donations on average should go to the following groups:</p>
+      <p class='instructions'>As ruler of the world, you get to decide: when the richest two groups make donations, what percentage of the donations on average should go to the following groups:</p>
       <form @submit.prevent='onFormSubmit'>
         <div class="columns">
           <div class="column is-5">
@@ -18,6 +18,7 @@
                     <data-input 
                       id='very-rich'
                       v-model='formData.veryRich'
+                      :value='formData.veryRich'
                     />
                   </div>
                 </div>
@@ -33,6 +34,7 @@
                     <data-input 
                       id='rich'
                       v-model='formData.rich'
+                      :value='formData.rich'
                     />
                   </div>
                 </div>
@@ -48,6 +50,7 @@
                     <data-input 
                       id='middle-class'
                       v-model='formData.middleClass'
+                      :value='formData.middleClass'
                     />
                   </div>
                 </div>
@@ -63,6 +66,7 @@
                     <data-input 
                       id='poor'
                       v-model='formData.poor'
+                      :value='formData.poor'
                     />
                   </div>
                 </div>
@@ -78,15 +82,22 @@
                     <data-input 
                       id='very-poor'
                       v-model='formData.veryPoor'
+                      :value='formData.veryPoor'
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="nonprofit-form-step-two">
+            <div class="nonprofit-form__field">
+              <div class="nonprofit-form-step-two__state has-text-right">
+                Remaining: {{ remaining }}%
+              </div>
+            </div>
+            <div class="nonprofit-form-step-two__btn-container">
               <button 
                 class="button is-rounded is-primary has-text-weight-bold is-uppercase"
                 type='submit'
+                :disabled='placed !== 100'
               >
                   Next
               </button>
@@ -139,5 +150,33 @@ export default {
       setDonationAmount: 'form/setDonationAmount',
     })
   },
+
+  computed: {
+    placed () {
+      return Object.keys(this.formData).reduce((acc, curr, idx) => {
+        if (this.formData[curr]) {
+          return acc + parseInt(this.formData[curr])
+        }
+
+        return acc
+      }, 0)
+    },
+
+    remaining () { 
+      return 100 - this.placed ;
+    },
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.nonprofit-form-step-two {
+  &__state {
+    width: 100%;
+  }
+}
+.instructions {
+  font-size: 1.125rem;
+}
+</style>
+

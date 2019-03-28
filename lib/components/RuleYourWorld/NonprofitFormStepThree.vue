@@ -9,42 +9,41 @@
         <thead>
           <tr>
             <th></th>
-            <th>Percentage of donations to <br/><u>each group:</u></th>
-            <th>Amount each group now lives on <br/><u>on each year:</u></th>
-            <th>Percentage of people who are <br/><u>in each group:</u></th>
+            <th><span class="has-text-primary">Percentage of donations to <br/><u>each group:</u></span></th>
+            <th><span class="has-text-primary">Amount each group now lives on <br/><u>on each year:</u></span></th>
+            <th><span class="has-text-primary">Percentage of people who are <br/><u>in each group:</u></span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th>Very Poor:</th>
-            <th>{{ formData.veryPoor.donationAmount}}</th>
-            <th>{{ getPercenitleValue(formData.veryPoor.percentage)}}</th>
-            <th>{{ formData.veryPoor.percentage}}%</th>           
+            <th><span class="has-text-primary">Very Poor:</span></th>
+            <td>{{ formData.veryPoor.donationAmount}}</td>
+            <td>{{ getPercenitleValue(formData.veryPoor.percentage)}}</td>
+            <td>{{ formData.veryPoor.percentage}}%</td>           
           </tr>
           <tr>
-            <th>Poor:</th>
-            <th>{{ formData.poor.donationAmount}}</th>         
-            <th>{{ getPercenitleValue(formData.poor.percentage)}}</th>
-            <th>{{ formData.poor.percentage}}%</th>                     
+            <th><span class="has-text-primary">Poor:</span></th>
+            <td>{{ formData.poor.donationAmount}}</td>         
+            <td>{{ getPercenitleValue(formData.poor.percentage)}}</td>
+            <td>{{ formData.poor.percentage}}%</td>                     
           </tr>
           <tr>
-            <th>Middle Class:</th>
-            <th>{{ formData.middleClass.donationAmount}}</th>
-            <th>{{ getPercenitleValue(formData.middleClass.percentage)}}</th>
-            <th>{{ formData.middleClass.percentage}}%</th>            
+            <th><span class="has-text-primary">Middle Class:</span></th>
+            <td>{{ formData.middleClass.donationAmount}}</td>
+            <td>{{ getPercenitleValue(formData.middleClass.percentage)}}</td>
+            <td>{{ formData.middleClass.percentage}}%</td>            
           </tr>
           <tr>
-            <th>Rich:</th>
-            <th>{{ formData.rich.donationAmount}}</th>
-            <th>{{ getPercenitleValue(formData.rich.percentage)}}</th>
-            <th>{{ formData.rich.percentage}}%</th>        
-            <th></th>
+            <th><span class="has-text-primary">Rich:</span></th>
+            <td>{{ formData.rich.donationAmount}}</td>
+            <td>{{ getPercenitleValue(formData.rich.percentage)}}</td>
+            <td>{{ formData.rich.percentage}}%</td>        
           </tr>
           <tr>
-            <th>Very Rich:</th>
-            <th>{{ formData.veryRich.donationAmount}}</th>
-            <th>{{ getPercenitleValue(formData.veryRich.percentage)}}</th>
-            <th>{{ formData.veryRich.percentage}}%</th>            
+            <th><span class="has-text-primary">Very Rich:</span></th>
+            <td>{{ formData.veryRich.donationAmount}}</td>
+            <td>{{ getPercenitleValue(formData.veryRich.percentage)}}</td>
+            <td>{{ formData.veryRich.percentage}}%</td>            
           </tr>
         </tbody>
       </table>
