@@ -1,14 +1,38 @@
 <template>
   <div class="nonprofit-form">
-    <div class="nonprofit-form__step">
-      <nonprofit-form-step-one />
-    </div>
-    <div class="nonprofit-form__step">
-      <nonprofit-form-step-two />
-    </div>
-    <div class="nonprofit-form__step">
-      <nonprofit-form-step-three />
-    </div>
+    <transition>
+      <div 
+        class="nonprofit-form__step"
+        ref='formOne'
+        v-if='currentStep === 1'
+      >
+        <nonprofit-form-step-one 
+          @form:submit='incrementStep'
+        />
+      </div>
+    </transition>
+    <transition>
+      <div 
+        class="nonprofit-form__step"
+        ref='formTwo'
+        v-if='currentStep === 2'
+      >
+        <nonprofit-form-step-two 
+          @form:submit='incrementStep'
+        />
+      </div>
+    </transition>
+    <transition>
+      <div 
+        class="nonprofit-form__step"
+        ref='formThree'
+        v-if='currentStep === 3'
+      >
+        <nonprofit-form-step-three 
+          @backButtonClicked='currentStep = 1'
+        />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -24,6 +48,18 @@ export default {
     NonprofitFormStepOne,
     NonprofitFormStepTwo,
     NonprofitFormStepThree,
+  },
+
+  data () {
+    return {
+      currentStep: 1,
+    }
+  },
+
+  methods: {
+    incrementStep () {
+      this.currentStep += 1;
+    }
   },
 }
 </script>

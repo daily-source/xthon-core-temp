@@ -1,6 +1,9 @@
 <template>
   <div class="nonprofit-form-step-three">
-    <div class="container">
+    <div class="nonprofit-form__container">
+      <h2 class="nonprofit-form__title">
+        The Results
+      </h2>
       <p>Now, you’re no longer ruler of the whole world, but you are ruler of yourself. Here are the percentages of your donations you decided should go to each group:</p>
       <table class='nonprofit-form-step-three__table table is-striped'>
         <thead>
@@ -14,33 +17,34 @@
         <tbody>
           <tr>
             <th>Very Poor:</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>{{ formData.veryPoor.donationAmount}}</th>
+            <th>{{ getPercenitleValue(formData.veryPoor.percentage)}}</th>
+            <th>{{ formData.veryPoor.percentage}}%</th>           
           </tr>
           <tr>
             <th>Poor:</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>{{ formData.poor.donationAmount}}</th>         
+            <th>{{ getPercenitleValue(formData.poor.percentage)}}</th>
+            <th>{{ formData.poor.percentage}}%</th>                     
           </tr>
           <tr>
             <th>Middle Class:</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>{{ formData.middleClass.donationAmount}}</th>
+            <th>{{ getPercenitleValue(formData.middleClass.percentage)}}</th>
+            <th>{{ formData.middleClass.percentage}}%</th>            
           </tr>
           <tr>
             <th>Rich:</th>
-            <th></th>
-            <th></th>
+            <th>{{ formData.rich.donationAmount}}</th>
+            <th>{{ getPercenitleValue(formData.rich.percentage)}}</th>
+            <th>{{ formData.rich.percentage}}%</th>        
             <th></th>
           </tr>
           <tr>
             <th>Very Rich:</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>{{ formData.veryRich.donationAmount}}</th>
+            <th>{{ getPercenitleValue(formData.veryRich.percentage)}}</th>
+            <th>{{ formData.veryRich.percentage}}%</th>            
           </tr>
         </tbody>
       </table>
@@ -57,7 +61,12 @@
         <span class="has-text-primary">Rule</span> your <span class="has-text--primary"> World </span>
       </p>
 
-      <router-link to="/" class="back-button is-rounded has-text-weight-bold is-uppercase button is-primary"> Back To Step One </router-link>
+      <button 
+        class="back-button is-rounded has-text-weight-bold is-uppercase button is-primary"
+        @click.prevent='backToStepOneClicked'
+      > 
+        Back To Step One 
+      </button>
 
       </div>
     </div>
@@ -65,8 +74,56 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+let offset
+
 export default {
   name: 'NonprofitFormStepThree',
+
+  data () {
+    return {
+      offset: 100,
+    }
+  },
+
+  methods: {
+    getPercenitleValue (percent) {
+      let currentOffset = offset;
+
+      const fromValue = this.percentiles[currentOffset]
+
+
+      const toValue = this.percentiles[currentOffset - parseInt(percent)]
+
+      offset = currentOffset - percent;
+
+      if (currentOffset == 100) {
+        return '$0 to $' + toValue 
+      } else if ( offset == 0 && toValue == null ) {
+        return 'Over $' + fromValue
+      } else {
+        return '$' + fromValue + ' to $' + toValue
+      }
+    },
+
+    backToStepOneClicked () {
+      offset = 0
+
+      this.$emit('backButtonClicked')
+    }
+  },
+
+  created() {
+    offset = 100;
+  },
+
+  computed: {
+    ...mapState({
+      formData: state => state.form.data,
+      percentiles: state => state.percentiles.data,
+    }),
+  },
 }
 </script>
 

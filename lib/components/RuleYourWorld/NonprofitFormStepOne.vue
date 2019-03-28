@@ -3,8 +3,8 @@
     <h2 class="nonprofit-form__title">
       ENTER YOUR DECISIONS BELOW
     </h2>
-    <form action="">
-      <div class="container">
+    <form @submit.prevent='formSubmit'>
+      <div class="nonprofit-form__container">
         <div class="nonprofit-form-step">
           <div class="columns is-multiline nonprofit-form-step-one__columns">
             <div class="column is-5">
@@ -155,7 +155,10 @@
                   </button>
                 </p>
                 <p class="control">
-                  <button class='button is-rounded is-secondary is-uppercase has-text-weight-bold'>
+                  <button 
+                    class='button is-rounded is-secondary is-uppercase has-text-weight-bold'
+                    type='submit'
+                  >
                     Submit
                   </button>
                 </p>
@@ -180,10 +183,12 @@
 </template>
 
 <script>
+import { startCase } from 'lodash'
+import { mapActions } from 'vuex'
+
 import DataInput from 'LocalComponents/Input/DataInput'
 import PieChart from 'Components/RuleYourWorld/PieChart'
 import PercentileTable from 'Components/RuleYourWorld/PercentileTable'
-import { startCase } from 'lodash'
 
 export default {
   name: 'NonprofitFormStepOne',
@@ -213,6 +218,25 @@ export default {
     }
   },
 
+  methods: {
+    formSubmit() {
+      Object.keys(this.formData).forEach(key => {
+        this.setPercentage(
+          {
+            key: key, 
+            percentage: this.formData[key]
+          }
+        )
+      })
+
+      this.$emit('form:submit')
+    },
+
+    ...mapActions({
+      setPercentage: 'form/setPercentage',
+    }),
+  },
+
   computed: {
     chartData () {
       return Object.keys(this.formData).map(key => {
@@ -228,7 +252,11 @@ export default {
 
     placed () {
       return Object.keys(this.formData).reduce((acc, curr, idx) => {
-        return acc + parseInt(this.formData[curr])
+        if (this.formData[curr]) {
+          return acc + parseInt(this.formData[curr])
+        }
+
+        return acc
       }, 0)
     },
 
@@ -270,7 +298,7 @@ export default {
 
   &__percentiles {
     margin-top: 4rem;
-    max-width: 66.7%;
+    max-width: 730px;
     margin-left: auto;
     margin-right: auto;
   }

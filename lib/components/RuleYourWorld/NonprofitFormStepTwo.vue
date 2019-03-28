@@ -1,8 +1,11 @@
 <template>
   <div class="nonprofit-form-step-two">
-    <div class="container">
+    <div class="nonprofit-form__container">
+      <h2 class="nonprofit-form__title">
+        ENTER YOUR DECISIONS BELOW
+      </h2>
       <p>As ruler of the world, you get to decide: when the richest two groups make donations, what percentage of the donations on average should go to the following groups:</p>
-      <form action="">
+      <form @submit.prevent='onFormSubmit'>
         <div class="columns">
           <div class="column is-5">
             <div class="nonprofit-form__field">
@@ -81,7 +84,12 @@
               </div>
             </div>
             <div class="nonprofit-form-step-two">
-              <button class="button is-rounded is-primary has-text-weight-bold is-uppercase">Next</button>
+              <button 
+                class="button is-rounded is-primary has-text-weight-bold is-uppercase"
+                type='submit'
+              >
+                  Next
+              </button>
             </div>
           </div>
         </div>
@@ -91,6 +99,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import DataInput from 'LocalComponents/Input/DataInput'
 
 export default {
@@ -110,6 +119,25 @@ export default {
         veryPoor: 0,
       },
     }
-  }
+  },
+
+  methods: {
+    onFormSubmit () {
+      Object.keys(this.formData).forEach(key => {
+        this.setDonationAmount(
+          {
+            key: key, 
+            donationAmount: this.formData[key]
+          }
+        )
+      });
+      
+      this.$emit('form:submit')
+    },
+
+    ...mapActions({
+      setDonationAmount: 'form/setDonationAmount',
+    })
+  },
 }
 </script>
