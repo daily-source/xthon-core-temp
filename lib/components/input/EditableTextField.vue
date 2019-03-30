@@ -79,6 +79,7 @@ export default {
       })
     },
     saveField (id) {
+      console.log('saving this??', this.fieldValue)
       if (!this.fieldIsOpen) {
         return { code: 401 }
       }

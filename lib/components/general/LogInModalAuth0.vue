@@ -97,22 +97,6 @@ export default {
     }
   },
 
-  created () {
-    this.$eventHub.$on('set_user', (payload) => {
-      this.$store.dispatch('SET_USER', { user: payload.user })
-    })
-    this.$eventHub.$on('save_token', (payload) => {
-      this.$store.commit('SAVE_TOKEN', { accessToken: payload.accessToken,  idToken: payload.idToken })
-      setTimeout(() => {
-        // silently hit the backend with the token. Should we establish a session token??
-        this.requestBackendData()
-      }, 5000)
-    })
-    this.$eventHub.$on('log_off', (payload) => {
-      this.$store.commit('LOG_OFF')
-    })
-  },
-
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
@@ -131,17 +115,10 @@ export default {
     triggerExternalSignup () {
       this.$auth.signup()
     },
-    requestBackendData () {
-      Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
-        headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
-      })
-      .then(data => {
-        console.log(data)
-      })
-      .catch(e => {
-        console.log("err: ", e)
-      })
-    },
+
+
+
+
 
 
 
@@ -177,12 +154,6 @@ export default {
         this.showingLoginModal = value
       }
     }
-  },
-  mounted () {
-    console.log('hitting auth0 to check for a valid session')
-    // perform a silent check to see if the user is already logged out.
-    // this is to avoid storing the token locally
-    this.$auth.silentLogin()
   }
 }
 </script>

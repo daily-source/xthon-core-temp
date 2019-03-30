@@ -17,7 +17,7 @@
       <EditableTextField
         label="Nickname:"
         ref="nickname"
-        :value="userData.nickname"
+        :value="userData.data.nickname"
         error-text="This field can't be empty"
         type="name"
         v-on:input:save="updateUserField('nickname', $event)"
@@ -26,7 +26,7 @@
       <EditableTextField
         label="First name:"
         ref="firstName"
-        :value="userData.firstName"
+        :value="userData.data.firstName"
         error-text="This field can't be empty"
         type="name"
         v-on:input:save="updateUserField('firstName', $event)"
@@ -36,7 +36,7 @@
       <EditableTextField
         label="Last name:"
         ref="lastName"
-        :value="userData.lastName"
+        :value="userData.data.lastName"
         error-text="This field can't be empty"
         type="name"
         v-on:input:save="updateUserField('lastName', $event)"
@@ -46,7 +46,7 @@
       <EditableTextField
         label="Location:"
         ref="location"
-        :value="userData.location"
+        :value="userData.data.location"
         error-text="This field can't be empty"
         type="name"
         v-on:input:save="updateUserField('location', $event)"
@@ -57,7 +57,7 @@
         label="Email:"
         ref="email"
         :disabled-edition="true"
-        :value="userData.email"
+        :value="userData.data.email"
         error-text="Email is invalid"
         type="email"
         v-on:input:save="updateUserField('email', $event)"
@@ -65,7 +65,8 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatar="userData.avatar && userData.avatar.src ? userData.avatar.src : ''"
+        :avatarx="userData.avatar && userData.avatar.src ? userData.avatar.src : ''"
+        :avatar="userData.data.avatarx && userData.data.avatar.src ? userData.data.avatar.src : userData.auth0.picture"
         error-text="Invalid image"
         type="avatar"
         v-on:input:save="updateAvatar($event)"
@@ -161,9 +162,10 @@ export default {
         })
     },
     updateUserField (fieldName, newValue) {
-      if (this.$store.state.user[fieldName] === newValue) {
+      if (this.$store.state.user.data[fieldName] === newValue) {
         return
       }
+      console.log('this.$store.state.user.data[fieldName]: ', this.$store.state.user.data[fieldName])
       this.userDialogModal = true
       this.userDialogSpinner = true
       return this.$store.dispatch("UPDATE_USER_FIELD", { id: this.userData.id, field: fieldName, value: newValue })
