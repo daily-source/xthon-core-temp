@@ -57,7 +57,7 @@
 
     p {
       color: #fff;
-      font-size: 1.125rem;
+      font-size: 1.25rem;
     }
   }
 }
