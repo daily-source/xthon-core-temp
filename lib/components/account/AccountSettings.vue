@@ -57,7 +57,7 @@
         label="Email:"
         ref="email"
         :disabled-edition="true"
-        :value="userData.data.email"
+        :value="userData.auth0.email"
         error-text="Email is invalid"
         type="email"
         v-on:input:save="updateUserField('email', $event)"
@@ -165,7 +165,6 @@ export default {
       if (this.$store.state.user.data[fieldName] === newValue) {
         return
       }
-      console.log('this.$store.state.user.data[fieldName]: ', this.$store.state.user.data[fieldName])
       this.userDialogModal = true
       this.userDialogSpinner = true
       return this.$store.dispatch("UPDATE_USER_FIELD", { id: this.userData.id, field: fieldName, value: newValue })
