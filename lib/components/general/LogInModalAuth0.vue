@@ -48,7 +48,7 @@
         </span>
       </div>
       <div @click="openLoginBox()" v-if="loggedIn">
-        <slot name="logged"><a>Hi, {{user.auth0.given_name}}! »</a></slot>
+        <slot name="logged"><a>Hi, {{givenName}}! »</a></slot>
       </div>
     </div>
     <div v-if="!layout">
@@ -106,6 +106,9 @@ export default {
     },
     user () {
       return this.$store.state.user
+    },
+    givenName () {
+      return this.$store.state.user.auth0.given_name || this.$store.state.user.auth0['https://maximumgood.org_user_metadata'].firstname || this.$store.state.user.auth0.nickname
     }
   },
   methods: {
