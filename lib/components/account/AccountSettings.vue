@@ -71,22 +71,6 @@
         type="avatar"
         v-on:input:save="updateAvatar($event)"
       ></EditableImageField>
-
-      <div class="columns is-multiline is-mobile">
-        <div class="column is-4-tablet is-11-mobile">
-          <label>Password</label>
-        </div>
-        <div class="column is-5-tablet is-7-mobile">
-          <ModalPasswordChange
-            :state="passwordChangeModal"
-            v-on:modal:close="passwordChangeModal = false"
-          >
-            <div slot="trigger" @click="passwordChangeModal = true"><a>Not shown. Change password?</a></div>
-            <div slot="heading">Password change</div>
-          </ModalPasswordChange>
-        </div>
-      </div>
-
     </section>
 
     <section class="account-section">
@@ -126,15 +110,13 @@ export default {
       userDialogModal: false,
       userDialogHeading: "Processing...",
       userDialogMessage: "",
-      userDialogSpinner: false,
-      passwordChangeModal: false
+      userDialogSpinner: false
     }
   },
   components: {
     DonateBillingMethod: () => import("Components/donate/DonateBillingMethod.vue"),
     UserDialog: () => import("Components/general/UserDialog.vue"),
     Icons: () => import("Components/general/Icons.vue"),
-    ModalPasswordChange: () => import("Components/login/ModalPasswordChange.vue"),
     EditableTextField: () => import("Components/input/EditableTextField.vue"),
     EditableImageField: () => import("Components/input/EditableImageField.vue")
   },
