@@ -10,7 +10,6 @@
               />
             </div>
             <button class="button is-primary">
-              <font-awesome-icon icon="plus"/>
               Share
             </button>
           </div>
