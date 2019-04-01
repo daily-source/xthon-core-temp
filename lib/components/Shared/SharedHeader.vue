@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-top">
         <router-link to="/" class="logo-link">
-          <img :src="logo" alt="CalendarForGood">
+          <img :src="logo" alt="Site Logo">
         </router-link>
         <div class="header-top__nav-section">
           <ul class="nav is-flex">
