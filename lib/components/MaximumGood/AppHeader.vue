@@ -64,38 +64,44 @@ export default {
 </script>
 
 <style lang="scss">
-  .header__top {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    position: relative;
+.header__top {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  position: relative;
+}
+
+.header__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .header__level-column {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 33%;
+    max-width: 240px;
   }
 
-  .header__row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  .search__input {
+    margin-bottom: 0.5em;
+  }
 
-    .header__level-column {
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 33%;
-      max-width: 240px;
+  .header__logo-container {
+    .logo {
+      max-width: 200px;
     }
 
-    .search__input {
-      margin-bottom: 0.5em;
-    }
-
-    .header__logo-container {
-      .logo {
-        max-width: 200px;
-      }
-
-      .logo--big {
-        max-width: 400px;
-        margin-top: .75em;
-      }
+    .logo--big {
+      max-width: 400px;
+      margin-top: .75em;
     }
   }
+}
+
+.nav-item {
+  a {
+    color: #fff !important;
+  }
+}
 </style>
 
