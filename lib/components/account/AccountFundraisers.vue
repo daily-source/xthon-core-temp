@@ -25,7 +25,7 @@
 
     <h3>My Fundraisers</h3>
     <section class="fundraisers-section">
-      <div v-if="userData.protected && userData.Fundraisers && userData.Fundraisers.length">
+      <div v-if="userData.Fundraisers && userData.Fundraisers.length">
         <table class="table is-striped is-fullwidth fundraisers-table">
           <thead>
             <tr>
@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     userData () {
-      return this.$store.state.user
+      return this.$store.state.user.data
     }
   }
 }

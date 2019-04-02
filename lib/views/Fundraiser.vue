@@ -110,10 +110,11 @@ export default {
       return this.$store.state.user.loggedIn
     },
     canManageThisFundraiser () {
+      console.log('this.$store.state.user.data.Fundraisers: ', this.$store.state.user.data.Fundraisers)
       if (!this.loggedIn) {
         return false
       }
-      let userFundraisers = this.$store.state.user.Fundraisers
+      let userFundraisers = this.$store.state.user.data.Fundraisers
       if (userFundraisers && userFundraisers.length) {
         let fundraisersToManage = userFundraisers.filter(item => {
           return item.id === this.fundraiser.id

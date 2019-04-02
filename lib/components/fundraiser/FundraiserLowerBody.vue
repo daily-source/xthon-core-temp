@@ -442,7 +442,8 @@ export default {
         this.$store.dispatch("ADD_NEW_UPDATE", {
           fundraiserId: this.fundraiser.id,
           content: $event.value,
-          userId: this.fundraiser.UserId
+          userId: this.$store.state.user.auth0.sub,
+          token: this.$store.state.user.tokenData.accessToken
         }).then(() => {})
           .catch(err => {
             console.log("err: ", err)
