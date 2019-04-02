@@ -110,7 +110,6 @@ export default {
       return this.$store.state.user.loggedIn
     },
     canManageThisFundraiser () {
-      console.log('this.$store.state.user.data.Fundraisers: ', this.$store.state.user.data.Fundraisers)
       if (!this.loggedIn) {
         return false
       }
