@@ -61,7 +61,7 @@ export default {
   computed: {
     itemsToShow () {
       if (this.expanded) {
-        return 9
+        return this.fundraiser.sites.length
       }
 
       return 6

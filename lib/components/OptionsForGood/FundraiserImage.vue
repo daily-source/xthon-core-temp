@@ -53,49 +53,56 @@ export default {
 </script>
 
 <style lang="scss">
+// Enlarge an image
+@function enlarge($size, $multiplier: 1) {
+  @return $size * $multiplier;
+}
+
+
 .fundraiser__img-wrap {
-text-align: center;
+  text-align: center;
 
-a {
-    display: block;
-}
+  a {
+      display: block;
+  }
 
-img {
-    max-width: enlarge(240px);
-    min-height: 90px;
-    object-fit: contain;
-}
+  img {
+      max-width: enlarge(240px);
+      min-height: 90px;
+      object-fit: contain;
+  }
 }
 
 #quitathon-img,
 #volunteerathon-img,
 #homes-for-the-earth-img,
-#colleges-for-good-img {
-max-width: enlarge(260px);
+#colleges-for-good-img,
+#charitable-contests-img {
+  max-width: enlarge(260px);
 }
 
 #environmental-debt-img {
-max-width: enlarge(280px);
+  max-width: enlarge(280px);
 }
 
 #insight-in-mind-img,
 #world-wealth-calculator-img {
-max-width: enlarge(320px);
+  max-width: enlarge(320px);
 }
 
 #loseathon-img {
-max-width: enlarge(165px);
+  max-width: enlarge(165px);
 }
 
 #bake-for-good-img {
-max-width: enlarge(180px);
+  max-width: enlarge(180px);
 }
 
 #run-for-good-img,
 #ride-for-good-img,
 #stands-for-freedom-img,
 #conscience-or-cotton-img {
-max-width: enlarge(200px);
+  max-width: enlarge(200px);
 }
 
 #christmas-for-good-img,
@@ -104,6 +111,6 @@ max-width: enlarge(200px);
 #crowdsourcing-for-the-poor-img,
 #counters-for-the-poor-img,
 #balanced-giving-img {
-max-width: enlarge(220px);
+  max-width: enlarge(220px);
 }
 </style>

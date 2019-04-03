@@ -2,28 +2,51 @@
   <div class="fundraiser-grid">
     <div class="fundraiser__container">
       <h2 class="has-text-centered fundraiser-grid__title ">{{ fundraiser.label }}</h2>
-      <div class="fundraiser-grid__row is-flex">
-        <div 
-          v-for="(site, index) in fundraiser.sites"
-          :key="`fundraiser-${site.id}`"
-          :class="['fundraiser-grid__col has-text-centered', {'hide': index >= itemsToShow}]"
-        >
-          <router-link to="#">
-            <img 
-              :src="require(`@/assets/img/site-logos/${site.imgName}`)"
-              :id="`${site.id}-img`"
-            />
-          </router-link>
+      <div class="fundraiser-grid__initial-content">
+        <div class="fundraiser-grid__row is-flex">
+          <div 
+            v-for="site in itemsToShow"
+            :key="`fundraiser-${site.id}`"
+            class="fundraiser-grid__col has-text-centered"
+          >
+            <router-link to="#">
+              <img 
+                :src="require(`@/assets/img/site-logos/${site.imgName}`)"
+                :id="`${site.id}-img`"
+              />
+            </router-link>
+          </div>
         </div>
       </div>
-      <div class="extra-content" v-if="expanded">
-        <slot></slot>
-      </div>
+      <transition
+        appear
+        @after-appear='onExtraContentAppear'
+      >
+        <div 
+          class="extra-content fundraiser-grid__extra-content"
+        >
+          <div class="fundraiser-grid__row is-flex">
+            <div
+              v-for="site in itemsToExpand"
+              :key="`fundraiser-${site.id}`"
+              class="fundraiser-grid__col has-text-centered"
+            >
+              <router-link to="#">
+                <img 
+                  :src="require(`@/assets/img/site-logos/${site.imgName}`)"
+                  :id="`${site.id}-img`"
+                />
+              </router-link>
+            </div>
+          </div>
+          <slot></slot>
+        </div>
+      </transition>
       <div class="see-more-container has-text-right">
         <a 
           href="#" 
           @click.prevent.stop="expanded = !expanded"
-          class="has-text-weight-bold see-more-link text-secondary"
+          class="has-text-weight-bold fundraiser-grid__see-more-link text-secondary"
         >
           {{ expanded ? 'See less' : 'See more' }}
         </a>
@@ -33,6 +56,7 @@
 </template>
 
 <script>
+import TweenMax from 'gsap'
 
 export default {
   name: 'FundraiserGrid',
@@ -48,24 +72,34 @@ export default {
 
   data () {
     return {
-      expanded: false
+      expanded: false,
+      expandedHeight: 0,
+    }
+  },
+
+  methods: {
+    onExtraContentAppear (el) {
+      this.expandedHeight = el.clientHeight
+      el.style.height = 0
+      console.log(TweenMax)
     }
   },
 
   computed: {
     itemsToShow () {
-      if (this.expanded) {
-        return 9
-      }
+      return this.fundraiser.sites.slice(0, 6)
+    },
 
-      return 6
-    }
+    itemsToExpand () {
+      return this.fundraiser.sites.slice(6)
+    },
   }
 }
 </script>
 
-<style lang="scss">
-  .fundraiser-grid__title {
+<style lang="scss" scoped>
+.fundraiser-grid {
+  &__title {
     font-size: 2.625rem;
     margin-bottom: 0;
     margin-bottom: 1em;
@@ -73,44 +107,45 @@ export default {
     color: #333;
   }
 
-  .fundraiser__container {
-    .fundraiser-grid__row  {
-      justify-content: center;
-      align-items: stretch;
-      flex-wrap: wrap;
+  &__row {
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
 
-      .fundraiser-grid__col {
-        max-width: 100%;
-        flex-basis: 100%;
-        padding-left: 25px;
-        padding-right: 25px;
-        margin-bottom: 3em;
-        flex-grow: 1;
-        flex-shrink: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  &__col {
+    max-width: 100%;
+    flex-basis: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 3em;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        &.hide {
-          display: none;
-        }
-
-        @media ( min-width: 992px ) {
-          max-width: 33%;
-          flex-basis: 33%;
-        }
-      }
+    @include desktop {
+      max-width: 33%;
+      flex-basis: 33%;
     }
   }
 
-  .fundraiser-grid__image {
+  &__image {
     max-width: 220px;
     min-height: 90px;
     object-fit: contain;
   }
 
-  .see-more-link,
-  .extra-content a { 
+  &__see-more-link {
     text-decoration: underline; 
   }
+
+  &__extra-content {
+    opacity: 0;
+    a {
+      text-decoration: underline; 
+    }
+  }
+}
 </style>
