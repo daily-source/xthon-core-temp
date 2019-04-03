@@ -24,7 +24,8 @@
           <tbody>
             <tr v-for="nonprofit in userData.Nonprofits" :key="nonprofit.EIN">
               <td>
-                <router-link :to="`/nonprofit/${nonprofit.id}`">{{nonprofit.NAME || nonprofit.data.name}}</router-link>
+
+                <router-link :to="`/nonprofit/${nonprofit.EIN}`">{{nonprofit.NAME || nonprofit.data.name}}</router-link>
               </td>
               <td>
                 <span v-if="nonprofit.data">{{nonprofit.data.donated | centsToUsd}}</span>
