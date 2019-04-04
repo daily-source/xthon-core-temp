@@ -54,7 +54,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo}" v-if="nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
