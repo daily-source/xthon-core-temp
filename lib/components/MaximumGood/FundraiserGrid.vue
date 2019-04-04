@@ -21,9 +21,12 @@
       <transition
         appear
         @after-appear='onExtraContentAppear'
+        @enter='onExtraContentEnter'
+        @leave='onExtraContentLeave'
       >
         <div 
           class="extra-content fundraiser-grid__extra-content"
+          v-show='expanded'
         >
           <div class="fundraiser-grid__row is-flex">
             <div
@@ -74,14 +77,28 @@ export default {
     return {
       expanded: false,
       expandedHeight: 0,
+      targetHeight: 0,
     }
   },
 
   methods: {
     onExtraContentAppear (el) {
-      this.expandedHeight = el.clientHeight
+    },
+
+    onExtraContentEnter (el) {
+      if (!this.targetHeight) {
+        this.targetHeight = el.clientHeight
+      }
+
       el.style.height = 0
-      console.log(TweenMax)
+
+      TweenMax.to(el, .3, { opacity: 1, height: this.targetHeight })
+    },
+
+    onExtraContentLeave (el, done) {
+      this.targetHeight = el.clientHeight
+      el.style.display = 'block'
+      TweenMax.to(el, .3, { opacity: 0, height: 0, onComplete: done })
     }
   },
 
@@ -142,10 +159,16 @@ export default {
   }
 
   &__extra-content {
+    overflow: hidden;
     opacity: 0;
     a {
       text-decoration: underline; 
     }
   }
+}
+
+.see-more-container {
+  position: relative;
+  z-index: 10;
 }
 </style>
