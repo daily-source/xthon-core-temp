@@ -2,7 +2,7 @@
   <div class="column is-centered nonprofit-search-field-wrapper" :class="{'standalone columns': standalone}">
     <VueSelect
       transition="fade" 
-      label="name"
+      label="NAME"
       :filterable="false"
       :options="options"
       :placeholder="placeholder"
