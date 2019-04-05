@@ -142,6 +142,9 @@ export default {
         white-space: normal;
         margin-bottom: 4px;
         background: none !important;
+        &:hover {
+          background: $color-emphasis !important;
+        }
       }
       .selection {
         padding-top: 4px;
