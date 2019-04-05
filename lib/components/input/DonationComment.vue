@@ -7,9 +7,9 @@
       </label>
     </div>
     <transition name="slide-fade" v-if="!donation.isAnonymous">
-      <div class="columns form-column__wrapper form-column__extra-padded input-line comment-input-wrapper" v-if="fundraiser && fundraiser.participant">
+      <div class="columns form-column__wrapper form-column__extra-padded input-line comment-input-wrapper" v-if="fundraiser && fundraiser.User">
         <div class="column is-5 form-column__label-column input-label comment-input-label">
-          <label :for="`comment-textarea_${_uid}`" class="label">Add a comment to appear next to your donation on {{fundraiser.participant.name}}'s page:</label>
+          <label :for="`comment-textarea_${_uid}`" class="label">Add a comment to appear next to your donation on {{fundraiser.User.firstName}}'s page:</label>
         </div>
         <div class="column is-5 form-column__input-column">
           <div class="control input-wrapper">

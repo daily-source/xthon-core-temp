@@ -30,7 +30,7 @@
       </div>
       <div class="column is-one-third-desktop fundraiser-content__right">
         <div class="fundraiser-pledge">
-          <div class="fundraiser-pledge__heading" v-if="fundraiser.participant">
+          <div class="fundraiser-pledge__heading" v-if="fundraiser.User">
             <p class="button-wrapper" v-if="canEdit">
               <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing">Edit this fundraiser</a>
             </p>

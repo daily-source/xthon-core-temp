@@ -1,5 +1,5 @@
 <template>
-  <div class="container is-fluid white-bg fundraiser-header__wrapper" v-if="fundraiser.participant">
+  <div class="container is-fluid white-bg fundraiser-header__wrapper" v-if="fundraiser.User">
     <div class="fundraiser-header">
       <h1 class="fundraiser-header__title">
         <InlineFieldEditor

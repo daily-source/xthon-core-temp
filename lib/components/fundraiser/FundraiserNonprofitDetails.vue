@@ -1,7 +1,7 @@
 <template>
-  <div class="fundraiser-nonprofit-organization__wrapper" v-if="fundraiser.participant">
+  <div class="fundraiser-nonprofit-organization__wrapper" v-if="fundraiser.User">
     <p>A Volunteerathon is a fundraiser like a walkathon or bikeathon, except the person's time goes to help a nonprofit or do an independent service project.</p>
-    <p><span v-html="fundraiser.participant.name"></span> is raising money for: </p>
+    <p><span v-html="fundraiser.User.firstName"></span> is raising money for: </p>
     <div class="this-nonprofit__wrapper">
       <figure class="fundraiser-lower__logo-wrapper" v-if="fundraiser.Nonprofit.data">
         <LazyLoadedImage

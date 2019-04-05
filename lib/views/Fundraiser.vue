@@ -80,7 +80,7 @@ export default {
    * in the template, ./src/App.vue
    */
   metaInfo () {
-    var description = `Support ${this.fundraiser.participant.name}'s volunteerathon: ${this.fundraiser.name} for the nonprofit ${this.fundraiser.Nonprofit.NAME}`
+    var description = `Support ${this.fundraiser.User.firstName}'s volunteerathon: ${this.fundraiser.name} for the nonprofit ${this.fundraiser.Nonprofit.NAME}`
     var title = this.fundraiser.name
     var img = `${this.$store.state.extra.request.protocol}://${this.$store.state.extra.request.host}${this.fundraiser.data.media[0].src}`
     return {
