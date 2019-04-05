@@ -99,6 +99,12 @@ export default {
   .v-select {
     flex: 1;
 
+    &.dropdown .highlight a {
+      transition: all 0.2s ease-in-out;
+      color: white !important;
+      background: $color-emphasis !important;
+    }
+
     .selected-tag {
       position: absolute;
       text-align: left;
@@ -134,17 +140,11 @@ export default {
     li {
       padding-left: 0px;
       padding-right: 0px;
-      &.active.highlight {
-        background: $color-medium-gray !important;
-      }
       a {
         display: block;
         white-space: normal;
         margin-bottom: 4px;
         background: none !important;
-        &:hover {
-          background: $color-emphasis !important;
-        }
       }
       .selection {
         padding-top: 4px;
