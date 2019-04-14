@@ -104,6 +104,9 @@
 </template>
 
 <script>
+import Vue from 'vue'
+const baseURL = process.env.BASE_API
+
 export default {
   data () {
     return {
@@ -161,7 +164,36 @@ export default {
     },
     updateAvatar (blob) {
       // TODO: dispatch event to update the image in the DB
-      console.log(blob)
+      var blob = blob
+
+      Vue.axios.get(
+        `${baseURL}/users/auth0/aws`,
+        {
+          headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
+        }
+      )
+        .then(url => {
+          var buf = new Buffer(blob.replace(/^data:image\/\w+;base64,/, ""),'base64')
+          Vue.axios.put(
+            url.data,
+            buf,
+            {
+              headers: {
+              'Content-Type': 'image/jpeg'
+              }
+            }
+          ).then((data) => {
+            // Send request to the backend to store this new URL
+
+            // get the URL from the request:
+            var postedURL = data.request.responseURL.split('?')[0]
+            console.log(postedURL)
+          })
+        })
+        .catch(e => {
+          console.log(e)
+        })
+
     },
     closeUserDialog () {
       this.userDialogMessage = ""

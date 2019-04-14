@@ -24,6 +24,7 @@
             :placeholder="'Select file'"
             :placeholder-font-size="20"
             :show-remove-button="false"
+            canvas-color="#FFFFFF"
             v-on:keyup.enter="saveField()"
             v-on:new-image="errorMessage = ''"
           >
@@ -90,7 +91,7 @@ export default {
           if (!blob) {
             this.errorMessage = this.errorText
           } else {
-            this.$emit("input:save", blob)
+            this.$emit("input:save", this.myCroppa.generateDataUrl('image/jpeg', 0.8))
             this.fieldIsOpen = false
           }
         },
