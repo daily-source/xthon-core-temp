@@ -65,8 +65,7 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatarx="userData.avatar && userData.avatar.src ? userData.avatar.src : ''"
-        :avatar="userData.data.avatarx && userData.data.avatar.src ? userData.data.avatar.src : userData.auth0.picture"
+        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : userData.auth0.picture"
         error-text="Invalid image"
         type="avatar"
         v-on:input:save="updateAvatar($event)"
@@ -174,19 +173,35 @@ export default {
       )
         .then(url => {
           var buf = new Buffer(blob.replace(/^data:image\/\w+;base64,/, ""),'base64')
+          // put this into a try/catch block
           Vue.axios.put(
             url.data,
             buf,
             {
               headers: {
-              'Content-Type': 'image/jpeg'
+                'Content-Type': 'image/jpeg'
               }
             }
           ).then((data) => {
-            // Send request to the backend to store this new URL
-
+            // put this into a try/catch block
             // get the URL from the request:
             var postedURL = data.request.responseURL.split('?')[0]
+            Vue.axios.put(
+              `${baseURL}/users/${this.$store.state.user.auth0.sub}`,
+              {
+                field: 'avatar',
+                value: postedURL
+              },
+              {
+                headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
+              }
+            ).then ((data) => {
+              console.log('succeded, data: ', data)
+            }).catch(e => {
+              console.log('error found: ', e)
+            })
+            // Send request to the backend to store this new URL
+
             console.log(postedURL)
           })
         })
