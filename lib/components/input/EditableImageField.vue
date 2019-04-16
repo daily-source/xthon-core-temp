@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="columns is-multiline is-mobile">
       <div class="column is-4-tablet is-11-mobile">
         <label :for="`input-editable_${_uid}`">{{label}}</label>
@@ -64,7 +63,7 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "label", "type", "avatar", "errorText" ],
+  props: [ "label", "type", "avatar", "errorText"],
   data () {
     return {
       fieldIsOpen: false,

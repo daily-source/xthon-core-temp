@@ -164,7 +164,8 @@ export default {
     updateAvatar (blob) {
       // TODO: dispatch event to update the image in the DB
       var blob = blob
-
+      this.userDialogModal = true
+      this.userDialogSpinner = true
       Vue.axios.get(
         `${baseURL}/users/auth0/aws`,
         {
@@ -187,7 +188,7 @@ export default {
             // get the URL from the request:
             var postedURL = data.request.responseURL.split('?')[0]
             Vue.axios.put(
-              `${baseURL}/users/${this.$store.state.user.auth0.sub}`,
+              `${baseURL}/users/${this.$store.state.user.auth0.sub}/avatar`,
               {
                 field: 'avatar',
                 value: postedURL
@@ -196,16 +197,22 @@ export default {
                 headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
               }
             ).then ((data) => {
-              console.log('succeded, data: ', data)
+              // commit the new image
+              this.$store.commit('UPDATE_USER_AVATAR', { avatar: postedURL })
+              setTimeout(() => {
+                this.userDialogModal = false
+              }, 500)
             }).catch(e => {
+              this.userDialogMessage = "An error occurred. Try again later."
+              this.userDialogSpinner = false
               console.log('error found: ', e)
             })
             // Send request to the backend to store this new URL
-
-            console.log(postedURL)
           })
         })
         .catch(e => {
+          this.userDialogMessage = "An error occurred. Try again later."
+          this.userDialogSpinner = false
           console.log(e)
         })
 
