@@ -65,7 +65,7 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : userData.auth0.picture"
+        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : ''"
         error-text="Invalid image"
         type="avatar"
         v-on:input:save="updateAvatar($event)"
@@ -162,60 +162,21 @@ export default {
         })
     },
     updateAvatar (blob) {
-      // TODO: dispatch event to update the image in the DB
-      var blob = blob
-      this.userDialogModal = true
-      this.userDialogSpinner = true
-      Vue.axios.get(
-        `${baseURL}/users/auth0/aws`,
-        {
-          headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
-        }
-      )
-        .then(url => {
-          var buf = new Buffer(blob.replace(/^data:image\/\w+;base64,/, ""),'base64')
-          // put this into a try/catch block
-          Vue.axios.put(
-            url.data,
-            buf,
-            {
-              headers: {
-                'Content-Type': 'image/jpeg'
-              }
-            }
-          ).then((data) => {
-            // put this into a try/catch block
-            // get the URL from the request:
-            var postedURL = data.request.responseURL.split('?')[0]
-            Vue.axios.put(
-              `${baseURL}/users/${this.$store.state.user.auth0.sub}/avatar`,
-              {
-                field: 'avatar',
-                value: postedURL
-              },
-              {
-                headers: {'Authorization': `Bearer ${this.$store.state.user.tokenData.accessToken}`}
-              }
-            ).then ((data) => {
-              // commit the new image
-              this.$store.commit('UPDATE_USER_AVATAR', { avatar: postedURL })
-              setTimeout(() => {
-                this.userDialogModal = false
-              }, 500)
-            }).catch(e => {
-              this.userDialogMessage = "An error occurred. Try again later."
-              this.userDialogSpinner = false
-              console.log('error found: ', e)
-            })
-            // Send request to the backend to store this new URL
-          })
+      // promisify everything to remove callback hell
+      // move axios calls to the /api file and call them from the actions file
+      //this.userDialogModal = true
+      //this.userDialogSpinner = true
+      return this.$store.dispatch('SAVE_PROFILE_AVATAR', { avatar: blob })
+        .then(() => {
+          setTimeout(() => {
+            this.userDialogModal = false
+          }, 500)
         })
-        .catch(e => {
-          this.userDialogMessage = "An error occurred. Try again later."
+        .catch(err => {
           this.userDialogSpinner = false
-          console.log(e)
+          this.userDialogHeading = "Error"
+          this.userDialogMessage = err
         })
-
     },
     closeUserDialog () {
       this.userDialogMessage = ""
