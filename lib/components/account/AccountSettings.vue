@@ -103,7 +103,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue"
 const baseURL = process.env.BASE_API
 
 export default {
@@ -162,11 +162,9 @@ export default {
         })
     },
     updateAvatar (blob) {
-      // promisify everything to remove callback hell
-      // move axios calls to the /api file and call them from the actions file
-      //this.userDialogModal = true
-      //this.userDialogSpinner = true
-      return this.$store.dispatch('SAVE_PROFILE_AVATAR', { avatar: blob })
+      this.userDialogModal = true
+      this.userDialogSpinner = true
+      return this.$store.dispatch("SAVE_PROFILE_AVATAR", { avatar: blob })
         .then(() => {
           setTimeout(() => {
             this.userDialogModal = false

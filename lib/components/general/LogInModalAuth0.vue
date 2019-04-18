@@ -108,7 +108,7 @@ export default {
       return this.$store.state.user
     },
     givenName () {
-      return this.$store.state.user.auth0.given_name || this.$store.state.user.auth0['https://maximumgood.org_user_metadata'].firstname || this.$store.state.user.auth0.nickname
+      return this.$store.state.user.auth0.given_name || this.$store.state.user.auth0["https://maximumgood.org_user_metadata"].firstname || this.$store.state.user.auth0.nickname
     }
   },
   methods: {
@@ -118,12 +118,6 @@ export default {
     triggerExternalSignup () {
       this.$auth.signup()
     },
-
-
-
-
-
-
 
     // old methods
     setEmail (event) {

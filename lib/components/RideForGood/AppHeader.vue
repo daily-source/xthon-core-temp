@@ -57,12 +57,12 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
 
   components: {
     Icons
   }
-};
+}
 </script>
 
 <style lang="scss">

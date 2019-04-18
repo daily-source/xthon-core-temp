@@ -268,7 +268,7 @@ export default {
    * TODO: validate form, submit data to api, display thank you or error dialog.
    */
   methods: {
-    setNonprofit($event) {
+    setNonprofit ($event) {
       console.log($event)
     },
     validateNonprofit () {

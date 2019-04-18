@@ -71,59 +71,59 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions } from "vuex"
 
 export default {
-  name: 'BannerSwitcher',
+  name: "BannerSwitcher",
 
-  data() {
+  data () {
     return {
       open: false,
       overlayHideTrigger: true,
       overlayShowTrigger: false,
-      url: '',
-    };
+      url: ""
+    }
   },
 
   computed: {
     ...mapState({
-      bgImages: state => state.bannerSwitcher.bannerImages,
-    }),
+      bgImages: state => state.bannerSwitcher.bannerImages
+    })
   },
 
   methods: {
-    toggleSwitcher() {
-      this.open = !this.open;
+    toggleSwitcher () {
+      this.open = !this.open
       if (this.open) {
         this.overlayHideTrigger = false,
         setTimeout(() => {
-          this.overlayShowTrigger = true;
-        }, 100);
+          this.overlayShowTrigger = true
+        }, 100)
       } else {
         this.overlayShowTrigger = false,
         setTimeout(() => {
-          this.overlayHideTrigger = true;
-        }, 150);
+          this.overlayHideTrigger = true
+        }, 150)
       }
     },
 
-    handleImageSelected(index) {
-      this.switchBannerImage(index);
-      this.toggleSwitcher();
+    handleImageSelected (index) {
+      this.switchBannerImage(index)
+      this.toggleSwitcher()
     },
 
-    handleImageUrlSelected() {
+    handleImageUrlSelected () {
       if (this.url) {
-        this.switchBannerImageUrl(this.url);
+        this.switchBannerImageUrl(this.url)
       }
 
-      this.toggleSwitcher();
+      this.toggleSwitcher()
     },
 
     ...mapActions({
-      switchBannerImage: 'bannerSwitcher/switchBannerImage',
-      switchBannerImageUrl: 'bannerSwitcher/switchBannerImageUrl',
-    }),
-  },
-};
+      switchBannerImage: "bannerSwitcher/switchBannerImage",
+      switchBannerImageUrl: "bannerSwitcher/switchBannerImageUrl"
+    })
+  }
+}
 </script>

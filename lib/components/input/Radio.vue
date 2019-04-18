@@ -18,12 +18,12 @@
 
 <script>
 export default {
-  name: 'Radio',
+  name: "Radio",
 
   props: {
     label: {
       type: String,
-      required: true,
+      required: true
     }
   },
 
@@ -34,14 +34,14 @@ export default {
       return {
         ...this.$listeners,
         change: event => {
-          this.$emit('change', event.target.value)
+          this.$emit("change", event.target.value)
         },
         input: event => {
-          this.$emit('input', event.target.value)
+          this.$emit("input", event.target.value)
         }
       }
     }
-  },
+  }
 }
 </script>
 

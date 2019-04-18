@@ -95,46 +95,46 @@
 </template>
 
 <script>
-import Icons from 'Components/general/Icons.vue';
-import { mapState } from 'vuex';
+import Icons from "Components/general/Icons.vue"
+import { mapState } from "vuex"
 
 export default {
-  name: 'AppBanner',
+  name: "AppBanner",
 
   components: {
-    Icons,
+    Icons
   },
 
-  props: ['disableHero'],
+  props: ["disableHero"],
 
   computed: {
     ...mapState({
-      currentBg: state => (state.bannerSwitcher ? state.bannerSwitcher.current : ''),
+      currentBg: state => (state.bannerSwitcher ? state.bannerSwitcher.current : "")
     }),
-    version() {
-      return this.$route.query.version;
-    },
+    version () {
+      return this.$route.query.version
+    }
   },
 
   methods: {
-    imagePath(imgName) {
-      return require(`@/assets/img/images/${imgName}`);
+    imagePath (imgName) {
+      return require(`@/assets/img/images/${imgName}`)
     },
 
-    getBgImage() {
+    getBgImage () {
       if (this.disableHero) {
-        return;
+        return
       }
       if (this.currentBg) {
-        if (this.currentBg.type == 'local') {
-          return this.imagePath(this.currentBg.imgName);
+        if (this.currentBg.type == "local") {
+          return this.imagePath(this.currentBg.imgName)
         }
-        return this.currentBg.imgUrl;
+        return this.currentBg.imgUrl
       }
-      return this.imagePath('banner-img-0.jpg');
-    },
-  },
-};
+      return this.imagePath("banner-img-0.jpg")
+    }
+  }
+}
 </script>
 
 <style lang="scss">

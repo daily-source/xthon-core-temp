@@ -28,9 +28,9 @@ import AppHeader from "Components/general/AppHeader.vue"
 import VueScrollTo from "vue-scrollto"
 import Croppa from "vue-croppa"
 
-import Datetime from 'vue-datetime'
-import 'vue-datetime/dist/vue-datetime.css'
- 
+import Datetime from "vue-datetime"
+import "vue-datetime/dist/vue-datetime.css"
+
 Vue.use(VueScrollTo)
 Vue.use(VueMeta)
 Vue.use(Croppa)

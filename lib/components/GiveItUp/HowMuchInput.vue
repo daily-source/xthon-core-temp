@@ -102,65 +102,65 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex"
 
 export default {
-  name: 'HowMuchInput',
+  name: "HowMuchInput",
 
-  props: ['input'],
+  props: ["input"],
 
-  data() {
+  data () {
     return {
-      amount: '',
-      rate: 'week',
-      giveUpOption: 'all',
-      giveUpPercent: '',
-    };
+      amount: "",
+      rate: "week",
+      giveUpOption: "all",
+      giveUpPercent: ""
+    }
   },
 
   computed: {
     // We work with the perMonthValue since numbers are smaller
-    perMonthValue() {
-      let value;
+    perMonthValue () {
+      let value
 
       switch (this.rate) {
-        case 'week':
-          value = this.amount * 4;
-          break;
-        case 'day':
-          value = this.amount * 30;
-          break;
-        case 'year':
-          value = this.amount / 365;
-          break;
+      case "week":
+        value = this.amount * 4
+        break
+      case "day":
+        value = this.amount * 30
+        break
+      case "year":
+        value = this.amount / 365
+        break
 
-        default:
-          value = this.amount;
+      default:
+        value = this.amount
       }
 
       // If reduce by % is selected, we compute the perMonthValue using the formula:
       // value - ( value * (giveUpPecent / 100 ) )
-      return this.giveUpOption === 'all' ? value : parseFloat(value) - (parseFloat(value) * (parseFloat(this.giveUpPercent) / 100));
-    },
+      return this.giveUpOption === "all" ? value : parseFloat(value) - (parseFloat(value) * (parseFloat(this.giveUpPercent) / 100))
+    }
   },
 
   methods: {
-    inputHandler() {
+    inputHandler () {
       if (this.perMonthValue) {
-        this.setPercentValue({ choice: this.input, perMonthValue: this.perMonthValue });
-        this.$emit('inputChanged');
+        this.setPercentValue({ choice: this.input, perMonthValue: this.perMonthValue })
+        this.$emit("inputChanged")
       }
     },
 
     ...mapActions({
-      setPercentValue: 'selections/setSelectedPercentValue',
-    }),
+      setPercentValue: "selections/setSelectedPercentValue"
+    })
   },
 
   watch: {
-    perMonthValue() {
-      this.inputHandler();
-    },
-  },
-};
+    perMonthValue () {
+      this.inputHandler()
+    }
+  }
+}
 </script>

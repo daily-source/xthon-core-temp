@@ -122,7 +122,7 @@ export default {
       return new Promise((resolve, reject) => {
         clearTimeout(this.blurTimeout)
         if (this.validateField()) {
-          this.userDialogHeading = 'Processing...'
+          this.userDialogHeading = "Processing..."
           this.userDialogModal = true
           this.$store.dispatch("SAVE_INLINE_FIELD", {
             location: this.location,
@@ -136,7 +136,7 @@ export default {
               resolve(this.fieldValue)
             })
             .catch(err => {
-              this.userDialogHeading = 'Error'
+              this.userDialogHeading = "Error"
               this.userDialogMessage = err.response.statusText
               this.userDialogSpinner = false
               reject(err)
@@ -180,8 +180,8 @@ export default {
     },
     closeUserDialog () {
       this.userDialogModal = false
-      this.userDialogMessage = ''
-      this.userDialogHeading = ''
+      this.userDialogMessage = ""
+      this.userDialogHeading = ""
     },
     /**
      * The timeout is needed so an external button can save before the blur cancels the edition

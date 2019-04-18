@@ -24,19 +24,19 @@
 </template>
 
 <script>
-import Icon from 'Components/general/Icons'
+import Icon from "Components/general/Icons"
 
 export default {
-  name: 'Checkbox',
+  name: "Checkbox",
 
   components: {
-    Icon,
+    Icon
   },
 
   props: {
     label: {
       type: String,
-      required: true,
+      required: true
     }
   },
 
@@ -47,10 +47,10 @@ export default {
       return {
         ...this.$listeners,
         change: event => {
-          this.$emit('change', event.target.value)
+          this.$emit("change", event.target.value)
         }
       }
     }
-  },
+  }
 }
 </script>

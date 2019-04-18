@@ -90,7 +90,7 @@ export default {
           if (!blob) {
             this.errorMessage = this.errorText
           } else {
-            this.$emit("input:save", this.myCroppa.generateDataUrl('image/jpeg', 0.8))
+            this.$emit("input:save", this.myCroppa.generateDataUrl("image/jpeg", 0.8))
             this.fieldIsOpen = false
           }
         },
