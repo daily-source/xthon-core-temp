@@ -5,7 +5,7 @@
       </div>
       <div class="column is-5-tablet is-7-mobile">
         <div class="edition-trigger" v-if="!fieldIsOpen" @click="openEdition()">
-          <img
+          <img 
             :src="avatar"
             v-if="avatar"
             width="200"
@@ -63,7 +63,7 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "label", "type", "avatar", "errorText"],
+  props: [ "label", "type", "avatar", "errorText" ],
   data () {
     return {
       fieldIsOpen: false,

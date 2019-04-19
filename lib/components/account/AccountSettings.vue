@@ -103,9 +103,6 @@
 </template>
 
 <script>
-import Vue from "vue"
-const baseURL = process.env.BASE_API
-
 export default {
   data () {
     return {

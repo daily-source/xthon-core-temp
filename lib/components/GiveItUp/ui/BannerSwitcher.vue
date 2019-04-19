@@ -95,12 +95,12 @@ export default {
     toggleSwitcher () {
       this.open = !this.open
       if (this.open) {
-        this.overlayHideTrigger = false,
+        this.overlayHideTrigger = false
         setTimeout(() => {
           this.overlayShowTrigger = true
         }, 100)
       } else {
-        this.overlayShowTrigger = false,
+        this.overlayShowTrigger = false
         setTimeout(() => {
           this.overlayHideTrigger = true
         }, 150)

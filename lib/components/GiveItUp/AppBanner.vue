@@ -126,7 +126,7 @@ export default {
         return
       }
       if (this.currentBg) {
-        if (this.currentBg.type == "local") {
+        if (this.currentBg.type === "local") {
           return this.imagePath(this.currentBg.imgName)
         }
         return this.currentBg.imgUrl
