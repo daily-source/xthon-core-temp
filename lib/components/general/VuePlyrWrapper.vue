@@ -5,7 +5,10 @@
 </template>
 
 <script>
-import "vue-plyr"
+import Vue from 'vue'
+import VuePlayer from 'vue-plyr'
+
+Vue.use(VuePlayer)
 
 export default {
   data () {
