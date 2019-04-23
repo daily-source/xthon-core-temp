@@ -23,7 +23,7 @@ export default {
       return this.$store.state.user.loggedIn
     },
     userName () {
-      return this.$store.state.user.nickname || this.$store.state.user.firstName
+      return this.$store.state.user.data.nickname || this.$store.state.user.data.firstName
     }
   }
 }
