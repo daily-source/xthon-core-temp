@@ -25,7 +25,6 @@ import LogInModalAuth0 from "Components/general/LogInModalAuth0.vue"
 
 export default {
   props: [ "state" ],
-  //  props: [ "layout", "login", "signup", "showOnly", "display", "requireName", "register" ],
   components: {
     SocialLogin,
     Modal,

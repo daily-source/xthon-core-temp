@@ -1,5 +1,17 @@
 <template>
   <div class="page-wrapper">
+    <NewRegisterOrLoginModal
+      layout="comment"
+      :state="showLoginModal"
+      v-on:logged:in="closeLoginModal()"
+      v-on:modal:close="closeLoginModal()"
+    >
+      <div slot="heading">You're almost there</div>
+      <div slot="intro">
+        <p class="is-centered">To create your fundraiser, you need to sign up for a free account or log in if you have already one.</p>
+      </div>
+    </NewRegisterOrLoginModal>
+
     <slot name="heading"><h1>Change the world in 3 easy steps:</h1></slot>
     <div class="container">
       <div class="columns combo-wrapper is-multiline bubbles-wrapper">
@@ -116,13 +128,28 @@ export default {
    */
   components: {
     ComboBox: () => import("Components/general/ComboBox.vue"),
-    NonprofitAjaxSearch: () => import("Components/general/NonprofitAjaxSearch.vue")
+    NonprofitAjaxSearch: () => import("Components/general/NonprofitAjaxSearch.vue"),
+    UserDialog: () => import("Components/general/UserDialog.vue"),
+    NewRegisterOrLoginModal: () => import("Components/general/NewRegisterOrLoginModal.vue")
   },
   mounted () {
     this.canRender = true
     let storedForm = window.localStorage.getItem("nonprofitForm")
     if (storedForm) {
       this.form = JSON.parse(storedForm)
+    }
+
+    // We scroll to the end of the form if there's a pending action
+    var triggerAction = localStorage.getItem('action_to_trigger')
+    if (triggerAction === 'submit:form') {
+      localStorage.removeItem("action_to_trigger")
+      setTimeout(() => {
+        // action found, scroll to the form end
+        const target = `#form-action`
+        if (target) {
+          this.$scrollTo(target, { offset: -200 })
+        }
+      }, 2350)
     }
   },
   data () {
@@ -132,13 +159,17 @@ export default {
       nonprofitErrorMessage: "",
       nonprofitIsErrorMessage: "",
       hoursErrorMessage: "",
-      targetNonprofitErrorMessage: ""
+      targetNonprofitErrorMessage: "",
+      showLoginModal: false
     }
   },
   /**
    * TODO: validate form, submit data to api, display thank you or error dialog.
    */
   methods: {
+    closeLoginModal () {
+      this.showLoginModal = false
+    },
     validateNonprofit () {
       const nonprofit = this.form.nonprofit
       if (!nonprofit) {
@@ -206,13 +237,33 @@ export default {
       }
     },
     validateSubmit () {
-      if (this.validateAllFields()) {
-        this.userDialogModal = true
-        this.submitData()
+      if (!this.validateAllFields()) {
+        return;
       }
-    },
-    submitData () {
-      this.$emit('submit:form', { form: this.form })
+      if (this.isLoggedIn) {
+        this.$store.dispatch("SUBMIT_NONPROFIT_FORM", { form: this.form })
+          .then(data => {
+            this.userDialogModal = false
+            this.clearFormLocalStorage()
+
+            // remove auto-triggered actions and redirection
+            localStorage.removeItem("redirect_to_url")
+            localStorage.removeItem("action_to_trigger")
+          })
+          .catch(err => {
+            this.userDialogModal = false
+            console.log("error: ", err)
+          })      
+      } else {
+        this.showLoginModal = true
+        this.userDialogHeading = "Almost there dude"
+        this.userDialogMessage = "To create your fundraiser, you need to sign up for a free account or log in if you have already one."
+
+        // prepare this component to trigger an action upon mounting
+        localStorage.setItem("action_to_trigger", 'submit:form')
+        // remove the localstorage after the form has been submited
+      }
+
     },
     setNonprofit (event) {
       this.form.nonprofit = event
@@ -232,7 +283,10 @@ export default {
     },
     formIsEmpty () {
       return Object.keys(this.form).length === 0
-    }
+    },
+    isLoggedIn () {
+      return this.$store.state.user.loggedIn
+    }    
   },
   watch: {
     "form.hours": function (newVal) {
