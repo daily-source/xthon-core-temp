@@ -113,9 +113,11 @@ export default {
   },
   methods: {
     triggerExternalLogin () {
+      localStorage.setItem("redirect_to_url", this.$route.fullPath)
       this.$auth.login()
     },
     triggerExternalSignup () {
+      localStorage.setItem("redirect_to_url", this.$route.fullPath)
       this.$auth.signup()
     },
 
