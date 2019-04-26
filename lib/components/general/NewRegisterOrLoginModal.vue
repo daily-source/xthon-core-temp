@@ -44,8 +44,8 @@ export default {
   },
   methods: {
     triggerExternalLogin () {
-      //let expiresAt = JSON.stringify(expiresIn * 1000 + new Date().getTime())
-      console.log('this.$route', this.$route.fullPath)
+      // let expiresAt = JSON.stringify(expiresIn * 1000 + new Date().getTime())
+      console.log("this.$route", this.$route.fullPath)
       localStorage.setItem("redirect_to_url", this.$route.fullPath)
       this.$auth.login()
     },

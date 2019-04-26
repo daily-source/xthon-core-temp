@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VuePlayer from 'vue-plyr'
+import Vue from "vue"
+import VuePlayer from "vue-plyr"
 
 Vue.use(VuePlayer)
 

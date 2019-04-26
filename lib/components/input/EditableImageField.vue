@@ -88,9 +88,9 @@ export default {
       this.myCroppa.generateBlob(
         blob => {
           if (!blob) {
-            this.$emit("input:save", '')
+            this.$emit("input:save", "")
             this.fieldIsOpen = false
-            //this.errorMessage = this.errorText
+            // this.errorMessage = this.errorText
           } else {
             this.$emit("input:save", this.myCroppa.generateDataUrl("image/jpeg", 0.8))
             this.fieldIsOpen = false

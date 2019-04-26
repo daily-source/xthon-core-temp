@@ -140,12 +140,12 @@ export default {
     }
 
     // We scroll to the end of the form if there's a pending action
-    var triggerAction = localStorage.getItem('action_to_trigger')
-    if (triggerAction === 'submit:form') {
+    var triggerAction = localStorage.getItem("action_to_trigger")
+    if (triggerAction === "submit:form") {
       localStorage.removeItem("action_to_trigger")
       setTimeout(() => {
         // action found, scroll to the form end
-        const target = `#form-action`
+        const target = "#form-action"
         if (target) {
           this.$scrollTo(target, { offset: -200 })
         }
@@ -238,7 +238,7 @@ export default {
     },
     validateSubmit () {
       if (!this.validateAllFields()) {
-        return;
+        return
       }
       if (this.isLoggedIn) {
         this.$store.dispatch("SUBMIT_NONPROFIT_FORM", { form: this.form })
@@ -253,17 +253,16 @@ export default {
           .catch(err => {
             this.userDialogModal = false
             console.log("error: ", err)
-          })      
+          })
       } else {
         this.showLoginModal = true
         this.userDialogHeading = "Almost there dude"
         this.userDialogMessage = "To create your fundraiser, you need to sign up for a free account or log in if you have already one."
 
         // prepare this component to trigger an action upon mounting
-        localStorage.setItem("action_to_trigger", 'submit:form')
+        localStorage.setItem("action_to_trigger", "submit:form")
         // remove the localstorage after the form has been submited
       }
-
     },
     setNonprofit (event) {
       this.form.nonprofit = event
@@ -286,7 +285,7 @@ export default {
     },
     isLoggedIn () {
       return this.$store.state.user.loggedIn
-    }    
+    }
   },
   watch: {
     "form.hours": function (newVal) {
