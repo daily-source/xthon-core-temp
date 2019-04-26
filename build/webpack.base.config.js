@@ -1,47 +1,48 @@
-const path = require("path")
-const webpack = require("webpack")
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
-const { VueLoaderPlugin } = require("vue-loader")
+const path = require('path')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 
-const isProd = process.env.NODE_ENV === "production"
+const isProd = process.env.NODE_ENV === 'production'
 
 const sassResourcesLoader = {
-  loader: "sass-resources-loader",
+  loader: 'sass-resources-loader',
   options: {
     resources: [
-      path.resolve(__dirname, "../lib/assets/scss/base.scss")
+      path.resolve(__dirname, '../lib/assets/scss/base.scss')
     ]
   }
 }
 
+
 module.exports = {
   devtool: isProd
     ? false
-    : "#cheap-module-source-map",
+    : '#cheap-module-source-map',
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: "/dist/",
-    filename: "[name].[chunkhash].js"
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/dist/',
+    filename: '[name].[chunkhash].js'
   },
   resolve: {
     alias: {
-      "public": path.resolve(__dirname, "../public"),
-      "Components": path.resolve(__dirname, "../lib/components"),
-      "Core": path.resolve(__dirname, "../lib")
+      'public': path.resolve(__dirname, '../public'),
+      'Components': path.resolve(__dirname, '../lib/components'),
+      'Core': path.resolve(__dirname, '../lib')
     }
   },
   resolveLoader: {
     alias: {
-      "scss-loader": "sass-loader"
+      'scss-loader': 'sass-loader'
     }
-  },
+  },  
   module: {
     noParse: /es6-promise\.js$/, // avoid webpack shimming process
     rules: [
       {
         test: /\.vue$/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
         options: {
           compilerOptions: {
             preserveWhitespace: false
@@ -58,82 +59,82 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 10000,
-          name: "[name].[ext]?[hash]"
+          name: '[name].[ext]?[hash]'
         }
       },
       {
         test: /\.styl(us)?$/,
         use: isProd
           ? ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: { minimize: true }
-              },
-              "stylus-loader"
-            ],
-            fallback: "vue-style-loader"
-          })
-          : ["vue-style-loader", "css-loader", "stylus-loader"]
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: { minimize: true }
+                },
+                'stylus-loader'
+              ],
+              fallback: 'vue-style-loader'
+            })
+          : ['vue-style-loader', 'css-loader', 'stylus-loader']
       },
       {
         test: /\.(sass|scss)$/,
         use: isProd
           ? ExtractTextPlugin.extract({
-            use: [
-              {
-                loader: "css-loader",
-                options: {
-                  indentedSyntax: true,
-                  minimize: true
-                }
-              },
-              "sass-loader", // compiles Sass to CSS
-              sassResourcesLoader
-            ],
-            fallback: "vue-style-loader"
-          })
-          : ["vue-style-loader", "css-loader", "sass-loader", sassResourcesLoader]
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    indentedSyntax: true,
+                    minimize: true
+                  }
+                },
+                "sass-loader", // compiles Sass to CSS
+                sassResourcesLoader
+              ],
+              fallback: 'vue-style-loader'
+            })
+          : ['vue-style-loader', 'css-loader', 'sass-loader', sassResourcesLoader]
       },
       {
         test: /\.css$/,
         use: [
-          "vue-style-loader",
-          "css-loader"
+          'vue-style-loader',
+          'css-loader'
         ]
       }
     ]
   },
   performance: {
     maxEntrypointSize: 300000,
-    hints: isProd ? "warning" : false
+    hints: isProd ? 'warning' : false
   },
   plugins: isProd
     ? [
-      new VueLoaderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false }
-      }),
-      /*
+        new VueLoaderPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+          compress: { warnings: false }
+        }),
+        /*
          * TODO: this is generating an error only in Heroku /nonprofits/43138428 route.
          * Disabled for now, needs to be checked out.
          */
-      /*
+        /*
         new webpack.optimize.ModuleConcatenationPlugin(), */
-      new ExtractTextPlugin({
-        filename: "common.[chunkhash].css"
-      })
-    ]
+        new ExtractTextPlugin({
+          filename: 'common.[chunkhash].css'
+        }),
+      ]
     : [
-      new VueLoaderPlugin(),
-      new FriendlyErrorsPlugin()
-    ]
+        new VueLoaderPlugin(),
+        new FriendlyErrorsPlugin()
+      ]
 }

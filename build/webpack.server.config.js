@@ -1,16 +1,16 @@
-const webpack = require("webpack")
-const merge = require("webpack-merge")
-const base = require("./webpack.base.config")
-const nodeExternals = require("webpack-node-externals")
-const VueSSRServerPlugin = require("vue-server-renderer/server-plugin")
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const base = require('./webpack.base.config')
+const nodeExternals = require('webpack-node-externals')
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
 module.exports = merge(base, {
-  target: "node",
-  devtool: "#source-map",
-  entry: "./lib/entry-server.js",
+  target: 'node',
+  devtool: '#source-map',
+  entry: './lib/entry-server.js',
   output: {
-    filename: "server-bundle.js",
-    libraryTarget: "commonjs2"
+    filename: 'server-bundle.js',
+    libraryTarget: 'commonjs2'
   },
   // https://webpack.js.org/configuration/externals/#externals
   // https://github.com/liady/webpack-node-externals
@@ -20,8 +20,8 @@ module.exports = merge(base, {
   }),
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development"),
-      "process.env.VUE_ENV": "\"server\""
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.VUE_ENV': '"server"'
     }),
     new VueSSRServerPlugin()
   ]
