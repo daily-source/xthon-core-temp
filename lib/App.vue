@@ -27,6 +27,7 @@ import VueMeta from "vue-meta"
 import AppHeader from "Components/general/AppHeader.vue"
 import VueScrollTo from "vue-scrollto"
 import Croppa from "vue-croppa"
+import AuthService from "./auth/authService"
 
 import Datetime from "vue-datetime"
 import "vue-datetime/dist/vue-datetime.css"
@@ -35,6 +36,9 @@ Vue.use(VueScrollTo)
 Vue.use(VueMeta)
 Vue.use(Croppa)
 Vue.use(Datetime)
+Vue.use(AuthService)
+
+Vue.prototype.$eventHub = new Vue()
 
 export default {
   name: "App",
@@ -54,7 +58,69 @@ export default {
       })
   },
   mounted () {
+    // We store the redirect_to_url var in localStorage
+    var redirectTo = localStorage.getItem("redirect_to_url")
+    if (redirectTo) { // ensure that no redirect happens if it's the same URL (home)
+      localStorage.removeItem("redirect_to_url")
+      setTimeout(() => {
+        this.canRender = true
+      }, 500)
+      this.$router.push(redirectTo)
+    } else {
+      this.canRender = true      
+    }
+
     require("Components/plugins/FacebookSDK.js")
+
+    // These actions will authenticate the user silently.
+    // We register these events to be triggered as a bus
+    this.$auth.silentLogin()
+
+    // These methods are executed automatically the first time the app is created
+    this.$eventHub.$on("set_user", (payload) => {
+      this.$store.dispatch("SET_USER", { user: payload.user })
+    })
+    this.$eventHub.$on("save_token", (payload) => {
+      this.$store.commit("SAVE_TOKEN", { accessToken: payload.accessToken, idToken: payload.idToken })
+      setTimeout(() => {
+        // silently hit the backend with the token. Should we establish a session token??
+        this.$auth.requestBackendData()
+      }, 50)
+    })
+    this.$eventHub.$on("log_off", (payload) => {
+      this.$store.commit("LOG_OFF")
+    })
+
+    // Request backend data
+    this.$eventHub.$on("request_backend", (payload) => {
+      Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
+        headers: { "Authorization": `Bearer ${this.$store.state.user.tokenData.accessToken}` }
+      })
+        .then(data => {
+          this.$store.commit("SET_BACKEND_USER", { user: data.data })
+        })
+        .catch(e => {
+        // If no user is returned, maybe create it?
+          Vue.axios.put(
+            `${process.env.BASE_API}/users/auth0/create`,
+            {
+              data: JSON.stringify({
+                user: this.$store.state.user.auth0
+              })
+            },
+            {
+              headers: { "Authorization": `Bearer ${this.$store.state.user.tokenData.accessToken}` }
+            }
+          )
+            .then(data => {
+              this.$store.commit("SET_BACKEND_USER", { user: data.data })
+            })
+            .catch(e => {
+              // If no user is returned, maybe create it?
+              console.log("err: ", e)
+            })
+        })
+    })
   },
   metaInfo () {
     /**

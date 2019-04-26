@@ -71,8 +71,6 @@ import InputPassword from "Components/input/InputPassword.vue"
 import SocialLogin from "Components/login/SocialLogin.vue"
 
 import Vue from "vue"
-import AuthService from "Src/auth/authService"
-Vue.use(AuthService)
 
 export default {
   props: [ "layout", "login", "signup", "showOnly", "display", "requireName", "register" ],

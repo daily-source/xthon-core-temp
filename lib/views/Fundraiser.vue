@@ -49,7 +49,7 @@
 <script>
 import Vue from "vue"
 import VueMeta from "vue-meta"
-import AppHeader from "Components/general/AppHeader.vue"
+import AppHeader from "Components/Volunteerathon/AppHeader.vue"
 import FundraiserHeader from "Components/fundraiser/FundraiserHeader.vue"
 
 Vue.use(VueMeta)
