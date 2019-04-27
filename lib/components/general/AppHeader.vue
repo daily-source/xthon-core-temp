@@ -300,9 +300,11 @@
   }
 
   .logo__slider {
+    width: 300px;
+
     .logo__slide {
       width: 100%;
-      height: 60px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -349,13 +351,13 @@
 
       img {
         max-width: 272px;
-        max-height: 49px;        
+        max-height: 100%;        
       }
 
       @include tablet {
         img {
           max-width: 300px;
-          max-height: 53px;        
+          max-height: 100%;        
         }        
       }
 
@@ -433,16 +435,11 @@ export default {
         { name: "Bake for Good", href: "#" }
       ],
       headerLogos: [
-        `${baseUrl}img/other-sites/max-good.png`,  
-        `${baseUrl}img/other-sites/optionsforgood.png`,   
-        `${baseUrl}img/other-sites/calendarforgood.png`,
-        `${baseUrl}img/other-sites/forthepoor.png`,
-        `${baseUrl}img/other-sites/volunteerathon.png`,
-        `${baseUrl}img/other-sites/quitathon.jpg`,
-        `${baseUrl}img/other-sites/give-it-up-for-good.png`,
-        `${baseUrl}img/other-sites/run-for-good.png`,
-        `${baseUrl}img/other-sites/charitable-columbus.png`,
-        `${baseUrl}img/other-sites/st-patricks-sharing.png`,
+        `${baseUrl}img/other-sites/logo-1.jpg`,
+        `${baseUrl}img/other-sites/logo-2.jpg`,
+        `${baseUrl}img/other-sites/logo-3.jpg`,
+        `${baseUrl}img/other-sites/logo-4.jpg`,
+        `${baseUrl}img/other-sites/logo-5.jpg`,
       ],
       flickityOptions: {
         pageDots: false,
