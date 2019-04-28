@@ -359,7 +359,7 @@
         }        
       }
 
-      &.centered {
+    &.centered {
         opacity: 0;
         display: none;
       }
