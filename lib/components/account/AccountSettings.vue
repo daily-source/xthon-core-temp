@@ -155,7 +155,6 @@ export default {
         .catch(err => {
           this.userDialogMessage = "An error occurred. Try again later."
           this.userDialogSpinner = false
-          console.log(err)
         })
     },
     updateAvatar (blob) {
@@ -170,7 +169,7 @@ export default {
         .catch(err => {
           this.userDialogSpinner = false
           this.userDialogHeading = "Error"
-          this.userDialogMessage = err
+          this.userDialogMessage = `An error has occurred: ${err.response.statusText}`
         })
     },
     closeUserDialog () {
