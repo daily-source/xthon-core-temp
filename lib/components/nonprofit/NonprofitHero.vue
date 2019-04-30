@@ -94,8 +94,12 @@
         </div>
       </div>
       <div class="container">
-        <div class="nonprofit-intro allow-html" v-if="common.nonprofit" v-html="common.nonprofit.intro">
-        </div>
+        <div
+          :class="{'transparent-block': editing}"
+          class="nonprofit-intro allow-html"
+          v-if="common.nonprofit"
+          v-html="common.nonprofit.intro"
+        ></div>
       </div>
     </section>
   </div>
@@ -322,5 +326,12 @@ export default {
       width: 100%;
     }
   }
+}
+.allow-html {
+  transition: opacity 0.1s ease-in-out;
+  &.transparent-block {
+    opacity: 0;
+  }
+
 }
 </style>
