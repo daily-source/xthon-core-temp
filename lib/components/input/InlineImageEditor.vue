@@ -38,6 +38,8 @@
             :width="calculateWidth"
             :height="calculateHeight"
             :prevent-white-space="true"
+            :zoom-speed="5"
+            :quality="10"
             v-on:keyup.enter="saveImage()"
             v-on:new-image="errorMessage = ''"
             v-if="fieldIsOpen"
@@ -201,6 +203,7 @@ export default {
      * This method will save an image to the library if it can be validated.
      */
     saveImage () {
+      console.log('saving image to this location: ', this.location)
       if (!this.fieldIsOpen) {
         return
       }
@@ -211,7 +214,7 @@ export default {
         this.userDialogSpinner = false
       } else {
         this.userDialogSpinner = true
-        this.$store.dispatch("SAVE_REPLACE_IMAGE", {
+        this.$store.dispatch("SAVE_GENERIC_IMAGE", {
           image: blob,
           location: this.location,
           route: this.$route,
