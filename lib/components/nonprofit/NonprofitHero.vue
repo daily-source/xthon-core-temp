@@ -142,7 +142,28 @@ export default {
     },
     closeEdition () {
       this.$emit("edit:close")
-    }
+    },
+    updateNonprofitLogo (blob) {
+      this.userDialogModal = true
+      this.userDialogSpinner = true
+      return this.$store.dispatch("SAVE_REPLACE_IMAGE", {
+        image: blob,
+        nonprofitId: this.nonprofit.EIN,
+        location: 'logo',
+        entity: 'nonprofit',
+        replace: true
+      })
+        .then(() => {
+          setTimeout(() => {
+            this.userDialogModal = false
+          }, 500)
+        })
+        .catch(err => {
+          this.userDialogSpinner = false
+          this.userDialogHeading = "Error"
+          this.userDialogMessage = `An error has occurred: ${err.response.statusText}`
+        })
+    },
   }
 }
 </script>

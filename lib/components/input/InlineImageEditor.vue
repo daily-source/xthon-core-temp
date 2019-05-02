@@ -205,25 +205,24 @@ export default {
         return
       }
       this.userDialogModal = true
-      this.croppaObject.generateBlob(
-        blob => {
-          if (!blob) {
-            this.userDialogMessage = "The image couldn't be generated."
-            this.userDialogSpinner = false
-          } else {
-            this.userDialogSpinner = true
-            this.$store.dispatch("SAVE_IMAGE_FIELD", { location: this.location, route: this.$route, blob: blob })
-              .then(() => {
-                this.cancelEdition()
-              })
-              .catch(err => {
-                console.log(err)
-              })
-          }
-        },
-        "image/jpeg",
-        0.8
-      ) // 80% compressed jpeg file
+      var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.8)
+      if (!blob) {
+        this.userDialogMessage = "The image couldn't be generated."
+        this.userDialogSpinner = false
+      } else {
+        this.userDialogSpinner = true
+        this.$store.dispatch("SAVE_REPLACE_IMAGE", {
+          image: blob,
+          location: this.location,
+          route: this.$route,
+        })
+          .then(() => {
+            this.cancelEdition()
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
     }
   },
   watch: {
