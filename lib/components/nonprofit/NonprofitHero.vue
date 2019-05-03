@@ -36,13 +36,13 @@
           default-text="Add a logo"
           layout="overlay"
           type="avatar"
-          v-if="nonprofit.data && nonprofit.data.logo || editing"
+          v-if="nonprofit.data && nonprofit.data.logo && nonprofit.data.logo.src || editing"
           v-on:edition:open="newImageOpenId = $event"
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
       </div>
       <div class="container columns center">
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo.src && !editing}" v-if="!nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -54,7 +54,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo.src && !editing}" v-if="nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -66,7 +66,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofit.data.logo}">
+        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofit.data.logo.src}">
           <div class="button nonprofit-hero__cta-fundraise">Fundraise</div>
           <DonateAction
             :nonprofit-ein="nonprofit.EIN"

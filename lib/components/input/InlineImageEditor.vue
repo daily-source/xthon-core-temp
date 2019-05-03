@@ -182,11 +182,12 @@ export default {
       this.croppaObject.refresh()
     },
     removeImage () {
+      console.log('this.location: ', this.location)
       this.userDialogModal = true
       this.userDialogSpinner = true
       this.errorMessage = ""
       if (typeof this.item !== "undefined") {
-        this.$store.dispatch("REMOVE_IMAGE", { location: this.location, route: this.$route, id: this.item.id })
+        this.$store.dispatch("REMOVE_FIXED_IMAGE", { location: this.location, route: this.$route })
           .then(() => {
             this.cancelEdition()
           })
@@ -203,9 +204,6 @@ export default {
      * This method will save an image to the library if it can be validated.
      */
     saveImage () {
-      if (!this.fieldIsOpen) {
-        return
-      }
       this.userDialogModal = true
       var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.8)
       if (!blob) {
