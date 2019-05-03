@@ -203,7 +203,6 @@ export default {
      * This method will save an image to the library if it can be validated.
      */
     saveImage () {
-      console.log('saving image to this location: ', this.location)
       if (!this.fieldIsOpen) {
         return
       }
