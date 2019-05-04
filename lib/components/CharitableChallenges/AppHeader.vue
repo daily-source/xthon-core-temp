@@ -20,7 +20,7 @@
         <div class="logo__wrapper">
           <div class='logo' v-if='!generic'>
             <router-link to="/">
-              <img class="logo" :src="require('Public/charitable-contests.png')" alt="logo" width="300" height="53">
+              <img class="logo" :src="require('Public/charitable-challenges.png')" alt="logo" width="300" height="53">
             </router-link>
           </div>
           <div class='logo__slider' v-else>
@@ -43,7 +43,7 @@
         <div class="logo__wrapper centered">
           <div class='logo' v-if='!generic'>
             <router-link to="/">
-              <img class="logo" :src="require('Public/charitable-contests.png')" alt="logo" width="300" height="53">
+              <img class="logo" :src="require('Public/charitable-challenges.png')" alt="logo" width="300" height="53">
             </router-link>
           </div>
           <div class='logo__slider' v-else>
@@ -348,13 +348,13 @@
       order: -2;
 
       img {
-        max-width: 100px;
+        max-width: 150px;
         max-height: none;
       }
 
       @include tablet {
         img {
-          max-width: 120px;
+          max-width: 250px;
           max-height: none;
         }        
       }
