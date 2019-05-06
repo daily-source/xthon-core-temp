@@ -32,7 +32,7 @@
           :is-standalone="true"
           :disable-orientation="true"
           :required="false"
-          :key="_uid + '_' + nonprofit.EIN"
+          :key="nonprofit.data && nonprofit.data.logo && nonprofit.data.logo.src ? nonprofit.data.logo.src : _uid + '_' + nonprofit.EIN"
           default-text="Add a logo"
           layout="overlay"
           type="avatar"

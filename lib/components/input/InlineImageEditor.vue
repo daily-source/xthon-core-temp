@@ -153,7 +153,7 @@ export default {
     if (this.initialRatio) {
       this.ratio = this.initialRatio
     }
-    this.croppaInitialImage = this.initialImage
+    this.croppaInitialImage = this.initialImage || this.defaultImage
   },
   methods: {
     cancelEdition () {
@@ -182,7 +182,6 @@ export default {
       this.croppaObject.refresh()
     },
     removeImage () {
-      console.log('this.location: ', this.location)
       this.userDialogModal = true
       this.userDialogSpinner = true
       this.errorMessage = ""
