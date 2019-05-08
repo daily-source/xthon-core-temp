@@ -37,12 +37,15 @@
               :key="`fundraiser-${site.id}`"
               class="fundraiser-grid__col has-text-centered"
             >
-              <router-link to="#">
+              <a 
+                :href="site.url || '#'"
+                target='_blank'
+              >
                 <img 
                   :src="require(`@/assets/img/site-logos/${site.imgName}`)"
                   :id="`${site.id}-img`"
                 />
-              </router-link>
+              </a>
             </div>
           </div>
           <slot></slot>
