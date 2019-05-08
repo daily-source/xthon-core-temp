@@ -89,7 +89,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0.625em;
-    min-height: 80px;
+    min-height: 100px;
 
     @include desktop {
       max-width: enlarge(180px);
@@ -127,19 +127,17 @@ export default {
 
 #memorial-day-donating {
   .event-card__event-image {
-    max-width: enlarge(140px);
+    max-width: enlarge(160px);
   }
 }
 
-#run-for-good,
 #polar-plunge-for-good,
 #fourth-for-good,
 #christmas-for-good,
 #benevolent-birthdays,
 #vacation-for-good,
 #labor-for-good,
-#anniversaries-for-good,
-#fathers-for-good {
+#anniversaries-for-good {
   .event-card__event-image {
     max-width: enlarge(160px);
   }
@@ -153,8 +151,7 @@ export default {
 
 #big-hearted-halloween,
 #mlk-day-for-good,
-#virtuous-valentines,
-#fools-for-good {
+#virtuous-valentines {
   .event-card__event-image {
     max-width: enlarge(190px);
   }
@@ -194,6 +191,30 @@ export default {
 #purposeful-presidents-day {
   .event-card__event-image {
     max-width: enlarge(240px);
+  }
+}
+
+#mothers-for-good {
+  .event-card__event-image {
+    max-width: enlarge(148px);
+  }
+}
+
+#fools-for-good {
+  .event-card__event-image {
+    max-width: enlarge(200px);
+  }
+}
+
+#fathers-for-good {
+  .event-card__event-image {
+    max-width: enlarge(180px);
+  }
+}
+
+#run-for-good {
+  .event-card__event-image {
+    max-width: enlarge(150px);
   }
 }
 </style>
