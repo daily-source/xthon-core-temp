@@ -62,6 +62,8 @@ FB_APP_ID='542100222812055'
 COMMENT_API='https://wt-9c78551d704acfbbfbeb0bb6cca86e9a-0.sandbox.auth0-extend.com/volunteerathon-comment'
 ```
 
+*Please have a look at the .env.example file for a complete list of env vars*
+
 The `IRS_SEARCH_API_URL` constant is needed by the NonprofitAjaxSearch component and by the nonprofit view to pull information from non-claimed nonrpofits, i.e., nonprofits that are not yet in the database but that do exists in the IRS database.
 
 ## Inspiration
