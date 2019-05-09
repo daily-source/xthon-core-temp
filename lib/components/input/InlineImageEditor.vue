@@ -101,7 +101,7 @@ import Icons from "Components/general/Icons.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText" ],
+  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename' ],
   data () {
     return {
       croppaObject: {},
@@ -214,6 +214,7 @@ export default {
           image: blob,
           location: this.location,
           route: this.$route,
+          filename: this.filename
         })
           .then(() => {
             this.cancelEdition()

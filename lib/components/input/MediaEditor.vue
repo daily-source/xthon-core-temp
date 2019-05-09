@@ -13,6 +13,8 @@
         :item="item"
         :open-default="true"
         :edition-is-enabled="true"
+        location="nonprofit.data.media"
+        filename="media_image"
         v-on:edition:open="newImageOpenId = $event"
         v-on:edition:close="newImageOpenId = null"
         v-on:image:remove="removeNewImage()"
