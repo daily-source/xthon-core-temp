@@ -116,50 +116,54 @@
         <div class="nonprofit-extended__media column is-12-desktop">
           <div class="nonprofit-extended__icon">
             <Icons iconwidth="24px" iconheight="24px" icon="camera" color="#f0f0f0" class="icon"
-              v-if="nonprofit.data.media && nonprofit.data.media.length || editing"
+              v-if="nonprofit.media && (nonprofit.media.images.length || nonprofit.media.videos.length) || editing"
             />
-            <p v-if="editing && nonprofit.data.media">
-              <span>{{nonprofit.data.media.length}} Photos and videos</span>
+            <p v-if="editing && nonprofit.media">
+              <span>{{nonprofit.media.length}} Photos and videos</span>
             </p>
             <MediaViewer
-              v-if="!editing && nonprofit.data.media && nonprofit.data.media.length"
-              :media="nonprofit.data.media"
+              v-if="!editing"
+              :media="nonprofit.media"
               v-on:modal:open="stopFlickity()"
               v-on:modal:close="startFlickity()"
               ref="mediaViewer"
             >
               <div slot="trigger">
-                <a v-if="nonprofit.data.media">{{nonprofit.data.media.length}} Photos and videos</a>
+                <a v-if="nonprofit.media">{{nonprofit.media.length}} Photos and videos</a>
               </div>
             </MediaViewer>
           </div>
           <MediaEditor
             v-if="editing"
             :media-source="nonprofit.data"
-            location="nonprofit.data.media"
+            location="nonprofit.media"
           ></MediaEditor>
           <flickity ref="carousel" class="nonprofit-extended__media-wrapper"
-            v-if="nonprofit.data.media && !editing"
+            v-if="nonprofit.media && !editing"
             :options="nonprofitMediaCarouselOptions"
-            :class="{'short-wrapper': nonprofit.data.media.length < 3}"
+            :class="{'short-wrapper': nonprofit.media.length < 3}"
           >
             <div
               @click=""
-              v-for="(item, index) in nonprofit.data.media"
-            >            
+              v-for="(item, index) in nonprofit.media.images"
+            >
               <LazyLoadedImage
                 class="nonprofit-extended__media-item"
                 :is-background="true"
-                :src="item.src"
-                :key="item.src"
-                v-if="item.type === 'image'"
+                :src="item"
+                :key="item"
               ></LazyLoadedImage>
+            </div>
+            <div
+              @click=""
+              v-for="(item, index) in nonprofit.media.videos"
+            >
               <LazyLoadedImage
                 class="nonprofit-extended__media-item "
                 :is-background="true"
-                :src="`https://img.youtube.com/vi/${item.src}/mqdefault.jpg`"
-                :key="item.src"
-                v-if="item.type === 'video'"
+                :src="`https://img.youtube.com/vi/${item}/mqdefault.jpg`"
+                :key="item"
+                v-for="(item, index) in nonprofit.media.videos"
               ></LazyLoadedImage>
             </div>
           </flickity>
