@@ -1,24 +1,27 @@
 <template>
   <div class="updates__wrapper">
-    <div :class="{'current': update.id === currentId}" 
+    <div 
+        :class="{'current': update.id === currentId}" 
         :id="`update_${update.id}`"
         class="update__wrapper"
-        v-for="(update, index) in updates">
+        v-for="(update, index) in updates"
+        :key='index'
+      >
       <div class="update__fullname"><span class="update__fullname-name">Update # {{count - index}}</span></div>
       <div class="update__timestamp">{{update.createdAt | formattedDate}}</div>
       <div class="update__content" v-if="update.content.length > maxchar">
-        <transition name="fade">
-          <div v-if="!showFullUpdate[index]">
-            <span v-html="excerpt(update.content)"></span>
-            <span>... <a @click="toggleIndex(index)">Show more</a></span>
+        <div class="update__content-inner">
+          <div class="update__content-inner--excpert" v-if='!showFullUpdate[index]'>
+            <span v-html='excerpt(update.content)'></span>
+            <span>... <a @click.prevent.stop="toggleIndex(index)">Show more</a></span>
           </div>
-          <div class="update__content" v-else>
-            <div v-html="update.content"></div>
-            <span><a @click="toggleIndex(index)">Show less</a></span>
+          <div class="update_-content-inner--full" v-else>
+            <div v-html="fullContent(update.content)"></div>
+            <span class='update__show-less'><a @click.prevent.stop="toggleIndex(index)">Show less</a></span>
           </div>
-        </transition>
+        </div>
       </div>
-      <div class="update__content" v-else v-html="update.content"></div>
+      <div class="update__content" v-else v-html="fullContent(update.content)"></div>
       <ShareDonateToolbar
         :allowComment="false"
         :url-params="`update_id=${update.id}`"
@@ -68,6 +71,12 @@
     line-height: 1.4;
     font-family: $font-primary;
   }
+
+  &__show-less {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
 }
 
 </style>
@@ -113,7 +122,9 @@ import ShareDonateToolbar from "Components/general/ShareDonateToolbar.vue"
 export default {
   data () {
     return {
-      showFullUpdate: {}
+      showFullUpdate: [
+        ...Array(this.updates.length).fill(false)
+      ]
     }
   },
   components: {
@@ -127,19 +138,23 @@ export default {
   props: [ "updates", "maxchar", "count", "fundraiserId" ],
   methods: {
     excerpt (content) {
-      var stripHtml = content.replace(/<\/?[^>]+(>|$)/g, "")
-      return stripHtml.substring(0, this.maxchar)
+      // var stripHtml = content.replace(/<\/?[^>]+(>|$)/g, "")
+      const stripHtml = content.substring(0, this.maxchar)
+      return stripHtml.replace(/\n/g, "<br/> <br />")
+    },
+    fullContent (content) {
+      return content.replace(/\n/g, "<br /> <br />")
     },
     toggleIndex (index) {
       if (!this.showFullUpdate[index]) {
         Vue.set(this.showFullUpdate, index, true)
       } else {
-        Vue.set(this.showFullUpdate, index, false)
+        Vue.set(this.showFullUpdate, index, false)        
       }
     },
     openShareBox (update) {
       alert(`${window.location.origin}${window.location.pathname}?update_id=${update.id}`)
     }
-  }
+  },
 }
 </script>
