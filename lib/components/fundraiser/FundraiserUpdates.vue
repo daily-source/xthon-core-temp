@@ -140,10 +140,10 @@ export default {
     excerpt (content) {
       // var stripHtml = content.replace(/<\/?[^>]+(>|$)/g, "")
       const stripHtml = content.substring(0, this.maxchar)
-      return stripHtml.replace(/\n/g, "<br/> <br />")
+      return stripHtml.replace(/(?:\r\n|\r|\n)/g, "<br/> <br />")
     },
     fullContent (content) {
-      return content.replace(/\n/g, "<br /> <br />")
+      return content.replace(/(?:\r\n|\r|\n)/g, "<br /> <br />")
     },
     toggleIndex (index) {
       if (!this.showFullUpdate[index]) {
