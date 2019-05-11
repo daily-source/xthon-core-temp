@@ -19,16 +19,16 @@
 
 <script>
 export default {
-  name: 'InputGroup',
+  name: "InputGroup",
 
   inheritAttrs: false,
 
   props: {
     prependText: {
-      type: String,
+      type: String
     },
     appendText: {
-      type: String,
+      type: String
     }
   },
 
@@ -37,7 +37,7 @@ export default {
       return {
         ...this.$listeners,
         input: event => {
-          this.$emit('input', event.target.value)
+          this.$emit("input", event.target.value)
         }
       }
     }

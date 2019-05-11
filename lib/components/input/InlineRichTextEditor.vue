@@ -93,7 +93,6 @@ export default {
         clearTimeout(this.blurTimeout)
         if (this.fieldValue) {
           this.userDialogModal = true
-          console.log("content: ", this.fieldValue)
           this.$store.dispatch("SAVE_INLINE_FIELD", { location: this.location, route: this.$route, value: this.fieldValue })
             .then(() => {
               this.cancelEdition()

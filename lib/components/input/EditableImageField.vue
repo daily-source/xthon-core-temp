@@ -1,18 +1,17 @@
 <template>
-  <div>
     <div class="columns is-multiline is-mobile">
       <div class="column is-4-tablet is-11-mobile">
         <label :for="`input-editable_${_uid}`">{{label}}</label>
       </div>
       <div class="column is-5-tablet is-7-mobile">
         <div class="edition-trigger" v-if="!fieldIsOpen" @click="openEdition()">
-          <img
+          <img 
             :src="avatar"
             v-if="avatar"
             width="200"
           />
           <avatar 
-            :username="$store.state.user.firstname + ' ' + $store.state.user.lastname" 
+            :username="$store.state.user.data.firstName + ' ' + $store.state.user.data.lastName" 
             v-if="!avatar"
             :rounded="false"
           ></avatar>
@@ -24,6 +23,7 @@
             :placeholder="'Select file'"
             :placeholder-font-size="20"
             :show-remove-button="false"
+            canvas-color="#FFFFFF"
             v-on:keyup.enter="saveField()"
             v-on:new-image="errorMessage = ''"
           >
@@ -88,9 +88,11 @@ export default {
       this.myCroppa.generateBlob(
         blob => {
           if (!blob) {
-            this.errorMessage = this.errorText
+            this.$emit("input:save", "")
+            this.fieldIsOpen = false
+            // this.errorMessage = this.errorText
           } else {
-            this.$emit("input:save", blob)
+            this.$emit("input:save", this.myCroppa.generateDataUrl("image/jpeg", 0.8))
             this.fieldIsOpen = false
           }
         },

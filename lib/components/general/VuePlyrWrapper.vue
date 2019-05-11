@@ -5,9 +5,13 @@
 </template>
 
 <script>
-import "vue-plyr"
+import Vue from "vue"
+import VuePlayer from "vue-plyr"
+
+Vue.use(VuePlayer)
 
 export default {
+  name: "VuePlyrWrapper",
   data () {
     return {
       canRender: false

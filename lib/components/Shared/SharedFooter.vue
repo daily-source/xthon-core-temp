@@ -62,9 +62,8 @@
 
 <script>
 export default {
-  name: 'SharedFooter',
-};
-
+  name: "SharedFooter"
+}
 </script>
 
 <style lang="scss">

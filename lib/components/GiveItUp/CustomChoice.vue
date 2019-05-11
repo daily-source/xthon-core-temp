@@ -36,67 +36,67 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex"
 
 export default {
-  name: 'CustomChoice',
+  name: "CustomChoice",
 
-  props: ['index'],
+  props: ["index"],
 
-  data() {
+  data () {
     return {
       checked: false,
-      label: '',
-      error: false,
-    };
+      label: "",
+      error: false
+    }
   },
 
   methods: {
-    handleChecked() {
+    handleChecked () {
       if (!this.label) {
-        this.error = true;
+        this.error = true
       }
     },
 
     ...mapActions({
-      addSelected: 'selections/pushSelected',
-      removeSelected: 'selections/removeSelected',
-      changeSelectedLabel: 'selections/changeSelectedLabel',
-    }),
+      addSelected: "selections/pushSelected",
+      removeSelected: "selections/removeSelected",
+      changeSelectedLabel: "selections/changeSelectedLabel"
+    })
   },
 
   watch: {
-    label() {
+    label () {
       const choice = {
         name: this.index,
         label: this.label,
-        customChoice: true,
-      };
+        customChoice: true
+      }
 
       if (this.label) {
-        this.error = false;
-        this.addSelected({ choice });
-        this.changeSelectedLabel({ choice, label: this.label });
+        this.error = false
+        this.addSelected({ choice })
+        this.changeSelectedLabel({ choice, label: this.label })
       } else {
-        this.checked = false;
-        this.removeSelected({ choice });
+        this.checked = false
+        this.removeSelected({ choice })
       }
     },
 
-    checked() {
+    checked () {
       const choice = {
         name: this.index,
         label: this.label,
-        customChoice: true,
-      };
+        customChoice: true
+      }
 
       if (this.checked && this.label) {
-        this.addSelected({ choice });
+        this.addSelected({ choice })
       } else {
-        this.checked = false;
-        this.removeSelected({ choice });
+        this.checked = false
+        this.removeSelected({ choice })
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>

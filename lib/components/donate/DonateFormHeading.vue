@@ -8,8 +8,8 @@
     <h2 class="page-title" v-if="parent === 'nonprofit'">
       <span class="page-title__first">Donate to</span> <span class="page-title__second">{{nonprofit.NAME}}</span>
     </h2>
-    <h2 class="page-title" v-if="parent === 'fundraiser' && fundraiser.participant">
-      <span class="page-title__first">Support {{fundraiser.participant.name}}'s Volunteerathon</span> <span class="page-title__
+    <h2 class="page-title" v-if="parent === 'fundraiser' && fundraiser.User">
+      <span class="page-title__first">Support {{fundraiser.User.firstName}}'s Volunteerathon</span> <span class="page-title__
       ">{{fundraiser.name}}</span>
     </h2>
   </div>
@@ -23,7 +23,7 @@ export default {
       return this.$store.state.user.loggedIn
     },
     userName () {
-      return this.$store.state.user.nickname || this.$store.state.user.firstName
+      return this.$store.state.user.data.nickname || this.$store.state.user.data.firstName
     }
   }
 }

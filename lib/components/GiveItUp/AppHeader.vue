@@ -72,15 +72,15 @@
 </template>
 
 <script>
-import Icon from 'Components/general/Icons'
+import Icon from "Components/general/Icons"
 
 export default {
-  name: 'AppHeader',
+  name: "AppHeader",
 
   components: {
-    Icon,
-  },
-};
+    Icon
+  }
+}
 </script>
 
 <style lang="scss">

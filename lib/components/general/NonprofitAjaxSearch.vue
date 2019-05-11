@@ -2,7 +2,7 @@
   <div class="column is-centered nonprofit-search-field-wrapper" :class="{'standalone columns': standalone}">
     <VueSelect
       transition="fade" 
-      label="name"
+      label="NAME"
       :filterable="false"
       :options="options"
       :placeholder="placeholder"
@@ -99,6 +99,12 @@ export default {
   .v-select {
     flex: 1;
 
+    &.dropdown .highlight a {
+      transition: all 0.2s ease-in-out;
+      color: white !important;
+      background: $color-emphasis !important;
+    }
+
     .selected-tag {
       position: absolute;
       text-align: left;
@@ -134,9 +140,6 @@ export default {
     li {
       padding-left: 0px;
       padding-right: 0px;
-      &.active.highlight {
-        background: $color-medium-gray !important;
-      }
       a {
         display: block;
         white-space: normal;

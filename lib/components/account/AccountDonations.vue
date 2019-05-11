@@ -12,29 +12,29 @@
     <h3>Donations</h3>
 
     <section class="donations-section">
-      <div v-if="userData.protected.donations && userData.protected.donations.length">
+      <div v-if="userData.Donations && userData.Donations.length">
         <table class="table is-striped is-fullwidth donations-table">
           <thead>
             <tr>
               <th>Fundraiser/Nonprofit</th>
               <th>Amount</th>
               <th>Date</th>
-              <th>Public</th>
+              <th>Anonymous</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="donation in userData.protected.donations" :key="donation.id">
+            <tr v-for="donation in userData.Donations" :key="donation.id">
               <td>
                 <div v-if="donation.fundraiser_id">
-                  <router-link :to="`/fundraiser/${donation.Fundraiser.id}`">See fundraiser</router-link>
+                  <router-link :to="`/fundraiser/${donation.FundraiserId}`">See fundraiser</router-link>
                 </div>
                 <div v-else>
-                  <router-link :to="`/nonprofit/${donation.Nonprofit.id}`">See nonprofit</router-link>
+                  <router-link :to="`/nonprofit/${donation.NonprofitId}`">See nonprofit</router-link>
                 </div>
               </td>
-              <td>{{donation.amount | usd}}</td>
-              <td>{{donation.timestamp | formattedDate}}</td>
-              <td>{{donation.public | booleanToBinary}}</td>
+              <td>{{donation.amountInCents | centsToUsd}}</td>
+              <td>{{donation.createdAt | formattedDate}}</td>
+              <td>{{donation.anonymous | booleanToBinary}}</td>
             </tr>
           </tbody>
         </table>
@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     userData () {
-      return this.$store.state.user
+      return this.$store.state.user.data
     }
   }
 }

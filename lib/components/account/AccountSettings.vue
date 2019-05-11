@@ -17,7 +17,7 @@
       <EditableTextField
         label="Nickname:"
         ref="nickname"
-        :value="userData.nickname"
+        :value="userData.data.nickname"
         error-text="This field can't be empty"
         type="name"
         v-on:input:save="updateUserField('nickname', $event)"
@@ -26,8 +26,8 @@
       <EditableTextField
         label="First name:"
         ref="firstName"
-        :value="userData.firstName"
-        error-text="This field can't be empty"
+        :value="userData.data.firstName"
+        error-text="This field can't be empty. Use no more than 140 chars."
         type="name"
         v-on:input:save="updateUserField('firstName', $event)"
         v-on:next:field="openEdition('lastName')"
@@ -36,8 +36,8 @@
       <EditableTextField
         label="Last name:"
         ref="lastName"
-        :value="userData.lastName"
-        error-text="This field can't be empty"
+        :value="userData.data.lastName"
+        error-text="This field can't be empty. Use no more than 140 chars."
         type="name"
         v-on:input:save="updateUserField('lastName', $event)"
         v-on:next:field="openEdition('location')"
@@ -46,8 +46,8 @@
       <EditableTextField
         label="Location:"
         ref="location"
-        :value="userData.location"
-        error-text="This field can't be empty"
+        :value="userData.data.location"
+        error-text="This field can't be empty. Use no more than 140 chars."
         type="name"
         v-on:input:save="updateUserField('location', $event)"
         v-on:next:field="openEdition('nickname')"
@@ -57,7 +57,7 @@
         label="Email:"
         ref="email"
         :disabled-edition="true"
-        :value="userData.email"
+        :value="userData.auth0.email"
         error-text="Email is invalid"
         type="email"
         v-on:input:save="updateUserField('email', $event)"
@@ -65,27 +65,11 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatar="userData.avatar && userData.avatar.src ? userData.avatar.src : ''"
+        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : ''"
         error-text="Invalid image"
         type="avatar"
         v-on:input:save="updateAvatar($event)"
       ></EditableImageField>
-
-      <div class="columns is-multiline is-mobile">
-        <div class="column is-4-tablet is-11-mobile">
-          <label>Password</label>
-        </div>
-        <div class="column is-5-tablet is-7-mobile">
-          <ModalPasswordChange
-            :state="passwordChangeModal"
-            v-on:modal:close="passwordChangeModal = false"
-          >
-            <div slot="trigger" @click="passwordChangeModal = true"><a>Not shown. Change password?</a></div>
-            <div slot="heading">Password change</div>
-          </ModalPasswordChange>
-        </div>
-      </div>
-
     </section>
 
     <section class="account-section">
@@ -125,15 +109,13 @@ export default {
       userDialogModal: false,
       userDialogHeading: "Processing...",
       userDialogMessage: "",
-      userDialogSpinner: false,
-      passwordChangeModal: false
+      userDialogSpinner: false
     }
   },
   components: {
     DonateBillingMethod: () => import("Components/donate/DonateBillingMethod.vue"),
     UserDialog: () => import("Components/general/UserDialog.vue"),
     Icons: () => import("Components/general/Icons.vue"),
-    ModalPasswordChange: () => import("Components/login/ModalPasswordChange.vue"),
     EditableTextField: () => import("Components/input/EditableTextField.vue"),
     EditableImageField: () => import("Components/input/EditableImageField.vue")
   },
@@ -161,7 +143,7 @@ export default {
         })
     },
     updateUserField (fieldName, newValue) {
-      if (this.$store.state.user[fieldName] === newValue) {
+      if (this.$store.state.user.data[fieldName] === newValue) {
         return
       }
       this.userDialogModal = true
@@ -173,12 +155,22 @@ export default {
         .catch(err => {
           this.userDialogMessage = "An error occurred. Try again later."
           this.userDialogSpinner = false
-          console.log(err)
         })
     },
     updateAvatar (blob) {
-      // TODO: dispatch event to update the image in the DB
-      console.log(blob)
+      this.userDialogModal = true
+      this.userDialogSpinner = true
+      return this.$store.dispatch("SAVE_PROFILE_AVATAR", { avatar: blob })
+        .then(() => {
+          setTimeout(() => {
+            this.userDialogModal = false
+          }, 500)
+        })
+        .catch(err => {
+          this.userDialogSpinner = false
+          this.userDialogHeading = "Error"
+          this.userDialogMessage = `An error has occurred: ${err.response.statusText}`
+        })
     },
     closeUserDialog () {
       this.userDialogMessage = ""

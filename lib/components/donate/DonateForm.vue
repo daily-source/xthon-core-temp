@@ -277,7 +277,7 @@ export default {
     },
     paymentMethods () {
       if (this.loggedIn) {
-        return this.$store.state.user.protected.paymentMethods
+        return this.$store.state.user.paymentMethods
       } else {
         return []
       }

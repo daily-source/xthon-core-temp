@@ -2,18 +2,20 @@
   <div class="nonprofit-extended">
     <div class="container">
       <div class="nonprofit-extended__separator"></div>
-      <h2 ref="aboutHeading">About <span v-html="nonprofit.data.name || nonprofit.NAME"></span></h2>
 
-      <NonprofitIRSData
-        :nonprofit="nonprofit"
-        :editing="editing"
-        :can-edit="canEdit"
-        ref="nonprofitIRSDataTable"
-        v-on:edit:open="enableEdition()"
-        v-on:edit:close="closeEdition()"
-        v-on:edit:previous="openEdition('nonprofitEmail')"
-        v-on:edit:next="openEdition('nonprofitAbout')"
-      ></NonprofitIRSData>
+      <div v-if="editing || !nonprofit.data.about || showIrsTable">
+        <h2 ref="aboutHeading">About <span v-html="nonprofit.data.name || nonprofit.NAME"></span></h2>
+        <NonprofitIRSData
+          :nonprofit="nonprofit"
+          :editing="editing"
+          :can-edit="canEdit"
+          ref="nonprofitIRSDataTable"
+          v-on:edit:open="enableEdition()"
+          v-on:edit:close="closeEdition()"
+          v-on:edit:previous="openEdition('nonprofitEmail')"
+          v-on:edit:next="openEdition('nonprofitAbout')"
+        ></NonprofitIRSData>
+      </div>
 
       <div v-if="nonprofit.data.about || editing">
         <h2>About</h2>
@@ -181,7 +183,7 @@ import Flickity from "Components/plugins/Flickity.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "nonprofit", "editing", "canEdit" ],
+  props: [ "nonprofit", "editing", "canEdit", "showIrsTable" ],
   components: {
     DonateAction,
     Icons,

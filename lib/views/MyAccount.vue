@@ -79,7 +79,7 @@ export default {
    */
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
-    AppHeader: () => import("Components/general/AppHeader.vue"),
+    AppHeader: () => import("Components/Volunteerathon/AppHeader.vue"),
     UserManagementLinks: () => import("Components/login/UserManagementLinks.vue"),
     LogInModal: () => import("Components/general/LogInModal.vue"),
     AccountSettings: () => import("Components/account/AccountSettings.vue"),

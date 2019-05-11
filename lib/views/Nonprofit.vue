@@ -113,7 +113,7 @@ export default {
    */
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
-    AppHeader: () => import("Components/general/AppHeader.vue"),
+    AppHeader: () => import("Components/Volunteerathon/AppHeader.vue"),
     NonprofitHero: () => import("Components/nonprofit/NonprofitHero.vue"),
     DonateView: () => import("./DonateView.vue"),
     DonorsList,
@@ -182,10 +182,10 @@ export default {
       return this.$store.state.user.loggedIn
     },
     canManageThisNonprofit () {
-      let userNonprofits = this.$store.state.user.Nonprofits
+      let userNonprofits = this.$store.state.user.data.Nonprofits
       if (userNonprofits && userNonprofits.length) {
         let nonprofitsToManage = userNonprofits.filter(item => {
-          return item.id === this.nonprofit.EIN
+          return item.EIN === this.nonprofit.EIN
         })
         if (nonprofitsToManage.length) {
           return true

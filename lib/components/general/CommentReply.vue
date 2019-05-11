@@ -18,7 +18,7 @@
         
       -->
       <p v-if="loggedIn" :class="{'login-highlight': loggedIn}">
-        Commenting as <span v-html="userNickname || user.firstName"></span>.
+        Commenting as <span class="highlight" v-html="userNickname || user.firstName"></span>.
         <a>
           <LogInModal>
             <h2 slot="trigger"><a>Not you?</a></h2>
@@ -63,8 +63,8 @@ export default {
       return this.$store.state.user.loggedIn
     },
     userNickname () {
-      if (this.$store.state.user) {
-        return this.$store.state.user.nickname
+      if (this.$store.state.user.data) {
+        return this.$store.state.user.data.nickname
       } else {
         return null
       }
@@ -89,8 +89,9 @@ export default {
         comment: this.commentBody,
         reply: this.inReplyTo,
         fundraiserId: this.$store.state.fundraiser.id,
-        userId: this.$store.state.user.id,
-        contact_us_by_fax_only: this.fax
+        userId: this.$store.state.user.auth0.sub,
+        contact_us_by_fax_only: this.fax,
+        token: this.user.tokenData.accessToken
       })
         .then(data => {
           this.commentBody = ""
@@ -149,6 +150,11 @@ textarea {
 .login-highlight {
   display: inline;
   animation: fadeHighlight 7s ease-in-out;  
+}
+
+.highlight {
+  font-weight: bold;
+  font-style: italic;
 }
 
 </style>

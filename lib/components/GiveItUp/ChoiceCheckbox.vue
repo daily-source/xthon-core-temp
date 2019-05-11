@@ -28,63 +28,62 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex"
 
 export default {
-  name: 'ChoiceCheckbox',
+  name: "ChoiceCheckbox",
 
-  props: ['choice'],
+  props: ["choice"],
 
-  data() {
+  data () {
     return {
       checked: false,
-      customAmount: '',
-    };
+      customAmount: ""
+    }
   },
 
   computed: {
-    customLabelCombined() {
-      return `${this.choice.label} $${this.customAmount}`;
-    },
+    customLabelCombined () {
+      return `${this.choice.label} $${this.customAmount}`
+    }
   },
 
   methods: {
-    inputHandler() {
+    inputHandler () {
       const defaultArg = {
         checked: this.checked,
-        choice: this.choice,
-      };
+        choice: this.choice
+      }
 
       if (this.choice.hasCustomField) {
-        return this.$emit('choiceChanged', { ...defaultArg, customLabel: this.customLabelCombined });
+        return this.$emit("choiceChanged", { ...defaultArg, customLabel: this.customLabelCombined })
       }
-      return this.$emit('choiceChanged', defaultArg);
+      return this.$emit("choiceChanged", defaultArg)
     },
 
     ...mapActions({
-      changeSelectedLabel: 'selections/changeSelectedLabel',
-    }),
+      changeSelectedLabel: "selections/changeSelectedLabel"
+    })
   },
 
   watch: {
-    customAmount() {
-      if (!this.choice.hasCustomField) return;
+    customAmount () {
+      if (!this.choice.hasCustomField) return
 
-      if (!this.customAmount) this.checked = false;
+      if (!this.customAmount) this.checked = false
 
       this.changeSelectedLabel({
         choice: {
-          ...this.choice,
+          ...this.choice
         },
-        label: this.customLabelCombined,
-      });
+        label: this.customLabelCombined
+      })
     },
 
-    checked() {
-      this.inputHandler();
-    },
-  },
+    checked () {
+      this.inputHandler()
+    }
+  }
 
-
-};
+}
 </script>

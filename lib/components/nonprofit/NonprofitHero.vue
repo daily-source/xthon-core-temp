@@ -36,17 +36,20 @@
           :is-standalone="true"
           :disable-orientation="true"
           :required="false"
-          :key="_uid + '_' + nonprofit.EIN"
+          :key="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc ? nonprofitLogoSrc : _uid + '_' + nonprofit.EIN"
           default-text="Add a logo"
           layout="overlay"
           type="avatar"
-          v-if="nonprofit.data && nonprofit.data.logo || editing"
+          v-if="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc || editing"
           v-on:edition:open="newImageOpenId = $event"
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
       </div>
       <div class="container columns center">
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name">
+        <div
+          class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd"
+          :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="!nonprofit.data.name"
+        >
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -58,7 +61,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo}" v-if="nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -70,7 +73,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofit.data.logo}">
+        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofitLogoSrc}">
           <div class="button nonprofit-hero__cta-fundraise">Fundraise</div>
           <DonateAction
             :nonprofit-ein="nonprofit.EIN"
@@ -98,8 +101,12 @@
         </div>
       </div>
       <div class="container">
-        <div class="nonprofit-intro allow-html" v-if="common.nonprofit" v-html="common.nonprofit.intro">
-        </div>
+        <div
+          :class="{'transparent-block': editing}"
+          class="nonprofit-intro allow-html"
+          v-if="common.nonprofit"
+          v-html="common.nonprofit.intro"
+        ></div>
       </div>
     </section>
   </div>
@@ -158,6 +165,13 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
+    },
+    nonprofitLogoSrc () {
+      if (this.nonprofit && this.nonprofit.data && this.nonprofit.data.logo && this.nonprofit.data.logo.src) {
+        return this.nonprofit.data.logo.src
+      } else {
+        return ''
+      }
     }
   },
   methods: {
@@ -169,7 +183,28 @@ export default {
     },
     closeEdition () {
       this.$emit("edit:close")
-    }
+    },
+    updateNonprofitLogo (blob) {
+      this.userDialogModal = true
+      this.userDialogSpinner = true
+      return this.$store.dispatch("SAVE_REPLACE_IMAGE", {
+        image: blob,
+        nonprofitId: this.nonprofit.EIN,
+        location: 'logo',
+        entity: 'nonprofit',
+        replace: true
+      })
+        .then(() => {
+          setTimeout(() => {
+            this.userDialogModal = false
+          }, 500)
+        })
+        .catch(err => {
+          this.userDialogSpinner = false
+          this.userDialogHeading = "Error"
+          this.userDialogMessage = `An error has occurred: ${err.response.statusText}`
+        })
+    },
   }
 }
 </script>
@@ -353,5 +388,12 @@ export default {
       width: 100%;
     }
   }
+}
+.allow-html {
+  transition: opacity 0.1s ease-in-out;
+  &.transparent-block {
+    opacity: 0;
+  }
+
 }
 </style>

@@ -84,7 +84,7 @@ export default {
     }
   },
   metaInfo () {
-    var description = this.parent === "nonprofit" ? `Donate to this tax exempt organization. ${this.nonprofit.NTEE_CD || this.nonprofit.ACTIVITY}` : `Support ${this.fundraiser.participant.name}'s volunteerathon: ${this.fundraiser.name} for the nonprofit ${this.fundraiser.Nonprofit.name}`
+    var description = this.parent === "nonprofit" ? `Donate to this tax exempt organization. ${this.nonprofit.NTEE_CD || this.nonprofit.ACTIVITY}` : `Support ${this.fundraiser.User.firstName}'s volunteerathon: ${this.fundraiser.name} for the nonprofit ${this.fundraiser.Nonprofit.name}`
     var title = this.parent === "nonprofit" ? this.nonprofit.NAME : this.fundraiser.name
     var imgSrc =
     this.parent === "nonprofit"

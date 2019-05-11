@@ -1,5 +1,5 @@
 <template>
-  <div class="container is-fluid white-bg fundraiser-participant__wrapper" v-if="fundraiser.participant">
+  <div class="container is-fluid white-bg fundraiser-participant__wrapper" v-if="fundraiser.User">
     <div class="fundraiser-body">
       <p v-if="canEdit" class="">
         <a class="button is-light is-rounded is-medium" v-if="editing" @click="closeEditor()">Stop editing</a>
@@ -11,7 +11,7 @@
           <LazyLoadedImage
             class="inline-image-item v-lazy-image is-background fundraiser-participant__avatar"
             :is-background="true"
-            :src="fundraiser.participant.avatar ? fundraiser.participant.avatar.src : ''"
+            :src="fundraiser.User.avatar ? fundraiser.User.avatar.src : ''"
           ></LazyLoadedImage>
         </figure>
         <div class="fundraiser-participant__details" :class="{'column is-5': editing}">

@@ -157,7 +157,7 @@ export default {
    */
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
-    AppHeader: () => import("Components/general/AppHeader.vue"),
+    AppHeader: () => import("Components/Volunteerathon/AppHeader.vue"),
     LazyLoadedImage: () => import("Components/plugins/LazyLoadedImage"),
     TopMenu: () => import("Components/general/TopMenu.vue"),
     NonprofitAjaxSearch: () => import("Components/general/NonprofitAjaxSearch.vue"),

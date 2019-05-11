@@ -11,10 +11,10 @@
         </ul>
       </div>
       <div v-if="emailFound && !loggedIn">
-        <p>We sent you a receipt. Your email matches an existing account. Enter your password to add this donation to your account. Doing that will also display your profile photo next to your donation and comment on <span v-if="parent === 'fundraiser' && fundraiser.participant">{{fundraiser.participant.name}}</span><span v-if="parent === 'nonprofit'">{{nonprofit.NAME}}</span>'s fundraiser page.</p>
+        <p>We sent you a receipt. Your email matches an existing account. Enter your password to add this donation to your account. Doing that will also display your profile photo next to your donation and comment on <span v-if="parent === 'fundraiser' && fundraiser.User">{{fundraiser.User.firstName}}</span><span v-if="parent === 'nonprofit'">{{nonprofit.NAME}}</span>'s fundraiser page.</p>
       </div>
       <div v-if="!emailFound && !loggedIn">
-        <p>We emailed you a receipt. To have your photo show next to your donation on <span v-if="parent === 'fundraiser' && fundraiser.participant">{{fundraiser.participant.name}}</span><span v-if="parent === 'nonprofit'">{{nonprofit.NAME}}</span>'s page of donations, receive access to all our websites and enjoy a host of features, create a free account with us via one of these services:</p>
+        <p>We emailed you a receipt. To have your photo show next to your donation on <span v-if="parent === 'fundraiser' && fundraiser.User">{{fundraiser.User.firstName}}</span><span v-if="parent === 'nonprofit'">{{nonprofit.NAME}}</span>'s page of donations, receive access to all our websites and enjoy a host of features, create a free account with us via one of these services:</p>
         <LogInModal layout="social-signup"></LogInModal>
         <p>Or add a password to create an account here:</p>
       </div>

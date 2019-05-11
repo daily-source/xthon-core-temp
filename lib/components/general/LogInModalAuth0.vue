@@ -48,7 +48,7 @@
         </span>
       </div>
       <div @click="openLoginBox()" v-if="loggedIn">
-        <slot name="logged"><a>Hi, {{user.auth0.given_name}}! »</a></slot>
+        <slot name="logged"><a>Hi, {{givenName}}! »</a></slot>
       </div>
     </div>
     <div v-if="!layout">
@@ -71,8 +71,6 @@ import InputPassword from "Components/input/InputPassword.vue"
 import SocialLogin from "Components/login/SocialLogin.vue"
 
 import Vue from "vue"
-import AuthService from "Src/auth/authService"
-Vue.use(AuthService)
 
 export default {
   props: [ "layout", "login", "signup", "showOnly", "display", "requireName", "register" ],
@@ -97,13 +95,6 @@ export default {
     }
   },
 
-  created () {
-    this.$eventHub.$on('set_user', (payload) => {
-      this.$store.dispatch('SET_USER', { user: payload.user })
-      this.requestBackendData()
-    })
-  },
-
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
@@ -113,25 +104,19 @@ export default {
     },
     user () {
       return this.$store.state.user
+    },
+    givenName () {
+      return this.$store.state.user.auth0.given_name || this.$store.state.user.auth0["https://maximumgood.org_user_metadata"].firstname || this.$store.state.user.auth0.nickname
     }
   },
   methods: {
     triggerExternalLogin () {
+      localStorage.setItem("redirect_to_url", this.$route.fullPath)
       this.$auth.login()
     },
     triggerExternalSignup () {
+      localStorage.setItem("redirect_to_url", this.$route.fullPath)
       this.$auth.signup()
-    },
-    requestBackendData () {
-      Vue.axios.get(`${process.env.BASE_API}/users/auth0`, {
-        headers: {'Authorization': `Bearer ${this.$auth.accessToken}`}
-      })
-      .then(data => {
-        console.log(data)
-      })
-      .catch(e => {
-        console.log("err: ", e)
-      })
     },
 
     // old methods

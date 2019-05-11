@@ -44,7 +44,7 @@ export default {
    */
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
-    AppHeader: () => import("Components/general/AppHeader.vue"),
+    AppHeader: () => import("Components/Volunteerathon/AppHeader.vue"),
     HomeHero: () => import("Components/Volunteerathon/HomeHero.vue"),
     TopMenu: () => import("Components/general/TopMenu.vue"),
     HomeSection2: () => import("Components/Volunteerathon/HomeSection2.vue"),

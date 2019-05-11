@@ -1,10 +1,24 @@
 <template>
   <div class="">
+    <UserDialog
+      :spinner="spinner"
+      :state="userDialogModal"
+      :disable-close= "userDialogDisableClose"
+      v-on:modal:close="closeUserDialog()"
+    >
+      <div slot="header">{{userDialogHeading}}</div> 
+      <div slot="content"><p>{{userDialogMessage}}</p></div> 
+    </UserDialog>
+
     <AppHeader layout="app"></AppHeader>
 
-    <NonprofitForm submit-button-label="Submit">
+    <CreateFundraiserForm
+      ref="fundraiserForm"
+      submit-button-label="Submit"
+      v-on:submit:form="validateAndSubmit($event)"
+    >
       <div slot="heading"><h1>Change the world in 3 easy steps:</h1></div>
-    </NonprofitForm>
+    </CreateFundraiserForm>
 
     <AppFooter></AppFooter>
   </div>
@@ -18,6 +32,16 @@ Vue.use(VueMeta)
 
 export default {
   name: "nonprofit",
+  data () {
+    return {
+      userDialogModal: false,
+      userDialogHeading: "Processing...",
+      userDialogMessage: "",
+      userDialogSpinner: false,
+      userDialogDisableClose: false,
+      spinner: true
+    }
+  },
   /**
    * Uses dynamic import to speed up page performance.
    * See https://webpack.js.org/guides/code-splitting/ for reference.
@@ -25,7 +49,8 @@ export default {
   components: {
     AppFooter: () => import("Components/general/AppFooter.vue"),
     AppHeader: () => import("Components/general/AppHeader.vue"),
-    NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue")
+    CreateFundraiserForm: () => import("Components/Volunteerathon/CreateFundraiserForm.vue"),
+    UserDialog: () => import("Components/general/UserDialog.vue")
   },
   /**
    * This uses vue-meta in order to render the tags in the page. For the home page, it uses
