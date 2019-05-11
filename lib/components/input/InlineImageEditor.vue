@@ -140,10 +140,10 @@ export default {
       return this.calculateWidth * this.ratio
     },
     initialImage () {
-      return typeof this.item !== "undefined" ? this.item.src : ""
+      return typeof this.item !== "undefined" ? this.item : ""
     },
     staticImage () {
-      return this.initialImage ? this.initialImage : this.defaultImage ? this.defaultImage.src : ""
+      return this.initialImage || this.defaultImage || ""
     }
   },
   mounted () {
@@ -178,7 +178,7 @@ export default {
       }
     },
     useDefault () {
-      this.croppaInitialImage = this.defaultImage.src
+      this.croppaInitialImage = this.defaultImage
       this.croppaObject.refresh()
     },
     removeImage () {
@@ -216,7 +216,8 @@ export default {
           route: this.$route,
           filename: this.filename
         })
-          .then(() => {
+          .then(postedURL => {
+            this.croppaInitialImage = postedURL
             this.cancelEdition()
           })
           .catch(err => {

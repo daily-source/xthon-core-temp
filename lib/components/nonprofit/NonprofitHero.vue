@@ -5,6 +5,7 @@
         class="hero is-medium nonprofit-hero__hero-wrapper"
         location="nonprofit.data.hero"
         ref="imageEditor"
+        filename="hero"
         :item="nonprofit.data.hero"
         :is-background-image="true"
         :open-default="false"
@@ -24,6 +25,7 @@
         <InlineImageEditor
           class="nonprofit-hero__logo-wrapper"
           location="nonprofit.data.logo"
+          filename="logo"
           ref="imageEditor"
           :item="nonprofit.data.logo"
           :is-background-image="true"
@@ -136,8 +138,8 @@ export default {
       return this.$store.state.user.loggedIn
     },
     nonprofitLogoSrc () {
-      if (this.nonprofit && this.nonprofit.data && this.nonprofit.data.logo && this.nonprofit.data.logo.src) {
-        return this.nonprofit.data.logo.src
+      if (this.nonprofit.data && this.nonprofit.data.logo) {
+        return this.nonprofit.data.logo
       } else {
         return ''
       }

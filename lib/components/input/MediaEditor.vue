@@ -4,38 +4,38 @@
     <slot name="tagline"></slot>
     <p class="unselectable"><a @click="addImage()">Add a photo</a> or <a @click="addVideo()">video</a> to engage your audience.</p>
     <div class="media-item"
-      v-for="(item, index) in newMedia"
-    >
+      v-for="(item, index) in newMedia.images"
+    >item: {{newMedia}}
       <InlineImageEditor
-        v-if="item.type === 'image'"
         :open-id="newImageOpenId"
         :location="location"
         :item="item"
         :open-default="true"
         :edition-is-enabled="true"
-        location="nonprofit.data.media"
         filename="media_image"
         v-on:edition:open="newImageOpenId = $event"
         v-on:edition:close="newImageOpenId = null"
         v-on:image:remove="removeNewImage()"
       ></InlineImageEditor>
+    </div>
+    <div class="media-item"
+      v-for="(item, index) in newMedia.videos"
+    >
       <InlineVideoEditor
-        v-if="item.type === 'video'"
         :open-id="newImageOpenId"
         :location="location"
         :item="item"
         :open-default="true"
-        :key="item.src"
+        :key="item"
         v-on:edition:open="newImageOpenId = $event"
         v-on:edition:close="newImageOpenId = null; removeNewVideo()"
         v-on:image:remove="removeNewVideo()"
       ></InlineVideoEditor>
     </div>
     <div class="media-item"
-      v-for="(item, index) in mediaSource.media"
+      v-for="(item, index) in mediaSource.videos"
     >
       <InlineVideoEditor
-        v-if="item.type === 'video'"
         :open-id="existingImageOpenId"
         :location="location"
         :item="item"
@@ -43,13 +43,16 @@
         v-on:edition:open="existingImageOpenId = $event"
         v-on:edition:close="existingImageOpenId = null"
       ></InlineVideoEditor>
+    </div>
+    <div class="media-item"
+      v-for="(item, index) in mediaSource.images"
+    >
       <InlineImageEditor
-        v-if="item.type === 'image'"
         :item="item"
         :open-id="existingImageOpenId"
         :location="location"
         :edition-is-enabled="true"
-        :key="item.src"
+        :key="item"
         v-on:edition:open="existingImageOpenId = $event"
         v-on:edition:close="existingImageOpenId = null"
       ></InlineImageEditor>
@@ -64,7 +67,10 @@ export default {
     return {
       existingImageOpenId: null,
       newImageOpenId: null,
-      newMedia: []
+      newMedia: {
+        images: [],
+        videos: []
+      }
     }
   },
   components: {
@@ -74,7 +80,7 @@ export default {
   methods: {
     addImage () {
       if (!this.newImageOpenId) {
-        this.newMedia.push({ src: "", type: "image" })
+        this.newMedia.images.push("")
       }
     },
     addVideo () {

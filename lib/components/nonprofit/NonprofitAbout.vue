@@ -135,7 +135,8 @@
           </div>
           <MediaEditor
             v-if="editing"
-            :media-source="nonprofit.data"
+            :media-source="nonprofit.media"
+            :key="nonprofit.media.images.length + nonprofit.media.videos.length"
             location="nonprofit.media"
           ></MediaEditor>
           <flickity ref="carousel" class="nonprofit-extended__media-wrapper"

@@ -15,7 +15,7 @@
           @click="openEdition()"
         >
           <transition name="slide-fade">
-            <VuePlyrWrapper v-if="item.src || youTubeID && fieldIsOpen">
+            <VuePlyrWrapper v-if="item || youTubeID && fieldIsOpen">
               <vue-plyr :ref="`plyr_${_uid}`" :key="videoSource">
                 <div data-plyr-provider="youtube" :data-plyr-embed-id="videoSource"></div>
               </vue-plyr>
@@ -116,9 +116,9 @@ export default {
     },
     videoSource () {
       if (!this.fieldIsOpen) {
-        return this.item.src || this.youTubeID
+        return this.item || this.youTubeID
       } else {
-        return this.youTubeID || this.item.src
+        return this.youTubeID || this.item
       }
     }
   },
@@ -166,8 +166,8 @@ export default {
       }
       this.userDialogModal = true
       this.userDialogSpinner = true
-      if (this.item.src) {
-        this.$store.dispatch("UPDATE_VIDEO", { location: this.location, route: this.$route, oldSrc: this.item.src, newSrc: this.youTubeID })
+      if (this.item) {
+        this.$store.dispatch("UPDATE_VIDEO", { location: this.location, route: this.$route, oldSrc: this.item, newSrc: this.youTubeID })
           .then(() => {
             this.userDialogSpinner = false
             this.userDialogMessage = "The video has been updated."
