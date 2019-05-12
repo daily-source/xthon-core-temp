@@ -34,7 +34,7 @@ export default {
 
   methods: {
     imagePath (imgName) {
-      return require(`@/assets/img/images/${imgName}`)
+      return require(`@/assets/img/${imgName}`)
     },
 
     getBgImage () {
@@ -48,7 +48,7 @@ export default {
           return this.currentBg.imgUrl
         }
       } else {
-        return this.imagePath("banner-img-1.jpg")
+        return this.imagePath("ride-for-good-banner.jpg")
       }
     }
   }
@@ -97,7 +97,7 @@ export default {
         font-weight: 700;
         line-height: 1.4;
         font-size: 40px;
-        color: $color-emphasis-alt;
+        color: $secondary;
         padding: 15px;
         @include tablet {
           max-width: 400px;
