@@ -186,7 +186,7 @@ export default {
       this.userDialogSpinner = true
       this.errorMessage = ""
       if (typeof this.item !== "undefined") {
-        this.$store.dispatch("REMOVE_FIXED_IMAGE", { location: this.location, route: this.$route })
+        this.$store.dispatch("REMOVE_FIXED_IMAGE", { location: this.location, route: this.$route, filename: this.croppaInitialImage })
           .then(() => {
             this.cancelEdition()
           })

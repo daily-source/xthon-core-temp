@@ -34,11 +34,11 @@
           :is-standalone="true"
           :disable-orientation="true"
           :required="false"
-          :key="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc ? nonprofitLogoSrc : _uid + '_' + nonprofit.EIN"
+          :key="nonprofit.data && nonprofit.data.logo ? nonprofit.data.logo : _uid + '_' + nonprofit.EIN"
           default-text="Add a logo"
           layout="overlay"
           type="avatar"
-          v-if="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc || editing"
+          v-if="nonprofit.data && nonprofit.data.logo || editing"
           v-on:edition:open="newImageOpenId = $event"
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
@@ -46,7 +46,7 @@
       <div class="container columns center">
         <div
           class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd"
-          :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="!nonprofit.data.name"
+          :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name"
         >
           <InlineFieldEditor
             type="textarea"
@@ -59,7 +59,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -71,7 +71,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofitLogoSrc}">
+        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofit.data.logo}">
           <div class="button nonprofit-hero__cta-fundraise">Fundraise</div>
           <DonateAction
             :nonprofit-ein="nonprofit.EIN"
@@ -136,13 +136,6 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
-    },
-    nonprofitLogoSrc () {
-      if (this.nonprofit.data && this.nonprofit.data.logo) {
-        return this.nonprofit.data.logo
-      } else {
-        return ''
-      }
     }
   },
   methods: {
