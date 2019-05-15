@@ -2,18 +2,40 @@
   <div class="banner">
     <flickity
       class='banner__slider'
+      ref='mainSlder'
       :options='sliderOptions'
+      @init='onMainSliderReady'
     >
       <div 
         class="banner__slide" 
-        v-for='(img, index) in imgs'
+        v-for='(slide, index) in slides'
         :key='index'
       >
         <img 
-          :src="require(`@/assets/img/images/${img}`)"
+          :src="require(`@/assets/img/images/${slide.img}`)"
           :alt="`Banner Image ${index}`"
           :class='`banner__img banner__img--${index}`'
         >
+      </div>
+    </flickity>
+    <flickity
+      class='banner__captions-slider'
+      ref='captionSlider'
+      :options='{
+        ...sliderOptions,
+        pageDots: false,
+        prevNextButtons: false,
+        autoPlay: false,
+        draggable: false,
+      }'
+      @init='onCaptionSliderReady'
+    >
+      <div 
+        class="banner__captions-slide"
+        v-for='(slide, index) in slides'
+        :key='index'
+      >
+        <h2 class='is-marginless has-text-centered'>{{ slide.caption }} </h2>
       </div>
     </flickity>
   </div>
@@ -29,15 +51,59 @@ export default {
     Flickity,
   },
 
+  methods: {
+    onMainSliderReady (slider) {
+      slider.on('change', (index) => {
+        this.$refs.captionSlider.select(index)
+      })
+    },
+
+    onCaptionSliderReady (slider) {
+      slider.on('change', (index) => {
+        this.$refs.mainSlider.select(index)
+      })
+    }
+  }, 
+
   data () {
     return {
-      imgs: [
-        'banner-img-1.jpg',
-        'banner-img-2.jpg',
-        'banner-img-3.jpg',
-        'banner-img-4.jpg',
-        'banner-img-5.jpg',
-        'banner-img-6.jpg',
+      slides: [
+        {
+          img: 'banner-img-1.jpg',
+          caption: 'Classic cookout party',
+        },
+        {
+          img: 'banner-img-4.jpg',
+          caption: '80s outfits party',
+        },
+        {
+          img: 'banner-img-5.jpg',
+          caption: 'Back to the 60s party',
+        },
+        {
+          img: 'banner-img-6.jpg',
+          caption: '90s costume party',
+        },
+        {
+          img: 'banner-img-7.jpg',
+          caption: 'Family pool party',
+        },
+        {
+          img: 'banner-img-8.jpg',
+          caption: 'Grown-ups pool party',
+        },
+        {
+          img: 'banner-img-9.jpg',
+          caption: 'Sunset Beach Party',
+        },
+        {
+          img: 'banner-img-10.jpg',
+          caption: 'Beach party',
+        },
+        {
+          img: 'banner-img-11.jpg',
+          caption: 'Home karaoke party',
+        },
       ],
       sliderOptions: {
         cellAlign: 'left',
@@ -51,10 +117,9 @@ export default {
 
 <style lang='scss' scoped>
 .banner {
-  height: 600px;
 
   &__slider {
-    height: 100%;
+    height: 600px;
   }
 
   &__slide {
@@ -64,9 +129,24 @@ export default {
 
   &__img {
     width: 100%;
-    height: 100%;
+    height: 600px;
     object-fit: cover;
   }
+
+  &__captions-slider {
+    height: 33px;
+    margin-top: 1em;
+  }
+
+  &__captions-slide {
+    width: 100%;
+
+    h2 {
+      font-size: 24px;
+      color: #000;
+    }
+  }
+
 }
 </style>
 
