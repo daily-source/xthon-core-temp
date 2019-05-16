@@ -107,7 +107,7 @@ export default {
       ],
       sliderOptions: {
         cellAlign: 'left',
-        autoPlay: 4000,
+        autoPlay: 5000,
         wrapAround: true,
       },
     }
