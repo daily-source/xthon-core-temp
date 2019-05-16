@@ -5,7 +5,7 @@
     <p class="unselectable"><a @click="addImage()">Add a photo</a> or <a @click="addVideo()">video</a> to engage your audience.</p>
     <div class="media-item"
       v-for="(item, index) in newMedia.images"
-    >item: {{newMedia}}
+    >
       <InlineImageEditor
         :open-id="newImageOpenId"
         :location="location"
