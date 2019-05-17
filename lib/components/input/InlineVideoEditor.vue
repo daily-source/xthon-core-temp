@@ -142,8 +142,8 @@ export default {
       this.$emit("edition:open", this._uid)
     },
     removeVideo () {
-      if (typeof this.item.id !== "undefined") {
-        this.$store.dispatch("REMOVE_VIDEO", { location: this.location, route: this.$route, id: this.item.id })
+      if (typeof this.item !== "undefined") {
+        this.$store.dispatch("REMOVE_VIDEO", { location: this.location, route: this.$route, youTubeID: this.item })
           .then(() => {
             this.cancelEdition()
           })
@@ -166,35 +166,24 @@ export default {
       }
       this.userDialogModal = true
       this.userDialogSpinner = true
-      if (this.item) {
-        this.$store.dispatch("UPDATE_VIDEO", { location: this.location, route: this.$route, oldSrc: this.item, newSrc: this.youTubeID })
-          .then(() => {
-            this.userDialogSpinner = false
-            this.userDialogMessage = "The video has been updated."
-            setTimeout(() => {
-              this.cancelEdition()
-            }, 4000)
-          })
-          .catch(err => {
-            console.log(err)
-            this.userDialogSpinner = false
-            this.userDialogMessage = "An error occurred. Please try again."
-          })
-      } else {
-        this.$store.dispatch("ADD_VIDEO", { location: this.location, route: this.$route, youTubeID: this.youTubeID })
-          .then(() => {
-            this.userDialogSpinner = false
-            this.userDialogMessage = "The video has been added."
-            setTimeout(() => {
-              this.cancelEdition()
-            }, 4000)
-          })
-          .catch(err => {
-            console.log(err)
-            this.userDialogSpinner = false
-            this.userDialogMessage = "An error occurred. Please try again."
-          })
-      }
+
+      this.$store.dispatch("ADD_VIDEO", {
+        location: this.location,
+        route: this.$route,
+        youTubeID: this.youTubeID
+      })
+        .then(() => {
+          this.userDialogSpinner = false
+          this.userDialogMessage = "The video has been added."
+          setTimeout(() => {
+            this.cancelEdition()
+          }, 4000)
+        })
+        .catch(err => {
+          console.log(err)
+          this.userDialogSpinner = false
+          this.userDialogMessage = "An error occurred. Please try again."
+        })
     }
   },
   watch: {

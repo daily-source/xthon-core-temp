@@ -11,6 +11,7 @@
         :location="location"
         :item="item"
         :open-default="true"
+        :key="item"
         :edition-is-enabled="true"
         filename="media_image"
         v-on:edition:open="newImageOpenId = $event"
@@ -39,6 +40,7 @@
         :open-id="existingImageOpenId"
         :location="location"
         :item="item"
+        :key="item"
         :open-default="false"
         v-on:edition:open="existingImageOpenId = $event"
         v-on:edition:close="existingImageOpenId = null"
@@ -85,14 +87,14 @@ export default {
     },
     addVideo () {
       if (!this.newImageOpenId) {
-        this.newMedia.push({ src: "", type: "video" })
+        this.newMedia.videos.push("")
       }
     },
     removeNewImage () {
-      this.newMedia.pop()
+      this.newMedia.images.pop()
     },
     removeNewVideo () {
-      this.newMedia.pop()
+      this.newMedia.videos.pop()
     }
   }
 }

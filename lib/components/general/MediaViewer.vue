@@ -8,7 +8,7 @@
     :enable-esc="true"
     v-on:modal:close="closeModals()"
     v-on:modal:open="openModal()"
-  >{{media}}
+  >
     <div slot="trigger" class="unselectable"><slot name="trigger"></slot></div>
     <div slot="content" class="modal-viewer__wrapper">
       <flickity ref="flickity" class="nonprofit-extended__media-wrapper"
@@ -20,13 +20,13 @@
         />
         <div class="plyr-wrapper" v-for="(item, index) in media.videos">
           <VuePlyrWrapper v-if="canRender">
-            <vue-plyr :ref="`plyr_${index}`">
+            <vue-plyr :ref="`plyr_${item}`">
               <div data-plyr-provider="youtube" :data-plyr-embed-id="item"></div>
             </vue-plyr>
           </VuePlyrWrapper>
         </div>
       </flickity>
-    </div>asdfjasdfj
+    </div>
   </Modal>
 </template>
 

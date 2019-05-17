@@ -164,7 +164,6 @@
                 :is-background="true"
                 :src="`https://img.youtube.com/vi/${item}/mqdefault.jpg`"
                 :key="item"
-                v-for="(item, index) in nonprofit.media.videos"
               ></LazyLoadedImage>
             </div>
           </flickity>
