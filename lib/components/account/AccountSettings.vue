@@ -65,7 +65,7 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : ''"
+        :avatar="userData.data.avatar"
         error-text="Invalid image"
         type="avatar"
         v-on:input:save="updateAvatar($event)"
