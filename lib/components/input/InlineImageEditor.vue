@@ -218,7 +218,11 @@ export default {
         })
           .then(postedURL => {
             this.croppaInitialImage = postedURL
-            this.cancelEdition()
+            this.userDialogSpinner = false
+            this.userDialogMessage = "The image has been added."
+            setTimeout(() => {
+              this.cancelEdition()
+            }, 3000)
           })
           .catch(err => {
             console.log(err)

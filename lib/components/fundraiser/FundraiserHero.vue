@@ -105,12 +105,6 @@ export default {
     }
   },
 
-  computed: {
-    flickityInstance () {
-      return this.$refs.flickity
-    }
-  },
-
   mounted () {
     this.canRender = true
 

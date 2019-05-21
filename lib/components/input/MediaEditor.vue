@@ -1,7 +1,5 @@
 <template>
   <div class="media-editor__wrapper">
-    <p>newMedia: {{newMedia.videos}} , openID: {{newImageOpenId}}</p>
-    <p>mediaSource: {{mediaSource.videos}}</p>
     <slot name="heading"><h2>Gallery</h2></slot>
     <slot name="tagline"></slot>
     <p class="unselectable"><a @click="addImage()">Add a photo</a> or <a @click="addVideo()">video</a> to engage your audience.</p>
