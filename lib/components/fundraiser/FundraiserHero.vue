@@ -133,13 +133,13 @@ export default {
       if (flick.$flickity.cells[prevSlide].element.className.indexOf("plyr") > -1) {
         setTimeout(() => {
           this.$refs[`plyr_${prevSlide}`][0].player.pause()
-        }, 100)
+        }, 2500)
       }
 
       if (flick.$flickity.cells[nextSlide].element.className.indexOf("plyr") > -1) {
         setTimeout(() => {
           this.$refs[`plyr_${nextSlide}`][0].player.pause()
-        }, 100)
+        }, 2500)
       }
 
       // Auto pause if there's video in the previously selected cell.
