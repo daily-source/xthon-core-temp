@@ -11,7 +11,7 @@
           <LazyLoadedImage
             class="inline-image-item v-lazy-image is-background fundraiser-participant__avatar"
             :is-background="true"
-            :src="fundraiser.User.avatar ? fundraiser.User.avatar.src : ''"
+            :src="fundraiser.User.avatar"
           ></LazyLoadedImage>
         </figure>
         <div class="fundraiser-participant__details" :class="{'column is-5': editing}">

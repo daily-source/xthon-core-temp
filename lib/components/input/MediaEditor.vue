@@ -1,5 +1,7 @@
 <template>
   <div class="media-editor__wrapper">
+    <p>newMedia: {{newMedia.videos}} , openID: {{newImageOpenId}}</p>
+    <p>mediaSource: {{mediaSource.videos}}</p>
     <slot name="heading"><h2>Gallery</h2></slot>
     <slot name="tagline"></slot>
     <p class="unselectable"><a @click="addImage()">Add a photo</a> or <a @click="addVideo()">video</a> to engage your audience.</p>
@@ -14,8 +16,9 @@
         :key="item"
         :edition-is-enabled="true"
         filename="media_image"
+        v-if="!item"
         v-on:edition:open="newImageOpenId = $event"
-        v-on:edition:close="newImageOpenId = null"
+        v-on:edition:close="newImageOpenId = null; removeNewImage()"
         v-on:image:remove="removeNewImage()"
       ></InlineImageEditor>
     </div>

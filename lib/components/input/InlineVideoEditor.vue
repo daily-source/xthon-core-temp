@@ -9,6 +9,9 @@
       <div slot="header">{{userDialogHeading}}</div> 
       <div slot="content"><p>{{userDialogMessage}}</p></div> 
     </UserDialog>
+    videoSource: {{videoSource}}<br>
+    youTubeID: {{youTubeID}}<br>
+    this.item: {{this.item}}<br>
     <div class="columns editable-field-wrapper">
       <div class="column is-6">
         <div
@@ -177,7 +180,7 @@ export default {
           this.userDialogMessage = "The video has been added."
           setTimeout(() => {
             this.cancelEdition()
-          }, 4000)
+          }, 3000)
         })
         .catch(err => {
           console.log(err)
