@@ -8,7 +8,7 @@
           width="200"
           class="fundraiser-lower__logo"
           v-if="fundraiser.Nonprofit.data.logo"
-          :src="fundraiser.Nonprofit.data.logo.src"
+          :src="fundraiser.Nonprofit.data.logo"
         ></LazyLoadedImage>
       </figure>
       <div class="this-nonprofit__right-side">

@@ -223,6 +223,7 @@ export default {
   }
   &__video {
     display: flex;
+    flex: 1;
     > div {
       display: flex;
       align-items: center;
@@ -237,6 +238,13 @@ export default {
       padding-bottom: 0;
       overflow: hidden;
       background-color: $color-lightest-gray;
+
+      width: 102%;
+      min-height: 450px;
+    }
+
+    @include fullhd {
+      min-height: 500px;
     }
   }
 }
