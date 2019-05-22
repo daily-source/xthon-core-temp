@@ -10,18 +10,16 @@
       <div class="update__fullname"><span class="update__fullname-name">Update # {{count - index}}</span></div>
       <div class="update__timestamp">{{update.createdAt | formattedDate}}</div>
       <div class="update__content" v-if="update.content.length > maxchar">
-        <div class="update__content-inner">
-          <div class="update__content-inner--excpert" v-if='!showFullUpdate[index]'>
-            <span v-html='excerpt(update.content)'></span>
-            <span>... <a @click.prevent.stop="toggleIndex(index)">Show more</a></span>
-          </div>
-          <div class="update_-content-inner--full" v-else>
-            <div v-html="fullContent(update.content)"></div>
-            <span class='update__show-less'><a @click.prevent.stop="toggleIndex(index)">Show less</a></span>
-          </div>
+        <div class="update__content-inner update-content-inner--excerpt" v-if='!showFullUpdate[index]'>
+          <div class='update__content-excerpt' v-html='excerpt(update.content)'></div>
+          <span>... <a @click.prevent.stop="toggleIndex(index)">Show more</a></span>
+        </div>
+        <div class="update__content-inner update-content-inner--full" v-else>
+          <div class='update__content-full' v-html='update.content'></div>
+          <span><a @click.prevent.stop="toggleIndex(index)">Show less</a></span>
         </div>
       </div>
-      <div class="update__content" v-else v-html="fullContent(update.content)"></div>
+      <div class="update__content" v-else v-html="update.content"></div>
       <ShareDonateToolbar
         :allowComment="false"
         :url-params="`update_id=${update.id}`"
@@ -66,10 +64,15 @@
     color: $color-text;
     font-size: 22px;
   }
+
   &__content {
     font-size: 20px;
     line-height: 1.4;
     font-family: $font-primary;
+  }
+
+  &__content-excerpt {
+    display: inline;
   }
 
   &__show-less {
@@ -110,6 +113,14 @@
         }
       }
     }
+
+    .update__content-excerpt {
+      display: inline;
+
+      > p:last-of-type {
+        display: inline;
+      }
+    }
   }
   
 </style>
@@ -139,12 +150,24 @@ export default {
   methods: {
     excerpt (content) {
       // var stripHtml = content.replace(/<\/?[^>]+(>|$)/g, "")
-      const stripHtml = content.substring(0, this.maxchar)
-      return stripHtml.replace(/(?:\r\n|\r|\n)/g, "<br/> <br />")
+      // Removes the initial <p> tag
+      const test = content.substring(3, content.length - 4)
+
+      // Removes line breaks
+      const trimmedLinebreaks = test.replace(/(?:\r\n|\r|\n)/g, "")
+
+      // Temporary replace `</p><p>` tags with line breaks
+      const trimmedParagraphs = trimmedLinebreaks.replace(/<\/p>\s*<p>/g, '\n')
+
+      // Actual exerpt generation content
+      const actualExcerpt = trimmedParagraphs.substring(0, this.maxchar)
+
+      // Excerpt with html tags
+      const htmlExcpert = `<p>${actualExcerpt.replace(/(?:\r\n|\r|\n)/g, "</p><p>")}</p>`
+
+      return htmlExcpert
     },
-    fullContent (content) {
-      return content.replace(/(?:\r\n|\r|\n)/g, "<br /> <br />")
-    },
+
     toggleIndex (index) {
       if (!this.showFullUpdate[index]) {
         Vue.set(this.showFullUpdate, index, true)
