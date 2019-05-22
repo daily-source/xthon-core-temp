@@ -3,6 +3,8 @@
     <slot name="heading"><h2>Gallery</h2></slot>
     <slot name="tagline"></slot>
     <p class="unselectable"><a @click="addImage()">Add a photo</a> or <a @click="addVideo()">video</a> to engage your audience.</p>
+      newMediaVideos: {{mediaSource.videos}}
+
     <div class="media-item"
       v-for="(item, index) in newMedia.images"
     >
