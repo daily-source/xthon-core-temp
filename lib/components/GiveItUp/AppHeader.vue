@@ -53,20 +53,86 @@
       </div>
     </div>
     <div class="header-nav">
-      <nav class="navbar">
-        <div class="container">
-          <div id="navbar-content">
-            <ul class="navbar-nav w-100">
-              <li class="nav-item"><router-link to="/" class="nav-link">Home</router-link></li>
-              <li class="nav-item"><router-link to="/" class="nav-link">About Us</router-link></li>
-              <li class="nav-item"><router-link to="/" class="nav-link">Volunteer</router-link></li>
-              <li class="nav-item"><router-link to="/" class="nav-link">Nonprofits</router-link></li>
-              <li class="nav-item"><router-link to="/" class="nav-link">Contact Us</router-link></li>
-              <li class="nav-item ml-auto"><router-link to="/" class="nav-link bg-secondary">Donate</router-link></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+			<nav class="navbar" role='navigation' aria-label='main-navigation'>
+				<div class='container header-nav__container'>
+					<div class='navbar-brand is-flex-mobile'>
+						<router-link to="/" class="logo-link">
+							<img src="@/assets/img/logo-giveitup-1286x321.png" alt="CalendarForGood">
+						</router-link>
+						<a 
+							class='navbar-burger burger' 
+							href='#' 
+							role='button' 
+							aria-label='menu' 
+							aria-expanded='false'
+							@click='toggleShowNavMobile'
+						>
+							<span class='navbar-burger__line' aria-hidden="true"></span>
+							<span class='navbar-burger__line' aria-hidden="true"></span>
+							<span class='navbar-burger__line' aria-hidden="true"></span>
+						</a>
+					</div>
+					<div 
+						:class='["navbar-menu", {"is-active": showNavMobile}]'
+					>
+						<navbar-item to='/'>Home</navbar-item>
+						<navbar-item to='/about'>About Us</navbar-item>
+						<navbar-item to='/volunteer'>Volunteer</navbar-item>
+						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
+						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
+						<navbar-item to='/contact'>Contact Us</navbar-item>
+						<navbar-item to='/register' item-class='navbar-item--mobile'>Register</navbar-item>
+						<navbar-item to='/login' item-class='navbar-item--mobile'>Login</navbar-item>
+						<navbar-item to='/donate' item-class='navbar-item--push-left navbar-item--last has-text-weight-bold is-uppercase'>Donate</navbar-item>
+          <ul class="nav social-nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='facebook'
+                />
+                <span class="is-sr-only">Facebook</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='twitter'
+                />
+                <span class="is-sr-only">Twitter</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <icon
+                  :iconwidth='18'
+                  :iconheight='18'
+                  color='#fff'
+                  icon='instagram'
+                />
+                <span class="is-sr-only">Instagram</span>
+              </a>
+            </li>
+          </ul>
+						<button 
+							class='navbar-menu__close-button is-text button'
+							@click='toggleShowNavMobile'
+						>
+							<icon 
+								icon='times'
+								:iconwidth='14'
+								:iconheight='14'
+								color='#fff'
+							/>
+						</button>
+					</div>
+				</div>
+			</nav>
     </div>
   </header>
 </template>
@@ -84,68 +150,155 @@ export default {
 </script>
 
 <style lang="scss">
-  #site-header {
-    background-color: white;
-  }
+#site-header {
+	background-color: white;
+}
 
-  .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: .25em;
-    padding-bottom: 0.25em;
+.header-top {
+	display: none;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: .25em;
+	padding-bottom: 0.25em;
 
-    .nav {
-      justify-content: flex-end;
-      margin-left: -0.25em;
+	@include tablet {
+		display: flex;
+	}
 
-      .nav-item {
-        padding-left: .25em;
-        padding-right: .25em;
-      }
-    }
-  }
+	.nav {
+		justify-content: flex-end;
+		margin-left: -0.25em;
 
-  .logo-link {
-    img {
-      max-width: 200px;
-    }
-  }
+		.nav-item {
+			padding-left: .25em;
+			padding-right: .25em;
+		}
+	}
+}
 
-  .navbar {
-    min-height: auto;
-    background-color: $primary !important;
+.logo-link {
+	img {
+		max-width: 200px;
+	}
+}
 
-    > .container {
-      min-height: auto;
-    }
+.header-nav {
+	.navbar {
+		background-color: transparent !important;
+		box-shadow: 0 2px 8px 2px rgba(0,0,0,.6);
 
-    #navbar-content {
-      flex-grow: 1;
-    }
+		@include tablet {
+			background-color: $primary !important;
+			padding-top: 0;
+			padding-bottom: 0;
+			box-shadow: none;
+		}
 
-    .navbar-nav {
-      display: flex;
+		&-brand {
+			display: none;
+			justify-content: space-between;
+			align-items: center;
+			padding: .5em;
+		}
 
-      .nav-link {
-        display: inline-block;
-        color: #fff;
-        padding: 1rem !important;
-      }
+		&-burger {
+			display: inline-block;
 
-      .nav-item:last-child {
-        margin-left: auto;
-        background-color: $secondary;
+			&__line {
+				height: 3px;
+				width: 22px;
+			}
+		}
 
-        .nav-link {
-          padding: 1rem 1.5rem !important;
-          font-weight: 700;
-          letter-spacing: .4px;
-          text-transform: uppercase;
-        }
-      }
-      
-    }
-  }
+		&-item {
+			color: #fff;
+			
+			&--mobile {
+				display: block;
 
+				@include tablet {
+					display: none;
+				}
+			}
+		}
+
+		&-menu {
+			margin-right: 0 !important;
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 500px;
+			max-width: 80%;
+			height: 100%;
+			display: block !important;
+			padding-top: 1em;
+			padding-bottom: 1em;
+			background-color: $primary;
+			transition: right .35s ease;
+
+
+			@include tablet {
+				position: static;
+				max-width: 100%;
+				height: auto;
+				width: 100%;
+				display: flex !important;
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+
+			&.is-active {
+				right: 0;
+
+				@include tablet {
+					right: auto;
+				}
+			}
+
+			&__close-button {
+				position: absolute;
+				top: 0;
+				right: 0;
+				display: inline-block;
+
+				@include tablet {
+					display: none;
+				}
+
+				&:hover,
+				&:focus {
+					color: #000;
+					background-color: transparent;
+				}
+			}
+
+			.social-nav {
+				display: none;
+				margin-top: .5em;
+				margin-bottom: .5em;
+				text-align: center;
+				justify-content: center;
+				display: flex;
+
+				@include tablet {
+					display: none;
+				}
+
+				.nav-link {
+					color: #fff !important;
+
+					.icon-wrapper {
+						padding-right: .5em;
+						padding-left: .5em;
+					}
+				}
+			}
+		}
+	}
+
+	&__container {
+		padding: 0;
+	}
+}
 </style>
+
