@@ -309,16 +309,16 @@
       align-items: center;
       justify-content: center;
 
-      &-img {
-        transform: scale(.8);
-      }
+      // &-img {
+      //   transform: scale(.8);
+      // }
 
-      &-img-0,
-      &-img-7,
-      &-img-8,
-      &-img-9 {
-        transform: scale(1);
-      }
+      // &-img-0,
+      // &-img-7,
+      // &-img-8,
+      // &-img-9 {
+      //   transform: scale(1);
+      // }
 
       &-img-5 {
         max-height: none !important;
