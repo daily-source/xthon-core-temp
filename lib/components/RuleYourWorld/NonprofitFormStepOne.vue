@@ -18,6 +18,7 @@
                       <data-input 
                         id='very-rich'
                         v-model='formData.veryRich'
+                        :value='formData.veryRich'
                         :error='veryRichAndRichTotalError'
                       />
                     </div>
@@ -28,7 +29,7 @@
                         class="is-block has-text-danger"
                         v-if='veryRichAndRichTotalError'
                       >
-                        *Very Rich and Rich must total to 49%
+                        *The total of Rich and Very Rich must be less than 50%
                       </small>
                     </div>
                   </div>
@@ -44,6 +45,7 @@
                       <data-input 
                         id='rich'
                         v-model='formData.rich'
+                        :value='formData.rich'
                         :error='veryRichAndRichTotalError'
                       />
                     </div>
@@ -54,7 +56,7 @@
                         class="is-block has-text-danger"
                         v-if='veryRichAndRichTotalError'
                       >
-                        *Very Rich and Rich must total to 49%
+                        *The total of Rich and Very Rich must be less than 50%
                       </small>
                     </div>
                   </div>
@@ -70,6 +72,7 @@
                       <data-input 
                         id='middle-class'
                         v-model='formData.middleClass'
+                        :value='formData.middleClass'
                         :error='veryRichAndRichTotalError || veryPoorAndPoorTotalError'
                       />
                     </div>
@@ -80,7 +83,7 @@
                         class="is-block has-text-danger"
                         v-if='veryRichAndRichTotalError || veryPoorAndPoorTotalError'
                       >
-                        *The average person not be placed lower or higher than middle class. So a maximum of 49% can be in the rich levels and 49% in the poor levels.
+                        *The average person can’t be placed lower or higher than middle class. So a maximum of 49% can be in the rich levels and 49% in the poor levels.
                       </small>
                     </div>
                   </div>
@@ -96,6 +99,7 @@
                       <data-input 
                         id='poor'
                         v-model='formData.poor'
+                        :value='formData.poor'
                         :error='veryPoorAndPoorTotalError'
                       />
                     </div>
@@ -106,7 +110,7 @@
                         class="is-block has-text-danger"
                         v-if='veryPoorAndPoorTotalError'
                       >
-                        *Very Poor and Poor must total to 49%
+                        *The total of Poor and Very Poor must be less than 50%
                       </small>
                     </div>
                   </div>
@@ -122,6 +126,7 @@
                       <data-input 
                         id='very-poor'
                         v-model='formData.veryPoor'
+                        :value='formData.veryPoor'
                         :error='veryPoorAndPoorTotalError'
                       />
                     </div>
@@ -132,7 +137,7 @@
                         class="is-block has-text-danger"
                         v-if='veryPoorAndPoorTotalError'
                       >
-                        *Very Poor and Poor must total to 49%
+                        *The total of Poor and Very Poor must be less than 50%
                       </small>
                     </div>
                   </div>
@@ -150,7 +155,10 @@
               </div>
               <div class="nonprofit-form-step-one__buttons field is-grouped">
                 <p class="control">
-                  <button class='button is-rounded is-primary is-uppercase has-text-weight-bold'>
+                  <button 
+                    class='button is-rounded is-primary is-uppercase has-text-weight-bold'
+                    @click.stop.prevent='resetForm'
+                  >
                     Reset
                   </button>
                 </p>
@@ -158,6 +166,7 @@
                   <button 
                     class='button is-rounded is-secondary is-uppercase has-text-weight-bold'
                     type='submit'
+                    :disabled='veryRichAndRichTotalError || veryRichAndRichTotalError || placed !== 100'
                   >
                     Submit
                   </button>
@@ -230,6 +239,16 @@ export default {
       })
 
       this.$emit('form:submit')
+    },
+
+    resetForm () {
+      this.formData = {
+        veryRich: 0,
+        rich: 0,
+        middleClass: 0,
+        poor: 0,
+        veryPoor: 0,
+      }
     },
 
     ...mapActions({

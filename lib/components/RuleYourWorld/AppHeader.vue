@@ -1,7 +1,7 @@
 <template>
   <header class='header'>
     <nav class='navbar' role='navigation' aria-label='main navigation'>
-      <div class="container">
+      <div class="container navbar__container">
         <div class="navbar-brand">
           <router-link to='/' class='navbar-item'>
             <img src='@/assets/img/logo.png' class='logo' alt='Rule Your World'>
@@ -27,7 +27,11 @@
 
   .logo {
     max-height: none;
-    max-width: 150px;
+    max-width: 200px;
+  }
+
+  &__container {
+    justify-content: center;
   }
 }
 </style>
