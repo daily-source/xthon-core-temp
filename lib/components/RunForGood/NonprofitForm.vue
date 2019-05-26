@@ -3,11 +3,11 @@
     <div class="container">
       <slot name="heading"></slot>
       <div class="columns combo-wrapper is-multiline bubbles-wrapper" v-if="bubbles">
-        <ComboBox iconsrc="/public/images/check.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/check.png')" duplicate="false" :large="true">
         </ComboBox>
-        <ComboBox iconsrc="/public/images/invite.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/invite.png')" duplicate="false" :large="true">
         </ComboBox>
-        <ComboBox iconsrc="/public/images/act.png" duplicate="false" :large="true">
+        <ComboBox :iconsrc="require('Public/img/act.png')" duplicate="false" :large="true">
         </ComboBox>
       </div>
       <div class="form-wrapper">
