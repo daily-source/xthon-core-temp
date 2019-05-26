@@ -167,7 +167,7 @@ export default {
   },
   data () {
     return {
-      fullURL: "https://www.facebook.com/Oxfam/?brand_redir=15041226930",
+      fullURL: "",
       shareText: "Check out this website!",
       siteName: "Volunteerathon",
       shareWindowTitle: "Sharing"

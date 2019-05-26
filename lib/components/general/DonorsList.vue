@@ -23,7 +23,6 @@
               :username="donation.firstName + ' ' + donation.lastName" 
               :rounded="true" src=""
               :size="avatarSize"
-                :backgroundColor='donation.User && donation.User.avatar && donation.User.avatar.backgroundColor'              
               v-else
             ></avatar>
           </div>
@@ -52,7 +51,6 @@
                 :username="donation.firstName + ' ' + donation.lastName" 
                 :rounded="true" src=""
                 :size="avatarSize"
-                :backgroundColor='donation.User && donation.User.avatar && donation.User.avatar.backgroundColor'                
                 v-else
               ></avatar>
             </div>
@@ -80,7 +78,6 @@
                 :username="donation.firstName + ' ' + donation.lastName" 
                 :rounded="true" src=""
                 :size="avatarSize"
-                :backgroundColor='donation.User && donation.User.avatar && donation.User.avatar.backgroundColor'                
                 v-else
               ></avatar>
             </div>
@@ -111,7 +108,6 @@
               :username="donation.firstName + ' ' + donation.lastName" 
               :rounded="true" src=""
               :size="wideAvatarSize"
-              :backgroundColor='donation.User && donation.User.avatar && donation.User.avatar.backgroundColor'
               v-else
             ></avatar>
             <p class="donor-name">

@@ -112,7 +112,7 @@
           </div>
         </div>
       </div>
-      <div class="columns" v-if='nonprofit.data.media && nonprofit.data.media.length'>
+      <div class="columns">
         <div class="nonprofit-extended__media column is-12-desktop">
           <div class="nonprofit-extended__icon">
             <Icons iconwidth="24px" iconheight="24px" icon="camera" color="#f0f0f0" class="icon"
