@@ -10,7 +10,7 @@
       v-model="selected"
     >
       <template slot="no-options">
-        {{ dropdownPlaceholder || '' }}
+        {{ dropdownPlaceholder || 'Type to search nonprofits...' }}        
       </template>
       <template slot="option" slot-scope="option">
         <div class="d-center selection">
