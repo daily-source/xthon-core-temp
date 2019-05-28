@@ -2,7 +2,7 @@
   <div class="banner">
     <flickity
       class='banner__slider'
-      ref='mainSlder'
+      ref='mainSlider'
       :options='sliderOptions'
       @init='onMainSliderReady'
     >
