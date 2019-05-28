@@ -192,7 +192,7 @@ export default {
           })
           .catch(err => {
             this.userDialogSpinner = false
-            this.errorMessage = "An unknown error occurred."
+            this.userDialogMessage = `Error: ${err.message}`
             console.log(err)
           })
       } else {
