@@ -15,9 +15,9 @@
           <div class="column is-3" ref="donorColumn">
             <LazyLoadedImage
               class="fundraiser-donors__picture"
-              :src="donation.User.avatar.src"
+              :src="donation.User.avatar"
               :is-background="true"
-              v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+              v-if="donation.User && donation.User.avatar"
             ></LazyLoadedImage>
             <avatar 
               :username="donation.firstName + ' ' + donation.lastName" 
@@ -43,9 +43,9 @@
             <div class="column is-3" ref="donorColumn">
               <LazyLoadedImage
                 class="fundraiser-donors__picture"
-                :src="donation.User.avatar.src"
+                :src="donation.User.avatar"
                 :is-background="true"
-                v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+                v-if="donation.User && donation.User.avatar"
               ></LazyLoadedImage>
               <avatar 
                 :username="donation.firstName + ' ' + donation.lastName" 
@@ -70,9 +70,9 @@
             <div class="column is-3" ref="donorColumn">
               <LazyLoadedImage
                 class="fundraiser-donors__picture"
-                :src="donation.User.avatar.src"
+                :src="donation.User.avatar"
                 :is-background="true"
-                v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+                v-if="donation.User && donation.User.avatar"
               ></LazyLoadedImage>
               <avatar 
                 :username="donation.firstName + ' ' + donation.lastName" 
@@ -100,9 +100,9 @@
             <p>{{donation.amountInCents | centsToUsd}}</p>
             <LazyLoadedImage
               class="donors-list__picture"
-              :src="donation.User.avatar.src"
+              :src="donation.User.avatar"
               :is-background="true"
-              v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+              v-if="donation.User && donation.User.avatar"
             ></LazyLoadedImage>
             <avatar 
               :username="donation.firstName + ' ' + donation.lastName" 
