@@ -76,8 +76,8 @@ export default {
       }
     },
     avatar () {
-      if (this.comment.User && this.comment.User.avatar && this.comment.User.avatar.src) {
-        return this.comment.User.avatar.src
+      if (this.comment.User && this.comment.User.avatar) {
+        return this.comment.User.avatar
       } else {
         return ""
       }
