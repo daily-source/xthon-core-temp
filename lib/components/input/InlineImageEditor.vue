@@ -225,7 +225,8 @@ export default {
             }, 3000)
           })
           .catch(err => {
-            console.log(err)
+            this.userDialogSpinner = false
+            this.userDialogMessage = `Error: ${err.message}`
           })
       }
     }
