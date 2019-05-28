@@ -10,6 +10,7 @@
           error-text="This field can't be empty"
           :value="fundraiser.name"
           :edition-is-enabled="editing"
+          :disableAutoComplete="true"
           layout="title"
           placeholder="Add a description."
           location="fundraiser.name"

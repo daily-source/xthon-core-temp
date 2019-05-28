@@ -1,5 +1,14 @@
 <template>
   <div class="container is-fluid white-bg">
+    <UserDialog
+      :spinner="userDialogSpinner"
+      :state="userDialogModal"
+      :disable-close= "userDialogSpinner"
+      v-on:modal:close="closeModal()"
+    >
+      <div slot="header">{{userDialogHeading}}</div> 
+      <div slot="content"><p>{{userDialogMessage}}</p></div> 
+    </UserDialog>
     <div class="fundraiser-body__tab-section">
       <div class="fundraiser-lower__body-wrapper">
         <div class="tabs is-toggle">
@@ -229,14 +238,19 @@ export default {
     Comments: () => import("Components/general/Comments.vue"),
     DonateAction: () => import("Components/general/DonateAction.vue"),
     DonorsList,
-    InlineRichTextEditor: () => import("Components/input/InlineRichTextEditor.vue")
+    InlineRichTextEditor: () => import("Components/input/InlineRichTextEditor.vue"),
+    UserDialog: () => import("Components/general/UserDialog.vue")
   },
   data () {
     return {
       currentTab: 1,
       mounted: false,
       tempUpdateContent: "",
-      newUpdate: false
+      newUpdate: false,
+      userDialogSpinner: true,
+      userDialogModal: false,
+      userDialogHeading: "Processing...",
+      userDialogMessage: ""
     }
   },
   computed: {
@@ -437,16 +451,30 @@ export default {
       this.newUpdate = false
       this.tempUpdateContent = ""
     },
+    closeModal () {
+      this.userDialogModal = false
+    },
     saveNewUpdate ($event) {
       if ($event.value) {
+        this.userDialogModal = true
+        this.userDialogSpinner = true
         this.$store.dispatch("ADD_NEW_UPDATE", {
           fundraiserId: this.fundraiser.id,
           content: $event.value,
           userId: this.$store.state.user.auth0.sub,
           token: this.$store.state.user.tokenData.accessToken
-        }).then(() => {})
+        }).then(() => {
+            this.userDialogModal = true
+            this.userDialogSpinner = false
+            this.errorMessage = "The update has been added."
+            setTimeout(() => {
+              this.userDialogModal = false
+            }, 3000)
+        })
           .catch(err => {
-            console.log("err: ", err)
+            this.userDialogModal = true
+            this.userDialogSpinner = false
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       }
     },

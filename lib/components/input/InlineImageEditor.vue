@@ -182,6 +182,11 @@ export default {
       this.croppaObject.refresh()
     },
     removeImage () {
+      if (this.editionIsEnabled && !this.croppaInitialImage) {
+        this.cancelEdition()
+        return
+      }
+      console.log('should not be here')
       this.userDialogModal = true
       this.userDialogSpinner = true
       this.errorMessage = ""
@@ -192,8 +197,7 @@ export default {
           })
           .catch(err => {
             this.userDialogSpinner = false
-            this.userDialogMessage = `Error: ${err.message}`
-            console.log(err)
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       } else {
         this.cancelEdition()
@@ -226,7 +230,7 @@ export default {
           })
           .catch(err => {
             this.userDialogSpinner = false
-            this.userDialogMessage = `Error: ${err.message}`
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       }
     }

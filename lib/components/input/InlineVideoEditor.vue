@@ -142,13 +142,25 @@ export default {
       this.$emit("edition:open", this._uid)
     },
     removeVideo () {
+      console.log('this.item: ', this.item, typeof this.item)
+      if (!this.youTubeID && this.fieldIsOpen === true) {
+        this.cancelEdition()
+        return
+      }
+      if (!this.item) {
+        this.cancelEdition()
+        return
+      }
+      console.log('here dude')
+      this.userDialogModal = true
       if (typeof this.item !== "undefined") {
         this.$store.dispatch("REMOVE_VIDEO", { location: this.location, route: this.$route, youTubeID: this.item })
           .then(() => {
             this.cancelEdition()
           })
           .catch(err => {
-            console.log(err)
+            this.userDialogSpinner = false
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       } else {
         this.cancelEdition()
@@ -182,7 +194,7 @@ export default {
         .catch(err => {
           console.log(err)
           this.userDialogSpinner = false
-          this.userDialogMessage = "An error occurred. Please try again."
+          this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
         })
     }
   },

@@ -40,6 +40,7 @@
           ref="input"
           :placeholder="placeholder"
           :type="type || 'text'"
+          :autocomplete="disableAutoComplete ? 'on' : 'off'"
           @blur="blurInput()"
           v-on:keyup.esc="cancelEdition()"
           v-on:keyup.enter="saveField()"
@@ -83,7 +84,8 @@ export default {
       fieldIsOpen: false,
       fieldValue: this.value,
       errorMessage: "",
-      blurTimeout: null
+      blurTimeout: null,
+      disableAutoComplete: false
     }
   },
   components: {
