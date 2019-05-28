@@ -7,9 +7,9 @@
           <div class="volunteerathon__fundraiser-content" v-show="!(limit && index >= limit)">
             <router-link :to="`/fundraiser/${fundraiser.id}`">
               <LazyLoadedImage class="volunteerathon__fundraiser-image"
-                :src="fundraiser.data.media[0].src"
+                :src="fundraiser.media.images[0]"
                 :is-background="true"
-                v-if="fundraiser.data.media.length">
+                v-if="fundraiser.media.images.length">
               </LazyLoadedImage>
               <h4 v-html="fundraiser.name"></h4>
             </router-link>

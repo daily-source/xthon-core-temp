@@ -89,9 +89,8 @@ export default {
     var imgSrc =
     this.parent === "nonprofit"
       ? this.nonprofit.data.hero
-        ? this.nonprofit.data.hero.src
-        : this.nonprofit.data.default_hero.src
-      : this.fundraiser.data.media[0].src
+        : this.nonprofit.data.default_hero
+      : this.fundraiser.media.images[0]
     var img = `${this.$store.state.extra.request.protocol}://${this.$store.state.extra.request.host}${imgSrc}`
     var imgWidth = this.parent === "nonprofit" ? 1024 : 800
     var imgHeight = this.parent === "nonprofit" ? 340 : 533
