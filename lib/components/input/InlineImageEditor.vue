@@ -186,7 +186,6 @@ export default {
         this.cancelEdition()
         return
       }
-      console.log('should not be here')
       this.userDialogModal = true
       this.userDialogSpinner = true
       this.errorMessage = ""

@@ -139,7 +139,6 @@ export default {
         .catch(err => {
           this.userDialogMessage = "An error occurred. Try again later."
           this.userDialogSpinner = false
-          console.log(err)
         })
     },
     updateUserField (fieldName, newValue) {
