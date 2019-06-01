@@ -79,6 +79,7 @@
             <button class="button is-info" @click="clearField()" v-if="fieldIsOpen">Clear</button>
             <button class="button is-primary" @click="useDefault()" v-if="defaultImage && fieldIsOpen">Use default</button>
             <button class="button is-success" @click="saveImage()" v-if="fieldIsOpen">Generate</button>
+            <button class="button cancel-edition-button" @click="cancelEdition()" v-if="fieldIsOpen">Cancel</button>
           </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
@@ -445,5 +446,11 @@ export default {
   left: 0;
   z-index: 19;
   background: rgba(255,255,255, 0.98);
+}
+
+.cancel-edition-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }
 </style>
