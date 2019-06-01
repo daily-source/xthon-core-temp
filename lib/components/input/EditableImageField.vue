@@ -8,12 +8,13 @@
           <img 
             :src="avatar"
             v-if="avatar"
-            width="200"
+            :width="imageSize"
           />
           <avatar 
             :username="$store.state.user.data.firstName + ' ' + $store.state.user.data.lastName" 
             v-if="!avatar"
             :rounded="false"
+            :size=imageSize
           ></avatar>
         </div>
         <div class="edition-box" v-if="fieldIsOpen">
@@ -63,7 +64,7 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "label", "type", "avatar", "errorText" ],
+  props: [ "label", "type", "avatar", "errorText", "imageSize" ],
   data () {
     return {
       fieldIsOpen: false,

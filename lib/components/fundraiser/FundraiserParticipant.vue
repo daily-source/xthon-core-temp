@@ -12,7 +12,15 @@
             class="inline-image-item v-lazy-image is-background fundraiser-participant__avatar"
             :is-background="true"
             :src="fundraiser.User.avatar"
+            v-if="fundraiser.User.avatar"
           ></LazyLoadedImage>
+          <avatar 
+            class="inline-image-item v-lazy-image is-background fundraiser-participant__avatar"
+            :username="fundraiser.User.firstName + ' ' + fundraiser.User.lastName" 
+            v-if="!fundraiser.User.avatar"
+            :size="120"
+            :rounded="false"
+          ></avatar>
         </figure>
         <div class="fundraiser-participant__details" :class="{'column is-5': editing}">
           <h3 class="fundraiser-participant__name">by 
@@ -94,6 +102,7 @@ export default {
     Icons,
     LazyLoadedImage,
     SharingIconsRow,
+    Avatar: () => import("vue-avatar"),
     InlineFieldEditor: () => import("Components/input/InlineFieldEditor.vue"),
     InlineImageEditor: () => import("Components/input/InlineImageEditor.vue")
   },
@@ -117,6 +126,7 @@ export default {
 
 .fundraiser-participant {
   display: flex;
+  margin-bottom: 20px;
 
   &.is-editing {
     @include mobile {
