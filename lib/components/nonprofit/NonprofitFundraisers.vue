@@ -14,7 +14,7 @@
               <h4 v-html="fundraiser.name"></h4>
             </router-link>
             <p>
-              By <span v-html=`${fundraiser.User.firstName} ${fundraiser.User.lastName}`></span><br>
+              By <span>{{fundraiser.User.firstName}} {{fundraiser.User.lastName}}</span><br>
             </p>
             <ProgressBar :details="fundraiser.fundraiserDetails" size="small"/>
           </div>
