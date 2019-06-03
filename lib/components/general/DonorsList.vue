@@ -100,6 +100,7 @@
             <p>{{donation.amountInCents | centsToUsd}}</p>
             <LazyLoadedImage
               class="donors-list__picture"
+              :style="{paddingBottom: wideAvatarSize, width: wideAvatarSize}"
               :src="donation.User.avatar"
               :is-background="true"
               v-if="donation.User && donation.User.avatar"
@@ -138,6 +139,7 @@ export default {
       } else {
         this.avatarSize = 75
       }
+
       if (this.canRender && this.$refs.wideDonorColumn && this.$refs.wideDonorColumn.length) {
         this.wideAvatarSize = this.$refs.wideDonorColumn[0].clientWidth * 0.87 * 0.7
       } else {
