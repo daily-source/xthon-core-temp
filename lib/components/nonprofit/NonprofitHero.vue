@@ -357,6 +357,10 @@ export default {
   transition: opacity 0.1s ease-in-out;
   &.transparent-block {
     opacity: 0;
+    display: none;
+    @include tablet {
+      display: block;
+    }
   }
 
 }

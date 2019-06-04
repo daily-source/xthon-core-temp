@@ -15,6 +15,7 @@
           <div class="column is-3" ref="donorColumn">
             <LazyLoadedImage
               class="fundraiser-donors__picture"
+              :style="{paddingBottom: avatarSize, width: avatarSize}"
               :src="donation.User.avatar"
               :is-background="true"
               v-if="donation.User && donation.User.avatar"
@@ -43,6 +44,7 @@
             <div class="column is-3" ref="donorColumn">
               <LazyLoadedImage
                 class="fundraiser-donors__picture"
+                :style="{paddingBottom: avatarSize, width: avatarSize}"
                 :src="donation.User.avatar"
                 :is-background="true"
                 v-if="donation.User && donation.User.avatar"
@@ -162,7 +164,7 @@ export default {
     setTimeout(() => {
       this.canRender = true
       this.calculateAvatarSize()
-    }, 1)
+    }, 1000)
     window.addEventListener("resize", this.calculateAvatarSize())
   }
 }

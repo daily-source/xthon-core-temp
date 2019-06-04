@@ -301,7 +301,6 @@ textarea {
   .action-icons-wrapper {
     right: 0;
     top: 0px;
-    transform: translateX(80px);
   }
 }
 
