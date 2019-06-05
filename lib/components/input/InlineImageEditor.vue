@@ -40,6 +40,7 @@
             :prevent-white-space="true"
             :zoom-speed="5"
             :quality="1.2"
+            :replace-drop="true"
             v-on:keyup.enter="saveImage()"
             v-on:new-image="errorMessage = ''"
             v-if="fieldIsOpen"
