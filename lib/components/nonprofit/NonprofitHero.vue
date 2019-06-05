@@ -43,7 +43,7 @@
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
       </div>
-      <div class="container columns center">
+      <div class="container columns center nonprofit-name__wrapper">
         <div
           class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd"
           :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name"
@@ -186,6 +186,8 @@ export default {
   &__hero-container {
     padding: 0;
     min-width: 90%;
+    position: relative;
+    z-index: 1;
 
     @include tablet {
       min-width: 0;
@@ -353,6 +355,10 @@ export default {
     }
   }
 }
+.nonprofit-name__wrapper {
+  position: relative;
+  z-index: 0;
+}
 .allow-html {
   transition: opacity 0.1s ease-in-out;
   &.transparent-block {
@@ -362,6 +368,5 @@ export default {
       display: block;
     }
   }
-
 }
 </style>

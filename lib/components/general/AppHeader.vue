@@ -192,6 +192,8 @@
 
 .header__wrapper {
   border-bottom: 2px solid $color-emphasis-alt;
+  position: relative;
+  z-index: 0;
 }
 
 .header__inner {

@@ -78,8 +78,13 @@
             <button class="button is-warning" @click="removeImage()" v-if="!required">Remove</button>
             <button class="button is-info" @click="clearField()" v-if="fieldIsOpen">Clear</button>
             <button class="button is-primary" @click="useDefault()" v-if="defaultImage && fieldIsOpen">Use default</button>
-            <button class="button is-success" @click="saveImage()" v-if="fieldIsOpen">Generate</button>
             <button class="button cancel-edition-button" @click="cancelEdition()" v-if="fieldIsOpen">Cancel</button>
+            <button 
+              class="button is-success"
+              :class="{'hide-button': !hasImage}"
+              @click="saveImage()"
+              v-if="fieldIsOpen"
+            >Generate</button>
           </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
@@ -105,7 +110,7 @@ export default {
   props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename' ],
   data () {
     return {
-      croppaObject: {},
+      croppaObject: null,
       croppaInitialImage: "",
       ratio: 1,
       userDialogSpinner: true,
@@ -145,6 +150,9 @@ export default {
     },
     staticImage () {
       return this.initialImage || this.defaultImage || ""
+    },
+    hasImage () {
+      return this.croppaObject && this.croppaObject.hasImage()
     }
   },
   mounted () {
@@ -160,6 +168,7 @@ export default {
     cancelEdition () {
       if (this.fieldIsOpen && !this.croppaObject.hasImage()) {
         this.$emit("image:remove")
+        this.croppaObject.remove()
       }
       this.fieldIsOpen = false
       this.errorMessage = ""
@@ -316,6 +325,7 @@ export default {
     z-index: 10;
     .button {
       margin-right: 5px;
+      margin-bottom: 5px;
     }
   }
 }
@@ -396,12 +406,18 @@ export default {
   }
 }
 .nonprofit-hero__logo-wrapper {
-  top: -370px;
-  @include desktop {
-    top: -120px;
+  .field-wrapper {
+    top: -400px;
+    left: 10px;
+    @include tablet {
+      left: 0;
+      top: 20px;
+    }
+    @include desktop {
+      top: 20px;
+    }
   }
 }
-
 .layout-overlay {
   .image-control {
     margin-top: 10px;
@@ -437,6 +453,9 @@ export default {
   }
 }
 
+.hide-button {
+  opacity: 0;
+}
 
 .overlay {
   position: fixed;
@@ -449,8 +468,5 @@ export default {
 }
 
 .cancel-edition-button {
-  margin-top: 5px;
-  margin-bottom: 5px;
-
 }
 </style>
