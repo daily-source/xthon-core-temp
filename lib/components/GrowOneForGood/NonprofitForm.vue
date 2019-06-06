@@ -58,7 +58,7 @@
               <div class="column">
                 <div class="select nonprofit-form__beard-type is-fullwidth">
                   <select name="beard-type" id="beard-type">
-                    <option value="">Select a beard type</option>
+                    <option value="" disabled>Select a beard type</option>
                     <option value="1">Full Beard</option>
                     <option value="2">French Fork</option>
                     <option value="1">Ducktail</option>
@@ -77,9 +77,9 @@
                     <option value="1">Goatee</option>
                     <option value="1">Circle Beard</option>
                     <option value="1">Balbo</option>
-                    <option value="1">Partners Bruch</option>
+                    <option value="1">Painters Brush</option>
                     <option value="1">Chevron</option>
-                    <!-- <option value="1">Handlebar</option> -->
+                    <option value="1">Handlebar</option>
                     <option value="1">Imperial</option>
                     <option value="1">Lampshade</option>
                     <option value="1">Zorro</option>
