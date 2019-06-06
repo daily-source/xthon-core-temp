@@ -254,10 +254,10 @@ export default {
   text-align: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 2px 0;
   align-items: center;
   position: relative;
-  font-size: 16px;
+  font-size: 1rem;
 
   @include desktop {
     flex-direction: row;

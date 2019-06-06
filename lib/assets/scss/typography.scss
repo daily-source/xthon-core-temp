@@ -1,7 +1,7 @@
 html,
 html body {
   font-family: $font-primary;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.4;
 
   button,
@@ -37,7 +37,7 @@ html body {
   }
 
   h1 {
-    font-size: 38px;
+    font-size: 1.9em;
     font-weight: 700;
     line-height: 1.4;
     margin-bottom: 20px;
@@ -48,7 +48,7 @@ html body {
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 1.7em;
     line-height: 1;
     font-weight: normal;
     margin-bottom: 20px;
@@ -60,20 +60,20 @@ html body {
   }
 
   h3 {
-    font-size: 28px;
+    font-size: 1.5em;
     font-weight: 400;
     margin-bottom: 15px;
   }
 
   h4 {
-    font-size: 22px;
+    font-size: 1.2em;
     font-weight: 400;
     margin-bottom: 15px;
     color: $color-text;
   }
 
   p {
-    font-size: 20px;
+    font-size: 1em;
     font-family: $font-primary;
     margin-bottom: 15px;
     line-height: 1.4;

@@ -251,7 +251,6 @@ export default {
 
 .fundraiser-pledge {
   margin-top: 20px;
-  font-size: 17px;
   text-align: center;
 
   @include tablet {
@@ -267,9 +266,9 @@ export default {
   }
 
   p {
-    font-size: 22px;
+    font-size: 1.2em;
     &.fundraiser-pledge__subheading {
-      font-size: 18px;
+      font-size: 1.1em;
       color: $color-medium-gray;
       font-style: italic;
       margin-bottom: 20px;

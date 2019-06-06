@@ -47,11 +47,11 @@
   @include tablet {
     background: $color-emphasis-alt;
     padding-bottom: 3px;
-    min-height: 45px;
+    min-height: 35px;
     justify-content: center;
     align-items: center;
     display: flex !important;
-    z-index: 9;
+    z-index: 0;
   }
 }
 .navbar-container {
