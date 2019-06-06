@@ -101,11 +101,22 @@
         </g>
       </g>
     </svg>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 4" v-if='icon === "minus"'>
+      <path id="minus" d="M86.088,224H65.912a2,2,0,0,0,0,4H86.088a2,2,0,0,0,0-4Z" transform="translate(-64 -224)" :fill="color"/>
+    </svg>
 
     <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 24" v-if="icon === 'times'">
       <path id="iconfinder_times_1608952" d="M326,385.313a1.87,1.87,0,0,1-.566,1.374l-2.747,2.747a1.951,1.951,0,0,1-2.747,0L314,383.495l-5.939,5.939a1.951,1.951,0,0,1-2.747,0l-2.747-2.747a1.951,1.951,0,0,1,0-2.747L308.505,378l-5.939-5.939a1.951,1.951,0,0,1,0-2.747l2.747-2.747a1.951,1.951,0,0,1,2.747,0L314,372.505l5.939-5.939a1.951,1.951,0,0,1,2.747,0l2.747,2.747a1.951,1.951,0,0,1,0,2.747L319.495,378l5.939,5.939A1.87,1.87,0,0,1,326,385.313Z" transform="translate(-302 -366)" :fill="color"/>
     </svg>
 
+    <svg xmlns="http://www.w3.org/2000/svg" :style="{width: `${iconwidth}`, height: `${iconheight}`}" viewBox="0 0 24 32" v-if='icon === "map-marker"'>
+      <g id="iconfinder_71_Pin_106156" transform="translate(-64)">
+        <g id="Group_6" data-name="Group 6" transform="translate(64)">
+          <path id="Path_3" data-name="Path 3" d="M76,0A12,12,0,0,0,64,12c0,6.627,12,20,12,20S88,18.627,88,12A12,12,0,0,0,76,0Zm0,20a8,8,0,1,1,8-8A8,8,0,0,1,76,20Z" transform="translate(-64)" :fill="color"/>
+        </g>
+      </g>
+    </svg>
   </div>
 </template>
 
