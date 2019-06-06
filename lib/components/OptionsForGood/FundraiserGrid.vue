@@ -8,13 +8,13 @@
           :key="site.id"
           :class="['column is-4', 'has-text-centered', {'is-hidden': index >= itemsToShow}]"
         >
-          <router-link :to="`events/${$vnode.key}/${site.id}`">
+          <a :href='site.url || "#"' target='_blank'>
             <fundraiser-single 
               :img-base-dir="$vnode.key"
               :fundraiser="site"
               :key="site.id"
             />
-          </router-link>
+          </a>
         </div>
       </div>
       <div class="extra-content" v-if="expanded">
