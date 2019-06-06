@@ -2,6 +2,10 @@
 
 Vue-powered standalone and library that can be used to power sites like Volunteerathon, GiveItUpForGood, RideForGood, etc. 
 
+## Guidelines for development
+
+[Please refer to the *wiki* tab on this repository](https://github.com/dailysourceorg/xthon-core/wiki) to see the general guidelines for developing components on this repository.
+
 ## Tag version
 
 If there are changes to the package.json file in the library, these need to be reflected in the parent. Bump the version in the library following (https://semver.org/)[https://semver.org/] guidelines, commit and push to the remote. After that, create a tag and push it to the remote:
