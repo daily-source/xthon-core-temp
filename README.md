@@ -4,7 +4,7 @@ Vue-powered standalone and library that can be used to power sites like Voluntee
 
 ## Guidelines for development
 
-*IMPORTANT:* [Please refer to the *wiki* tab on this repository](https://github.com/dailysourceorg/xthon-core/wiki) to see the general guidelines for developing components on this repository.
+**IMPORTANT:** [Please refer to the **wiki** tab on this repository](https://github.com/dailysourceorg/xthon-core/wiki) to see the general guidelines for developing components on this repository.
 
 ## Tag version
 
