@@ -106,6 +106,8 @@ export default {
   width: 100%;
   display: inline-block;
   margin: 20px 0;
+  position: relative;
+  z-index: 0;
 }
 
 </style>

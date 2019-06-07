@@ -411,6 +411,8 @@ export default {
   .field-wrapper {
     top: -400px;
     left: 10px;
+    position: relative;
+    z-index: 1;
     @include tablet {
       left: 0;
       top: 20px;

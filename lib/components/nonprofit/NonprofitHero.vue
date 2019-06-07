@@ -211,6 +211,10 @@ export default {
       width: 200px;
       height: 200px;
     }
+    .field-wrapper {
+      position: relative;
+      z-index: 2;
+    }
   }
 
   .container.center {
@@ -365,6 +369,22 @@ export default {
     display: none;
     @include tablet {
       display: block;
+    }
+  }
+}
+</style>
+<style lang="scss">
+.nonprofit-hero__logo-wrapper {
+  .field-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.nonprofit-hero__logo-wrapper {
+  .field-wrapper {
+    &.is-open-true {
+      z-index: 20 !important;
     }
   }
 }
