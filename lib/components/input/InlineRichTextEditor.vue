@@ -303,4 +303,17 @@ textarea {
     display: inline-block;
   }
 }
+.field-wrapper {
+  &.is-editing-true {
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background: $color-light-gray;
+      cursor: pointer;
+    }
+    .input-non-editable-value {
+      border: 4px dashed rgba($color-medium-gray, 0.3);
+    }
+  }
+}
+
 </style>

@@ -10,7 +10,7 @@
       <div slot="content"><p>{{userDialogMessage}}</p></div> 
     </UserDialog>
     <div class="columns editable-field-wrapper">
-      <div class="column is-6">
+      <div class="column is-4">
         <div
           @click="openEdition()"
         >

@@ -1,5 +1,5 @@
 <template>
-  <div class="nonprofit-extended">
+  <div class="nonprofit-extended" :class="`edition-is-enabled-${editing}`">
     <div class="container">
       <div class="nonprofit-extended__separator"></div>
 
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="nonprofit-extended__icons column is-4-desktop">
-            <div class="nonprofit-extended__icon" v-if="nonprofit.data">
+            <div class="nonprofit-extended__icon editable-row" v-if="nonprofit.data">
               <Icons iconwidth="24px" iconheight="24px" icon="location" color="#f0f0f0" class="icon"
               />
               <div class="display-block">
@@ -60,7 +60,7 @@
                 ></InlineFieldEditor>
               </div>
             </div>
-            <div class="nonprofit-extended__icon" v-if="nonprofit.data">
+            <div class="nonprofit-extended__icon editable-row" v-if="nonprofit.data">
               <Icons iconwidth="24px" iconheight="24px" icon="link" color="#f0f0f0" class="icon"
                 v-if="nonprofit.data.website || editing"
               />
@@ -81,7 +81,7 @@
                 ></InlineFieldEditor>
               </div>
             </div>
-            <div class="nonprofit-extended__icon" v-if="nonprofit.data">
+            <div class="nonprofit-extended__icon editable-row" v-if="nonprofit.data">
               <Icons iconwidth="24px" iconheight="24px" icon="email" color="#f0f0f0" class="icon"
                 v-if="nonprofit.data.email || editing"
               />
@@ -370,5 +370,10 @@ export default {
 
 .display-block {
   flex: 1;
+}
+.edition-is-enabled-true {
+  .editable-row {
+    margin-bottom: 0.5em;
+  }
 }
 </style>

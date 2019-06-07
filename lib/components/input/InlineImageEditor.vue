@@ -12,7 +12,7 @@
         <div slot="content"><p>{{userDialogMessage}}</p></div> 
       </UserDialog>
       <div class="editable-field-wrapper flex-one" :class="{'columns': !isStandalone}">
-        <div :class="{'flex-one': isBackgroundImage && !fieldIsOpen, 'column is-6': !isStandalone}">
+        <div :class="{'flex-one': isBackgroundImage && !fieldIsOpen, 'column is-4': !isStandalone}">
           <div
             :class="{'flex-one': isBackgroundImage}"
             v-if="!fieldIsOpen"
@@ -469,16 +469,13 @@ export default {
   background: rgba(255,255,255, 0.98);
 }
 
-.cancel-edition-button {
-}
-
 .edition-is-enabled-true {
   .inline-image-item {
     border: 4px dashed $color-emphasis-alt;
     box-sizing: border-box;
     &:hover {
       cursor: pointer;
-      filter: brightness(90%);
+      filter: brightness(70%);
     }
   }
   .croppa-container {
