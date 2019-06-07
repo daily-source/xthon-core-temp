@@ -1,9 +1,9 @@
 <template>
-  <div class="columns is-multiline is-mobile row-wrapper">
-    <div class="column is-3-tablet is-11-mobile">
+  <div class="columns is-multiline row-wrapper">
+    <div class="column is-3-tablet">
       <label :for="`input-editable_${_uid}`">{{label}}</label>
     </div>
-    <div class="column is-5-tablet is-7-mobile editable-field-wrapper">
+    <div class="column is-5-tablet editable-field-wrapper">
       <div v-if="disabledEdition" class="disabled-edition">
         {{fieldValue}} <span class="small">(Cannnot be modified)</span>
       </div>
@@ -52,7 +52,7 @@
       </transition-group>
     </div>
     <transition name="slide-fade">
-      <div class="column is-11-mobile is-6-tablet is-offset-4-tablet editable-error-message-wrapper" v-if="errorMessage">
+      <div class="column is-6-tablet is-offset-4-tablet editable-error-message-wrapper" v-if="errorMessage">
         <span class="editable-error-message">{{errorMessage}}</span>
       </div>
     </transition>
@@ -186,17 +186,6 @@ export default {
     margin-bottom: 0;
   }
 }
-.column.is-11-mobile {
-  @include mobile {
-    padding-bottom: 0;
-  }
-}
-.column.is-7-mobile,
-.column.is-5-mobile {
-  @include mobile {
-    padding-top: 0;
-  }
-}
 
 .disabled-edition {
   color: $color-medium-gray;
@@ -212,6 +201,7 @@ export default {
   padding-top: 0.1em;
   padding-bottom: 0.1em;
   margin-right: 0.5em;
+  margin-bottom: 0.5em;
 }
 .row-wrapper {
   align-items: center;
