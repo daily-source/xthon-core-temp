@@ -1,9 +1,9 @@
 <template>
-  <div class="columns is-multiline is-mobile">
-    <div class="column is-4-tablet is-11-mobile">
+  <div class="columns is-multiline is-mobile row-wrapper">
+    <div class="column is-3-tablet is-11-mobile">
       <label :for="`input-editable_${_uid}`">{{label}}</label>
     </div>
-    <div class="column is-5-tablet is-7-mobile">
+    <div class="column is-5-tablet is-7-mobile editable-field-wrapper">
       <div v-if="disabledEdition" class="disabled-edition">
         {{fieldValue}} <span class="small">(Cannnot be modified)</span>
       </div>
@@ -29,16 +29,27 @@
         </div>        
       </div>
     </div>
-    <div class="column is-3-tablet is-5-mobile is-pulled-right" v-if="!disabledEdition">
-      <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
-        <Icons icon="pencil" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-      </div>
-      <div class="action-icon-wrapper" @click="saveField(12)" :class="{'hide-icon': !fieldIsOpen}">
-        <Icons icon="check" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-      </div>
-      <div class="action-icon-wrapper" @click="cancelEdition()" :class="{'hide-icon': !fieldIsOpen}">
-        <Icons icon="close-circle" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-      </div>
+    <div class="column is-4 editable-field-wrapper" v-if="!disabledEdition">
+      <transition-group name="slide-fade">
+        <button
+          class="button is-primary button-edition"
+          @click="openEdition()"
+          v-if="!fieldIsOpen"
+          key="edit"
+        >Edit</button>
+        <button
+          class="button is-warning button-edition"
+          @click="cancelEdition()"
+          v-if="fieldIsOpen"
+          key="cancel"
+        >Cancel</button>
+        <button
+          class="button is-success button-edition"
+          @click="saveField()"
+          v-if="fieldIsOpen"
+          key="save"
+        >Save</button>
+      </transition-group>
     </div>
     <transition name="slide-fade">
       <div class="column is-11-mobile is-6-tablet is-offset-4-tablet editable-error-message-wrapper" v-if="errorMessage">
@@ -78,7 +89,7 @@ export default {
         this.$refs.input.focus()
       })
     },
-    saveField (id) {
+    saveField () {
       if (!this.fieldIsOpen) {
         return { code: 401 }
       }
@@ -138,7 +149,11 @@ export default {
   font-size: inherit;
   height: 28px;
   line-height: 1.4;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 2px dashed rgba($color-medium-gray, 0.4);
+  }
 }
 .input-editable-value {
   width: 100%;
@@ -193,4 +208,12 @@ export default {
   }
 }
 
+.button-edition {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  margin-right: 0.5em;
+}
+.row-wrapper {
+  align-items: center;
+}
 </style>

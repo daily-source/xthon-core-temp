@@ -1,9 +1,9 @@
 <template>
     <div class="columns is-multiline is-mobile">
-      <div class="column is-4-tablet is-11-mobile">
+      <div class="column is-3-tablet is-11-mobile">
         <label :for="`input-editable_${_uid}`">{{label}}</label>
       </div>
-      <div class="column is-5-tablet is-7-mobile">
+      <div class="column is-4-tablet is-7-mobile">
         <div class="edition-trigger" v-if="!fieldIsOpen" @click="openEdition()">
           <img 
             :src="avatar"
