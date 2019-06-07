@@ -179,8 +179,8 @@ export default {
     background-size: cover;
     background-position: bottom center;
     position: relative;
-    max-height: 390px;
-    min-height: 390px;
+    max-height: 360px;
+    min-height: 360px;
   }
 
   &__hero-container {
@@ -347,7 +347,7 @@ export default {
     }
   }
   &__cta-manage {
-    font-size: 12px;
+    font-size: 1em;
 
     @include tablet {
       background: transparent;

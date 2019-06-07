@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="`edition-is-enabled-${editionIsEnabled}`">
     <div class="overlay" v-if="fieldIsOpen && isStandalone"></div>
     <div :class="`field-wrapper layout-${layout} is-open-${fieldIsOpen} flex-one`">
       <UserDialog
@@ -333,6 +333,8 @@ export default {
 .inline-image-item {
   width: 100%;
   max-width: 600px;
+  transition: filter 0.1s ease-in-out;
+
   &.is-background {
     width: 100%;
     height: 100%;
@@ -346,7 +348,6 @@ export default {
 }
 .croppa-container {
   background: rgba($color-light-gray, 1);
-  border: 3px solid $blue;
 }
 .instructions {
   margin-top: 20px;
@@ -400,7 +401,7 @@ export default {
 
 .nonprofit-hero__hero-wrapper {
   .editable-field-wrapper {
-    height: 390px;
+    height: 360px;
   }
   .inline-image-item {
     max-width: 100vw;
@@ -469,5 +470,20 @@ export default {
 }
 
 .cancel-edition-button {
+}
+
+.edition-is-enabled-true {
+  .inline-image-item {
+    border: 4px dashed $color-emphasis-alt;
+    box-sizing: border-box;
+    &:hover {
+      cursor: pointer;
+      filter: brightness(90%);
+    }
+  }
+  .croppa-container {
+    border: 4px solid $color-emphasis;
+    box-sizing: border-box;
+  }
 }
 </style>

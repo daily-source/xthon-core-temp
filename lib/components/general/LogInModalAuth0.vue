@@ -40,14 +40,14 @@
     <div v-if="layout === 'app-header'">
       <div v-if="!loggedIn" class="login-button-wrapper">
         <div @click="triggerExternalLogin()">
-          <span class="button is-rounded is-success">
+          <span class="button is-rounded is-light is-outlinedx">
             Login/Register
           </span>
         </div>
       </div>
       <div @click="openLoginBox()" v-if="loggedIn" class="login-button-wrapper">
         <slot name="logged">
-          <span class="button is-rounded is-info">
+          <span class="button is-rounded is-light is-outlinedx">
             Hi, {{givenName}}! »
           </span>
         </slot>
@@ -200,6 +200,9 @@ li {
   text-align: center;
 }
 .login-button-wrapper {
-  font-size: 10px;
+  .button {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
 }
 </style>
