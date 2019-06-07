@@ -42,7 +42,7 @@
 <style scoped lang="scss">
 .footer {
   padding: 0;
-  z-index: 9;
+  z-index: 1;
 
   .hero-body {
     padding: 0;

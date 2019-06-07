@@ -85,11 +85,11 @@
               :class="{'hide-button': !hasImage}"
               @click="saveImage()"
               v-if="fieldIsOpen"
-            >Generate</button>
+            >Save</button>
           </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
-            <p>Click generate once ready to save the image.</p>
+            <p>Click save once ready to save the image.</p>
           </div>
         </div>
       </div>
