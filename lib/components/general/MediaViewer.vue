@@ -15,14 +15,13 @@
         :options="flickityOptions"
       >
         <img
-          :src="item.src"
-          v-for="item in media"
-          v-if="item.type === 'image'"
+          :src="item"
+          v-for="item in media.images"
         />
-        <div class="plyr-wrapper" v-if="item.type === 'video'" v-for="(item, index) in media">
+        <div class="plyr-wrapper" v-for="(item, index) in media.videos">
           <VuePlyrWrapper v-if="canRender">
-            <vue-plyr :ref="`plyr_${index}`">
-              <div data-plyr-provider="youtube" :data-plyr-embed-id="item.src"></div>
+            <vue-plyr :ref="`plyr_${item}`">
+              <div data-plyr-provider="youtube" :data-plyr-embed-id="item"></div>
             </vue-plyr>
           </VuePlyrWrapper>
         </div>

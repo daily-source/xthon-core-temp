@@ -40,6 +40,7 @@
           ref="input"
           :placeholder="placeholder"
           :type="type || 'text'"
+          :autocomplete="disableAutoComplete ? 'on' : 'off'"
           @blur="blurInput()"
           v-on:keyup.esc="cancelEdition()"
           v-on:keyup.enter="saveField()"
@@ -83,7 +84,8 @@ export default {
       fieldIsOpen: false,
       fieldValue: this.value,
       errorMessage: "",
-      blurTimeout: null
+      blurTimeout: null,
+      disableAutoComplete: false
     }
   },
   components: {
@@ -276,6 +278,15 @@ textarea {
   &.is-editing-true {
     min-width: 200px;
     width: 100%;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background: $color-light-gray;
+      cursor: pointer;
+    }
+    .input-non-editable-value {
+      border: 4px dashed rgba($color-medium-gray, 0.3);
+    }
   }
 }
 .action-icons-wrapper {
@@ -299,7 +310,6 @@ textarea {
   .action-icons-wrapper {
     right: 0;
     top: 0px;
-    transform: translateX(80px);
   }
 }
 

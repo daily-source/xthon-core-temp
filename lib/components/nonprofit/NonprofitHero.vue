@@ -5,6 +5,7 @@
         class="hero is-medium nonprofit-hero__hero-wrapper"
         location="nonprofit.data.hero"
         ref="imageEditor"
+        filename="hero"
         :item="nonprofit.data.hero"
         :is-background-image="true"
         :open-default="false"
@@ -24,6 +25,7 @@
         <InlineImageEditor
           class="nonprofit-hero__logo-wrapper"
           location="nonprofit.data.logo"
+          filename="logo"
           ref="imageEditor"
           :item="nonprofit.data.logo"
           :is-background-image="true"
@@ -32,19 +34,19 @@
           :is-standalone="true"
           :disable-orientation="true"
           :required="false"
-          :key="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc ? nonprofitLogoSrc : _uid + '_' + nonprofit.EIN"
+          :key="nonprofit.data && nonprofit.data.logo ? nonprofit.data.logo : _uid + '_' + nonprofit.EIN"
           default-text="Add a logo"
           layout="overlay"
           type="avatar"
-          v-if="nonprofit.data && nonprofit.data.logo && nonprofitLogoSrc || editing"
+          v-if="nonprofit.data && nonprofit.data.logo || editing"
           v-on:edition:open="newImageOpenId = $event"
           v-on:edition:close="newImageOpenId = null"
         ></InlineImageEditor>
       </div>
-      <div class="container columns center">
+      <div class="container columns center nonprofit-name__wrapper">
         <div
           class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd"
-          :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="!nonprofit.data.name"
+          :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="!nonprofit.data.name"
         >
           <InlineFieldEditor
             type="textarea"
@@ -57,7 +59,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofitLogoSrc && !editing}" v-if="nonprofit.data.name">
+        <div class="nonprofit-hero__nonprofit-name column is-6-tablet is-7-desktop is-7-widescreen is-7-fullhd" :class="{'not-claimed': !nonprofit.data.logo && !editing}" v-if="nonprofit.data.name">
           <InlineFieldEditor
             type="textarea"
             ref="nonprofitName"
@@ -69,7 +71,7 @@
             location="nonprofit.data.name"
           ></InlineFieldEditor>
         </div>
-        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofitLogoSrc}">
+        <div class="nonprofit-hero__cta-wrapper column is-6-tablet is-5-desktop is-5-widescreen is-5-fullhd" :class="{'not-claimed': !nonprofit.data.logo}">
           <div class="button nonprofit-hero__cta-fundraise">Fundraise</div>
           <DonateAction
             :nonprofit-ein="nonprofit.EIN"
@@ -134,13 +136,6 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
-    },
-    nonprofitLogoSrc () {
-      if (this.nonprofit && this.nonprofit.data && this.nonprofit.data.logo && this.nonprofit.data.logo.src) {
-        return this.nonprofit.data.logo.src
-      } else {
-        return ''
-      }
     }
   },
   methods: {
@@ -184,13 +179,14 @@ export default {
     background-size: cover;
     background-position: bottom center;
     position: relative;
-    max-height: 390px;
-    min-height: 390px;
+    max-height: 360px;
+    min-height: 360px;
   }
 
   &__hero-container {
     padding: 0;
     min-width: 90%;
+    position: relative;
 
     @include tablet {
       min-width: 0;
@@ -214,6 +210,10 @@ export default {
       bottom: -80px;
       width: 200px;
       height: 200px;
+    }
+    .field-wrapper {
+      position: relative;
+      z-index: 2;
     }
   }
 
@@ -350,7 +350,7 @@ export default {
     }
   }
   &__cta-manage {
-    font-size: 12px;
+    font-size: 1em;
 
     @include tablet {
       background: transparent;
@@ -358,11 +358,34 @@ export default {
     }
   }
 }
+.nonprofit-name__wrapper {
+  position: relative;
+  z-index: 0;
+}
 .allow-html {
   transition: opacity 0.1s ease-in-out;
   &.transparent-block {
     opacity: 0;
+    display: none;
+    @include tablet {
+      display: block;
+    }
   }
+}
+</style>
+<style lang="scss">
+.nonprofit-hero__logo-wrapper {
+  .field-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+}
 
+.nonprofit-hero__logo-wrapper {
+  .field-wrapper {
+    &.is-open-true {
+      z-index: 20 !important;
+    }
+  }
 }
 </style>

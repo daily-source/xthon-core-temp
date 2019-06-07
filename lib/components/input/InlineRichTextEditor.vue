@@ -89,28 +89,24 @@ export default {
         this.cancelEdition()
         return
       }
-      return new Promise((resolve, reject) => {
-        clearTimeout(this.blurTimeout)
-        if (this.fieldValue) {
-          this.userDialogModal = true
-          this.$store.dispatch("SAVE_INLINE_FIELD", { location: this.location, route: this.$route, value: this.fieldValue })
-            .then(() => {
-              this.cancelEdition()
-              this.fieldIsOpen = false
-              this.userDialogModal = false
-              resolve(this.fieldValue)
-            })
-            .catch(err => {
-              console.log(err)
-              this.userDialogModal = false
-              reject(err)
-            })
-        } else {
-          this.errorMessage = this.errorText
-          this.userDialogModal = false
-          resolve()
-        }
-      })
+      clearTimeout(this.blurTimeout)
+      if (this.fieldValue) {
+        this.userDialogModal = true
+        this.$store.dispatch("SAVE_INLINE_FIELD", { location: this.location, route: this.$route, value: this.fieldValue })
+          .then(() => {
+            this.cancelEdition()
+            this.fieldIsOpen = false
+            this.userDialogModal = false
+          })
+          .catch(err => {
+            this.userDialogHeading = "Error"
+            this.userDialogMessage = err.response.statusText
+            this.userDialogSpinner = false
+          })
+      } else {
+        this.errorMessage = this.errorText
+        this.userDialogModal = false
+      }
     },
     tabPressed (e) {
       this.saveField()
@@ -139,6 +135,9 @@ export default {
       this.blurTimeout = setTimeout(() => {
         this.cancelEdition()
       }, 200)
+    },
+    closeUserDialog () {
+      this.userDialogModal = false
     }
   },
   mounted () {
@@ -304,4 +303,17 @@ textarea {
     display: inline-block;
   }
 }
+.field-wrapper {
+  &.is-editing-true {
+    transition: background-color 0.2s ease-in-out;
+    &:hover {
+      background: $color-light-gray;
+      cursor: pointer;
+    }
+    .input-non-editable-value {
+      border: 4px dashed rgba($color-medium-gray, 0.3);
+    }
+  }
+}
+
 </style>

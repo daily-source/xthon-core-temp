@@ -15,9 +15,10 @@
           <div class="column is-3" ref="donorColumn">
             <LazyLoadedImage
               class="fundraiser-donors__picture"
-              :src="donation.User.avatar.src"
+              :style="{paddingBottom: avatarSize, width: avatarSize}"
+              :src="donation.User.avatar"
               :is-background="true"
-              v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+              v-if="donation.User && donation.User.avatar"
             ></LazyLoadedImage>
             <avatar 
               :username="donation.firstName + ' ' + donation.lastName" 
@@ -43,9 +44,10 @@
             <div class="column is-3" ref="donorColumn">
               <LazyLoadedImage
                 class="fundraiser-donors__picture"
-                :src="donation.User.avatar.src"
+                :style="{paddingBottom: avatarSize, width: avatarSize}"
+                :src="donation.User.avatar"
                 :is-background="true"
-                v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+                v-if="donation.User && donation.User.avatar"
               ></LazyLoadedImage>
               <avatar 
                 :username="donation.firstName + ' ' + donation.lastName" 
@@ -70,9 +72,9 @@
             <div class="column is-3" ref="donorColumn">
               <LazyLoadedImage
                 class="fundraiser-donors__picture"
-                :src="donation.User.avatar.src"
+                :src="donation.User.avatar"
                 :is-background="true"
-                v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+                v-if="donation.User && donation.User.avatar"
               ></LazyLoadedImage>
               <avatar 
                 :username="donation.firstName + ' ' + donation.lastName" 
@@ -100,9 +102,10 @@
             <p>{{donation.amountInCents | centsToUsd}}</p>
             <LazyLoadedImage
               class="donors-list__picture"
-              :src="donation.User.avatar.src"
+              :style="{paddingBottom: wideAvatarSize, width: wideAvatarSize}"
+              :src="donation.User.avatar"
               :is-background="true"
-              v-if="donation.User && donation.User.avatar && donation.User.avatar.src"
+              v-if="donation.User && donation.User.avatar"
             ></LazyLoadedImage>
             <avatar 
               :username="donation.firstName + ' ' + donation.lastName" 
@@ -138,6 +141,7 @@ export default {
       } else {
         this.avatarSize = 75
       }
+
       if (this.canRender && this.$refs.wideDonorColumn && this.$refs.wideDonorColumn.length) {
         this.wideAvatarSize = this.$refs.wideDonorColumn[0].clientWidth * 0.87 * 0.7
       } else {
@@ -160,7 +164,7 @@ export default {
     setTimeout(() => {
       this.canRender = true
       this.calculateAvatarSize()
-    }, 1)
+    }, 1000)
     window.addEventListener("resize", this.calculateAvatarSize())
   }
 }

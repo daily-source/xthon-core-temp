@@ -10,12 +10,12 @@
       <div slot="content"><p>{{userDialogMessage}}</p></div> 
     </UserDialog>
     <div class="columns editable-field-wrapper">
-      <div class="column is-6">
+      <div class="column is-4">
         <div
           @click="openEdition()"
         >
           <transition name="slide-fade">
-            <VuePlyrWrapper v-if="item.src || youTubeID && fieldIsOpen">
+            <VuePlyrWrapper v-if="item || youTubeID && fieldIsOpen">
               <vue-plyr :ref="`plyr_${_uid}`" :key="videoSource">
                 <div data-plyr-provider="youtube" :data-plyr-embed-id="videoSource"></div>
               </vue-plyr>
@@ -29,33 +29,16 @@
             <div class="field-label is-normal">
               <label class="label">Paste here the YouTube URL of your video:</label>
             </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input-editable-value"
-                    type="text"
-                    v-model="fieldValue"
-                    v-on:keyup.enter="saveVideo()"
-                  />
-                </p>
-              </div>
-            </div>
+            <input
+              class="input-editable-value"
+              type="text"
+              v-model="fieldValue"
+              v-on:keyup.enter="saveVideo()"
+            />
           </div>
         </div>
       </div>
       <div class="column is-6 image-control">
-        <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}">
-          <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
-            <Icons icon="pencil" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-          <div class="action-icon-wrapper" @click="saveVideo()" :class="{'hide-icon': !fieldIsOpen}">
-            <Icons icon="check" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-          <div class="action-icon-wrapper" @click="cancelEdition()" :class="{'hide-icon': !fieldIsOpen}">
-            <Icons icon="close-circle" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-        </div>
         <div class="button-wrapper">
           <button class="button is-warning" @click="removeVideo()">Remove</button>
           <button class="button is-success" @click="saveVideo()" v-if="fieldIsOpen">Save</button>
@@ -116,9 +99,9 @@ export default {
     },
     videoSource () {
       if (!this.fieldIsOpen) {
-        return this.item.src || this.youTubeID
+        return this.item || this.youTubeID
       } else {
-        return this.youTubeID || this.item.src
+        return this.youTubeID || this.item
       }
     }
   },
@@ -142,13 +125,23 @@ export default {
       this.$emit("edition:open", this._uid)
     },
     removeVideo () {
-      if (typeof this.item.id !== "undefined") {
-        this.$store.dispatch("REMOVE_VIDEO", { location: this.location, route: this.$route, id: this.item.id })
+      if (!this.youTubeID && this.fieldIsOpen === true) {
+        this.cancelEdition()
+        return
+      }
+      if (!this.item) {
+        this.cancelEdition()
+        return
+      }
+      this.userDialogModal = true
+      if (typeof this.item !== "undefined") {
+        this.$store.dispatch("REMOVE_VIDEO", { location: this.location, route: this.$route, youTubeID: this.item })
           .then(() => {
             this.cancelEdition()
           })
           .catch(err => {
-            console.log(err)
+            this.userDialogSpinner = false
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       } else {
         this.cancelEdition()
@@ -166,35 +159,23 @@ export default {
       }
       this.userDialogModal = true
       this.userDialogSpinner = true
-      if (this.item.src) {
-        this.$store.dispatch("UPDATE_VIDEO", { location: this.location, route: this.$route, oldSrc: this.item.src, newSrc: this.youTubeID })
-          .then(() => {
-            this.userDialogSpinner = false
-            this.userDialogMessage = "The video has been updated."
-            setTimeout(() => {
-              this.cancelEdition()
-            }, 4000)
-          })
-          .catch(err => {
-            console.log(err)
-            this.userDialogSpinner = false
-            this.userDialogMessage = "An error occurred. Please try again."
-          })
-      } else {
-        this.$store.dispatch("ADD_VIDEO", { location: this.location, route: this.$route, youTubeID: this.youTubeID })
-          .then(() => {
-            this.userDialogSpinner = false
-            this.userDialogMessage = "The video has been added."
-            setTimeout(() => {
-              this.cancelEdition()
-            }, 4000)
-          })
-          .catch(err => {
-            console.log(err)
-            this.userDialogSpinner = false
-            this.userDialogMessage = "An error occurred. Please try again."
-          })
-      }
+
+      this.$store.dispatch("ADD_VIDEO", {
+        location: this.location,
+        route: this.$route,
+        youTubeID: this.youTubeID
+      })
+        .then(() => {
+          this.userDialogSpinner = false
+          this.userDialogMessage = "The video has been added."
+          setTimeout(() => {
+            this.cancelEdition()
+          }, 3000)
+        })
+        .catch(err => {
+          this.userDialogSpinner = false
+          this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
+        })
     }
   },
   watch: {
@@ -255,17 +236,6 @@ export default {
   }
 }
 
-.input-editable-value {
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 1.4;
-  height: 28px;
-  width: 100%;
-  padding: 20px 5px;
-  text-align: center;
-  border: 1px solid $color-light-gray;
-}
-
 .video-input-wrapper {
   display: flex;
   flex-direction: column;
@@ -310,4 +280,25 @@ export default {
     }
   }
 }
+
+.field-label {
+  text-align: center;
+  .label {
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+}
+
+.input-editable-value {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.4;
+  height: 28px;
+  width: 90%;
+  margin-left: 5%;
+  padding: 20px 5px;
+  text-align: center;
+  border: 1px solid $color-light-gray;
+}
+
 </style>

@@ -3,7 +3,6 @@
     <div class="columns fundraiser-content" v-if="!editing">
       <div class="column is-two-thirds-desktop fundraiser-content__left">
         <div class="fundraiser-photo-section">
-
           <flickity
             ref="flickity"
             class="main-carousel"
@@ -12,15 +11,14 @@
             <LazyLoadedImage
               class="fundraiser-photo-section__photo"
               :is-background="true"
-              :src="item.src"
-              :key="_uid + item.src"
-              v-if="item.type === 'image'"
-              v-for="(item, index) in fundraiser.data.media"
+              :src="item"
+              :key="_uid + item"
+              v-for="(item, index) in fundraiser.media.images"
             ></LazyLoadedImage>
-            <div class="fundraiser-photo-section__photo fundraiser-photo-section__video plyr-wrapper" v-if="item.type === 'video'" v-for="(item, index) in fundraiser.data.media">
+            <div class="fundraiser-photo-section__photo fundraiser-photo-section__video plyr-wrapper" v-for="(item, index) in fundraiser.media.videos">
               <VuePlyrWrapper v-if="canRender">
-                <vue-plyr :ref="`plyr_${index}`">
-                  <div data-plyr-provider="youtube" :data-plyr-embed-id="item.src"></div>
+                <vue-plyr :ref="`plyr_${fundraiser.media.images.length + index}`">
+                  <div data-plyr-provider="youtube" :data-plyr-embed-id="item"></div>
                 </vue-plyr>
               </VuePlyrWrapper>
             </div>
@@ -62,11 +60,11 @@
     </div>
     <div v-if="editing">
       <MediaEditor
-        :media-source="fundraiser.data"
-        location="fundraiser.data.media"
+        :media-source="fundraiser.media"
+        location="fundraiser.media"
       >
         <h2 slot="heading">Edit the gallery</h2>
-        <p slot="tagline" v-if="!fundraiser.data.media.length">You don't have any images or videos. A default image will be used.</p>
+        <p slot="tagline" v-if="!fundraiser.media.images.length && !fundraiser.media.videos.length">You don't have any images or videos. A default image will be used.</p>
       </MediaEditor>
     </div>
   </div>
@@ -92,7 +90,6 @@ export default {
   data () {
     return {
       canRender: false,
-      currentCell: null,
       mainCarouselOptions: {
         initialIndex: 0,
         prevNextButtons: false,
@@ -107,6 +104,7 @@ export default {
       this.$emit("edit:open")
     }
   },
+
   mounted () {
     this.canRender = true
 
@@ -114,23 +112,38 @@ export default {
      * if there's a slide change and the previous one had a video, pause it.
      */
     const flick = this.$refs.flickity
-    this.currentCell = 0
-    flick.on("change", () => {
-      // Auto play if there's video in the selected cell.
-      if (flick.$flickity.cells[flick.selectedIndex()].element.className.indexOf("plyr") > -1) {
-        this.$refs[`plyr_${flick.selectedIndex()}`][0].player.play()
-      }
-      // Auto pause if there's video in the previously selected cell.
-      if (flick.$flickity.cells[this.currentCell].element.className.indexOf("plyr") > -1) {
-        setTimeout(() => {
-          this.$refs[`plyr_${this.currentCell}`][0].player.pause()
-        }, 50)
-      }
-      this.$emit("slideChange", flick)
 
-      setTimeout(() => {
-        this.currentCell = flick.selectedIndex()
-      }, 50)
+    flick.on("change", (current) => {
+      var nextSlide = current + 1
+      var prevSlide = current - 1
+      if (nextSlide === flick.$flickity.cells.length) {
+        nextSlide = 0
+      }
+      if (prevSlide < 0) {
+        prevSlide = flick.$flickity.cells.length - 1
+      }
+
+      // Auto play if there's video in the selected cell.
+      if (flick.$flickity.cells[current].element.className.indexOf("plyr") > -1) {
+        setTimeout(() => {
+          this.$refs[`plyr_${current}`][0].player.play()
+        }, 100)
+      }
+
+      if (flick.$flickity.cells[prevSlide].element.className.indexOf("plyr") > -1) {
+        setTimeout(() => {
+          this.$refs[`plyr_${prevSlide}`][0].player.pause()
+        }, 2500)
+      }
+
+      if (flick.$flickity.cells[nextSlide].element.className.indexOf("plyr") > -1) {
+        setTimeout(() => {
+          this.$refs[`plyr_${nextSlide}`][0].player.pause()
+        }, 2500)
+      }
+
+      // Auto pause if there's video in the previously selected cell.
+      this.$emit("slideChange", flick)
     })
   }
 }
@@ -210,6 +223,7 @@ export default {
   }
   &__video {
     display: flex;
+    flex: 1;
     > div {
       display: flex;
       align-items: center;
@@ -224,13 +238,19 @@ export default {
       padding-bottom: 0;
       overflow: hidden;
       background-color: $color-lightest-gray;
+
+      width: 102%;
+      min-height: 450px;
+    }
+
+    @include fullhd {
+      min-height: 500px;
     }
   }
 }
 
 .fundraiser-pledge {
   margin-top: 20px;
-  font-size: 17px;
   text-align: center;
 
   @include tablet {
@@ -246,9 +266,9 @@ export default {
   }
 
   p {
-    font-size: 22px;
+    font-size: 1.2em;
     &.fundraiser-pledge__subheading {
-      font-size: 18px;
+      font-size: 1.1em;
       color: $color-medium-gray;
       font-style: italic;
       margin-bottom: 20px;

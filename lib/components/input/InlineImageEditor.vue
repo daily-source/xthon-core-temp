@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="`edition-is-enabled-${editionIsEnabled}`">
     <div class="overlay" v-if="fieldIsOpen && isStandalone"></div>
     <div :class="`field-wrapper layout-${layout} is-open-${fieldIsOpen} flex-one`">
       <UserDialog
@@ -12,7 +12,7 @@
         <div slot="content"><p>{{userDialogMessage}}</p></div> 
       </UserDialog>
       <div class="editable-field-wrapper flex-one" :class="{'columns': !isStandalone}">
-        <div :class="{'flex-one': isBackgroundImage && !fieldIsOpen, 'column is-6': !isStandalone}">
+        <div :class="{'flex-one': isBackgroundImage && !fieldIsOpen, 'column is-4': !isStandalone}">
           <div
             :class="{'flex-one': isBackgroundImage}"
             v-if="!fieldIsOpen"
@@ -40,6 +40,7 @@
             :prevent-white-space="true"
             :zoom-speed="5"
             :quality="1.2"
+            :replace-drop="true"
             v-on:keyup.enter="saveImage()"
             v-on:new-image="errorMessage = ''"
             v-if="fieldIsOpen"
@@ -78,7 +79,13 @@
             <button class="button is-warning" @click="removeImage()" v-if="!required">Remove</button>
             <button class="button is-info" @click="clearField()" v-if="fieldIsOpen">Clear</button>
             <button class="button is-primary" @click="useDefault()" v-if="defaultImage && fieldIsOpen">Use default</button>
-            <button class="button is-success" @click="saveImage()" v-if="fieldIsOpen">Generate</button>
+            <button class="button cancel-edition-button" @click="cancelEdition()" v-if="fieldIsOpen">Cancel</button>
+            <button 
+              class="button is-success"
+              :class="{'hide-button': !hasImage}"
+              @click="saveImage()"
+              v-if="fieldIsOpen"
+            >Generate</button>
           </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
@@ -101,10 +108,10 @@ import Icons from "Components/general/Icons.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText" ],
+  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename' ],
   data () {
     return {
-      croppaObject: {},
+      croppaObject: null,
       croppaInitialImage: "",
       ratio: 1,
       userDialogSpinner: true,
@@ -125,7 +132,7 @@ export default {
   computed: {
     calculateWidth () {
       if (typeof window === "undefined" || typeof this.$el === "undefined") {
-        return 400
+        return 320
       }
       let wrapperWidth = this.$el.clientWidth
       if (this.type === "avatar") {
@@ -134,16 +141,19 @@ export default {
         }
         return wrapperWidth / 2 - 12
       }
-      return wrapperWidth < 400 ? wrapperWidth - 6 : 400
+      return wrapperWidth < 320 ? wrapperWidth - 6 : 320
     },
     calculateHeight () {
       return this.calculateWidth * this.ratio
     },
     initialImage () {
-      return typeof this.item !== "undefined" ? this.item.src : ""
+      return typeof this.item !== "undefined" ? this.item : ""
     },
     staticImage () {
-      return this.initialImage ? this.initialImage : this.defaultImage ? this.defaultImage.src : ""
+      return this.initialImage || this.defaultImage || ""
+    },
+    hasImage () {
+      return this.croppaObject && this.croppaObject.hasImage()
     }
   },
   mounted () {
@@ -159,6 +169,7 @@ export default {
     cancelEdition () {
       if (this.fieldIsOpen && !this.croppaObject.hasImage()) {
         this.$emit("image:remove")
+        this.croppaObject.remove()
       }
       this.fieldIsOpen = false
       this.errorMessage = ""
@@ -178,22 +189,25 @@ export default {
       }
     },
     useDefault () {
-      this.croppaInitialImage = this.defaultImage.src
+      this.croppaInitialImage = this.defaultImage
       this.croppaObject.refresh()
     },
     removeImage () {
+      if (this.editionIsEnabled && !this.croppaInitialImage) {
+        this.cancelEdition()
+        return
+      }
       this.userDialogModal = true
       this.userDialogSpinner = true
       this.errorMessage = ""
       if (typeof this.item !== "undefined") {
-        this.$store.dispatch("REMOVE_FIXED_IMAGE", { location: this.location, route: this.$route })
+        this.$store.dispatch("REMOVE_FIXED_IMAGE", { location: this.location, route: this.$route, filename: this.croppaInitialImage })
           .then(() => {
             this.cancelEdition()
           })
           .catch(err => {
             this.userDialogSpinner = false
-            this.errorMessage = "An unknown error occurred."
-            console.log(err)
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       } else {
         this.cancelEdition()
@@ -214,12 +228,19 @@ export default {
           image: blob,
           location: this.location,
           route: this.$route,
+          filename: this.filename
         })
-          .then(() => {
-            this.cancelEdition()
+          .then(postedURL => {
+            this.croppaInitialImage = postedURL
+            this.userDialogSpinner = false
+            this.userDialogMessage = "The image has been added."
+            setTimeout(() => {
+              this.cancelEdition()
+            }, 3000)
           })
           .catch(err => {
-            console.log(err)
+            this.userDialogSpinner = false
+            this.userDialogMessage = `Error: ${err.message}. Please reload the page.`
           })
       }
     }
@@ -302,15 +323,18 @@ export default {
     display: block;
     margin-top: 5px;
     position: relative;
-    z-index: 10;
+
     .button {
       margin-right: 5px;
+      margin-bottom: 5px;
     }
   }
 }
 .inline-image-item {
   width: 100%;
   max-width: 600px;
+  transition: filter 0.1s ease-in-out;
+
   &.is-background {
     width: 100%;
     height: 100%;
@@ -324,7 +348,6 @@ export default {
 }
 .croppa-container {
   background: rgba($color-light-gray, 1);
-  border: 3px solid $blue;
 }
 .instructions {
   margin-top: 20px;
@@ -378,19 +401,27 @@ export default {
 
 .nonprofit-hero__hero-wrapper {
   .editable-field-wrapper {
-    height: 390px;
+    height: 360px;
   }
   .inline-image-item {
     max-width: 100vw;
   }
 }
 .nonprofit-hero__logo-wrapper {
-  top: -370px;
-  @include desktop {
-    top: -120px;
+  .field-wrapper {
+    top: -400px;
+    left: 10px;
+    position: relative;
+    z-index: 1;
+    @include tablet {
+      left: 0;
+      top: 20px;
+    }
+    @include desktop {
+      top: 20px;
+    }
   }
 }
-
 .layout-overlay {
   .image-control {
     margin-top: 10px;
@@ -426,6 +457,9 @@ export default {
   }
 }
 
+.hide-button {
+  opacity: 0;
+}
 
 .overlay {
   position: fixed;
@@ -435,5 +469,20 @@ export default {
   left: 0;
   z-index: 19;
   background: rgba(255,255,255, 0.98);
+}
+
+.edition-is-enabled-true {
+  .inline-image-item {
+    border: 4px dashed $color-emphasis-alt;
+    box-sizing: border-box;
+    &:hover {
+      cursor: pointer;
+      filter: brightness(70%);
+    }
+  }
+  .croppa-container {
+    border: 4px solid $color-emphasis;
+    box-sizing: border-box;
+  }
 }
 </style>

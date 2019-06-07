@@ -1,5 +1,7 @@
 <template>
-  <div class="header__wrapper white-bg" :class="{ 'page-layout': layout === 'page' }">
+  <div class="header__wrapper white-bg"
+    :class="{ 'page-layout': layout === 'page' }"
+  >
     <div class="container is-fluid">
       <div class="header__inner">
         <div class="random-words">
@@ -62,7 +64,7 @@ export default {
     Icons,
     LogInModalAuth0
   },
-  props: ["layout"],
+  props: ["layout", "editing"],
   data () {
     return {
       showSearchBar: false,
@@ -242,6 +244,8 @@ export default {
 
 .header__wrapper {
   border-bottom: 2px solid $color-emphasis-alt;
+  position: relative;
+  z-index: 2;
 }
 
 .header__inner {
@@ -249,10 +253,10 @@ export default {
   text-align: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 2px 0;
   align-items: center;
   position: relative;
-  font-size: 16px;
+  font-size: 1rem;
 
   @include desktop {
     flex-direction: row;

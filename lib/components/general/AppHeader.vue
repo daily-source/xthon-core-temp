@@ -1,5 +1,8 @@
 <template>
-  <div class="header__wrapper white-bg" :class="{ 'page-layout': layout === 'page' }">
+  <div class="header__wrapper white-bg"
+    :class="{ 'page-layout': layout === 'page' }"
+    :style="{'z-index': editing ? 0 : 2}"
+  >
     <div class="container is-fluid">
       <div class="header__inner">
         <div class="random-words">
@@ -192,6 +195,8 @@
 
 .header__wrapper {
   border-bottom: 2px solid $color-emphasis-alt;
+  position: relative;
+  z-index: 2;
 }
 
 .header__inner {
@@ -313,7 +318,7 @@ export default {
     Icons,
     LogInModal
   },
-  props: ["layout"],
+  props: ["layout", "editing"],
   data () {
     return {
       showSearchBar: false,

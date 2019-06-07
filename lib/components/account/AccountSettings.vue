@@ -65,9 +65,10 @@
       ></EditableTextField>
       <EditableImageField
         label="Avatar:"
-        :avatar="userData.data.avatar && userData.data.avatar.src ? userData.data.avatar.src : ''"
+        :avatar="userData.data.avatar"
         error-text="Invalid image"
         type="avatar"
+        :image-size="200"
         v-on:input:save="updateAvatar($event)"
       ></EditableImageField>
     </section>
@@ -139,7 +140,6 @@ export default {
         .catch(err => {
           this.userDialogMessage = "An error occurred. Try again later."
           this.userDialogSpinner = false
-          console.log(err)
         })
     },
     updateUserField (fieldName, newValue) {

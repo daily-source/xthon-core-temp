@@ -326,14 +326,13 @@ body.no-scroll {
     background: rgba($white, 0.9);
   }
   .modal-content {
-    margin-top: 5vh;
     box-shadow: 0 0 50px rgba($color-text, 0.3);
     max-height: calc(90vh);
     border: none;
     border-radius: 20px;
     width: 880px;
     &.small-modal {
-      width: 640px;
+      width: 550px;
       text-align: left;
     }
     &.large-modal {

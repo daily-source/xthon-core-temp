@@ -38,17 +38,19 @@
       <SocialLogin :show-only="showOnly"></SocialLogin>
     </div>
     <div v-if="layout === 'app-header'">
-      <div v-if="!loggedIn">
-        <span @click="triggerExternalLogin()">
-          <a>Login</a>
-        </span>
-        |
-        <span @click="triggerExternalSignup()">
-          <a>Register</a>
-        </span>
+      <div v-if="!loggedIn" class="login-button-wrapper">
+        <div @click="triggerExternalLogin()">
+          <span class="button is-rounded is-light is-outlinedx">
+            Login/Register
+          </span>
+        </div>
       </div>
-      <div @click="openLoginBox()" v-if="loggedIn">
-        <slot name="logged"><a>Hi, {{givenName}}! »</a></slot>
+      <div @click="openLoginBox()" v-if="loggedIn" class="login-button-wrapper">
+        <slot name="logged">
+          <span class="button is-rounded is-light is-outlinedx">
+            Hi, {{givenName}}! »
+          </span>
+        </slot>
       </div>
     </div>
     <div v-if="!layout">
@@ -196,5 +198,11 @@ li {
 }
 .centered {
   text-align: center;
+}
+.login-button-wrapper {
+  .button {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+  }
 }
 </style>
