@@ -132,7 +132,7 @@ export default {
   computed: {
     calculateWidth () {
       if (typeof window === "undefined" || typeof this.$el === "undefined") {
-        return 400
+        return 320
       }
       let wrapperWidth = this.$el.clientWidth
       if (this.type === "avatar") {
@@ -141,7 +141,7 @@ export default {
         }
         return wrapperWidth / 2 - 12
       }
-      return wrapperWidth < 400 ? wrapperWidth - 6 : 400
+      return wrapperWidth < 320 ? wrapperWidth - 6 : 320
     },
     calculateHeight () {
       return this.calculateWidth * this.ratio
@@ -323,7 +323,7 @@ export default {
     display: block;
     margin-top: 5px;
     position: relative;
-    z-index: 10;
+
     .button {
       margin-right: 5px;
       margin-bottom: 5px;

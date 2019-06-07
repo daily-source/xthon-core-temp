@@ -187,7 +187,6 @@ export default {
     padding: 0;
     min-width: 90%;
     position: relative;
-    z-index: 1;
 
     @include tablet {
       min-width: 0;

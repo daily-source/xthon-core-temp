@@ -1,7 +1,6 @@
 <template>
   <div class="header__wrapper white-bg"
     :class="{ 'page-layout': layout === 'page' }"
-    :style="{'z-index': editing ? 0 : 2}"
   >
     <div class="container is-fluid">
       <div class="header__inner">

@@ -29,33 +29,16 @@
             <div class="field-label is-normal">
               <label class="label">Paste here the YouTube URL of your video:</label>
             </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input-editable-value"
-                    type="text"
-                    v-model="fieldValue"
-                    v-on:keyup.enter="saveVideo()"
-                  />
-                </p>
-              </div>
-            </div>
+            <input
+              class="input-editable-value"
+              type="text"
+              v-model="fieldValue"
+              v-on:keyup.enter="saveVideo()"
+            />
           </div>
         </div>
       </div>
       <div class="column is-6 image-control">
-        <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}">
-          <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
-            <Icons icon="pencil" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-          <div class="action-icon-wrapper" @click="saveVideo()" :class="{'hide-icon': !fieldIsOpen}">
-            <Icons icon="check" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-          <div class="action-icon-wrapper" @click="cancelEdition()" :class="{'hide-icon': !fieldIsOpen}">
-            <Icons icon="close-circle" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
-          </div>
-        </div>
         <div class="button-wrapper">
           <button class="button is-warning" @click="removeVideo()">Remove</button>
           <button class="button is-success" @click="saveVideo()" v-if="fieldIsOpen">Save</button>
@@ -253,17 +236,6 @@ export default {
   }
 }
 
-.input-editable-value {
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 1.4;
-  height: 28px;
-  width: 100%;
-  padding: 20px 5px;
-  text-align: center;
-  border: 1px solid $color-light-gray;
-}
-
 .video-input-wrapper {
   display: flex;
   flex-direction: column;
@@ -308,4 +280,25 @@ export default {
     }
   }
 }
+
+.field-label {
+  text-align: center;
+  .label {
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+}
+
+.input-editable-value {
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.4;
+  height: 28px;
+  width: 90%;
+  margin-left: 5%;
+  padding: 20px 5px;
+  text-align: center;
+  border: 1px solid $color-light-gray;
+}
+
 </style>
