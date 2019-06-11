@@ -1,5 +1,11 @@
 <template>
   <div class="container is-fluid white-bg">
+    <ReportCommentForm
+      :state="reportCommentFormState"
+      :comment-id="reportCommentId"
+      :key="reportCommentId"
+      v-on:close:modal="reportCommentFormState = false"
+    ></ReportCommentForm>
     <UserDialog
       :spinner="userDialogSpinner"
       :state="userDialogModal"
@@ -97,6 +103,7 @@
                     :more-comments="moreComments"
                     :fundraiser-id="fundraiser.id"
                     :key="'comments_' + fundraiser.id"
+                    v-on:report:comment="openReportCommentForm($event)"
                     v-on:loadMoreComments="loadMoreComments(true)"
                   ></Comments>
                   <router-link
@@ -236,6 +243,7 @@ export default {
     FundraiserNonprofitDetails: () => import("Components/fundraiser/FundraiserNonprofitDetails.vue"),
     FundraiserUpdates: () => import("Components/fundraiser/FundraiserUpdates.vue"),
     Comments: () => import("Components/general/Comments.vue"),
+    ReportCommentForm: () => import("Components/general/ReportCommentForm.vue"),
     DonateAction: () => import("Components/general/DonateAction.vue"),
     DonorsList,
     InlineRichTextEditor: () => import("Components/input/InlineRichTextEditor.vue"),
@@ -250,7 +258,9 @@ export default {
       userDialogSpinner: true,
       userDialogModal: false,
       userDialogHeading: "Processing...",
-      userDialogMessage: ""
+      userDialogMessage: "",
+      reportCommentFormState: false,
+      reportCommentId: null
     }
   },
   computed: {
@@ -274,10 +284,10 @@ export default {
       }
     },
     moreUpdates () {
-      return showMoreButton(this.$store.state, "updates")
+      return this.$store.state.updates.data.length < this.$store.state.fundraiser.counters.updatesCount
     },
     moreComments () {
-      return showMoreButton(this.$store.state, "comments")
+      return this.$store.state.comments.data.length < this.$store.state.fundraiser.counters.commentsCount
     },
     donationsByAmount () {
       return this.$store.state.donations["byAmount"].data
@@ -487,6 +497,11 @@ export default {
       this.loadMoreComments(false)
       this.loadMoreDonations(false, "byAmount", false)
       this.loadMoreDonations(false, "byDate", false)
+    },
+    openReportCommentForm (payload) {
+      this.reportCommentFormState = true
+      this.reportCommentId = payload.commentId
+      console.log('openReportCommentForm: ', payload)
     }
   },
   /**
@@ -544,17 +559,6 @@ export default {
       console.log(newVal)
     }
   }
-}
-
-/**
- * Helper function to determine if the show more button should appear or not.
- */
-function showMoreButton (state, arg) {
-  const limit = state[arg].limit
-  const current = state[arg].current
-  const count = state.fundraiser.counters[`${arg}Count`]
-  const totalPages = Math.ceil(count / limit)
-  return totalPages > current || state[arg].data < count
 }
 </script>
 

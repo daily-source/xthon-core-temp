@@ -19,9 +19,11 @@
       :text="comment.comment"
       :url-params="`comment_id=${comment.id}`"
       :allow-comment="!isReply"
+      :allow-reporting="true"
       title="Share this comment"
       trigger="fundraiser/lower/comments"
-      v-on:replyTo="openReplyBox($event)"
+      v-on:reply:to="openReplyBox($event)"
+      v-on:report:comment="openReportForm($event)"
       v-on:share="openShareBox = true"
       v-on:donate="openDonateBox()"
       via="Volunteerathon" />
@@ -84,6 +86,9 @@ export default {
     }
   },
   methods: {
+    openReportForm (payload) {
+      this.$emit('report:comment', { commentId: this.comment.id})
+    },
     openReplyBox (payload) {
       this.showReplyBox = true
       this.inReplyTo = payload.commentId

@@ -9,6 +9,7 @@
           <Comment
             :comment="comment"
             :fundraiser-id="fundraiserId"
+            v-on:report:comment="openReportForm($event)"
             v-if="!comment.parent"
           ></Comment>
         </div>
@@ -71,6 +72,9 @@ export default {
         customID: "id"
       })
       this.commentsTree = nested
+    },
+    openReportForm (payload) {
+      this.$emit('report:comment', { commentId: payload.commentId})
     }
   },
   watch: {

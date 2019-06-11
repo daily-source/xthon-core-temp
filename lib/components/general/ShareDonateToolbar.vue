@@ -32,8 +32,64 @@
         </DonateAction>
       </a>
     </div>
+    <div class="share-toolbar__share-item share-toolbar__share-comment"
+        v-if="allowReporting"
+        @click="reportComment(commentId)">
+      <Icons iconwidth="21px" iconheight="21px" icon="close-circle" color="#666" class="icon" />
+      <a>Report</a>
+    </div>
   </div>
 </template>
+
+<script>
+import DonateAction from "Components/general/DonateAction.vue"
+import Icons from "Components/general/Icons.vue"
+import ShareBox from "Components/general/ShareBox.vue"
+
+export default {
+  props: [ "allowComment", "allowReporting", "commentId", "urlParams", "text", "via", "title", "trigger", "fundraiserId", "updateId" ],
+  components: {
+    DonateAction,
+    Icons,
+    ShareBox
+  },
+  data () {
+    return {
+      openShareBox: false
+    }
+  },
+  computed: {
+    isLoggedIn () {
+      return this.$store.state.user.loggedIn
+    }
+  },
+  watch: {
+    openShareBox (value) {
+      if (value) {
+        document.body.addEventListener("click", this.listenToBodyClick)
+      } else {
+        document.body.removeEventListener("click", this.listenToBodyClick)
+      }
+    }
+  },
+  methods: {
+    listenToBodyClick (event) {
+      if (!event.target.closest(".share-toolbar__share-wrapper")) {
+        this.openShareBox = false
+      }
+    },
+    replyTo (commentId) {
+      this.$emit("reply:to", { commentId: commentId })
+    },
+    reportComment (commentId) {
+      this.$emit("report:comment", { commentId: commentId })
+    },
+    share (commentId) {
+      this.openShareBox = !this.openShareBox
+    }
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .share-toolbar {
@@ -64,45 +120,3 @@
   position: absolute;
 }
 </style>
-
-<script>
-import DonateAction from "Components/general/DonateAction.vue"
-import Icons from "Components/general/Icons.vue"
-import ShareBox from "Components/general/ShareBox.vue"
-
-export default {
-  props: [ "allowComment", "commentId", "urlParams", "text", "via", "title", "trigger", "fundraiserId", "updateId" ],
-  components: {
-    DonateAction,
-    Icons,
-    ShareBox
-  },
-  data () {
-    return {
-      openShareBox: false
-    }
-  },
-  watch: {
-    openShareBox (value) {
-      if (value) {
-        document.body.addEventListener("click", this.listenToBodyClick)
-      } else {
-        document.body.removeEventListener("click", this.listenToBodyClick)
-      }
-    }
-  },
-  methods: {
-    listenToBodyClick (event) {
-      if (!event.target.closest(".share-toolbar__share-wrapper")) {
-        this.openShareBox = false
-      }
-    },
-    replyTo (commentId) {
-      this.$emit("replyTo", { commentId: commentId })
-    },
-    share (commentId) {
-      this.openShareBox = !this.openShareBox
-    }
-  }
-}
-</script>
