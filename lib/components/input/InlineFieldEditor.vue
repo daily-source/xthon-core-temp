@@ -286,6 +286,10 @@ textarea {
     }
     .input-non-editable-value {
       border: 4px dashed rgba($color-medium-gray, 0.3);
+      transition: border-color 0.2s ease-in-out;
+      &:hover {
+        border-color: $color-emphasis;
+      }
     }
   }
 }
