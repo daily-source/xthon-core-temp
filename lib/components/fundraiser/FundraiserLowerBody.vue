@@ -501,7 +501,6 @@ export default {
     openReportCommentForm (payload) {
       this.reportCommentFormState = true
       this.reportCommentId = payload.commentId
-      console.log('openReportCommentForm: ', payload)
     }
   },
   /**
