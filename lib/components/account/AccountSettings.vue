@@ -108,7 +108,7 @@ export default {
   data () {
     return {
       userDialogModal: false,
-      userDialogHeading: "Processing...",
+      userDialogHeading: "",
       userDialogMessage: "",
       userDialogSpinner: false
     }
@@ -148,6 +148,7 @@ export default {
       }
       this.userDialogModal = true
       this.userDialogSpinner = true
+      this.userDialogHeading = "Processing..."
       return this.$store.dispatch("UPDATE_USER_FIELD", { id: this.userData.id, field: fieldName, value: newValue })
         .then(data => {
           this.userDialogHeading = "Updated"
@@ -155,6 +156,8 @@ export default {
           this.userDialogSpinner = false
           setTimeout(() => {
             this.userDialogModal = false
+          this.userDialogHeading = ""
+          this.userDialogMessage = ""
           }, 3000)
         })
         .catch(err => {
@@ -165,6 +168,7 @@ export default {
     updateAvatar (blob) {
       this.userDialogModal = true
       this.userDialogSpinner = true
+      this.userDialogHeading = "Processing..."
       return this.$store.dispatch("SAVE_PROFILE_AVATAR", { avatar: blob })
         .then(() => {
           setTimeout(() => {
