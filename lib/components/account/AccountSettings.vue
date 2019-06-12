@@ -150,7 +150,12 @@ export default {
       this.userDialogSpinner = true
       return this.$store.dispatch("UPDATE_USER_FIELD", { id: this.userData.id, field: fieldName, value: newValue })
         .then(data => {
-          this.userDialogModal = false
+          this.userDialogHeading = "Updated"
+          this.userDialogMessage = "The field was updated"
+          this.userDialogSpinner = false
+          setTimeout(() => {
+            this.userDialogModal = false
+          }, 3000)
         })
         .catch(err => {
           this.userDialogMessage = "An error occurred. Try again later."
