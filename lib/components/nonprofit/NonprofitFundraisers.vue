@@ -11,6 +11,13 @@
                 :is-background="true"
                 v-if="fundraiser.media.images.length">
               </LazyLoadedImage>
+              <div class="volunteerathon__fundraiser-image default-fundraiser-wrapper"
+                v-else
+              >
+                <div class="fundraiser-name">
+                  {{fundraiser.name}}
+                </div>
+              </div>
               <h4 v-html="fundraiser.name"></h4>
             </router-link>
             <p>
@@ -83,4 +90,28 @@ export default {
   }
 }
 
+.default-fundraiser-wrapper {
+  background-color: white;
+  border: 15px solid $color-light-gray;
+  padding-bottom: calc(75% - 2 * 15px);
+  position: relative;
+
+  .fundraiser-name {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+}
 </style>

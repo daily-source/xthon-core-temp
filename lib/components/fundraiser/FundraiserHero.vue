@@ -22,6 +22,13 @@
                 </vue-plyr>
               </VuePlyrWrapper>
             </div>
+            <div class="fundraiser-photo-section__photo default-fundraiser-wrapper"
+              v-if="fundraiser.media.images.length === 0 && fundraiser.media.videos.length === 0"
+            >
+              <div class="fundraiser-name">
+                {{fundraiser.name}}
+              </div>
+            </div>
 
           </flickity>
         </div>
@@ -181,7 +188,7 @@ export default {
     transform: translateX(0);
     width: calc(100% - 30px);
     height: 0;
-    padding-bottom: calc(100% * 2/3 - 60px + 70px);
+    padding-bottom: calc(100% * 2/3 - 60px + 80px);
     overflow: hidden;
   }
 
@@ -240,7 +247,7 @@ export default {
       background-color: $color-lightest-gray;
 
       width: 102%;
-      min-height: 450px;
+      min-height: 430px;
     }
 
     @include fullhd {
@@ -301,4 +308,30 @@ export default {
     width: 100%;
   }
 }
+.default-fundraiser-wrapper {
+  background-color: $color-light-gray;
+  position: relative;
+
+  .fundraiser-name {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+    overflow: hidden;
+    @include tablet {
+      font-size: 2.2em;
+    }
+  }
+}
+
 </style>
