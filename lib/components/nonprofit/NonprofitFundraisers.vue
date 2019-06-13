@@ -14,7 +14,7 @@
               <div class="volunteerathon__fundraiser-image default-fundraiser-wrapper"
                 v-else
               >
-                <div class="fundraiser-name">
+                <div class="fundraiser-name unselectable">
                   {{fundraiser.name}}
                 </div>
               </div>

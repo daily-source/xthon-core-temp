@@ -101,6 +101,7 @@ export default {
     margin: 10px 0;
     position: relative;
     user-select: none;
+    flex-wrap: wrap;
   }
   &__share-item {
     display: flex;

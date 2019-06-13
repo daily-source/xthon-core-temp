@@ -25,7 +25,7 @@
             <div class="fundraiser-photo-section__photo default-fundraiser-wrapper"
               v-if="fundraiser.media.images.length === 0 && fundraiser.media.videos.length === 0"
             >
-              <div class="fundraiser-name">
+              <div class="fundraiser-name unselectable">
                 {{fundraiser.name}}
               </div>
             </div>
@@ -319,7 +319,7 @@ export default {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px;
+    padding: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -330,6 +330,11 @@ export default {
     overflow: hidden;
     @include tablet {
       font-size: 2.2em;
+      padding: 40px;
+    }
+    @include fullhd {
+      font-size: 2.6em;
+      padding: 80px;
     }
   }
 }
