@@ -100,7 +100,7 @@ export default {
       mainCarouselOptions: {
         initialIndex: 0,
         prevNextButtons: false,
-        pageDots: true,
+        pageDots: this.fundraiser.media.images.length || this.fundraiser.media.videos.length ? true : false,
         wrapAround: true,
         autoPlay: false
       }
@@ -247,7 +247,7 @@ export default {
       background-color: $color-lightest-gray;
 
       width: 102%;
-      min-height: 430px;
+      min-height: 410px;
     }
 
     @include fullhd {
