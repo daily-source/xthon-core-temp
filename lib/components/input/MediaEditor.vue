@@ -56,6 +56,7 @@
         :location="location"
         :edition-is-enabled="true"
         :key="item"
+        :disable-image-edition="true"
         v-on:edition:open="existingImageOpenId = $event"
         v-on:edition:close="existingImageOpenId = null"
       ></InlineImageEditor>

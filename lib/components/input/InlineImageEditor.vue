@@ -1,5 +1,5 @@
 <template>
-  <div :class="`edition-is-enabled-${editionIsEnabled}`">
+  <div :class="`edition-is-enabled-${editionIsEnabled && !disableImageEdition}`">
     <div class="overlay" v-if="fieldIsOpen && isStandalone"></div>
     <div :class="`field-wrapper layout-${layout} is-open-${fieldIsOpen} flex-one`">
       <UserDialog
@@ -16,7 +16,7 @@
           <div
             :class="{'flex-one': isBackgroundImage}"
             v-if="!fieldIsOpen"
-            @click="openEdition()"
+            @click="!disableImageEdition ? openEdition() : doNothing()"
           >
             <LazyLoadedImage
               class="inline-image-item"
@@ -53,7 +53,7 @@
           :class="{'column is-6': !isStandalone, 'hero-image': ratio === 0.3}"
           v-if="editionIsEnabled"
         >
-          <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}">
+          <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}" v-if="!disableImageEdition">
             <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
               <Icons icon="pencil" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
             </div>
@@ -108,7 +108,7 @@ import Icons from "Components/general/Icons.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename' ],
+  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename', "disableImageEdition" ],
   data () {
     return {
       croppaObject: null,
@@ -182,6 +182,9 @@ export default {
       }
       this.fieldIsOpen = true
       this.$emit("edition:open", this._uid)
+    },
+    doNothing () {
+      return
     },
     clearField () {
       if (this.croppaObject && this.croppaObject.hasImage()) {
