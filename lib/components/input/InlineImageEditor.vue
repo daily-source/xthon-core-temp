@@ -132,7 +132,7 @@ export default {
   computed: {
     calculateWidth () {
       if (typeof window === "undefined" || typeof this.$el === "undefined") {
-        return 320
+        return 300
       }
       let wrapperWidth = this.$el.clientWidth
       if (this.type === "avatar") {
@@ -141,7 +141,7 @@ export default {
         }
         return wrapperWidth / 2 - 12
       }
-      return wrapperWidth < 320 ? wrapperWidth - 6 : 320
+      return wrapperWidth < 300 ? wrapperWidth - 6 : 300
     },
     calculateHeight () {
       return this.calculateWidth * this.ratio
