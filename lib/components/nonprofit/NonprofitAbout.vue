@@ -30,6 +30,7 @@
                 error-text="This field can't be empty. It needs a meaningful description. HTML tags are not allowed."
                 :value="nonprofit.data.about"
                 :edition-is-enabled="editing"
+                :on-blur-save="true"
                 placeholder="Add a description."
                 location="nonprofit.data.about"
                 v-on:next:field="openEdition('nonprofitCity')"

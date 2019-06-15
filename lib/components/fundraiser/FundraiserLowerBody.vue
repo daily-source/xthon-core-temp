@@ -55,6 +55,7 @@
                       error-text="This field can't be empty"
                       :value="fundraiser.introText"
                       :edition-is-enabled="editing"
+                      :on-blur-save="true"
                       placeholder="Add an intro text for this fundraiser"
                       location="fundraiser.introText"
                     ></InlineRichTextEditor>
@@ -69,6 +70,7 @@
                     :value="tempUpdateContent"
                     :edition-is-enabled="editing"
                     :default-open="true"
+                    :on-blur-save="true"
                     v-if="newUpdate"
                     placeholder="Add an update"
                     v-on:edit:close="closeNewUpdate()"

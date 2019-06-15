@@ -74,7 +74,7 @@ import * as validator from "../../util/validator.js"
 import Vue from "vue"
 
 export default {
-  props: [ "type", "value", "errorText", "allowEmpty", "removeReturns", "layout", "location", "placeholder", "editionIsEnabled", "minimumLength" ],
+  props: [ "type", "value", "errorText", "allowEmpty", "removeReturns", "layout", "location", "placeholder", "editionIsEnabled", "minimumLength", "onBlurSave" ],
   data () {
     return {
       userDialogSpinner: true,
@@ -190,7 +190,11 @@ export default {
      */
     blurInput () {
       this.blurTimeout = setTimeout(() => {
-        this.cancelEdition()
+        if (this.onBlurSave) {
+          this.saveField()
+        } else {
+          this.cancelEdition()
+        }
       }, 200)
     },
     validateField () {
