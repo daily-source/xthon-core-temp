@@ -87,6 +87,9 @@ export default {
     share (commentId) {
       this.openShareBox = !this.openShareBox
     }
+  },
+  destroyed () {
+    document.body.removeEventListener("click", this.listenToBodyClick)
   }
 }
 </script>

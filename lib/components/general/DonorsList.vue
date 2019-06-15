@@ -166,6 +166,9 @@ export default {
       this.calculateAvatarSize()
     }, 1000)
     window.addEventListener("resize", this.calculateAvatarSize())
+  },
+  destroyed () {
+    window.removeEventListener("resize", this.calculateAvatarSize())
   }
 }
 </script>
