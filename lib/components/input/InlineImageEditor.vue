@@ -39,7 +39,7 @@
             :height="calculateHeight"
             :prevent-white-space="true"
             :zoom-speed="5"
-            :quality="1.2"
+            :quality="quality || 1.2"
             :replace-drop="true"
             v-on:keyup.enter="saveImage()"
             v-on:new-image="errorMessage = ''"
@@ -108,7 +108,7 @@ import Icons from "Components/general/Icons.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename', "disableImageEdition" ],
+  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename', "disableImageEdition", "quality" ],
   data () {
     return {
       croppaObject: null,
@@ -221,7 +221,7 @@ export default {
      */
     saveImage () {
       this.userDialogModal = true
-      var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.8)
+      var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.85)
       if (!blob) {
         this.userDialogMessage = "The image couldn't be generated."
         this.userDialogSpinner = false

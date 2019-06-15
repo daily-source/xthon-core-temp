@@ -13,6 +13,7 @@
         :open-default="true"
         :key="item"
         :edition-is-enabled="true"
+        :quality="2"
         filename="media_image"
         v-if="!item"
         v-on:edition:open="newImageOpenId = $event"
