@@ -30,11 +30,23 @@ export default {
       type: Number,
       required: false,
     },
+
+    /**
+     * Warning length
+     */
+    warningMaxLength: {
+      type: Number,
+      required: false,
+    },
   },
 
   data () {
     return {
       errors: {
+        maxLength: false,
+        minLength: false,
+      },
+      warnings: {
         maxLength: false,
         minLength: false,
       },
@@ -65,13 +77,20 @@ export default {
       }
     },
 
+    handleWarningChanges () {
+      this.$emit('warningChange', this.warnings)
+    },
+
     setErrors (value, event) {
-      console.log(value.length)
-      this.errors.maxLength = this.maxLength && value.length > this.maxLength
+      this.errors.maxLength = this.maxLength && value.length >= this.maxLength
       this.errors.minLength = value.length < this.minLength
 
       this.$emit('input', value)
-    }
+    },
+
+    setWarnings (value, event) {
+      this.warnings.maxLength = this.warningMaxLength && value.length >= this.warningMaxLength
+    },
   },
 
   computed: {
@@ -82,6 +101,7 @@ export default {
           const { value } = event.target
 
           this.setErrors(value, 'input')
+          this.setWarnings(value, 'input')
         },
 
         keydown: event => {
@@ -89,7 +109,7 @@ export default {
           const { value } = event.target
           
           this.setErrors(value, 'keydown')
-        }
+        },
       }
     },
 
@@ -103,6 +123,11 @@ export default {
       deep: true,
       handler: 'checkIfHasError',
     },
+
+    warnings: {
+      deep: true,
+      handler: 'handleWarningChanges',
+    }
   },
 }
 </script>
