@@ -1,89 +1,102 @@
-<style lang="scss">
-  .choice-checkbox {
-    .custom-control {
-      margin-bottom: .625em;
-      label {
-        font-size: 1.125em;
-      }
-    }
-    .input-group {
-      max-width: 150px;
-      margin-left: 1.5em;
-    }
-  }
-</style>
-
 <template>
   <div class="choice-checkbox mb-3">
-    <div class="custom-control custom-checkbox mb-0">
-      <input type="checkbox" class="custom-control-input" :id="choice.name" v-model="checked" :disabled="choice.hasCustomField && !customAmount">
-      <label class="custom-control-label" :for="choice.name">{{ choice.hasCustomField ? customLabelCombined : choice.label }}</label>
-    </div>
-    <div class="input-group input-group-sm" v-if="choice.hasCustomField">
-      <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-      <input v-model="customAmount" type="number" class="form-control">
-    </div>
+    <checkbox 
+      v-model='checked'
+      :disabled='choice.hasCustomField && !customAmount'
+      :id='choice.name'
+      :label='choice.label'
+    />
+    <input-group 
+      v-if='choice.hasCustomField'
+      v-model='customAmount'
+      placeholder='Enter amount'
+      prepend-text='$'
+    />
   </div>
 
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions } from 'vuex'
+import Checkbox from 'Components/input/Checkbox'
+import InputGroup from 'Components/input/InputGroup'
 
 export default {
-  name: "ChoiceCheckbox",
+  name: 'ChoiceCheckbox',
 
-  props: ["choice"],
+  components: {
+    Checkbox,
+    InputGroup
+  },
 
-  data () {
+  props: ['choice'],
+
+  data() {
     return {
       checked: false,
-      customAmount: ""
-    }
+      customAmount: '',
+    };
   },
 
   computed: {
-    customLabelCombined () {
-      return `${this.choice.label} $${this.customAmount}`
-    }
+    customLabelCombined() {
+      return `${this.choice.label} $${this.customAmount}`;
+    },
   },
 
   methods: {
-    inputHandler () {
+    inputHandler() {
       const defaultArg = {
         checked: this.checked,
-        choice: this.choice
-      }
+        choice: this.choice,
+      };
 
       if (this.choice.hasCustomField) {
-        return this.$emit("choiceChanged", { ...defaultArg, customLabel: this.customLabelCombined })
+        return this.$emit('choiceChanged', { ...defaultArg, customLabel: this.customLabelCombined });
       }
-      return this.$emit("choiceChanged", defaultArg)
+      return this.$emit('choiceChanged', defaultArg);
     },
 
     ...mapActions({
-      changeSelectedLabel: "selections/changeSelectedLabel"
-    })
+      changeSelectedLabel: 'selections/changeSelectedLabel',
+    }),
   },
 
   watch: {
-    customAmount () {
-      if (!this.choice.hasCustomField) return
+    customAmount() {
+      if (!this.choice.hasCustomField) return;
 
-      if (!this.customAmount) this.checked = false
+      if (!this.customAmount) this.checked = false;
 
       this.changeSelectedLabel({
         choice: {
-          ...this.choice
+          ...this.choice,
         },
-        label: this.customLabelCombined
-      })
+        label: this.customLabelCombined,
+      });
     },
 
-    checked () {
-      this.inputHandler()
-    }
-  }
+    checked() {
+      this.inputHandler();
+    },
+  },
 
-}
+
+};
 </script>
+
+<style lang="scss">
+  .choice-checkbox {
+    .custom-control {
+      label {
+        font-size: 1.125em;
+      }
+    }
+
+    .input-group {
+      max-width: 200px;
+      margin-left: 1.5em;
+    }
+
+  }
+</style>

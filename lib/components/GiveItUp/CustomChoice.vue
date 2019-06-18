@@ -1,34 +1,23 @@
-<style lang="scss">
- .custom-choice {
-    margin-bottom: 0.5rem;
-    position: relative;
-    .custom-control-label {
-      font-size: 0;
-      &:before,
-      &:after {
-        top: -4px;
-      }
-    }
-  }
-</style>
-
 <template>
-  <div class="custom-choice d-flex">
-    <div class="custom-control custom-checkbox">
-      <input v-model="checked" @click="handleChecked()" type="checkbox" class="custom-control-input" :id="`${index}`" >
-      <label class="custom-control-label" :for="`${index}`">Custom Choice</label>
-    </div>
+  <div class="custom-choice is-flex">
+      <!-- <input v-model="checked" @click="handleChecked()" type="checkbox"  :id="`${index}`" >
+      <label class="custom-control-label" :for="`${index}`">Custom Choice</label> -->
+    <checkbox 
+      :id="`${index}`"
+      @click='handleChecked()'
+      label='Custom Choice'
+    />
     <div class="custom-choice__input-container">
-      <label :for="`${index}-input`" class="sr-only">Custom Choice</label>
+      <label :for="`${index}-input`" class="is-sr-only">Custom Choice</label>
       <input
         v-model="label"
         :id="`${index}-input`"
         type="text"
-        :class="['form-control', {'is-invalid': error}]"
+        :class="['input', {'is-invalid': error}]"
         max="15"
         placeholder="Enter your own"
       >
-      <small class="text-danger" v-if="error">
+      <small class="has-text-danger" v-if="error">
         *You must type something into the text entry box before this item can be selected. Simply click your mouse in the box and type a word. Then you’ll be able to put a checkmark in that checkbox.
       </small>
     </div>
@@ -36,67 +25,86 @@
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions } from 'vuex'
+import Checkbox from 'Components/input/Checkbox'
 
 export default {
-  name: "CustomChoice",
+  name: 'CustomChoice',
 
-  props: ["index"],
+  components: {
+    Checkbox
+  },
 
-  data () {
+  props: ['index'],
+
+  data() {
     return {
       checked: false,
-      label: "",
-      error: false
-    }
+      label: '',
+      error: false,
+    };
   },
 
   methods: {
-    handleChecked () {
+    handleChecked() {
+      console.log('false')
+      return
       if (!this.label) {
-        this.error = true
+        this.error = true;
       }
     },
 
     ...mapActions({
-      addSelected: "selections/pushSelected",
-      removeSelected: "selections/removeSelected",
-      changeSelectedLabel: "selections/changeSelectedLabel"
-    })
+      addSelected: 'selections/pushSelected',
+      removeSelected: 'selections/removeSelected',
+      changeSelectedLabel: 'selections/changeSelectedLabel',
+    }),
   },
 
   watch: {
-    label () {
+    label() {
       const choice = {
         name: this.index,
         label: this.label,
-        customChoice: true
-      }
+        customChoice: true,
+      };
 
       if (this.label) {
-        this.error = false
-        this.addSelected({ choice })
-        this.changeSelectedLabel({ choice, label: this.label })
+        this.error = false;
+        this.addSelected({ choice });
+        this.changeSelectedLabel({ choice, label: this.label });
       } else {
-        this.checked = false
-        this.removeSelected({ choice })
+        this.checked = false;
+        this.removeSelected({ choice });
       }
     },
 
-    checked () {
+    checked() {
       const choice = {
         name: this.index,
         label: this.label,
-        customChoice: true
-      }
+        customChoice: true,
+      };
 
       if (this.checked && this.label) {
-        this.addSelected({ choice })
+        this.addSelected({ choice });
       } else {
-        this.checked = false
-        this.removeSelected({ choice })
+        this.checked = false;
+        this.removeSelected({ choice });
       }
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+ .custom-choice {
+    align-items: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+
+    .custom-control__label {
+      font-size: 0;
     }
   }
-}
-</script>
+</style>

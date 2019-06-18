@@ -1,150 +1,17 @@
 <template>
-  <header class="site-header" id="site-header">
-    <div class="container">
-      <div class="header-top">
-        <router-link to="/" class="logo-link">
-          <img src="@/assets/img/logo-giveitup-1286x321.png" alt="CalendarForGood">
-        </router-link>
-        <div class="header-top__nav-section">
-          <ul class="nav is-flex">
-            <li class="nav-item">
-              <router-link to="/register" class="nav-link px-1">Register</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link px-1 pr-0">Login</router-link>
-            </li>
-          </ul>
-          <ul class="nav social-nav is-flex">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#233e84'
-                  icon='facebook'
-                />
-                <span class="is-sr-only">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#233e84'
-                  icon='twitter'
-                />
-                <span class="is-sr-only">Twitter</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#233e84'
-                  icon='instagram'
-                />
-                <span class="is-sr-only">Instagram</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="header-nav">
-			<nav class="navbar" role='navigation' aria-label='main-navigation'>
-				<div class='container header-nav__container'>
-					<div class='navbar-brand is-flex-mobile'>
-						<router-link to="/" class="logo-link">
-							<img src="@/assets/img/logo-giveitup-1286x321.png" alt="CalendarForGood">
-						</router-link>
-						<a 
-							class='navbar-burger burger' 
-							href='#' 
-							role='button' 
-							aria-label='menu' 
-							aria-expanded='false'
-							@click='toggleShowNavMobile'
-						>
-							<span class='navbar-burger__line' aria-hidden="true"></span>
-							<span class='navbar-burger__line' aria-hidden="true"></span>
-							<span class='navbar-burger__line' aria-hidden="true"></span>
-						</a>
-					</div>
-					<div 
-						:class='["navbar-menu", {"is-active": showNavMobile}]'
-					>
-						<navbar-item to='/'>Home</navbar-item>
-						<navbar-item to='/about'>About Us</navbar-item>
-						<navbar-item to='/volunteer'>Volunteer</navbar-item>
-						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
-						<navbar-item to='/nonprofits'>Nonprofits</navbar-item>
-						<navbar-item to='/contact'>Contact Us</navbar-item>
-						<navbar-item to='/register' item-class='navbar-item--mobile'>Register</navbar-item>
-						<navbar-item to='/login' item-class='navbar-item--mobile'>Login</navbar-item>
-						<navbar-item to='/donate' item-class='navbar-item--push-left navbar-item--last has-text-weight-bold is-uppercase'>Donate</navbar-item>
-          <ul class="nav social-nav">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#fff'
-                  icon='facebook'
-                />
-                <span class="is-sr-only">Facebook</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#fff'
-                  icon='twitter'
-                />
-                <span class="is-sr-only">Twitter</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <icon
-                  :iconwidth='18'
-                  :iconheight='18'
-                  color='#fff'
-                  icon='instagram'
-                />
-                <span class="is-sr-only">Instagram</span>
-              </a>
-            </li>
-          </ul>
-						<button 
-							class='navbar-menu__close-button is-text button'
-							@click='toggleShowNavMobile'
-						>
-							<icon 
-								icon='times'
-								:iconwidth='14'
-								:iconheight='14'
-								color='#fff'
-							/>
-						</button>
-					</div>
-				</div>
-			</nav>
-    </div>
-  </header>
+  <shared-header 
+    :logo='require("@/assets/img/logo-giveitup-1286x321.png")'
+  />
 </template>
 
 <script>
-import Icon from "Components/general/Icons"
+import SharedHeader from "Components/Shared/SharedHeader"
 
 export default {
   name: "AppHeader",
 
   components: {
-    Icon
+    SharedHeader,
   }
 }
 </script>
