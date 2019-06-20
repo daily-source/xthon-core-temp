@@ -246,6 +246,10 @@ export default {
   color: $white;
 }
 .image-control {
+  padding-top: 0;
+  @include tablet {
+    padding-top: 0.75em;
+  }
   .action-icons-wrapper {
     width: 100%;
   }

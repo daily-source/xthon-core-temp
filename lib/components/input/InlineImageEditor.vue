@@ -391,6 +391,18 @@ export default {
 .editable-field-wrapper {
   width: 100%;
   position: relative;
+
+  @include mobile {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+  }
+  > div {
+    @include mobile {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 .is-open-true {
   .editable-field-wrapper {
