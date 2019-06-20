@@ -389,7 +389,7 @@ export default {
   }
 }
 .editable-field-wrapper {
-  width: auto;
+  width: 100%;
   position: relative;
 }
 .is-open-true {

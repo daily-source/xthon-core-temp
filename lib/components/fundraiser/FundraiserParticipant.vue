@@ -214,7 +214,7 @@ export default {
     &.is-editing {
       width: 600px;
       @include mobile {
-        width: 100%;
+        width: 90%;
       }      
     }
   }
