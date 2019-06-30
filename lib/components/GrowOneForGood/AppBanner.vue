@@ -1,20 +1,15 @@
 <template>
   <section 
     id='banner'
-    :class="`dynamic-banner dynamic-banner--${selected}  dynamic-banner--${expanded ? 'expanded' : 'shrinked'}`"
+    :class="`dynamic-banner dynamic-banner--2  dynamic-banner--${expanded ? 'expanded' : 'shrinked'}`"
     ref='banner'
   >
     <div 
       class="dynamic-banner__bg-image"
-      :style="{'background-image': `url('${getBgImage()}')`}" 
     >
-    </div>
-    <div class="dynamic-banner__content">
-      <slot></slot>
     </div>
     <div 
       class="dynamic-banner__beard-images"
-      v-if='selected === 2'
     >
       <img src="@/assets/img/images/grow-one-for-good-1.jpg" alt="" ref='mainImage'>
       <img src="@/assets/img/images/grow-one-for-good-2.jpg" alt="" v-show='expanded' ref='expandedImage'>
@@ -24,7 +19,6 @@
     >
       <button
         class='dynamic-banner__button button is-primary'
-        v-if='selected === 2'
         @click='onExpandClick'
       >
         Show {{ expanded ? 'less' : 'more' }}
