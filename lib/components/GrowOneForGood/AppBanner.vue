@@ -18,7 +18,7 @@
       class="dynamic-banner__show-more"
     >
       <button
-        class='dynamic-banner__button button is-primary'
+        :class='["dynamic-banner__button button", { "is-primary": $version == 1 }, { "is-secondary": $version == 2 }]'
         @click='onExpandClick'
       >
         Show {{ expanded ? 'less' : 'more' }}

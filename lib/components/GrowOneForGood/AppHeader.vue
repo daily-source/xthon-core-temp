@@ -373,6 +373,15 @@
     animation: fadeHighlight 7s ease-in-out;
   }
 }
+
+// v2 Header
+.header {
+  $self: &;
+
+  &--v2 {
+    border-bottom: 2px solid $primary !important;
+  }
+}
 </style>
 
 <style lang='scss'>
