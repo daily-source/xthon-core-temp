@@ -5,7 +5,7 @@
       label="NAME"
       :filterable="false"
       :options="options"
-      :placeholder="placeholder"
+      :placeholder="'Type a keyword, nonprofit name or EIN'"
       @search="onSearch"
       v-model="selected"
     >
