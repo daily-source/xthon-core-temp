@@ -1,5 +1,9 @@
 <template>
   <div class="sharing-icons-row__wrapper">
+    <ShareByEmail
+      :state="shareByEmailState"
+      v-on:dismiss="shareByEmailState = false"
+    ></ShareByEmail>
     <div class="columns">
       <div class="column">
         <div class="sharing-icons-row__share-item sharing-icons-row__share-facebook button is-white"
@@ -69,6 +73,56 @@
     </div>
   </div>
 </template>
+
+<script>
+import Icons from "Components/general/Icons.vue"
+import DonateAction from "Components/general/DonateAction.vue"
+import * as sharer from "../../util/sharer.js"
+
+export default {
+  components: {
+    DonateAction,
+    Icons,
+    ShareByEmail: () => import("Components/general/ShareByEmail.vue")
+  },
+  data () {
+    return {
+      fullURL: "",
+      shareText: "Check out this website!",
+      siteName: "Volunteerathon",
+      shareWindowTitle: "Sharing",
+      shareByEmailState: false
+    }
+  },
+  props: [ "routePath", "fundraiserId", "trigger", "nonprofitEin", "token" ],
+  mounted () {
+    this.loadScripts()
+  },
+  methods: {
+    loadScripts () {
+      if (typeof window !== "undefined" && window.FB) {
+        window.FB.XFBML.parse()
+      }
+      if (window.addthis && window.addthis.layers && typeof window.addthis.layers.refresh === "function") {
+        window.addthis.layers.refresh()
+      }
+    },
+    shareFB () {
+      sharer.shareOnFacebook(null, this.shareText, this.siteName, this.shareWindowTitle)
+    },
+    shareTweet () {
+      sharer.shareOnTwitter(null, this.shareText, this.siteName, this.shareWindowTitle)
+    },
+    shareLinkedIn () {
+      sharer.shareOnLinkedIn(null, this.shareText, this.siteName, this.shareWindowTitle)
+    },
+    shareEmail () {
+      this.shareByEmailState = true
+    }
+  }
+}
+</script>
+
 
 <style scoped lang="scss">
 .sharing-icons-row {
@@ -155,49 +209,3 @@
   position: absolute;
 }
 </style>
-<script>
-import Icons from "Components/general/Icons.vue"
-import DonateAction from "Components/general/DonateAction.vue"
-import * as sharer from "../../util/sharer.js"
-
-export default {
-  components: {
-    DonateAction,
-    Icons
-  },
-  data () {
-    return {
-      fullURL: "",
-      shareText: "Check out this website!",
-      siteName: "Volunteerathon",
-      shareWindowTitle: "Sharing"
-    }
-  },
-  props: [ "routePath", "fundraiserId", "trigger", "nonprofitEin" ],
-  mounted () {
-    this.loadScripts()
-  },
-  methods: {
-    loadScripts () {
-      if (typeof window !== "undefined" && window.FB) {
-        window.FB.XFBML.parse()
-      }
-      if (window.addthis && window.addthis.layers && typeof window.addthis.layers.refresh === "function") {
-        window.addthis.layers.refresh()
-      }
-    },
-    shareFB () {
-      sharer.shareOnFacebook(null, this.shareText, this.siteName, this.shareWindowTitle)
-    },
-    shareTweet () {
-      sharer.shareOnTwitter(null, this.shareText, this.siteName, this.shareWindowTitle)
-    },
-    shareLinkedIn () {
-      sharer.shareOnLinkedIn(null, this.shareText, this.siteName, this.shareWindowTitle)
-    },
-    shareEmail () {
-      sharer.shareByEmail(null, this.shareText, this.siteName, this.shareWindowTitle)
-    }
-  }
-}
-</script>

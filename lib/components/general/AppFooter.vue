@@ -168,7 +168,7 @@ export default {
       sharer.shareOnLinkedIn(null, this.shareText, this.siteName, this.shareWindowTitle)
     },
     shareEmail () {
-      sharer.shareByEmail(null, this.shareText, this.siteName, this.shareWindowTitle)
+      // sharer.shareByEmail(null, this.shareText, this.siteName, this.shareWindowTitle)
     },
     donate () {
       this.$emit("donateFromButton")

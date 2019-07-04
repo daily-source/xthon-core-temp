@@ -125,7 +125,7 @@ export default {
     },
     email () {
       if (this.isVisible) {
-        sharer.shareByEmail(this.urlParams, this.text, this.via, this.title)
+       //  sharer.shareByEmail(this.urlParams, this.text, this.via, this.title, this.$store)
       }
     }
   },
