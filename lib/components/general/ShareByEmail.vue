@@ -131,8 +131,7 @@ export default {
       var shareUrl = `${window.location.origin}${window.location.pathname}`
       this.$store.dispatch('SHARE_BY_EMAIL', {
         url: shareUrl,
-        text: this.shareText,
-        via: this.siteName,
+        via: process.env.SITE_NAME,
         targetName: this.form.firstname,
         targetEmail: this.form.email,
         token: this.$store.state.user.tokenData.accessToken
