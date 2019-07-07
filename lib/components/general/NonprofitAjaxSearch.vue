@@ -5,12 +5,12 @@
       label="NAME"
       :filterable="false"
       :options="options"
-      :placeholder="placeholder"
+      :placeholder="'Type a keyword, nonprofit name or EIN'"
       @search="onSearch"
       v-model="selected"
     >
       <template slot="no-options">
-        Type to search nonprofits...
+        Type a keyword, nonprofit name or Employer ID Number
       </template>
       <template slot="option" slot-scope="option">
         <div class="d-center selection">
@@ -116,6 +116,7 @@ export default {
       height: 38px;
       flex: 1;
       display: flex;
+      border: 1px solid $color-text;
       .clear {
         bottom: 14px;
         line-height: 36px;
