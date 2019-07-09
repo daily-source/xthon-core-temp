@@ -15,7 +15,12 @@
         </div>
         <div class="comment-item__comment-replies">
           <div class="comment-item__comment-wrapper" v-for="reply in comment.children">
-            <Comment :comment="reply" :is-reply="true" :fundraiser-id="fundraiserId" />
+            <Comment 
+              :comment="reply"
+              :is-reply="true"
+              :fundraiser-id="fundraiserId"
+              v-on:report:comment="openReportForm($event)"
+            ></Comment>
           </div>
         </div>
       </div>
