@@ -52,7 +52,7 @@
       </transition-group>
     </div>
     <transition name="slide-fade">
-      <div class="column is-6-tablet is-offset-4-tablet editable-error-message-wrapper" v-if="errorMessage">
+      <div class="column is-6-tablet is-offset-3-tablet editable-error-message-wrapper" v-if="errorMessage">
         <span class="editable-error-message">{{errorMessage}}</span>
       </div>
     </transition>

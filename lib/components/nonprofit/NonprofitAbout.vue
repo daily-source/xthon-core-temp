@@ -123,7 +123,7 @@
               <span>{{nonprofit.media.length}} Photos and videos</span>
             </p>
             <MediaViewer
-              v-if="!editing"
+              v-if="!editing && nonprofit.media"
               :media="nonprofit.media"
               v-on:modal:open="stopFlickity()"
               v-on:modal:close="startFlickity()"

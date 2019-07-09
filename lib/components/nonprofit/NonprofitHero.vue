@@ -13,7 +13,7 @@
         :is-standalone="true"
         :disable-orientation="true"
         :initial-ratio="0.3"
-        :default-image="nonprofit.data.default_hero"
+        :default-image="nonprofit.data.default_hero.src || nonprofit.data.default_hero"
         :required="true"
         :key="_uid + '_' + nonprofit.EIN"
         layout="overlay"
