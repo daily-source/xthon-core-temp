@@ -4,11 +4,16 @@
     :prevent-body-scroll="false"
     :state="state"
     :disableClose="disableClose"
+    :size="size"
     v-on:modal:close="$emit('modal:close')"
   >
-    <div slot="header"><slot name="header">Processing</slot></div>
+    <div slot="header">
+      <slot name="header">Processing</slot>
+    </div>
     <div slot="content">
-      <div class="columns is-centered">
+      <div
+        :clas="{'columns is-centered': !notCentered}"
+      >
         <slot name="content"><p>Hang tight, processing...</p></slot>
       </div>
       <div class="spinner" v-if="spinner">
@@ -24,7 +29,7 @@
 import Modal from "Components/general/Modal.vue"
 
 export default {
-  props: ["state", "spinner", "disableClose"],
+  props: ["state", "spinner", "disableClose", "size", "notCentered"],
   components: {
     Modal
   }

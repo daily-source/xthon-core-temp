@@ -5,9 +5,9 @@
       <div class="modal-content donate-view donate-view__wrapper inner-close small-modal"
         :class="`${size}-modal`"
       >
-        <h1 class="modal-title">
+        <div class="modal-title">
           <slot name="header"></slot>
-        </h1>
+        </div>
         <slot name="content"></slot>
         <transition name="fade">
           <button

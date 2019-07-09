@@ -1,21 +1,22 @@
 <template>
   <div>
-    <Modal
-      size="medium"
-      :prevent-body-scroll="false"
+    <UserDialog
+      :not-centered="true"
+      :spinner="userDialogSpinner"
       :state="state"
-      :disable-close= "false"
+      :disable-close= "userDialogSpinner"
       v-on:modal:close="closeLoginModal()"
     >
+      <div slot="header">
+      </div> 
       <div slot="content">
-        <div v-if="error">
-          <h2 class="centered">Error</h2>
+        <div v-if="sending">
           <div class="centered">
-            <p>We have found an error. Please reload the page.</p>
-            <p>{ {{error}} }</p>
+            <h2 class="centered">{{userDialogHeading}}</h2>
+            <p>{{userDialogMessage}}</p>
           </div>
         </div>
-        <div v-if="!error">
+        <div v-if="!sending">
           <h2 class="centered">Report a comment</h2>
           <form>
             <div v-if="loggedIn" :class="{'login-highlight': loggedIn}">
@@ -65,8 +66,8 @@
             </div>
           </form>
         </div>
-      </div>
-    </Modal>
+      </div> 
+    </UserDialog>
   </div>
 </template>
 
@@ -79,13 +80,18 @@ export default {
   props: [ "commentId", "state" ],
   components: {
     LogInModalAuth0,
-    Modal: () => import("Components/general/Modal.vue")
+    UserDialog: () => import("Components/general/UserDialog.vue")
   },
   data () {
     return {
       form: {},
       error: null,
-      disableSubmit: true
+      disableSubmit: true,
+      userDialogSpinner: false,
+      userDialogHeading: '',
+      userDialogMessage: '',
+      spinner: false,
+      sending: false
     }
   },
   computed: {
@@ -95,10 +101,16 @@ export default {
   },
   methods: {
     closeLoginModal () {
+      this.error = false
+      this.sending = false
+      this.form = {}
       this.$emit('close:modal')
     },
     sendReportCommentForm () {
       this.error = null
+      this.userDialogHeading = 'Processing'
+      this.spinner = true
+      this.sending = true
       return this.$store.dispatch("REPORT_COMMENT", {
         commentId: this.commentId,
         userId: this.$store.state.user.auth0.sub,
@@ -106,10 +118,18 @@ export default {
         token: this.$store.state.user.tokenData.accessToken
       })
         .then(data => {
-          this.$emit('close')
+          this.userDialogHeading = 'Sent'
+          this.userDialogMessage = 'The report has been filed. You can close this dialog box.'
+          this.spinner = false
+          setTimeout(() => {
+            this.$emit('close')
+          }, 3000)
         })
         .catch(err => {
-          this.error = err.message
+          this.error = true
+          this.userDialogHeading = 'Error'
+          this.userDialogMessage = `The report couldn't be sent. ${err}`
+          this.spinner = false
         })
     }
   },
