@@ -1,6 +1,7 @@
 <template>
   <div class="nonprofit-claim-form">
-    <h2 class='has-text-weight-bold'>Claim and Manage This Nonprofit</h2>
+    <h2 class='has-text-weight-bold' v-if='!nonprofit.claimed'>Claim and Manage This Nonprofit</h2>
+    <h2 class='has-text-weight-bold' v-else>Reclaim This Nonprofit</h2>
     <p class="nonprofit-claim-form__subheading">
       Legal address on file with the IRS
     </p>
