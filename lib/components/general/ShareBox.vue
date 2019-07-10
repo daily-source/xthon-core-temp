@@ -21,7 +21,7 @@
         icon="linkedin"
         class="share-linkedin" />
     </div>
-    <div class="icon-wrapper" @click="email()">
+    <div class="icon-wrapper" @click="shareEmail()">
       <Icons
         iconwidth="32px"
         iconheight="32px"
@@ -30,6 +30,32 @@
     </div>
   </div>
 </template>
+
+<script>
+import Icons from "Components/general/Icons.vue"
+import * as sharer from "../../util/sharer.js"
+
+export default {
+  components: {
+    Icons
+  },
+  props: [ "urlParams", "text", "via", "title" ],
+  methods:  {
+    fb () {
+      sharer.shareOnFacebook(this.urlParams, this.text, this.via, this.title)
+    },
+    tweet () {
+      sharer.shareOnTwitter(this.urlParams, this.text, this.via, this.title)
+    },
+    linkedIn () {
+      sharer.shareOnLinkedIn(this.urlParams, this.text, this.via, this.title)
+    },
+    shareEmail () {
+      this.$emit('email:open')
+    },
+  }
+}
+</script>
 
 <style scoped lang="scss">
 .share-box {
@@ -55,30 +81,11 @@
     margin-right: 0;
   }
 }
-</style>
-
-<script>
-import Icons from "Components/general/Icons.vue"
-import * as sharer from "../../util/sharer.js"
-
-export default {
-  components: {
-    Icons
-  },
-  props: [ "urlParams", "text", "via", "title" ],
-  methods: {
-    fb () {
-      sharer.shareOnFacebook(this.urlParams, this.text, this.via, this.title)
-    },
-    tweet () {
-      sharer.shareOnTwitter(this.urlParams, this.text, this.via, this.title)
-    },
-    linkedIn () {
-      sharer.shareOnLinkedIn(this.urlParams, this.text, this.via, this.title)
-    },
-    email () {
-      //sharer.shareByEmail(this.urlParams, this.text, this.via, this.title)
-    }
-  }
+.out-of-the-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
-</script>
+</style>

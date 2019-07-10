@@ -1,5 +1,9 @@
 <template>
   <div>
+    <ShareByEmail
+      :state="shareByEmailIsOpen"
+      v-on:dismiss="shareByEmailIsOpen = false"
+    ></ShareByEmail>
     <section class="nonprofit-hero">
       <InlineImageEditor
         class="hero is-medium nonprofit-hero__hero-wrapper"
@@ -80,13 +84,15 @@
               Donate
             </div>
           </DonateAction>
-          <div class="button nonprofit-hero__cta-share" @click="share()">
+          <div class="button nonprofit-hero__cta-share" @click="toggleShareBox()">
             <transition name="slide-fade">
               <ShareBox
-                v-if="openShareBox"
+                v-if="shareBoxIsOpen"
                 class="share-box__wrapper"
                 :text="shareText"
                 :via="siteName"
+                v-on:email:open="shareByEmailIsOpen = true"
+                v-on:close="toggleShareBox(false)"
                 :title="shareWindowTitle" />
             </transition>
             <Icons iconwidth="16px" iconheight="16px" icon="share" color="#ffffff" class="share-icon-trigger" />
@@ -122,7 +128,8 @@ export default {
     Icons,
     ShareBox,
     InlineFieldEditor: () => import("Components/input/InlineFieldEditor.vue"),
-    InlineImageEditor: () => import("Components/input/InlineImageEditor.vue")
+    InlineImageEditor: () => import("Components/input/InlineImageEditor.vue"),
+    ShareByEmail: () => import("Components/general/ShareByEmail.vue")
   },
   data () {
     return {
@@ -130,7 +137,8 @@ export default {
       shareText: "Check out this nonprofit!",
       siteName: "Volunteerathon",
       shareWindowTitle: "Share Nonprofit",
-      openShareBox: false
+      shareBoxIsOpen: false,
+      shareByEmailIsOpen: false
     }
   },
   computed: {
@@ -139,8 +147,11 @@ export default {
     }
   },
   methods: {
-    share (commentId) {
-      this.openShareBox = !this.openShareBox
+    openShareBox () {
+      this.toggleShareBox(true)
+    },
+    toggleShareBox (state) {
+      this.shareBoxIsOpen = !this.shareBoxIsOpen
     },
     enableEdition () {
       this.$emit("edit:open")
