@@ -1,11 +1,11 @@
 <template>
   <shared-header 
-    
+    :logo='require("@/assets/img/logo-giveitup-1286x321.png")'
   />
 </template>
 
 <script>
-import SharedHeader from "Components/shared/SharedHeader"
+import SharedHeader from "Components/Shared/SharedHeader"
 
 export default {
   name: "AppHeader",

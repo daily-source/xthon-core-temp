@@ -1,6 +1,5 @@
 <template v-if='type === "input"'>
   <input 
-    type="text"
     :class='["input",  { "is-danger": !valid }]'
     v-bind='$attrs'
     v-on='listeners' 
@@ -68,6 +67,8 @@ export default {
         return this.errors[key] === true
       })
 
+      console.log(hasError)
+
       if (hasError) {
         this.valid = false
         this.$emit('invalid', this.errors)        
@@ -82,7 +83,7 @@ export default {
     },
 
     setErrors (value, event) {
-      this.errors.maxLength = this.maxLength && value.length >= this.maxLength
+      this.errors.maxLength = this.maxLength && value.length > this.maxLength
       this.errors.minLength = value.length < this.minLength
 
       this.$emit('input', value)
@@ -105,11 +106,26 @@ export default {
         },
 
         keydown: event => {
-          console.log('keydown')
           const { value } = event.target
           
           this.setErrors(value, 'keydown')
+          this.setWarnings(value, 'keydown')
         },
+
+        paste: event => {
+          const { value } = event.target
+
+          this.setErrors(value, 'paste')
+          this.setWarnings(value, 'paste')
+        },
+
+        keyup: event => {
+          const { value } = event.target
+          
+          this.setErrors(value, 'keydown')
+          this.setWarnings(value, 'keyup')
+
+        }
       }
     },
 

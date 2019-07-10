@@ -517,11 +517,11 @@ export default {
 
 .header-nav {
 	.navbar {
-		background-color: transparent !important;
+		background-color: transparent;
 		box-shadow: 0 2px 8px 2px rgba(0,0,0,.6);
 
 		@include tablet {
-			background-color: $primary !important;
+			background-color: $primary;
 			padding-top: 0;
 			padding-bottom: 0;
 			box-shadow: none;
