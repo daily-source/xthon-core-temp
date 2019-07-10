@@ -1,5 +1,10 @@
 <template>
   <div class="sharing-icons-row__wrapper">
+    <ReportContentForm
+      :state="reportContentFormState"
+      :key="reportCommentId"
+      v-on:close:modal="reportContentFormState = false"
+    ></ReportContentForm>
     <ShareByEmail
       :state="shareByEmailState"
       v-on:dismiss="shareByEmailState = false"
@@ -48,9 +53,12 @@
         </div>
       </div>
       <div class="column">
-        <div class="sharing-icons-row__share-item sharing-icons-row__share-plus button is-light">
-          <Icons iconwidth="20px" iconheight="20px" icon="plus" color="#444" class="icon" />
-          <span>More</span>
+        <div
+          class="sharing-icons-row__share-item sharing-icons-row__share-plus button is-light is-warning"
+          @click="reportThis()"
+        >
+          <Icons iconwidth="20px" iconheight="20px" icon="alert" color="#444" class="icon" />
+          <span>Report</span>
         </div>
       </div>
     </div>
@@ -83,6 +91,7 @@ export default {
   components: {
     DonateAction,
     Icons,
+    ReportContentForm: () => import("Components/general/ReportContentForm.vue"),
     ShareByEmail: () => import("Components/general/ShareByEmail.vue")
   },
   data () {
@@ -91,7 +100,9 @@ export default {
       shareText: "Check out this website!",
       siteName: "Volunteerathon",
       shareWindowTitle: "Sharing",
-      shareByEmailState: false
+      shareByEmailState: false,
+      reportContentFormState: false,
+      reportCommentId: null
     }
   },
   props: [ "routePath", "fundraiserId", "trigger", "nonprofitEin", "token" ],
@@ -99,6 +110,10 @@ export default {
     this.loadScripts()
   },
   methods: {
+    openReportContentForm (payload) {
+      this.reportContentFormState = true
+      this.reportCommentId = payload.commentId
+    },
     loadScripts () {
       if (typeof window !== "undefined" && window.FB) {
         window.FB.XFBML.parse()
@@ -118,6 +133,9 @@ export default {
     },
     shareEmail () {
       this.shareByEmailState = true
+    },
+    reportThis () {
+      this.reportContentFormState = true
     }
   }
 }

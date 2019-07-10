@@ -1,11 +1,11 @@
 <template>
   <div class="container is-fluid white-bg">
-    <ReportCommentForm
-      :state="reportCommentFormState"
+    <ReportContentForm
+      :state="reportContentFormState"
       :comment-id="reportCommentId"
       :key="reportCommentId"
-      v-on:close:modal="reportCommentFormState = false"
-    ></ReportCommentForm>
+      v-on:close:modal="reportContentFormState = false"
+    ></ReportContentForm>
     <UserDialog
       :spinner="userDialogSpinner"
       :state="userDialogModal"
@@ -105,7 +105,7 @@
                     :more-comments="moreComments"
                     :fundraiser-id="fundraiser.id"
                     :key="'comments_' + fundraiser.id"
-                    v-on:report:comment="openReportCommentForm($event)"
+                    v-on:report:comment="openReportContentForm($event)"
                     v-on:loadMoreComments="loadMoreComments(true)"
                   ></Comments>
                   <router-link
@@ -245,7 +245,7 @@ export default {
     FundraiserNonprofitDetails: () => import("Components/fundraiser/FundraiserNonprofitDetails.vue"),
     FundraiserUpdates: () => import("Components/fundraiser/FundraiserUpdates.vue"),
     Comments: () => import("Components/general/Comments.vue"),
-    ReportCommentForm: () => import("Components/general/ReportCommentForm.vue"),
+    ReportContentForm: () => import("Components/general/ReportContentForm.vue"),
     DonateAction: () => import("Components/general/DonateAction.vue"),
     DonorsList,
     InlineRichTextEditor: () => import("Components/input/InlineRichTextEditor.vue"),
@@ -261,7 +261,7 @@ export default {
       userDialogModal: false,
       userDialogHeading: "Processing...",
       userDialogMessage: "",
-      reportCommentFormState: false,
+      reportContentFormState: false,
       reportCommentId: null
     }
   },
@@ -500,8 +500,8 @@ export default {
       this.loadMoreDonations(false, "byAmount", false)
       this.loadMoreDonations(false, "byDate", false)
     },
-    openReportCommentForm (payload) {
-      this.reportCommentFormState = true
+    openReportContentForm (payload) {
+      this.reportContentFormState = true
       this.reportCommentId = payload.commentId
     }
   },

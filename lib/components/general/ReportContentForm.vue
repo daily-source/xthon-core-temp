@@ -17,10 +17,10 @@
           </div>
         </div>
         <div v-if="!sending">
-          <h2 class="centered">Report a comment</h2>
+          <h2 class="centered">Report a {{entity}}</h2>
           <form>
             <div v-if="loggedIn" :class="{'login-highlight': loggedIn}">
-              <p>Why are you reporting this comment?</p>
+              <p>Why are you reporting this {{entity}}?</p>
               <p>
                 <label class="radio">
                   <input type="radio" name="reason" v-model="form.reason" value="offensive">
@@ -42,7 +42,7 @@
 
               <transition name="fade">
                 <div v-if="form.reason === 'offensive' || form.reason === 'inappropriate'">
-                  <p>How is this comment {{form.reason}}?</p>
+                  <p>How is this {{entity}} {{form.reason}}?</p>
                   <textarea class="textarea" type="text" name="notes" v-model="form.notes" rows="3" cols="75">
                   </textarea>
                 </div>
@@ -52,10 +52,10 @@
                 class="button is-success"
                 @click.prevent="sendReportCommentForm()"
                 :disabled="disableSubmit"
-              >Report comment</button>
+              >Report {{entity}}</button>
             </div>
             <div v-else>
-              <p class="centered">You need to log in before you are able to report a comment.</p>
+              <p class="centered">You need to log in before you are able to report this {{entity}}.</p>
               <LogInModalAuth0
                 :register="false"
               >
@@ -97,12 +97,17 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
+    },
+    entity () {
+      return this.commentId ? 'comment' : this.$route.name
     }
   },
   methods: {
     closeLoginModal () {
       this.error = false
       this.sending = false
+      this.userDialogMessage = ''
+      this.userDialogHeading = ''
       this.form = {}
       this.$emit('close:modal')
     },
@@ -111,9 +116,9 @@ export default {
       this.userDialogHeading = 'Processing'
       this.spinner = true
       this.sending = true
-      return this.$store.dispatch("REPORT_COMMENT", {
-        commentId: this.commentId,
-        userId: this.$store.state.user.auth0.sub,
+      return this.$store.dispatch("REPORT_CONTENT", {
+        entity: this.entity,
+        contentId: this.commentId ? this.commentId : this.$route.params.ein || this.$route.params.id,
         report: this.form,
         token: this.$store.state.user.tokenData.accessToken
       })
