@@ -1,16 +1,22 @@
 <template>
   <div class="share-toolbar__share-wrapper">
+    <ShareByEmail
+      :state="shareByEmailIsOpen"
+      v-on:dismiss="shareByEmailIsOpen = false"
+    ></ShareByEmail>
     <transition name="slide-fade">
       <ShareBox
-        v-if="openShareBox"
+        v-if="shareBoxIsOpen"
         class="share-box__wrapper"
+        v-on:email:open="shareByEmailIsOpen = true"
+        v-on:close="toggleShareBox(false)"
         :url-params="urlParams"
         :text="text"
         :via="via"
         :title="title" />
     </transition>
     <div class="share-toolbar__share-item share-toolbar__share-share"
-        @click="share()">
+        @click="toggleShareBox()">
       <Icons iconwidth="19px" iconheight="19px" icon="share" color="#666" class="icon" />
       <a>Share</a>
     </div>
@@ -51,11 +57,13 @@ export default {
   components: {
     DonateAction,
     Icons,
-    ShareBox
+    ShareBox,
+    ShareByEmail: () => import("Components/general/ShareByEmail.vue")
   },
   data () {
     return {
-      openShareBox: false
+      shareBoxIsOpen: false,
+      shareByEmailIsOpen: false
     }
   },
   computed: {
@@ -73,6 +81,12 @@ export default {
     }
   },
   methods: {
+    openShareBox () {
+      this.toggleShareBox(true)
+    },
+    toggleShareBox () {
+      this.shareBoxIsOpen = !this.shareBoxIsOpen
+    },
     listenToBodyClick (event) {
       if (!event.target.closest(".share-toolbar__share-wrapper")) {
         this.openShareBox = false
