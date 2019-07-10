@@ -174,6 +174,7 @@ export default {
       this.fieldIsOpen = false
       this.errorMessage = ""
       this.userDialogModal = false
+      this.userDialogMessage = ""
       this.$emit("edition:close", this._uid)
     },
     openEdition () {

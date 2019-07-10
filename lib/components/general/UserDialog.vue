@@ -12,7 +12,7 @@
     </div>
     <div slot="content">
       <div
-        :clas="{'columns is-centered': !notCentered}"
+        :class="{'columns is-centered': !notCentered}"
       >
         <slot name="content"><p>Hang tight, processing...</p></slot>
       </div>
