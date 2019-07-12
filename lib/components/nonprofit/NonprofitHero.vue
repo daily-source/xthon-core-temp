@@ -99,8 +99,11 @@
             Share
           </div>
           <div class="nonprofit-hero__cta-manage">
-            <a @click="enableEdition()" class="unselectable" v-if="!editing">Manage this nonprofit</a>
-            <a @click="closeEdition()" class="unselectable" v-if="editing">Close edition</a>
+            <a @click="claimOrganization()" class="unselectable" v-if="!claimed">Claim this organization</a>
+            <div v-if="claimed">
+              <a @click="enableEdition()" class="unselectable" v-if="!editing && canEdit">Manage this nonprofit</a>
+              <a @click="closeEdition()" class="unselectable" v-if="editing">Close edition</a>
+            </div>
           </div>
         </div>
       </div>
@@ -122,7 +125,7 @@ import ShareBox from "Components/general/ShareBox.vue"
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "common", "nonprofit", "editing" ],
+  props: [ "common", "nonprofit", "editing", "canEdit" ],
   components: {
     DonateAction,
     Icons,
@@ -144,9 +147,20 @@ export default {
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
+    },
+    claimed () {
+      return this.$store.state.nonprofit.data.claimed
     }
   },
   methods: {
+    claimOrganization () {
+      this.$router.push({
+        name: 'nonprofit/claim',
+        params: {
+          ein: this.$route.params.ein
+        }
+      })
+    },
     openShareBox () {
       this.toggleShareBox(true)
     },

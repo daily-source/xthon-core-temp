@@ -75,18 +75,20 @@
               <button
                 @click="enableEdition()"
                 class="unselectable button is-medium is-rounded"
-                v-if="!editing && !canEdit">Claim this organization
+                v-if="!claimed">Claim this organization
               </button>
-              <button
-                @click="enableEdition()"
-                class="unselectable button is-medium is-rounded"
-                v-if="!editing && canEdit">Edit
-              </button>
-              <button
-                @click="closeEdition()"
-                class="unselectable button is-medium is-rounded"
-                v-if="editing">Close
-              </button>
+              <div v-if="claimed">
+                <button
+                  @click="enableEdition()"
+                  class="unselectable button is-medium is-rounded"
+                  v-if="!editing && canEdit">Manage this organization
+                </button>
+                <button
+                  @click="closeEdition()"
+                  class="unselectable button is-medium is-rounded"
+                  v-if="editing">Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -117,6 +119,11 @@ export default {
     },
     emitNextField () {
       this.$emit("edit:next")
+    }
+  },
+  computed: {
+    claimed () {
+      return this.$store.state.nonprofit.data.claimed
     }
   }
 }
