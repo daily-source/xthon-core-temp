@@ -128,6 +128,13 @@ export default {
 .fundraiser-participant {
   display: flex;
   margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 
   &.is-editing {
     @include mobile {
@@ -144,10 +151,12 @@ export default {
     color: $color-medium-gray;
     margin-bottom: 10px;
     display: flex;
+    align-self: center;
 
     @include tablet {
       margin-top: 10px;
       font-size: 24px;
+      align-self: flex-start;
     }
 
     .emphasis {
@@ -202,15 +211,18 @@ export default {
   &__avatar {
     width: 160px;
     height: 160px;
-    margin-right: 20px;
     display: inline-block;
     background-size: cover;
     background-position: center center;
+    margin-bottom: 20px;
 
     @include tablet {
       width: 120px;
       height: 120px;
+      margin-right: 20px;
+      margin-bottom: 0;
     }
+
     &.is-editing {
       width: 600px;
       @include mobile {
