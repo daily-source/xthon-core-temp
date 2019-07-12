@@ -267,7 +267,7 @@ export default {
     &.modal-trigger {
       z-index: 11;
       @include tablet() {
-        transform: translateX(1em);
+        margin-left: 20px;
       }
     }
   }
