@@ -266,6 +266,9 @@ export default {
     z-index: 10;    
     &.modal-trigger {
       z-index: 11;
+      @include tablet() {
+        transform: translateX(1em);
+      }
     }
   }
 
