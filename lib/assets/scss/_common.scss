@@ -49,7 +49,7 @@ blockquote {
       padding: 0;
     }
     @include widescreen {
-      width: 80% !important; //1152px
+      width: 1152px;
     }
     @include fullhd {
       max-width: $max-container-width !important;
