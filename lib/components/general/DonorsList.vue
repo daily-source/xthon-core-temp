@@ -139,13 +139,13 @@ export default {
       if (this.canRender && this.$refs.donorColumn && this.$refs.donorColumn.length) {
         this.avatarSize = this.$refs.donorColumn[0].clientWidth * 0.93
       } else {
-        this.avatarSize = 75
+        this.avatarSize = 60
       }
 
       if (this.canRender && this.$refs.wideDonorColumn && this.$refs.wideDonorColumn.length) {
         this.wideAvatarSize = this.$refs.wideDonorColumn[0].clientWidth * 0.87 * 0.7
       } else {
-        this.wideAvatarSize = 75
+        this.wideAvatarSize = 60
       }
     }
   },
@@ -166,6 +166,9 @@ export default {
       this.calculateAvatarSize()
     }, 1000)
     window.addEventListener("resize", this.calculateAvatarSize())
+  },
+  destroyed () {
+    window.removeEventListener("resize", this.calculateAvatarSize())
   }
 }
 </script>

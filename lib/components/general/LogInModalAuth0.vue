@@ -55,9 +55,9 @@
     </div>
     <div v-if="!layout">
       <div class="trigger" v-if="!loggedIn">
-        <span @click="openLoginBox()">
+        <div @click="triggerExternalLogin()">
           <slot name="trigger"></slot>
-        </span>
+        </div>
       </div>
       <slot name="intro"></slot>
     </div>
@@ -114,6 +114,7 @@ export default {
   methods: {
     triggerExternalLogin () {
       localStorage.setItem("redirect_to_url", this.$route.fullPath)
+      console.log('trying to authenticate, redirect_to_url: ', this.$route.fullPath)
       this.$auth.login()
     },
     triggerExternalSignup () {

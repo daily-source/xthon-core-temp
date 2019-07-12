@@ -135,7 +135,7 @@ export default {
       : `Activity: ${this.nonprofit.ACTIVITY}`
     var description = `Tax exempt organization. ${activity}`
     var name = this.nonprofit.NAME
-    var imgSrc = this.nonprofit.data.hero ? this.nonprofit.data.hero.src : this.nonprofit.data.default_hero.src
+    var imgSrc = this.nonprofit.data.hero ? this.nonprofit.data.hero : this.nonprofit.data.default_hero
     var imgUrl = `${this.$store.state.extra.request.protocol}://${this.$store.state.extra.request.host}${imgSrc}`
     return {
       title: name,

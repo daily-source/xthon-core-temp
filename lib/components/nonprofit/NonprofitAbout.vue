@@ -30,6 +30,7 @@
                 error-text="This field can't be empty. It needs a meaningful description. HTML tags are not allowed."
                 :value="nonprofit.data.about"
                 :edition-is-enabled="editing"
+                :on-blur-save="true"
                 placeholder="Add a description."
                 location="nonprofit.data.about"
                 v-on:next:field="openEdition('nonprofitCity')"
@@ -122,7 +123,7 @@
               <span>{{nonprofit.media.length}} Photos and videos</span>
             </p>
             <MediaViewer
-              v-if="!editing"
+              v-if="!editing && nonprofit.media"
               :media="nonprofit.media"
               v-on:modal:open="stopFlickity()"
               v-on:modal:close="startFlickity()"

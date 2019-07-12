@@ -19,9 +19,7 @@
         "hero": {
           "src": "/static/assets/images/5672087be97cb2bb8e59ad897a14ea35.jpg"
         },
-        "default_hero": {
-          "src": "/static/assets/images/nonoprofit-base-hero.jpg"
-        },
+        "default_hero": "/static/assets/images/nonoprofit-base-hero.jpg",
         "about": "We are an international confederation of 17 like-minded charitable organizations working together to bring about lasting solutions to poverty and injustice. We work with partners around the world to make a difference in the lives of people in need.",
         "slogan": "",
         "website": "https://www.oxfam.org",
@@ -807,9 +805,7 @@
   ],
   "default": {
     "data": {
-      "default_hero": {
-        "src": "/static/assets/images/nonoprofit-base-hero.jpg"
-      }
+      "default_hero": "/static/assets/images/nonoprofit-base-hero.jpg"
     }
   },
   "pages": [

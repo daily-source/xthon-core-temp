@@ -78,6 +78,7 @@
 
 .navbar-menu {
   position: absolute;
+  width: 100%;
 
   @include tablet {
     display: flex;

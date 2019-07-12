@@ -74,6 +74,7 @@
             error-text="Add a compelling intro for your fundraiser."
             :value="fundraiser.description"
             :edition-is-enabled="editing"
+            :on-blur-save="true"
             layout="block"
             placeholder="Email address"
             location="fundraiser.description"
@@ -213,7 +214,7 @@ export default {
     &.is-editing {
       width: 600px;
       @include mobile {
-        width: 100%;
+        width: 90%;
       }      
     }
   }

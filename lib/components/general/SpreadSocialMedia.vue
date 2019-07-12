@@ -109,7 +109,7 @@ export default {
       sharer.shareOnLinkedIn(this.urlParams, this.text, this.via, this.title)
     },
     email () {
-      sharer.shareByEmail(this.urlParams, this.text, this.via, this.title)
+      // sharer.shareByEmail(this.urlParams, this.text, this.via, this.title)
     },
     goToFacebok () {
       window.location = "https://facebook.com/volunteerathon"

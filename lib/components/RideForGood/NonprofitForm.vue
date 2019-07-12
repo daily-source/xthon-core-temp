@@ -253,7 +253,9 @@ h1 {
   }
 
   label {
-    font-size: 20px;
+    @include tablet {
+      font-size: 20px;
+    }
   }
 
   input,

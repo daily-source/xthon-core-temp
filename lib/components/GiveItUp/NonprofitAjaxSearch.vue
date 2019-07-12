@@ -27,35 +27,35 @@
 </template>
 
 <script>
-import VueSelect from "vue-select"
-import debounce from "lodash/debounce"
+import VueSelect from 'vue-select';
+import debounce from 'lodash/debounce';
 
-const IRSSearchAPI = process.env.IRS_SEARCH_API_URL
+const IRSSearchAPI = process.env.IRS_SEARCH_API_URL;
 
 export default {
-  name: "NonprofitAjaxSearch",
+  name: 'NonprofitAjaxSearch',
 
-  props: ["standalone", "placeholder", "defaultValue"],
+  props: ['standalone', 'placeholder', 'defaultValue'],
 
   components: {
-    VueSelect
+    VueSelect,
   },
 
-  data () {
+  data() {
     return {
       canRender: false,
       selected: null,
-      options: []
-    }
+      options: [],
+    };
   },
 
   /**
    * Display this form only in the browser, not in the server.
    */
-  mounted () {
-    this.canRender = false
+  mounted() {
+    this.canRender = false;
     if (this.defaultValue) {
-      this.selected = this.defaultValue
+      this.selected = this.defaultValue;
     }
   },
 
@@ -64,18 +64,18 @@ export default {
    * avoid flooding the server with calls).
    */
   methods: {
-    onSearch (search, loading) {
-      loading(true)
-      this.search(loading, search, this)
+    onSearch(search, loading) {
+      loading(true);
+      this.search(loading, search, this);
     },
     search: debounce((loading, search, vm) => {
       fetch(
         `${IRSSearchAPI}/nonprofits/search/${escape(search)}`,
       ).then((res) => {
-        res.json().then(json => (vm.options = json))
-        loading(false)
-      })
-    }, 350)
+        res.json().then(json => (vm.options = json));
+        loading(false);
+      });
+    }, 350),
   },
 
   /**
@@ -83,19 +83,19 @@ export default {
    * The parent component can react to the event like this v-on:selected="doSomething($event)".
    */
   watch: {
-    selected (newVal) {
+    selected(newVal) {
       if (newVal) {
-        this.$emit("selected", newVal)
+        this.$emit('selected', newVal);
       } else {
-        this.$emit("selected", null)
+        this.$emit('selected', null);
       }
     },
-    defaultValue (newVal) {
-      this.selected = newVal
-    }
-  }
+    defaultValue(newVal) {
+      this.selected = newVal;
+    },
+  },
 
-}
+};
 </script>
 
 <style lang="scss">

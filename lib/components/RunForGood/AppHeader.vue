@@ -1,12 +1,15 @@
 <template>
-  <div class="header__wrapper white-bg" :class="{ 'page-layout': layout === 'page' }">
+  <div class="header__wrapper white-bg"
+    :class="{ 'page-layout': layout === 'page' }"
+    :style="{'z-index': editing ? 0 : 2}"
+  >
     <div class="container is-fluid">
       <div class="header__inner">
         <div class="random-words">
-          <router-link to="/explore">ExploreXY</router-link>
+          <router-link to="/explore">Explore</router-link>
         </div>
         <div class="random-words">
-          Start One Now
+          Volunteer
         </div>
         <div class="user-space__search">
           <div class="user-space__search-wrapper">
@@ -17,12 +20,12 @@
         </div>
         <div class="logo__wrapper">
           <router-link to="/" exact>
-            <img class="logo" :src="require('Public/run-for-good-300-125.png')" alt="logo">
+            <img class="logo" :src="require('Public/run-for-good-300-125.png')" alt="logo" width="300" height="53">
           </router-link>
         </div>
         <div class="logo__wrapper centered">
           <router-link to="/" exact>
-            <img class="logo" :src="require('Public/run-for-good-300-125.png')" alt="logo">
+            <img class="logo" :src="require('Public/run-for-good-300-125.png')" alt="logo" width="300" height="53">
           </router-link>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
@@ -192,6 +195,8 @@
 
 .header__wrapper {
   border-bottom: 2px solid $color-emphasis-alt;
+  position: relative;
+  z-index: 2;
 }
 
 .header__inner {
@@ -234,12 +239,15 @@
     @include desktop {
       width: auto;
       order: unset;
-      opacity: 0;
+      opacity: 0; 
+    }
 
-      img {
-        max-width: 272px;
-        width: 150px;
-        height: auto;    
+    img {
+      max-width: 150px;
+
+      @include desktop {
+        max-width: 200px;
+        max-height: auto;    
       }
     }
 
@@ -260,8 +268,6 @@
 
 .random-words {
   padding: 0 5px;
-
-  color: $primary;
 }
 
 .page-layout {
@@ -316,7 +322,7 @@ export default {
     Icons,
     LogInModal
   },
-  props: ["layout"],
+  props: ["layout", "editing"],
   data () {
     return {
       showSearchBar: false,

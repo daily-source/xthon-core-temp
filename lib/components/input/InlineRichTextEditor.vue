@@ -47,7 +47,7 @@
 import Icons from "Components/general/Icons.vue"
 
 export default {
-  props: [ "type", "value", "errorText", "allowEmpty", "removeReturns", "layout", "location", "placeholder", "editionIsEnabled", "defaultOpen" ],
+  props: [ "type", "value", "errorText", "allowEmpty", "removeReturns", "layout", "location", "placeholder", "editionIsEnabled", "defaultOpen", "onBlurSave" ],
   data () {
     return {
       userDialogSpinner: true,
@@ -133,7 +133,11 @@ export default {
      */
     blurInput () {
       this.blurTimeout = setTimeout(() => {
-        this.cancelEdition()
+        if (this.onBlurSave) {
+          this.saveField()
+        } else {
+          this.cancelEdition()
+        }
       }, 200)
     },
     closeUserDialog () {
@@ -312,6 +316,10 @@ textarea {
     }
     .input-non-editable-value {
       border: 4px dashed rgba($color-medium-gray, 0.3);
+      transition: border-color 0.2s ease-in-out;
+      &:hover {
+        border-color: $color-emphasis;
+      }
     }
   }
 }

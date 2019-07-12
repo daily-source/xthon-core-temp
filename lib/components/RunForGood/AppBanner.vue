@@ -15,8 +15,12 @@ export default {
 
 <style lang='scss' scoped>
 .banner {
-  height: 450px;
+  height: 200px;
   position: relative;
+
+  @include tablet {
+    height: 450px;
+  }
 
   &:before {
     content: '';

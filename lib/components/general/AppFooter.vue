@@ -1,5 +1,9 @@
 <template>
   <section class="footer hero">
+    <ShareByEmail
+      :state="shareByEmailState"
+      v-on:dismiss="shareByEmailState = false"
+    ></ShareByEmail>
     <div class="hero-body">
       <div class="social-icons">
         <div class="container">
@@ -42,7 +46,7 @@
 <style scoped lang="scss">
 .footer {
   padding: 0;
-  z-index: 9;
+  z-index: 1;
 
   .hero-body {
     padding: 0;
@@ -135,7 +139,8 @@ import * as sharer from "Core/util/sharer.js"
 
 export default {
   components: {
-    Icons
+    Icons,
+    ShareByEmail: () => import("Components/general/ShareByEmail.vue")
   },
   computed: {
     footerMenuLinks () {
@@ -146,7 +151,8 @@ export default {
     return {
       shareText: "Check out this website I found!",
       siteName: "Volunteerathon",
-      shareWindowTitle: "Sharing"
+      shareWindowTitle: "Sharing",
+      shareByEmailState: false      
     }
   },
   methods: {
@@ -168,7 +174,7 @@ export default {
       sharer.shareOnLinkedIn(null, this.shareText, this.siteName, this.shareWindowTitle)
     },
     shareEmail () {
-      sharer.shareByEmail(null, this.shareText, this.siteName, this.shareWindowTitle)
+      this.shareByEmailState = true
     },
     donate () {
       this.$emit("donateFromButton")

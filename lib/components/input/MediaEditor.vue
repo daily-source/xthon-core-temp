@@ -13,6 +13,7 @@
         :open-default="true"
         :key="item"
         :edition-is-enabled="true"
+        :quality="2"
         filename="media_image"
         v-if="!item"
         v-on:edition:open="newImageOpenId = $event"
@@ -56,6 +57,7 @@
         :location="location"
         :edition-is-enabled="true"
         :key="item"
+        :disable-image-edition="true"
         v-on:edition:open="existingImageOpenId = $event"
         v-on:edition:close="existingImageOpenId = null"
       ></InlineImageEditor>

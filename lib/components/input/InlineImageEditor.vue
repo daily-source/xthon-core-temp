@@ -1,5 +1,5 @@
 <template>
-  <div :class="`edition-is-enabled-${editionIsEnabled}`">
+  <div :class="`edition-is-enabled-${editionIsEnabled && !disableImageEdition}`">
     <div class="overlay" v-if="fieldIsOpen && isStandalone"></div>
     <div :class="`field-wrapper layout-${layout} is-open-${fieldIsOpen} flex-one`">
       <UserDialog
@@ -16,7 +16,7 @@
           <div
             :class="{'flex-one': isBackgroundImage}"
             v-if="!fieldIsOpen"
-            @click="openEdition()"
+            @click="!disableImageEdition ? openEdition() : doNothing()"
           >
             <LazyLoadedImage
               class="inline-image-item"
@@ -39,7 +39,7 @@
             :height="calculateHeight"
             :prevent-white-space="true"
             :zoom-speed="5"
-            :quality="1.2"
+            :quality="quality || 1.2"
             :replace-drop="true"
             v-on:keyup.enter="saveImage()"
             v-on:new-image="errorMessage = ''"
@@ -53,7 +53,7 @@
           :class="{'column is-6': !isStandalone, 'hero-image': ratio === 0.3}"
           v-if="editionIsEnabled"
         >
-          <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}">
+          <div class="action-icons-wrapper" :class="{'is-open': fieldIsOpen}" v-if="!disableImageEdition">
             <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
               <Icons icon="pencil" class="action-icon" iconwidth="16px" iconheight="16px" color="#FFF"></Icons>
             </div>
@@ -85,11 +85,11 @@
               :class="{'hide-button': !hasImage}"
               @click="saveImage()"
               v-if="fieldIsOpen"
-            >Generate</button>
+            >Save</button>
           </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
-            <p>Click generate once ready to save the image.</p>
+            <p>Click save once ready to save the image.</p>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ import Icons from "Components/general/Icons.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
 
 export default {
-  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename' ],
+  props: [ "item", "layout", "location", "openId", "openDefault", "isBackgroundImage", "alt", "editionIsEnabled", "type", "is-standalone", "disableOrientation", "initialRatio", "defaultImage", "required", "defaultText", 'filename', "disableImageEdition", "quality" ],
   data () {
     return {
       croppaObject: null,
@@ -132,7 +132,7 @@ export default {
   computed: {
     calculateWidth () {
       if (typeof window === "undefined" || typeof this.$el === "undefined") {
-        return 320
+        return 300
       }
       let wrapperWidth = this.$el.clientWidth
       if (this.type === "avatar") {
@@ -141,7 +141,7 @@ export default {
         }
         return wrapperWidth / 2 - 12
       }
-      return wrapperWidth < 320 ? wrapperWidth - 6 : 320
+      return wrapperWidth < 300 ? wrapperWidth - 6 : 300
     },
     calculateHeight () {
       return this.calculateWidth * this.ratio
@@ -174,6 +174,7 @@ export default {
       this.fieldIsOpen = false
       this.errorMessage = ""
       this.userDialogModal = false
+      this.userDialogMessage = ""
       this.$emit("edition:close", this._uid)
     },
     openEdition () {
@@ -182,6 +183,9 @@ export default {
       }
       this.fieldIsOpen = true
       this.$emit("edition:open", this._uid)
+    },
+    doNothing () {
+      return
     },
     clearField () {
       if (this.croppaObject && this.croppaObject.hasImage()) {
@@ -218,7 +222,7 @@ export default {
      */
     saveImage () {
       this.userDialogModal = true
-      var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.8)
+      var blob = this.croppaObject.generateDataUrl("image/jpeg", 0.85)
       if (!blob) {
         this.userDialogMessage = "The image couldn't be generated."
         this.userDialogSpinner = false
@@ -386,8 +390,20 @@ export default {
   }
 }
 .editable-field-wrapper {
-  width: auto;
+  width: 100%;
   position: relative;
+
+  @include mobile {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+  }
+  > div {
+    @include mobile {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
 }
 .is-open-true {
   .editable-field-wrapper {

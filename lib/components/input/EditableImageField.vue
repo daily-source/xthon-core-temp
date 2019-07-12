@@ -1,6 +1,6 @@
 <template>
-    <div class="columns is-multiline is-mobile">
-      <div class="column is-4-tablet is-11-mobile">
+    <div class="columns is-multiline is-mobile row-wrapper">
+      <div class="column is-3-tablet is-11-mobile">
         <label :for="`input-editable_${_uid}`">{{label}}</label>
       </div>
       <div class="column is-5-tablet is-7-mobile">
@@ -11,6 +11,7 @@
             :width="imageSize"
           />
           <avatar 
+            class="inline-image-item"
             :username="$store.state.user.data.firstName + ' ' + $store.state.user.data.lastName" 
             v-if="!avatar"
             :rounded="false"
@@ -20,6 +21,7 @@
         <div class="edition-box" v-if="fieldIsOpen">
           <croppa
             v-model="myCroppa"
+            class="croppa-box"
             :initial-image="avatar || ''"
             :placeholder="'Select file'"
             :placeholder-font-size="20"
@@ -30,26 +32,45 @@
           >
             <div slot="initial">Click here to upload a file</div>
           </croppa>
-          <div class="control">
-            <button class="button is-warning" @click="myCroppa.remove()">Remove</button>
-            <button class="button is-success" @click="saveField()">Generate</button>
-          </div>
           <div class="instructions" v-if="fieldIsOpen">
             <p>Move the picture around the frame to crop it. You can also scroll or pinch with two fingers to zoom.</p>
-            <p>Click generate once ready to save the image.</p>
+            <p>Click save once ready to save the image.</p>
           </div>
         </div>
       </div>
-      <div class="column is-3-tablet is-5-mobile is-pulled-right">
-        <div class="action-icon-wrapper" @click="openEdition()" :class="{'hide-icon': fieldIsOpen}">
-          <Icons icon="pencil" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-        </div>
-        <div class="action-icon-wrapper" @click="saveField()" :class="{'hide-icon': !fieldIsOpen}">
-          <Icons icon="check" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-        </div>
-        <div class="action-icon-wrapper" @click="cancelEdition()" :class="{'hide-icon': !fieldIsOpen}" v-on:keyup.esc="cancelEdition()">
-          <Icons icon="close-circle" class="action-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-        </div>
+      <div class="column is-4 editable-field-wrapper">
+        <transition-group name="slide-fade">
+          <button
+            class="button is-primary button-edition"
+            @click="openEdition()"
+            v-if="!fieldIsOpen"
+            key="edit"
+          >Edit</button>
+          <button
+            class="button is-warning button-edition"
+            @click="cancelEdition()"
+            v-if="fieldIsOpen"
+            key="cancel"
+          >Cancel</button>
+          <button
+            class="button is-primary button-edition"
+            @click="myCroppa.remove()"
+            v-if="fieldIsOpen"
+            key="clear"
+          >Clear</button>
+          <button
+            class="button is-danger button-edition"
+            @click="myCroppa.remove(); saveField()"
+            v-if="fieldIsOpen"
+            key="remove"
+          >Remove</button>
+          <button
+            class="button is-success button-edition"
+            @click="saveField()"
+            v-if="fieldIsOpen"
+            key="save"
+          >Save</button>
+        </transition-group>
       </div>
       <transition name="slide-fade">
         <div class="column is-11-mobile is-6-tablet is-offset-4-tablet editable-error-message-wrapper" v-if="errorMessage">
@@ -141,5 +162,32 @@ export default {
 }
 .is-pulled-right {
   text-align: right;
+}
+.button-edition {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  margin-right: 0.5em;
+}
+.row-wrapper {
+  align-items: center;
+}
+.button-edition {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  margin-right: 0.5em;
+  margin-bottom: 5px;
+}
+.row-wrapper {
+  align-items: flex-start;
+}
+.inline-image-item {
+  transition: filter 0.1s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    filter: brightness(70%);
+  }
+}
+.croppa-box {
+  background: $color-light-gray;
 }
 </style>

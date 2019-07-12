@@ -39,6 +39,11 @@ export default {
     },
     closeModal () {
       this.$emit("modal:close")
+    },
+    triggerModalClose (e) {
+      if (e.keyCode === 27) {
+        this.closeModal()
+      }
     }
   },
   mounted () {
@@ -46,12 +51,11 @@ export default {
      * Create an event listener so that the modal can be closed on esc key press.
      */
     if (this.enableEsc) {
-      document.body.addEventListener("keyup", e => {
-        if (e.keyCode === 27) {
-          this.closeModal()
-        }
-      })
+      document.body.addEventListener("keyup", this.triggerModalClose)
     }
+  },
+  destroyed () {
+    document.body.removeEventListener("keyup", this.triggerModalClose)
   }
 }
 </script>
