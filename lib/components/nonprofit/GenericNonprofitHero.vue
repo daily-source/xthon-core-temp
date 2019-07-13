@@ -22,7 +22,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import { sortBy } from 'lodash'
 import Flickity from 'Components/plugins/Flickity'
+import naturalSort from 'javascript-natural-sort'
+
+function importAll (r) {
+  return r.keys().map(r)
+}
 
 export default {
   name: 'GenericNonprofitHero',
@@ -32,18 +38,17 @@ export default {
   },
 
   data () {
+    const images = importAll(require.context('@/assets/img/generic-banner', false, /\.(jpe?g)$/));
+
+    const bannerPhotos = images.sort(naturalSort)
+
     return {
       sliderOptions: {
         cellAlign: 'left',
         wrapAround: true,
       },
+      bannerPhotos,
     }
-  },
-
-  computed: {
-    ...mapState({
-      bannerPhotos: state => state.common.bannerPhotos,
-    })
   },
 }
 </script>
