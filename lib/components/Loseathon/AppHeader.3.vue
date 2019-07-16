@@ -193,7 +193,7 @@
 }
 
 .header__wrapper {
-  border-bottom: 2px solid $color-emphasis-alt;
+  border-bottom: 2px solid $primary;
 }
 
 .header__inner {
@@ -215,6 +215,10 @@
     &.modal-trigger {
       z-index: 11;
     }
+  }
+
+  a {
+    color: $secondary !important;
   }
 
   .user-space__search {

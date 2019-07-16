@@ -18,6 +18,12 @@ export default {
   height: 550px;
   background-color: #fff;
   position: relative;
+
+  h2 {
+    font-size: 2.125em;
+    line-height: 1.4;
+    color: $primary;
+  }
   
   img {
     height: 100%;
