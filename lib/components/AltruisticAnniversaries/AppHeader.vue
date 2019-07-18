@@ -229,7 +229,9 @@
 }
 
 .header__wrapper {
-  border-bottom: 2px solid $color-emphasis-alt;
+  @include themify {
+    border-bottom: 2px solid themed('primary');
+  }
 }
 
 .header__inner {
