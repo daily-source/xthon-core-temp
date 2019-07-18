@@ -16,22 +16,72 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import VueSelect from 'vue-select'
-
 import { getCountries } from 'countrycitystatejson'
+import { gmapApi } from 'vue2-google-maps'
+import _ from 'lodash'
+
+import userGeolocation from '@/util/userGeolocation'
+import geocoder from '@/util/geocoder'
+import { extractCountryFromGeocodedLocation } from '@/util/locations'
 
 export default {
   name: 'DropDownCountries',
+
+  mixins: [userGeolocation],
 
   components: {
     VueSelect,
   },
 
   data () {
+    const countries = _.sortBy(getCountries(), country => {
+      return country.name
+    })
     return {
-      countries: getCountries(),
+      countries,
       selected: null,
+      userCountry: null,
     }
+  },
+
+  mounted () {
+    // Loads the gmapApi if it's not loaded
+    this.$gmapApiPromiseLazy().then( () => {
+      console.log('loaded')
+    })
+  },
+
+  methods: {
+    async extractCountryFromUserPosition () {
+      const { coords } = this.userLocation
+      
+      if (coords) {
+        const geocoderObject = new this.google.maps.Geocoder
+        
+        const location = await geocoder.geocodeLocation(geocoderObject, {lat: coords.latitude, lng: coords.longitude})
+
+         this.userCountry = extractCountryFromGeocodedLocation(location)
+      }
+    },
+
+    setCountriesToDisplay () {
+      if (this.userCountry) {
+        const index = this.countries.findIndex(country => country.shortName === this.userCountry.short_name)
+
+        const deleted = this.countries.splice(index, 1)
+
+        this.countries = [
+          ...deleted,
+          ...this.countries,
+        ]
+      }
+    },
+  },
+
+  computed: {
+    google: gmapApi,
   },
 
   watch: {
@@ -42,7 +92,20 @@ export default {
         this.$emit("selected", null)
       }
     },
+
+    userLocation () {
+      this.extractCountryFromUserPosition()
+    },
+
+    userCountry () {
+      this.setCountriesToDisplay()
+    },
+
+    google (val) {
+      this.getUserLocation()
+    },
   },
+
 }
 </script>
 
