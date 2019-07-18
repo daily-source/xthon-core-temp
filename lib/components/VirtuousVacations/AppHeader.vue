@@ -229,7 +229,9 @@
 }
 
 .header__wrapper {
-  border-bottom: 2px solid $color-emphasis-alt;
+  @include themify {
+    border-bottom: 2px solid themed('navbarBackgroundColor');
+  }
 }
 
 .header__inner {
@@ -245,7 +247,7 @@
   @include desktop {
     flex-direction: row;
   }
-
+  
   div {
     z-index: 10;    
     &.modal-trigger {
@@ -387,6 +389,14 @@
   &:hover {
     .flickity-prev-next-button {
       opacity: 1;
+    }
+  }
+}
+
+.header__inner {
+  a {
+    @include themify {
+      color: themed('navbarLinkColor') !important;
     }
   }
 }
