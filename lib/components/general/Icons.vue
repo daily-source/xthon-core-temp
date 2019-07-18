@@ -135,7 +135,7 @@
       </g>
     </svg>
 
-    <svg id="photo" xmlns="http://www.w3.org/2000/svg" :width="iconwidth" :height="iconheight" viewBox="0 0 24 24" v-if='icon === "photo"'>
+    <svg id="photo" xmlns="http://www.w3.org/2000/svg" :width="iconwidth" :height="iconheight" viewBox="0 0 24 16.697" v-if='icon === "photo"'>
       <path id="Path_1" data-name="Path 1" d="M5.644,4.2A1.737,1.737,0,1,0,3.907,5.942,1.742,1.742,0,0,0,5.644,4.2M1.666,15.086s-.017.023-.041.061H22.375l0-.006L15.288,5.5a.973.973,0,0,0-1.679,0L9.227,11.466,7.615,9.27a.973.973,0,0,0-1.678,0Zm21.41.684H.923V.928H23.077V15.769Zm.923.464V.464A.463.463,0,0,0,23.539,0H.462A.463.463,0,0,0,0,.464V16.233a.463.463,0,0,0,.461.464H23.539A.463.463,0,0,0,24,16.233" :fill='color'/>
     </svg>
 
