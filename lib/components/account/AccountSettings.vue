@@ -18,7 +18,7 @@
         label="Nickname:"
         ref="nickname"
         :value="userData.data.nickname"
-        error-text="This field can't be empty"
+        error-text="This field should be between 4 and 140 chars long."
         type="name"
         v-on:input:save="updateUserField('nickname', $event)"
         v-on:next:field="openEdition('firstName')"
@@ -156,8 +156,8 @@ export default {
           this.userDialogSpinner = false
           setTimeout(() => {
             this.userDialogModal = false
-          this.userDialogHeading = ""
-          this.userDialogMessage = ""
+            this.userDialogHeading = ""
+            this.userDialogMessage = ""
           }, 3000)
         })
         .catch(err => {
