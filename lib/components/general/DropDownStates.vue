@@ -55,6 +55,10 @@ export default {
         this.$emit("selected", null)
       }
     },
+
+    country () {
+      this.selected = null
+    },
   },
 }
 </script>
