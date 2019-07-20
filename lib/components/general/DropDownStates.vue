@@ -71,6 +71,18 @@ export default {
     &-toggle {
       flex-grow: 1;
     }
+
+    &.open {
+      .open-indicator {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .dropdown-toggle {
+    .clear {
+      margin-top: 4px;
+    }
   }
 }
 </style>
