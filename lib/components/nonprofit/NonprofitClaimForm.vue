@@ -335,24 +335,16 @@
 </template>
 
 <script>
-import InputFieldWithWarning from 'Components/input/InputFieldWithWarning'
-import TextareaWithWarning from 'Components/input/TextareaWithWarning'
-
-import NonprofitIrsDetails from 'LocalComponents/Nonprofit/NonprofitIRSDetails'
-import SlideFade from 'Components/transitions/SlideFade'
-import DropDownCountries from 'Components/general/DropDownCountries'
-import DropDownStates from 'Components/general/DropDownStates'
-
 export default {
   name: 'NonprofitClaimForm',
 
   components: {
-    NonprofitIrsDetails,
-    SlideFade,
-    InputFieldWithWarning,
-    TextareaWithWarning,
-    DropDownCountries,
-    DropDownStates,
+    NonprofitIrsDetails: () => import('LocalComponents/Nonprofit/NonprofitIRSDetails'),
+    SlideFade: () => import('Components/transitions/SlideFade'),
+    InputFieldWithWarning: () => import('Components/input/InputFieldWithWarning'),
+    TextareaWithWarning: () => import('Components/input/TextareaWithWarning'),
+    DropDownCountries: () => import('Components/general/DropDownCountries'),
+    DropDownStates: () => import('Components/general/DropDownStates')
   },
 
   props: {
