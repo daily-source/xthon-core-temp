@@ -56,9 +56,11 @@ export default {
     text-align: center;
     margin-bottom: 10px;
     padding-top: 10px;
+    font-size: 1.425em;
 
     @include tablet {
       margin-bottom: 5px;
+      font-size: 1.9em;
     }
     &.is-editing {
       margin-top: 60px;

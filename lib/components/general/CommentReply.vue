@@ -26,10 +26,14 @@
         </a>
       </p>
 
-      <div class="control columns">
-        <textarea class="column is-8" type="text" name="comment" v-model="commentBody" rows="3" cols="75">
-        </textarea>
-        <button class="button is-success" @click.prevent="validateAndSend()">Add comment</button>
+      <div class="control columns is-gapless">
+        <div class="column is-8">
+          <textarea class="textarea" type="text" name="comment" v-model="commentBody" rows="5" cols="75">
+          </textarea>
+        </div>
+        <div class="column">
+          <button class="button is-success" @click.prevent="validateAndSend()">Add comment</button>
+        </div>
       </div>
       <input type="hidden" name="in_reply_to" :value="inReplyTo" />
       <input ref="faxthis" type="checkbox" name="contact_us_by_fax_only" v-model="fax" autocomplete="off">

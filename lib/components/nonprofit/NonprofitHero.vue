@@ -79,7 +79,9 @@
           <div class="button nonprofit-hero__cta-fundraise">Fundraise</div>
           <DonateAction
             :nonprofit-ein="nonprofit.EIN"
-            trigger="nonprofit/hero/cta">
+            trigger="nonprofit/hero/cta"
+            class='nonprofit-hero__donate-wrapper'  
+          >
             <div class="button nonprofit-hero__cta-donate">
               Donate
             </div>
@@ -227,11 +229,11 @@ export default {
     top: 20px;
 
     @include tablet {
-      left: 20px;
+      top: unset;
+      bottom: -70px;
     }
     @include widescreen {
       top: unset;
-      left: unset;
       bottom: -80px;
       width: 200px;
       height: 200px;
@@ -335,8 +337,21 @@ export default {
     }
   }
 
+  &__donate-wrapper {
+    margin-left: 10px;
+
+    @include tablet {
+      padding-left: 0;
+    }
+  }
+
   &__cta-donate {
     background-color: rgba($color-emphasis-alt, 0.8);
+
+    @include mobile {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
 
     &:hover {
       background-color: rgba($color-emphasis-alt, 1);
