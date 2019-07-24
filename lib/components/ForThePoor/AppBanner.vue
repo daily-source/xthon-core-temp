@@ -1,11 +1,12 @@
 <template>
   <section 
     id="banner"
-    :style='{backgroundImage: `url(${require("@/assets/img/banner-img-1.jpg")})`}'
+    :style='{backgroundImage: `url(${backgroundImage})`}'
   >
     <div class="banner-content has-text-centered">
       <div class="container">
-        <h2> Scroll down to see many ways to help the poorest half of people </h2>
+        <h2 class='banner__heading bannder__heading--v1' v-if='$version == 1'>Scroll down to see many ways to help the poorest half of people</h2>
+        <h2 class='banner__heading bannder__heading--v2' v-else-if='$version == 2'>We offer many unique ways to help the poor</h2>
       </div>
     </div>
     <a class='btn-down' @click='smoothScroll("content")'><i class="fas fa-chevron-down"></i></a>
@@ -15,6 +16,16 @@
 <script>
 export default {
   name: 'AppBanner',
+
+  computed: {
+    backgroundImage () {
+      if (this.$version == 1) {
+        return require('@/assets/img/banner-img-1.jpg')
+      }
+
+      return require('@/assets/img/banner-img-2.jpg')
+    },
+  },
 }
 </script>
 
@@ -51,11 +62,9 @@ export default {
       color: #fff;
       font-weight: 700;
       font-size: 2em;
-      max-width: 650px;
       margin-left: auto;
       margin-right: auto;
       text-shadow: 0 2px 8px rgba(#000,.25);
-      margin-top: 5em;
     }
   }
 
@@ -80,6 +89,19 @@ export default {
 
     &:hover {
       transform: translateY(4px);
+    }
+  }
+
+  .banner {
+    &__heading {
+      font-family: $font-primary;
+      margin-bottom: 0;
+      line-height: 1.5;
+
+      &--v1 {
+        max-width: 650px;
+        margin-top: 5em;
+      }
     }
   }
 </style>

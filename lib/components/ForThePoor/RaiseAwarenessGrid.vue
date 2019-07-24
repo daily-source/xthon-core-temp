@@ -17,9 +17,9 @@ export default {
     LogoGrid,
   },
 
-  data () {
-    return {
-      sites: [
+  computed: {
+    sites () {
+      let sites = [
         {
           name: 'DailySource',
           image: 'dailysource.png',
@@ -65,8 +65,45 @@ export default {
           image: 'maps-for-the-poor.png',
           link: '#',
         },
-      ],
-    }
+      ]
+
+      if (this.$version == 1) {
+        sites = [
+          {
+            name: 'Crowdsourcing for the Poor',
+            image: 'crowdsourcing-for-the-poor.png',
+            link: '#',
+          },
+          {
+            name: 'In Sight In Mind',
+            image: 'insight-in-mind.png',
+            link: 'http://insightinmind.org/',            
+          },
+          {
+            name: 'Counters for the Poor',
+            image: 'counters-for-the-poor.png',
+            link: 'http://countersforthepoor.org/',
+          },
+          {
+            name: 'Balanced Giving',
+            image: 'balanced-giving.png',
+            link: '#',
+          },
+          {
+            name: 'World Wealth Calculator',
+            image: 'balanced-giving.png',
+            link: 'http://www.worldwealthcalculator.org/',            
+          },
+          {
+            name: 'Maps for The Poor',
+            image: 'maps-for-the-poor.png',
+            link: '#',            
+          },
+        ]
+      }
+
+      return sites
+    },
   },
 }
 </script>
