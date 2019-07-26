@@ -180,7 +180,7 @@ import { mapActions } from 'vuex'
 
 import DataInput from 'LocalComponents/Input/DataInput'
 import PieChart from 'Components/RuleYourWorld/PieChart'
-import PercentileTable from 'Components/RuleYourWorld/PercentileTable'
+import PercentileTable from 'Components/RuleYourWorld/PercentileTable.3'
 
 export default {
   name: 'NonprofitFormStepOne',

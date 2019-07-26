@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper nonprofit-form">
     <UserDialog
       spinner="true"
       :state="userDialogModal"
@@ -21,7 +21,7 @@
       v-on:error="unauthorize()"
     ></DonatePasswordModal>
 
-    <slot name="heading"><h1>Change the world in 3 easy steps:</h1></slot>
+    <slot name="heading"><h1 class='has-text-centered'>Change the world in 3 easy steps:</h1></slot>
     <div class="container">
       <div class="columns combo-wrapper is-multiline bubbles-wrapper">
        <ComboBox :iconsrc="require('Public/img/check.png')" duplicate="false" :large="true">
@@ -43,6 +43,7 @@
               :placeholder='nonprofitSearchPlaceholder'
               :default-value="getDefaultNonprofit()"
               :standalone="false"
+              class='nonprofit-ajax-search'
             ></NonprofitAjaxSearch>
             <transition name="slide-fade">
               <div class="column is-5 is-offset-5 is-pulled-left" v-if="nonprofitErrorMessage">
@@ -101,6 +102,7 @@
                   <datetime 
                     v-model="form.date2"
                     placeholder='Click to pick date'
+                    class='nonprofit-form__date'
                   />
                 </div>
               </div>
@@ -445,7 +447,7 @@ h1 {
   }
 
   .input-icon {
-    top: 6px;
+    top: 12px;
   }
 }
 </style>
@@ -457,6 +459,21 @@ h1 {
     min-width: 0 !important;
     padding-left: 45px;
     padding-right: 45px;
+  }
+}
+
+.nonprofit-ajax-search {
+  .dropdown-toggle {
+    border: 1px solid #ccc !important;
+  }
+}
+
+.nonprofit-form {
+  &__date {
+    input {
+      height: 38px !important;
+      font-size: 1rem;
+    }
   }
 }
 </style>

@@ -169,6 +169,7 @@
           </div>
         </div>
         <div class="nonprofit-form-step-one__percentiles">
+          <versioned-component />
           <percentile-table />
           <p>The numbers above fully adjust for costs of living, so $1,000 buys the same amount in every country. <br /> To learn how experts can easily calculate this, click <a href="#">here</a>.</p>
         </div>
@@ -183,7 +184,7 @@ import { mapActions } from 'vuex'
 
 import DataInput from 'LocalComponents/Input/DataInput'
 import PieChart from 'Components/RuleYourWorld/PieChart'
-import PercentileTable from 'Components/RuleYourWorld/PercentileTable'
+import PercentileTable from 'Components/RuleYourWorld/PercentileTable.2'
 
 export default {
   name: 'NonprofitFormStepOne',
