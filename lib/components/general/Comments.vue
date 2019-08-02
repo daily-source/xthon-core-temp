@@ -40,7 +40,7 @@
   margin-bottom: 40px;
 }
 .comment-reply__wrapper {
-  margin-left: 60px;
+  margin-left: 0;
 }
 
 </style>

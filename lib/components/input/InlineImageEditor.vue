@@ -425,7 +425,7 @@ export default {
 }
 .nonprofit-hero__logo-wrapper {
   .field-wrapper {
-    top: -400px;
+    top: -370px;
     left: 10px;
     position: relative;
     z-index: 1;
