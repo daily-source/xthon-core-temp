@@ -33,7 +33,7 @@
         <div class="box-slider__hover-box">
           <h3 class='has-text-weight-bold'>{{ title }}</h3>
           <p v-if='cost'>
-            Approximate cost of saving a life: {{ cost | currencyFormat }}
+            Approximate cost of saving a life: {{ cost | usdCurrencyFormat }}
           </p>
           <p>
             A person dies every {{ (deathsPerSecond || '????') | numberFormat  }} seconds
