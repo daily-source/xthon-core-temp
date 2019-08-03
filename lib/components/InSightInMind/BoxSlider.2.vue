@@ -1,8 +1,8 @@
 <template>
   <div 
     class="box-slider"
-    @mouseover='toggleHovered'
-    @mouseout='toggleHovered'
+    @mouseenter='toggleHovered'
+    @mouseleave='toggleHovered'
   >
 		<div class="box-slider__slide box-slider__slide--title">
 			<h2 class='box-slider-title__heading'>{{ message }}</h2>
