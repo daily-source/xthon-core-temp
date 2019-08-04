@@ -15,7 +15,7 @@
 
 <script>
 import { difference } from 'lodash'
-import CounterWidget from 'Components/CountersForThePoor/CounterWidget'
+import CounterWidget from 'Components/CountersForThePoor/v2/CounterWidget'
 
 export default {
 	name: 'CounterWidgetJumbotron',

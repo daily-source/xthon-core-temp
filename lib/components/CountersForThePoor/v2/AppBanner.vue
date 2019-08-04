@@ -1,7 +1,7 @@
 <template>
 	<section 
 		id="banner" 
-		class='section banner'
+		class='section banner banner-v2'
 		:style='{
 			backgroundImage: `url("${backgroundImage}")`
 		}'		
@@ -9,7 +9,6 @@
 		<div class="banner__contents">
 			<counter-widget 
 				:id="widgetId"
-        size='large'
 			/>
 		</div>
   </section>
@@ -19,7 +18,7 @@
 import { mapState } from 'vuex'
 import imageSrc from 'Core/util/imageSrc'
 
-import CounterWidget from 'Components/CountersForThePoor/CounterWidget'
+import CounterWidget from 'Components/CountersForThePoor/v2/CounterWidget'
 
 export default {
 	name: 'AppBanner',
@@ -27,7 +26,7 @@ export default {
 	mixins: [imageSrc],
 
   props: {
-		widgetId: {
+    widgetId: {
       type: Number,
 			default: 1,
     }
@@ -72,42 +71,30 @@ export default {
 </script>
 
 <style lang='scss'>
-  .banner {
+  .banner-v2 {
     position: relative;
     background-size: cover;
-    background-position: right;
+    background-position: center;
     background-attachment: fixed;
     height: 95vh;
-		margin-bottom: 2rem;
+    margin-bottom: 2rem;
+    .banner__img {
+      display: block;
+    }
 
-		@include tablet {
-			background-position: center;
-		}
-  }
+    .banner__contents {
+      position: absolute;
+      left: 4em;
+      bottom: 30px;
 
-  .banner__img {
-    display: block;
-  }
-
-  .banner__contents {
-    position: absolute;
-		bottom: 30px;
-		left: 0;
-
-		@include tablet {			
-			left: 6%;
-		}
-
-		@include fullhd {
-			left: 9%;
-		}
-
-    .counter-widget {
-      padding:  1.5rem 2rem;
-      // background-color: rgba(#030000, .28);
-      // border: 2px solid $primary;
-      border-radius: 4px;
-			margin-left: 0;
+      .counter-widget {
+        max-width: 600px;
+        padding:  1.5rem 2rem;
+        // background-color: rgba(#030000, .28);
+        // border: 2px solid $primary;
+        border-radius: 4px;
+        margin-left: 0;
+      }
     }
   }
 </style>
