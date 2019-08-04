@@ -112,7 +112,11 @@ export default {
     margin-bottom: 0;
     padding-bottom: 1.5rem;
     color: $primary;
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+
+    @include tablet {
+      font-size: 2.5rem;      
+    }
   }
 
   &__column {
