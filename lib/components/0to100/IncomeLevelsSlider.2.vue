@@ -77,8 +77,6 @@
 import { mapGetters, mapState } from 'vuex'
 import { TimelineMax, Power2 } from 'gsap'
 
-import IncomeLevelsSliderImages from 'Components/0to100/IncomeLevelsSliderImages'
-import IncomeLevelsSliderList from 'Components/0to100/IncomeLevelsSliderList.2'
 import Icon from 'Components/general/Icons'
 
 
@@ -86,8 +84,8 @@ export default {
 	name: 'IncomeLevelSlider',
 
 	components: {
-		IncomeLevelsSliderImages,
-		IncomeLevelsSliderList,
+		IncomeLevelsSliderImages: () => import('Components/0to100/IncomeLevelsSliderImages'),
+		IncomeLevelsSliderList: () => import('Components/0to100/IncomeLevelsSliderList.2'),
 		Icon,
 	},
 
@@ -144,19 +142,30 @@ export default {
 .income-levels-slider {
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: 1em;
-	padding-top: 2.25em;
-	background-color: #eee;
-	display: none;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  background-color: #eee;
+  overflow: hidden;
+	// display: none;
 
-	@include desktop {
-		display: block;
-	}
+	// @include desktop {
+	// 	display: block;
+  // }
+  
+  @include tablet {
+    padding-top: 2.25em;
+  }
 
 	&__heading-container {
-		height: 50px;
-		position: relative;
-		margin-bottom: 2.25em;
+    height: 34px;
+    position: relative;
+    margin-bottom: 1em;
+    
+    @include tablet {
+      height: 50px;
+      padding-bottom: 0;
+      margin-bottom: 2.25em;
+    }
 	}
 
 	&__heading {
@@ -165,7 +174,12 @@ export default {
 		left: 0;
 		right: 0;
 		opacity: 0;
-		font-weight: 700;
+    font-weight: 700;
+    font-size: 1.5em;
+    
+    @include tablet {
+      font-size: 2.125em;
+    }
 	}
 
 	&__btn-container {

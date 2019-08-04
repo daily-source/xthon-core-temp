@@ -103,7 +103,9 @@ export default {
 		toggleList () {
 			const targetHeight = this.expanded ? this.targetHeight + 3 : 0
 
-			TweenMax.to(this.$el, .3, {height: targetHeight})
+      TweenMax.to(this.$el, .3, {height: targetHeight})
+      
+      this.$emit('toggled', targetHeight)
 		}
 	},
 

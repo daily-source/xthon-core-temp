@@ -11,55 +11,64 @@
 	</div>
 	<div class='income-levels-slider__levels'>
 		<div class='income-levels-slider__levels-container'>
-			<div
-				class='income-levels-slider-level-wrapper'
-				v-for='(level, index) in sliderTopIncomeLevels'
-				:key='index'
-			>
-				<div class='income-levels-slider-level'>
-					<income-levels-slider-images 
-						:images='level.photos'	
-					/>
-					<div class='income-levels-slider-level__body'>
-						<h4>{{ level.sliderPercent }}</h4>
-						<p>Above ${{ level.value}}</p>
-					</div>
-					<income-levels-slider-list 
-						:have='level.have'	
-						:dont-have='level.dontHave'
-						:expanded='listExpanded'
-					/>
-				</div>
-			</div>
-			<!-- <div class='income-levels-slider-level-wrapper income-levels-slider-level-wrapper--middle'>
-				<p class='has-text-centered'>Scroll down to see all of the levels</p>
-				<icon
-					icon='chevron-down'
-					:iconwidth='46'
-					:iconheight='46'
-					color='#ff5f00'
-				/>
-			</div> -->
-			<div
-				class='income-levels-slider-level-wrapper'
-				v-for='(level, index) in sliderBottomIncomeLevels'
-				:key='index + sliderTopIncomeLevels.length'
-			>
-				<div class='income-levels-slider-level'>
-					<income-levels-slider-images 
-						:images='level.photos'	
-					/>
-					<div class='income-levels-slider-level__body'>
-						<h4>{{ level.sliderPercent }}</h4>
-						<p>Below ${{ level.value}}</p>
-					</div>
-					<income-levels-slider-list 
-						:have='level.have'	
-						:dont-have='level.dontHave'
-						:expanded='listExpanded'
-					/>
-				</div>
-			</div>
+      <flickity
+        :options='flickityOptions'
+        :class='`income-levels-slider__slider income-levels-slider__slider--${listExpanded ? "expanded" : "minimized"}`'
+        id='income-levels-slider'
+        ref='slider'
+      >
+        <div
+          class='income-levels-slider-level-wrapper'
+          v-for='(level, index) in sliderTopIncomeLevels'
+          :key='index'
+        >
+          <div class='income-levels-slider-level'>
+            <income-levels-slider-images 
+              :images='level.photos'	
+            />
+            <div class='income-levels-slider-level__body'>
+              <h4>{{ level.sliderPercent }}</h4>
+              <p>Above ${{ level.value}}</p>
+            </div>
+            <income-levels-slider-list 
+              :have='level.have'	
+              :dont-have='level.dontHave'
+              :expanded='listExpanded'
+              @toggled='onListToggled'
+            />
+          </div>
+        </div>
+        <!-- <div class='income-levels-slider-level-wrapper income-levels-slider-level-wrapper--middle'>
+          <p class='has-text-centered'>Scroll down to see all of the levels</p>
+          <icon
+            icon='chevron-down'
+            :iconwidth='46'
+            :iconheight='46'
+            color='#ff5f00'
+          />
+        </div> -->
+        <div
+          class='income-levels-slider-level-wrapper'
+          v-for='(level, index) in sliderBottomIncomeLevels'
+          :key='index + sliderTopIncomeLevels.length'
+        >
+          <div class='income-levels-slider-level'>
+            <income-levels-slider-images 
+              :images='level.photos'	
+            />
+            <div class='income-levels-slider-level__body'>
+              <h4>{{ level.sliderPercent }}</h4>
+              <p>Below ${{ level.value}}</p>
+            </div>
+            <income-levels-slider-list 
+              :have='level.have'	
+              :dont-have='level.dontHave'
+              :expanded='listExpanded'
+              @toggled='onListToggled'
+            />
+          </div>
+        </div>
+      </flickity>
 		</div>
 	</div>
 	<div class='income-levels-slider__info'>
@@ -89,24 +98,24 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex'
-import { TimelineMax, Power2 } from 'gsap'
+import { TimelineMax, Power2, TweenMax } from 'gsap'
 
-import IncomeLevelsSliderImages from 'Components/0to100/IncomeLevelsSliderImages'
-import IncomeLevelsSliderList from 'Components/0to100/IncomeLevelsSliderList.5'
 import Icon from 'Components/general/Icons'
+import Flickity from 'Components/plugins/Flickity'
 
 
 export default {
 	name: 'IncomeLevelSlider',
 
 	components: {
-		IncomeLevelsSliderImages,
-		IncomeLevelsSliderList,
+		IncomeLevelsSliderImages: () => import('Components/0to100/IncomeLevelsSliderImages.5'),
+    IncomeLevelsSliderList: () => import('Components/0to100/IncomeLevelsSliderList.5'),
+    Flickity,
 		Icon,
 	},
 
 	mounted () {
-		const tl = new TimelineMax({ repeat: -1})
+		const tl = new TimelineMax({ repeat: -1 })
 
 		const headings = this.$el.getElementsByClassName('income-levels-slider__heading')
 
@@ -114,12 +123,26 @@ export default {
 			tl.to(heading, 1, {opacity: 1})
 				.to(heading, 5, {opacity: 1})
 				.to(heading, 1, {opacity: 0, ease: Power2.easeIn}, "+=1")
-		});
+    });
+    
+
+    window.addEventListener('resize', () => {
+      this.targetHeight = null
+    })
 	},
 
 	data () {
 		return {
-			listExpanded: false,
+      listExpanded: false,
+      flickityOptions: {
+        pageDots: false,
+        cellAlign: 'left',
+        contain: true,
+        watchCSS: true,
+        groupCells: true,
+        setGallerySize: false,
+      },
+      targetHeight: null,
 		}
 	},
 
@@ -129,7 +152,29 @@ export default {
 		 */
 		toggleListExpanded () {
 			this.listExpanded = !this.listExpanded
-		}
+    },
+    
+    toggleSlider (el) {
+    },
+
+    onListToggled (height) {
+
+      let slider = this.$refs.slider.$el
+      if (!this.targetHeight || this.targetheight < height) {
+        this.targetHeight = height
+      }
+
+      if (this.listExpanded) {
+  
+        TweenMax.to(slider, .3, {height: this.targetHeight + 220})
+      } else {
+        const top = slider.getBoundingClientRect().top + window.scrollY - 100
+        window.scrollTo({
+          top,
+        })
+        TweenMax.to(slider, .3, {height: 220})  
+      }
+    }
 	},
 
 	computed: {
@@ -158,19 +203,26 @@ export default {
 .income-levels-slider {
 	padding-left: 1em;
 	padding-right: 1em;
-	padding-bottom: 2.25em;
-	padding-top: 2.25em;
-	background-color: #eee;
-	display: none;
+	padding-bottom: 1.5em;
+	padding-top: 1em;
+  background-color: #eee;
+  overflow: hidden;
 
-	@include desktop {
-		display: block;
-	}
-
+  @include tablet {
+    padding-top: 2.25em;
+    padding-bottom: 2.25em;
+  }
+  
 	&__heading-container {
-		height: 50px;
-		position: relative;
-		margin-bottom: 2.25em;
+    height: 34px;
+    position: relative;
+    margin-bottom: 1em;
+    
+    @include tablet {
+      height: 50px;
+      padding-bottom: 0;
+      margin-bottom: 2.25em;
+    }
 	}
 
 	&__heading {
@@ -180,20 +232,39 @@ export default {
 		right: 0;
 		opacity: 0;
 		color: $primary;
-		font-weight: 700;
+    font-weight: 700;
+    font-size: 1.125em;
+
+    @media (min-width: 576px) {
+      font-size: 1.5em;
+    }
+    
+    @include tablet {
+      font-size: 2.125em;
+    }
 	}
 
 	&__btn-container {
 		text-align: center;
-		margin-top: 1em;
+    margin-top: 1em;
+    max-width: 100%;
+    
+    .button {
+      white-space: normal;
+      height: auto;
+    }
 	}
 
 	&__levels-container {
 		margin-left: -.25em;
-		margin-right: -.25em;
-		margin-bottom: 2.25em;
+    margin-right: -.25em;
+    margin-bottom: 1.5em;
 		display: flex;
-		justify-content: space-between;
+    justify-content: space-between;
+    
+    @include tablet {
+      margin-bottom: 2.25em;
+    }
 	}
 
 	&__scroll-down {
@@ -216,7 +287,29 @@ export default {
 				font-size: 1.625rem;
 			}
 		}
-	}
+  }
+  
+  &__slider {
+    width: 100%;
+    height: 226px;
+    transition: max-height .4s ease;
+    position: relative;
+    display: block;
+
+    @include desktop {
+      display: flex;
+      height: auto;
+    }
+
+    &:after {
+      content: 'flickity';
+      display: none;
+
+      @include desktop {
+        content: '';
+      }
+    }
+  }
 }
 
 .income-levels-slider-level-wrapper {
@@ -224,11 +317,20 @@ export default {
 	flex-shrink: 1;
 	// max-width: calc(16.67% - 33.33px);
 	padding-left: .5em;
-	padding-right: .5em;
-	
-	@include fullhd {
-		// max-width: calc(16.67% - 41.67px);
-	}
+  padding-right: .5em;
+  width: 90%;
+
+  @media (min-width: 600px) {
+    width: 48%;
+  }
+
+  @include tablet {
+    width: 32%;
+  }
+
+  @include desktop {
+    width: 16%;
+  }
 
 	&--middle {
 		max-width: 100px;
@@ -276,9 +378,15 @@ export default {
 
 <style lang='scss'>
 .income-levels-slider {
-	.icon-wrapper {
-		text-align: center;
-	}
+  .icon-wrapper {
+    text-align: center;
+  }
+
+  .flickity-button {
+    @include desktop {
+      display: none;
+    }
+  }
 }
 </style>
 
