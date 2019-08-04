@@ -40,7 +40,13 @@ export default {
 
   h1 {
     text-align: center;
-    margin-top: 13px;
+    margin-top: 40px;
+    font-size: 1.75rem;
+
+    @include tablet {
+      font-size: 2.375rem;
+      margin-top: 13px;
+    }
   }
 }
 </style>
