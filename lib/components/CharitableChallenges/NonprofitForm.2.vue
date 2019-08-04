@@ -29,6 +29,15 @@
           </div>
         </div>
       </div>
+      <div class="field">
+        <span class="label">When are you going to do the challenge? <span class="has-text-danger">*</span></span>
+        <div class="control">
+          <datetime
+            v-model="form.date"
+            placeholder='Click to pick date'
+          />
+        </div>
+      </div>
       <div class="nonprofit-form__image-field field">
         <span class="label">Challenge Image:</span>
         <div class="control">
@@ -95,6 +104,11 @@ export default {
 
   .dropdown-toggle {
     border-color: #dbdbdb !important;
+  }
+
+  .vdatetime-input {
+    text-indent: 0;
+    padding: .625em;
   }
 }
 </style>
