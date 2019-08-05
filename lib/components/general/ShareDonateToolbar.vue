@@ -21,7 +21,7 @@
       <a>Share</a>
     </div>
     <div class="share-toolbar__share-item share-toolbar__share-comment"
-        v-if="allowComment !== false"
+        v-if="allowComment !== false && userCan('comment')"
         @click="replyTo(commentId)">
       <Icons iconwidth="21px" iconheight="21px" icon="bubble" color="#666" class="icon" />
       <a>Comment</a>
@@ -81,6 +81,13 @@ export default {
     }
   },
   methods: {
+    userCan(per) {
+      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+        return true
+      } else {
+        return false
+      }
+    },
     openShareBox () {
       this.toggleShareBox(true)
     },

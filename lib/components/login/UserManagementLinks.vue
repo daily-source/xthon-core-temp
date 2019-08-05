@@ -2,6 +2,7 @@
   <div class="user-management-links__wrapper">
     <div v-if="layout === 'header'">
       <router-link
+        v-if="userCan('edit:account-fields')"
         class="button is-warning"
         to="/account/settings"
         @click.native="$emit('goto:account')">Manage your Account</router-link>
@@ -22,6 +23,15 @@ export default {
   props: ["layout"],
   components: {
     Icons
+  },
+  methods: {
+    userCan(per) {
+      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+        return true
+      } else {
+        return false
+      }
+    }
   }
 }
 </script>

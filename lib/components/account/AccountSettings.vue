@@ -12,7 +12,11 @@
 
     <h3>Settings</h3>
 
-    <section class="account-section">
+    <section v-if="!userCan('edit:account-fields')">
+      <p>This area is restricted. Contact admin please.</p>
+    </section>
+
+    <section class="account-section" v-if="userCan('edit:account-fields')">
       <h4>Personal Data</h4>
       <EditableTextField
         label="Nickname:"
@@ -73,7 +77,7 @@
       ></EditableImageField>
     </section>
 
-    <section class="account-section">
+    <section class="account-section" v-if="userCan('edit:account-fields')">
       <h4>Stored Payment Methods</h4>
       <div v-if="userData.protected && userData.protected.paymentMethods && userData.protected.paymentMethods.length">
         <table class="table is-striped is-fullwidth payment-methods-table">
@@ -126,6 +130,13 @@ export default {
     }
   },
   methods: {
+    userCan(per) {
+      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+        return true
+      } else {
+        return false
+      }
+    },
     openEdition (fieldName) {
       this.$refs[fieldName].openEdition()
     },

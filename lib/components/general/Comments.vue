@@ -30,8 +30,13 @@
       @click="loadMoreComments()"
       v-if="moreComments"
     >Show more comments</button>
-    <h4>Leave a comment</h4>
-    <CommentReply class="comment-reply__wrapper" />
+    <h4
+      v-if="userCan('add:comment-to-fundraiser')"
+    >Leave a comment</h4>
+    <CommentReply
+      class="comment-reply__wrapper"
+      v-if="userCan('add:comment-to-fundraiser')"
+    />
   </div>
 </template>
 
@@ -65,6 +70,13 @@ export default {
     this.refreshTree()
   },
   methods: {
+    userCan(per) {
+      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+        return true
+      } else {
+        return false
+      }
+    },
     loadMoreComments () {
       this.$emit("loadMoreComments")
     },

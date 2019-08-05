@@ -37,7 +37,7 @@
         <div class="fundraiser-pledge">
           <div class="fundraiser-pledge__heading" v-if="fundraiser.User">
             <p class="button-wrapper" v-if="canEdit">
-              <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing">Edit this fundraiser</a>
+              <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing && userCan('edit:fundraiser-fields')">Edit this fundraiser</a>
             </p>
             <slot name="copytext">
               <p>
@@ -107,6 +107,13 @@ export default {
     }
   },
   methods: {
+    userCan(per) {
+      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+        return true
+      } else {
+        return false
+      }
+    },
     openEdition () {
       this.$emit("edit:open")
     }
