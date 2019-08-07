@@ -96,5 +96,4 @@ export default {
     padding-bottom: 3rem;
   }
 }
-  
 </style>

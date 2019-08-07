@@ -184,6 +184,10 @@ export default {
       margin-top: 10px;
     }
 
+    &--torathon {
+      max-width: 280px !important;
+    }
+
     &--walks-with-god {
       width: 368px;
     }

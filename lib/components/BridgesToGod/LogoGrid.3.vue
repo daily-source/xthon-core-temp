@@ -231,6 +231,10 @@ export default {
       margin-top: 10px;
     }
 
+    &--torathon {
+      max-width: 280px !important;
+    }
+
     &--praciticing-gratitude {
       width: 310px;
     }

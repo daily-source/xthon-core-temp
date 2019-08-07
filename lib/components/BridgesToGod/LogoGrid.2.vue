@@ -230,6 +230,10 @@ export default {
       max-width: 100% !important;
       margin-top: 10px;
     }
+
+    &--torathon {
+      max-width: 280px !important;
+    }
   }
 
   &--connecting-with-god,
