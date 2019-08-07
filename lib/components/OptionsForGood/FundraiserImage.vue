@@ -116,4 +116,16 @@ export default {
   position: relative;
   top: 10px;
 }
+
+#knights-of-columbus-img {
+  max-width: 340px;
+}
+
+#equal-opportunity-giving-img {
+  max-width: 340px;
+}
+
+#insight-in-mind-img {
+  margin-top: 40px;
+}
 </style>

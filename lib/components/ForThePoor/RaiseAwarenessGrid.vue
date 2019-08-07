@@ -65,6 +65,11 @@ export default {
           image: 'maps-for-the-poor.png',
           link: '#',
         },
+        {
+          name: 'Equal Opportunity Giving',
+          image: 'equal-opportunity-giving.png',
+          link: '#',
+        },
       ]
 
       if (this.$version == 1) {
@@ -91,13 +96,18 @@ export default {
           },
           {
             name: 'World Wealth Calculator',
-            image: 'balanced-giving.png',
+            image: 'word-wealth-calculator.png',
             link: 'http://www.worldwealthcalculator.org/',            
           },
           {
             name: 'Maps for The Poor',
             image: 'maps-for-the-poor.png',
             link: '#',            
+          },
+          {
+            name: 'Equal Opportunity Giving',
+            image: 'equal-opportunity-giving.png',
+            link: '#',
           },
         ]
       }
