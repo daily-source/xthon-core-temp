@@ -1,55 +1,112 @@
 <template>
-  <div class="columns is-multiline is-mobile logo-grid">
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/volunteerathon.png" alt="Volunteerathon">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/quitathon.png" alt="In Sight in Mind">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/give-it-for-the-earth.png" alt="Give it Up For The Earth" class='stands-for-freedom-img' >
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/run-for-good.png" alt="Balanced Giving">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/ride-for-good.png" alt="World Wealth Calculator">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/calendar-for-good.png" alt="Maps for the Poor">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-full has-text-right">
-      <a class='see-more-link' href="#" @click.stop.prevent="false">See More</a>
-    </div>
-  </div>
+<div class="raise-money-grid">
+  <logo-grid 
+    :sites='sites'
+  />
+</div>
 </template>
 
 <script>
+import LogoGrid from 'Components/ForThePoor/LogoGrid'
+
 export default {
   name: 'RaiseMoneyGrid',
+
+  components: {
+    LogoGrid,
+  },
+
+  data () {
+    return {
+      sites: [
+        {
+          name: 'Volunteerathon',
+          image: 'volunteerathon.png',
+          link: 'https://vthon-vue-ssr.herokuapp.com/',
+        },
+        {
+          name: 'Quitathon',
+          image: 'quitathon.png',
+          link: 'http://quitathon2.surge.sh/',
+        },
+        {
+          name: 'Give It For The Earth',
+          image: 'give-it-for-the-earth.png',
+          link: 'http://giveitup.net/',
+        },
+        {
+          name: 'Run For Good',
+          image: 'run-for-good.png',
+          link: 'http://runforgood.net/',
+        },
+        {
+          name: 'Ride For Good',
+          image: 'ride-for-good.png',
+          link: 'http://rideforgood.org/',
+        },
+        {
+          name: 'Calendar For Good',
+          image: 'calendar-for-good.png',
+          link: 'http://calendarforgood.org/',
+        },
+        {
+          name: 'Charitable Contests',
+          image: 'charitable-contests.png',
+          link: '#',
+        },
+        {
+          name: 'Loseathon',
+          image: 'loseathon.png',
+          link: '#',
+        },
+        {
+          name: 'Records for Good',
+          image: 'records-for-good.png',
+          link: '#',
+        },
+        {
+          name: 'Bake for Good',
+          image: 'bake-for-good.png',
+          link: '#',
+        },
+        {
+          name: 'Benevolent Birthdays',
+          image: 'benevolent-birthdays.png',
+          link: '#',
+        },
+        {
+          name: 'Walk for Good',
+          image: 'walk-for-good.png',
+          link: '#',
+        },
+      ],
+    }
+  },
 }
 </script>
+
+<style lang='scss'>
+.logo-grid {
+  &__img {
+    .charitable-contests {
+      max-width: 250px;
+    }
+
+    .loseathon {
+      max-width: 200px;
+    }
+
+    .records-for-good {
+      max-width: 270px;
+    }
+
+    .bake-for-good {
+      max-width: 200px;
+    }
+
+    .benevolent-birthdays {
+      max-width: 230px;
+    }
+  }
+}
+</style>
