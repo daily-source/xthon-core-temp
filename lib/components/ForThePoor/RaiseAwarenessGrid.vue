@@ -21,14 +21,14 @@ export default {
     sites () {
       let sites = [
         {
-          name: 'DailySource',
-          image: 'dailysource.png',
-          link: 'http://www.dailysource.org/',
-        },
-        {
           name: 'In Sight In Mind',
           image: 'insight-in-mind.png',
           link: 'http://insightinmind.org/',
+        },
+        {
+          name: 'Rule Your World',
+          image: 'rule-your-world.png',
+          link: 'http://ruleyourworld.org/',
         },
         {
           name: 'Counters for the Poor',
@@ -36,9 +36,9 @@ export default {
           link: 'http://countersforthepoor.org/',
         },
         {
-          name: 'Rule Your World',
-          image: 'rule-your-world.png',
-          link: 'http://ruleyourworld.org/',
+          name: 'Balance Giving',
+          image: 'balanced-giving.png',
+          link: '#',
         },
         {
           name: 'World Wealth Calculator',
@@ -51,13 +51,13 @@ export default {
           link: 'http://0to100.org/',
         },
         {
-          name: 'Crowdsourcing for the Poor',
-          image: 'crowdsourcing-for-the-poor.png',
-          link: '#',
+          name: 'DailySource',
+          image: 'dailysource.png',
+          link: 'http://www.dailysource.org/',
         },
         {
-          name: 'Balance Giving',
-          image: 'balanced-giving.png',
+          name: 'Crowdsourcing for the Poor',
+          image: 'crowdsourcing-for-the-poor.png',
           link: '#',
         },
         {
@@ -70,47 +70,37 @@ export default {
           image: 'equal-opportunity-giving.png',
           link: '#',
         },
+        {
+          name: 'The Biggest Problem',
+          image: 'the-biggest-problem.png',
+          link: '#',
+        },
+        {
+          name: 'Give It Up for The Poor',
+          image: 'give-it-up-for-the-poor.png',
+          link: '#',
+        },
+        {
+          name: 'No Double Standards',
+          image: 'no-double-standards.png',
+          link: '#',
+        },
+        {
+          name: 'Religionly',
+          image: 'religionly.png',
+          link: '#',
+        },
+        {
+          name: 'True Mission',
+          image: 'true-mission.png',
+          link: '#',
+        },
+        {
+          name: 'Our Free Will',
+          image: 'our-free-will.png',
+          link: '#',
+        },
       ]
-
-      if (this.$version == 1) {
-        sites = [
-          {
-            name: 'Crowdsourcing for the Poor',
-            image: 'crowdsourcing-for-the-poor.png',
-            link: '#',
-          },
-          {
-            name: 'In Sight In Mind',
-            image: 'insight-in-mind.png',
-            link: 'http://insightinmind.org/',            
-          },
-          {
-            name: 'Counters for the Poor',
-            image: 'counters-for-the-poor.png',
-            link: 'http://countersforthepoor.org/',
-          },
-          {
-            name: 'Balanced Giving',
-            image: 'balanced-giving.png',
-            link: '#',
-          },
-          {
-            name: 'World Wealth Calculator',
-            image: 'word-wealth-calculator.png',
-            link: 'http://www.worldwealthcalculator.org/',            
-          },
-          {
-            name: 'Maps for The Poor',
-            image: 'maps-for-the-poor.png',
-            link: '#',            
-          },
-          {
-            name: 'Equal Opportunity Giving',
-            image: 'equal-opportunity-giving.png',
-            link: '#',
-          },
-        ]
-      }
 
       return sites
     },
