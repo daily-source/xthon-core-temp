@@ -1,95 +1,44 @@
 <template>
-  <div class="columns is-multiline is-mobile logo-grid">
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/virtual-railroad.png" alt="Virtual Railroad">
+<div class="logo-grid">
+  <div class="columns is-multiline is-mobile">
+    <div 
+      class="column is-one-third"
+      v-for='(site, index) in sites'
+      :key='index'
+    >
+      <a :href="site.link" target='_blank'>
+        <div class="logo-grid__img grid__img-wrap">
+          <img 
+            :src="require(`@/assets/img/${site.image}`)" 
+            :alt="site.name"
+            :class='slugify(site.name)'
+          >
         </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/freeathon.png" alt="Freeathon">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/stands-for-freedom.png" alt="Stands For Freedom" class='stands-for-freedom-img' >
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/conscience-or-cotton.png" alt="Conscience or Cotton">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/the-modern-emancipation-proclamation.png" alt="The Modern Emancipation Proclamation">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/see-our-slaves.png" alt="See our Slaves">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/freedom-lifts-all.png" alt="Freedom Lifts All">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/share-your-freedom.png" alt="Freedom Lifts All">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/tip-your-slaves.png" alt="Tip Your Slaves">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/crowdsourcing-freedom.png" alt="Crowdsourcing Freedom">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/free-a-slave.png" alt="Crowdsourcing Freedom">
-        </div>
-      </router-link>
-    </div>
-    <div class="column is-one-third">
-      <router-link to="/">
-        <div class="grid__img-wrap">
-          <img src="@/assets/img/todays-slavery.jpg" alt="Todays Slavery as it Is">
-        </div>
-      </router-link>
+      </a>
     </div>
   </div>
+</div>
 </template>
 
 <script>
+import { kebabCase } from 'lodash'
+
+import sites from './sites'
+
 export default {
-  
+  name: 'LogoGrid',
+
+  data () {
+    return {
+      sites,
+    }
+  },
+
+  methods: {
+    slugify (text) {
+      return kebabCase(text)
+    },
+  },
 }
 </script>
 
