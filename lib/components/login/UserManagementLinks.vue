@@ -2,7 +2,7 @@
   <div class="user-management-links__wrapper">
     <div v-if="layout === 'header'">
       <router-link
-        v-if="userCan('edit:account-fields')"
+        v-if="loggedIn && userCan('edit:account-fields')"
         class="button is-warning"
         to="/account/settings"
         @click.native="$emit('goto:account')">Manage your Account</router-link>
@@ -25,8 +25,12 @@ export default {
     Icons
   },
   methods: {
+    loggedIn () {
+      return this.$store.state.user.loggedIn
+    },
     userCan(per) {
-      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+      var userPermissions = this.$store.state.user.data.permissions
+      if ( userPermissions && JSON.stringify(userPermissions).indexOf(per) > -1) {
         return true
       } else {
         return false
