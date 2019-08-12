@@ -331,7 +331,10 @@ body.no-scroll {
     max-height: calc(90vh);
     border: none;
     border-radius: 20px;
-    width: 880px;
+    width: 95%;
+    @include desktop {
+      width: 880px;
+    }
     &.small-modal {
       width: 550px;
       text-align: left;
