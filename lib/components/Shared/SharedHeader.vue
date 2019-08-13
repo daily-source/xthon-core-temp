@@ -484,6 +484,8 @@ export default {
 
 	@include tablet {
 		display: flex;
+    padding-top: 1em;
+    padding-bottom: 1em;
 	}
 
 	.nav {
@@ -511,7 +513,7 @@ export default {
 
 .logo-link {
 	img {
-		max-width: 200px;
+		max-width: 300px;
 	}
 }
 
