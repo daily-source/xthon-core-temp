@@ -2,7 +2,7 @@
 <div class="logo-grid">
   <div class="columns is-multiline is-mobile">
     <div 
-      class="column is-one-third"
+      class="column is-one-third-desktop is-half-tablet is-full-mobile"
       v-for='(site, index) in sitesToDisplay'
       :key='index'
     >
