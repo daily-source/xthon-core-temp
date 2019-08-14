@@ -20,7 +20,7 @@
       />
     </div>
     <transition name="slide-fade">
-      <div class="column is-6-tablet is-offset-3-tablet editable-error-message-wrapper" v-if="errorMessage">
+      <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="errorMessage">
         <span class="editable-error-message">{{errorMessage}}</span>
       </div>
     </transition>
@@ -33,7 +33,7 @@ import * as validator from "../../util/validator.js"
 import Vue from "vue"
 
 export default {
-  props: [ "label", "type", "value", "errorText", "disabledEdition" , "required"],
+  props: [ "label", "type", "value", "errorText", "disabledEdition", "required"],
   data () {
     return {
       fieldIsOpen: false,
