@@ -121,7 +121,7 @@ export default {
       display: block;
       font-weight: bold;
       font-size: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
 
       @include tablet {
         margin-bottom: 0;
