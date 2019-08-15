@@ -23,35 +23,32 @@
         v-on:next:field="openEdition('country')"
         v-on:previous:field="openEdition('mailing1')"
       ></EditableTextFieldBasic>
-
-
       <drop-down-countries
-        @selected="onCountrySelect"
-      ></drop-down-countries>
-
-
-      <EditableTextFieldBasic
         label="Country:"
         ref="country"
-        error-text="Please enter a valid country."
         :required="true"
-        type="name"
+        @selected="onCountrySelect"
+        type="dropdown"
+        error-text="Please enter your country."
         :value="form.country"
         v-on:input:change="updateUserField('country', $event)"
-        v-on:next:field="openEdition('state')"
+        v-on:next:field="selectedCountry ? openEdition('state') : openEdition('city')"
         v-on:previous:field="openEdition('mailing2')"
-      ></EditableTextFieldBasic>
-      <EditableTextFieldBasic
+      ></drop-down-countries>
+      <drop-down-states 
         label="State:"
         ref="state"
-        error-text="Please enter a valid state."
+        :disabled="!selectedCountry"
         :required="true"
-        type="name"
+        @selected='onStateSelect'
+        type="dropdown"
+        error-text="Please enter your state."
         :value="form.state"
         v-on:input:change="updateUserField('state', $event)"
         v-on:next:field="openEdition('city')"
         v-on:previous:field="openEdition('country')"
-      ></EditableTextFieldBasic>
+        :country='selectedCountry && selectedCountry.shortName'
+      ></drop-down-states>  
       <EditableTextFieldBasic
         label="City:"
         ref="city"
@@ -61,7 +58,7 @@
         :value="form.city"
         v-on:input:change="updateUserField('city', $event)"
         v-on:next:field="openEdition('zip')"
-        v-on:previous:field="openEdition('state')"
+        v-on:previous:field="selectedCountry ? openEdition('state') : openEdition('country')"
       ></EditableTextFieldBasic>
       <EditableTextFieldBasic
         label="Zip:"
@@ -130,38 +127,51 @@
         v-on:previous:field="openEdition('nonprofitWebsite')"
       ></EditableTextFieldBasic>
     </section>
-
     <div class="form-submit-wrapper" @click.prevent="submitForm()">
       <button class="button is-large is-danger"
         :disabled="submitButtonDisabled"
-      >
-        Claim</button>
-      <!--<span class="small-text">By clicking Claim, you agree to the <a>Terms and Conditions</a>.</span>-->
+      >Claim</button>
     </div>
   </div>
 </template>
 
 <script>
-//import * as validator from "../../util/validator.js"
 import Vue from 'vue'
+import DropDownCountries from 'Components/general/DropDownCountries.vue'
+import DropDownStates from 'Components/general/DropDownStates.vue'
 
 export default {
   props: ["nonprofit"],
   components: {
     EditableTextFieldBasic: () => import("Components/input/EditableTextFieldBasic.vue"),
-    DropDownCountries: () => import("Components/general/DropDownCountries.vue"),
+    DropDownCountries,
+    DropDownStates
   },
   data () {
     return {
       form: {},
       submitButtonDisabled: true,
-      sendingForm: false
+      sendingForm: false,
+      selectedCountry: null,
+      selectedState: null
     }
   },
   methods: {
     onCountrySelect (country) {
-      this.selectedCountry = country
-      this.form.country = country.name
+      if (country) {
+        this.selectedCountry = country
+      } else {
+        this.selectedCountry = null
+      }
+      this.validateForm()
+    },
+    onStateSelect (state) {
+      if (state) {
+        this.selectedState = state
+      } else {
+        this.selectedState = null
+      }
+      this.validateForm()
     },
     openEdition (fieldName) {
       this.$refs[fieldName].openEdition()
@@ -197,18 +207,13 @@ export default {
     },
   },
   computed: {
-    /*userData () {
-      return this.$store.state.user
-    },*/
     loggedIn () {
       return this.$store.state.user.loggedIn
     },
   },
   mounted () {
-    
   },
   watch: {
-    
   }
 }
 </script>
