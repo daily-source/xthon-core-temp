@@ -11,7 +11,9 @@
             <div class="slide__wrapper">
               <div class="slide counters-for-the-poor-slide">
                 <div class="logo-img__container">
-                  <img src="@/assets/img/images/counters-for-the-poor.png" class='logo-img' alt="Counters for the Poor Logo">
+                  <div class="logo-img__img-wrapper">
+                    <img src="@/assets/img/images/counters-for-the-poor.png" class='logo-img' alt="Counters for the Poor Logo">
+                  </div>
                 </div>
                 <img src="@/assets/img/images/counters-for-the-poor-slide.png" class='slide-img ' alt="Counters for the Poor widget">
               </div>
@@ -19,7 +21,9 @@
             <div class="slide__wrapper">
               <div class="slide virtual-railroad-slide">
                 <div class="logo-img__container">
-                  <img src="@/assets/img/images/virtual-railroad.png" class='logo-img' alt="Virtual Railroad Logo ">
+                  <div class="logo-img__img-wrapper">
+                    <img src="@/assets/img/images/virtual-railroad.png" class='logo-img' alt="Virtual Railroad Logo ">
+                  </div>
                 </div>
                 <img src="@/assets/img/images/virtual-railroad-slide.jpg" class='slide-img slide-img--full-height' alt="Virtual Railroad Map">
               </div>
@@ -32,7 +36,9 @@
             <div class="slide__wrapper">
               <div class="slide world-wealth-calculator-slide">
                 <div class="logo-img__container">
-                  <img src="@/assets/img/images/world-wealth-calculator.png" class='logo-img' alt="Maps for the Poor slide">
+                  <div class="logo-img__img-wrapper">
+                    <img src="@/assets/img/images/world-wealth-calculator.png" class='logo-img' alt="Maps for the Poor slide">
+                  </div>
                 </div>
                 <img src="@/assets/img/images/world-wealth-calculator-slide.jpg" class='slide-img' alt="Maps for the Poor map">     
               </div>
@@ -40,7 +46,9 @@
             <div class="slide__wrapper">
               <div class="slide">
                 <div class="logo-img__container">
-                  <img src="@/assets/img/images/maps-for-the-poor.png" class='logo-img' alt="Maps for the Poor slide">
+                  <div class="logo-img__img-wrapper">
+                    <img src="@/assets/img/images/maps-for-the-poor.png" class='logo-img' alt="Maps for the Poor slide">
+                  </div>
                 </div>
                 <img src="@/assets/img/images/maps-for-the-poor-slide.jpg" class='slide-img slide-img--full-height' alt="Maps for the Poor map">     
               </div>
@@ -53,27 +61,37 @@
           >
             <div class="slide__wrapper">
               <div class="slide">
-                <img src="@/assets/img/images/counters-for-the-poor.png" alt="Counters for the Poor" id='counters-for-the-poor-img'>
+                <div class="slide__img-wrapper">
+                  <img src="@/assets/img/images/counters-for-the-poor.png" alt="Counters for the Poor" id='counters-for-the-poor-img'>
+                </div>
               </div>
             </div>
             <div class="slide__wrapper">
               <div class="slide">
-                <img src="@/assets/img/images/virtual-railroad.png" alt="Virtual Railroad" id='virtual-railroad-img'>
+                <div class="slide__img-wrapper">
+                  <img src="@/assets/img/images/virtual-railroad.png" alt="Virtual Railroad" id='virtual-railroad-img'>
+                </div>
               </div>
             </div>
             <div class="slide__wrapper">
               <div class="slide">
-                <img src="@/assets/img/images/dailysource.png" alt="Daily Source" img='daily-source-img'>
+                <div class="slide__img-wrapper">
+                  <img src="@/assets/img/images/dailysource.png" alt="Daily Source" img='daily-source-img'>
+                </div>
               </div>
             </div>
             <div class="slide__wrapper">
               <div class="slide">
-                <img src="@/assets/img/images/world-wealth-calculator.png" alt="World Wealth Calculator" img='world-wealth-calculator-img'>
+                <div class="slide__img-wrapper">
+                  <img src="@/assets/img/images/world-wealth-calculator.png" alt="World Wealth Calculator" img='world-wealth-calculator-img'>
+                </div>
               </div>
             </div>
             <div class="slide__wrapper">
               <div class="slide">
-                <img src="@/assets/img/images/maps-for-the-poor.png" alt="Maps for the Poor" id='maps-for-the-poor-img'>
+                <div class="slide__img-wrapper">
+                  <img src="@/assets/img/images/maps-for-the-poor.png" alt="Maps for the Poor" id='maps-for-the-poor-img'>
+                </div>
               </div>
             </div>
           </flickity>
@@ -243,8 +261,12 @@ export default {
         object-fit: contain;
         object-position: center;
         max-width: 85%;
-        margin-left: auto;
-        margin-right: auto;
+      }
+
+      .logo-img__img-wrapper {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
       }
     }
 
@@ -255,7 +277,6 @@ export default {
       max-width: 50%;
       right: 15px;
       top: 15px;
-
 
       @include mobile {
         position: static;
@@ -292,6 +313,11 @@ export default {
         text-align: center;
         height: 120px;
         justify-content: center;
+
+        &__img-wrapper {
+          max-width: 100%;
+          width: 100%;
+        }
       }
     }
   }

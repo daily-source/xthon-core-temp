@@ -102,6 +102,7 @@ export default {
   position: relative;
   background-size: cover;
   background-position: top center;
+  align-items: center;
 
   &:before {
     content: '';
@@ -154,6 +155,7 @@ export default {
     width: 2rem;
     height: 2rem;
     font-size: 1.25em;
+    padding: 0 3px;
     border-radius: 100%;
     border: 2px solid #fff;
     background-color: transparent;
