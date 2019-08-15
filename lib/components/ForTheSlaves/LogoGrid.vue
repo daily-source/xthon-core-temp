@@ -81,7 +81,5 @@ export default {
   .logo-grid img {
     display: block;
     max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
   }
 </style>

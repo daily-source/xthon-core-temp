@@ -90,7 +90,7 @@
     <svg :style="{width: `${iconwidth}`, height: `${iconheight}`}" :width="iconwidth" :height="iconheight" viewBox="0 0 24 24" v-if="icon === 'usd'">
       <path :fill="color" d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z" />
     </svg>
-    <svg :style="{width: `${iconwidth}`, height: `${iconheight}`, stroke: `${color}`}" :width="iconwidth" :height="iconheight" v-if="icon === 'search'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" width="100%" height="100%" viewBox="0 0 213 213" version="1.1" xml:space="preserve" style="fill: none; fill-rule:evenodd;clip-rule:evenodd;">
+    <svg :style="{width: `${iconwidth}`, height: `${iconheight}`, stroke: `${color}`}" :width="iconwidth" :height="iconheight" v-if="icon === 'search'" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" viewBox="0 0 213 213" version="1.1" xml:space="preserve" style="fill: none; fill-rule:evenodd;clip-rule:evenodd;">
       <g transform="matrix(1,0,0,1,-10379.2,-74.9986)">
         <g transform="matrix(8.33333,0,0,8.33333,0,0)">
           <g transform="matrix(1,0,0,1,1255.69,12.7766)">
