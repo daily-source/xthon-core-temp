@@ -148,14 +148,16 @@ export default {
 }
 .input-editable-value {
   width: 100%;
-  font-weight: bold;
   font-size: inherit;
   line-height: 1.4;
-  height: 28px;
+  height: 34px;
   border: none;
-  padding: 0;
   box-shadow: none;
-  border: 1px solid $color-light-gray;
+  background: none;
+  border: 1px solid rgba(60,60,60,.26);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  padding: 0 7px;
   &:hover {
     cursor: pointer;
   }
