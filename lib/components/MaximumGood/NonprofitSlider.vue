@@ -12,11 +12,13 @@
           :class="`nonprofit-slider__slider-main-slide nonprofit-slider__slider-main-slide--${generateNonprofitNameSlug(fundraiser.name)}`"
         >
           <div class="nonprofit-slider__slider-main-image-container">
-            <img
-              :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
-              :alt="fundraiser.name"
-              class='nonprofit-slider__slider-main-image'
-            >
+            <div class="nonprofit-slider__slider-main-image-wrapper">
+              <img
+                :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
+                :alt="fundraiser.name"
+                class='nonprofit-slider__slider-main-image'
+              >
+            </div>
           </div>
           <div class="nonprofit-slider__slider-main-caption-container">
             <p class='is-marginless nonprofit-slider__slider-main-caption'>
@@ -41,11 +43,13 @@
             class="nonprofit-slider__slider-nav-slide-image-container"
             @click='selectSlide(index)'  
           >
-            <img 
-              :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
-              :alt="fundraiser.name"
-              class='nonprofit-slider__slider-nav-image'
-            >
+            <div class="nonprofit-slider__slider-nav-slide-image-wrapper">
+              <img 
+                :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
+                :alt="fundraiser.name"
+                class='nonprofit-slider__slider-nav-image'
+              >
+            </div>
           </div>
         </div>
       </flickity>
@@ -152,6 +156,12 @@ export default {
     max-width: 480px;
   }
 
+  &__slider-main-image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
   &__slider-main-image {
     max-width: 100%;
     display: block;
@@ -209,6 +219,11 @@ export default {
     display: flex;
     align-items: center;
     width: 100%;
+  }
+
+  &__slider-nav-slide-image-wrapper {
+    width: 100%;
+    max-width: 100%;
   }
 
   &__slider-nav-image {
