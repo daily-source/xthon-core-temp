@@ -111,16 +111,21 @@ export default {
 <style lang='scss'>
 .grid {
   &__img-wrap {
+    width: 90%;
+    
     .rule-your-world {
       max-width: 250px;
+      width: 90%;
     }
 
     .zero-to-100 {
       max-width: 230px;
+      width: 90%;
     }
 
     .in-sight-in-mind {
       max-width: 330px;
+      width: 90%;
     }
   }
 }

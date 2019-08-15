@@ -31,7 +31,7 @@ export default {
 
 <style lang="scss">
   #banner {
-    min-height: 500px;
+    height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
