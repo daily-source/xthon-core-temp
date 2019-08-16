@@ -62,6 +62,7 @@ export default {
     }
   },
   mounted () {
+    this.$emit('dropdown:loaded')
     // Loads the gmapApi if it's not loaded
     //this.$gmapApiPromiseLazy().then( () => {
       //console.log('loaded')

@@ -1,5 +1,11 @@
 <template>
-  <div>
+  <div class="form-wrapper">
+    <transition name="fade" mode="out-in">
+      <div
+        class="overlay"
+        v-if="!dropdownsAreLoaded"
+      ></div>
+    </transition>
     <section class="account-section">
       <h4 class="has-text-centered">Personal Data</h4>
       <EditableTextFieldBasic
@@ -34,6 +40,7 @@
         v-on:input:change="updateUserField('country', $event)"
         v-on:next:field="selectedCountry ? openEdition('state') : openEdition('city')"
         v-on:previous:field="openEdition('mailing2')"
+        v-on:dropdown:loaded="dropdownsAreLoaded = true"
       ></drop-down-countries>
       <drop-down-states 
         label="State:"
@@ -137,20 +144,22 @@
 
 <script>
 import Vue from 'vue'
-import DropDownCountries from 'Components/general/DropDownCountries.vue'
-import DropDownStates from 'Components/general/DropDownStates.vue'
+import { getCountries } from 'countrycitystatejson'
+//import DropDownCountries from 'Components/general/DropDownCountries.vue'
+//import DropDownStates from 'Components/general/DropDownStates.vue'
 
 export default {
   props: ["nonprofit"],
   components: {
     EditableTextFieldBasic: () => import("Components/input/EditableTextFieldBasic.vue"),
-    DropDownCountries,
-    DropDownStates
+    DropDownCountries: () => import('Components/general/DropDownCountries.vue'),
+    DropDownStates: () => import('Components/general/DropDownStates.vue')
   },
   data () {
     return {
+      dropdownsAreLoaded: false,
       form: {},
-      submitButtonDisabled: true,
+      submitButtonDisabled: false,
       sendingForm: false,
       selectedCountry: null,
       selectedState: null
@@ -203,17 +212,22 @@ export default {
       // disable submit button while processing
       this.submitButtonDisabled = true
       this.sendingForm = true
-      console.log("submit form action!")
-    },
+      this.$store.dispatch('SUBMIT_CLAIM_FORM', { form: this.form })
+        .then(data => {
+          this.$emit("success", { data: data })
+        })
+        .catch(err => {
+          this.$emit("err", { err })
+        })
+    }
   },
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
-    },
+    }
   },
   mounted () {
-  },
-  watch: {
+    this.$emit('form:loaded')
   }
 }
 </script>
@@ -245,4 +259,16 @@ export default {
   }
 }
 
+.form-wrapper {
+  position: relative;
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: white;
+    opacity: 0.8;
+  }
+}
 </style>
