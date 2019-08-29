@@ -1,5 +1,5 @@
 <template>
-  <div class="form-wrapper">
+  <div class="form-wrapper" v-if="loggedIn">
     <transition name="fade" mode="out-in">
       <div
         class="overlay"
@@ -159,7 +159,7 @@ export default {
     return {
       dropdownsAreLoaded: false,
       form: {},
-      submitButtonDisabled: false,
+      submitButtonDisabled: true,
       sendingForm: false,
       selectedCountry: null,
       selectedState: null
@@ -212,7 +212,7 @@ export default {
       // disable submit button while processing
       this.submitButtonDisabled = true
       this.sendingForm = true
-      this.$store.dispatch('SUBMIT_CLAIM_FORM', { form: this.form })
+      this.$store.dispatch('SUBMIT_CLAIM_FORM', { ein: this.$store.state.nonprofit.EIN, form: this.form })
         .then(data => {
           this.$emit("success", { data: data })
         })
