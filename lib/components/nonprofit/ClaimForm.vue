@@ -212,12 +212,18 @@ export default {
       // disable submit button while processing
       this.submitButtonDisabled = true
       this.sendingForm = true
+      this.$emit("submitting")
       this.$store.dispatch('SUBMIT_CLAIM_FORM', { ein: this.$store.state.nonprofit.EIN, form: this.form })
         .then(data => {
           this.$emit("success", { data: data })
+          console.log('success!!!')
         })
         .catch(err => {
-          this.$emit("err", { err })
+          console.log('error: ', err)
+          this.$emit("error", { data: err })
+          console.log("got here error in ClaimForm")
+          this.submitButtonDisabled = false
+          this.sendingForm = false
         })
     }
   },
