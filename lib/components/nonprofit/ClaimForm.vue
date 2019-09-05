@@ -6,7 +6,7 @@
         v-if="!dropdownsAreLoaded"
       ></div>
     </transition>
-    <section class="account-section">
+    <section class="form-section">
       <h4 class="has-text-centered">Personal Data</h4>
       <EditableTextFieldBasic
         label="Mailing address 1:"
@@ -130,7 +130,7 @@
         ref="notes"
         error-text="This field can't be empty."
         :required="false"
-        type="name"
+        type="notes"
         :value="form.notes"
         v-on:input:change="updateUserField('notes', $event)"
         v-on:previous:field="openEdition('nonprofitWebsite')"
