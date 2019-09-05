@@ -4,6 +4,7 @@
       <label :for="`input-editable_${_uid}`" ref="label">{{label}}</label>
     </div>
     <vue-select
+      :autocomplete="autocomplete || 'on'"
       :options='states'
       v-model='selected'
       label='name'
@@ -52,7 +53,8 @@ export default {
     value: {},
     errorText: {},
     disabled: {},
-    required: {}
+    required: {},
+    autocomplete: {}
   },
   data () {
     return {
@@ -166,6 +168,19 @@ export default {
   .dropdown-states {
     input {
       opacity: 1 !important;
+      font-weight: 100 !important;
+    }
+    .clear {
+      font-size: 1.25rem !important;
+      font-weight: 400 !important;
+      margin-bottom: -1px !important;
+    }
+    .open-indicator:before {
+      border-width: 2px 2px 0 0;
+      height: 9px;
+      width: 9px;
+      color: rgba(60, 60, 60, 0.26) !important;
+      border-color: rgba(60, 60, 60, 0.26) !important;
     }
   }
 </style>

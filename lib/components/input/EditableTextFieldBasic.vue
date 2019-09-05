@@ -8,6 +8,7 @@
         {{fieldValue}} <span class="small">(Cannnot be modified)</span>
       </div>
       <input
+        :autocomplete="autocomplete || 'on'"
         class="input-editable-value"
         :id="`input-editable_${_uid}`"
         v-model="fieldValue"
@@ -33,7 +34,7 @@ import * as validator from "../../util/validator.js"
 import Vue from "vue"
 
 export default {
-  props: [ "label", "type", "value", "errorText", "disabledEdition", "required"],
+  props: [ "label", "type", "value", "errorText", "disabledEdition", "required", "autocomplete"],
   data () {
     return {
       fieldIsOpen: false,
@@ -149,6 +150,7 @@ export default {
 .input-editable-value {
   width: 100%;
   font-size: inherit;
+  font-weight: 100;
   line-height: 1.4;
   height: 34px;
   border: none;

@@ -30,6 +30,7 @@
         v-on:previous:field="openEdition('mailing1')"
       ></EditableTextFieldBasic>
       <drop-down-countries
+        :autocomplete="Math.random()"
         label="Country:"
         ref="country"
         :required="true"
@@ -42,7 +43,8 @@
         v-on:previous:field="openEdition('mailing2')"
         v-on:dropdown:loaded="dropdownsAreLoaded = true"
       ></drop-down-countries>
-      <drop-down-states 
+      <drop-down-states
+        :autocomplete="Math.random()"
         label="State:"
         ref="state"
         :disabled="!selectedCountry"
