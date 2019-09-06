@@ -14,7 +14,7 @@
           <div class="nonprofit-slider__slider-main-image-container">
             <div class="nonprofit-slider__slider-main-image-wrapper">
               <img
-                :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
+                :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${fundraiser.logo}`"
                 :alt="fundraiser.name"
                 class='nonprofit-slider__slider-main-image'
               >
@@ -45,7 +45,7 @@
           >
             <div class="nonprofit-slider__slider-nav-slide-image-wrapper">
               <img 
-                :src="require(`@/assets/img/site-logos/${fundraiser.logo}`)" 
+                :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${fundraiser.logo}`"                
                 :alt="fundraiser.name"
                 class='nonprofit-slider__slider-nav-image'
               >

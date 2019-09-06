@@ -53,10 +53,6 @@ export default {
 
   computed: {
     logo() {
-      if (this.logoImg) {
-        return require(`@/assets/${this.logoImg}`)
-      }
-
       return require(`@/assets/maximum-for-good-logo.png`)
     }
   }

@@ -13,8 +13,8 @@
               :href="site.url || '#'"
               target='_blank'
             >
-              <img 
-                :src="require(`@/assets/img/site-logos/${site.imgName}`)"
+              <img
+                :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${site.imgName}`"
                 :id="`${site.id}-img`"
               />
             </a>
@@ -42,7 +42,7 @@
                 target='_blank'
               >
                 <img 
-                  :src="require(`@/assets/img/site-logos/${site.imgName}`)"
+                  :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${site.imgName}`"
                   :id="`${site.id}-img`"
                 />
               </a>
