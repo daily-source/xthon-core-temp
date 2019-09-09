@@ -7,18 +7,22 @@
       <div v-if="disabledEdition" class="disabled-edition">
         {{fieldValue}} <span class="small">(Cannnot be modified)</span>
       </div>
-      <input
+      <textarea
         :autocomplete="autocomplete ? `${autocomplete}` : 'on'"
         class="input-editable-value"
+        :style="`resize: ${resize}`"
         :id="`input-editable_${_uid}`"
         v-model="fieldValue"
         ref="input"
-        :type="type || 'text'"
+        :rows="rows"
+        :cols="cols"
+        :height="height"
+        resize="none"
         :required="required"
         @blur="blurInput()"
         v-on:keyup.esc="cancelEdition()"
         @keydown.tab.prevent="next"
-      />
+      ></textarea>
     </div>
     <transition name="slide-fade">
       <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="errorMessage">
@@ -34,7 +38,7 @@ import * as validator from "../../util/validator.js"
 import Vue from "vue"
 
 export default {
-  props: [ "label", "type", "value", "errorText", "disabledEdition", "required", "autocomplete"],
+  props: [ "label", "type", "resize", "rows", "cols", "height", "value", "errorText", "disabledEdition", "required", "autocomplete"],
   data () {
     return {
       fieldIsOpen: false,
@@ -75,48 +79,8 @@ export default {
         this.errorMessage = ""
         return true
       }
-      if (this.type === "address") {
-        if (validator.validateAddress(this.fieldValue)) {
-          this.errorMessage = ""
-          return true
-        }
-        this.errorMessage = this.errorText
-        return false
-      }
-      if (this.type === "name") {
-        if (validator.validateName(this.fieldValue)) {
-          this.errorMessage = ""
-          return true
-        }
-        this.errorMessage = this.errorText
-        return false
-      }
-      if (this.type === "zip") {
-        if (validator.validateZipCode(this.fieldValue)) {
-          this.errorMessage = ""
-          return true
-        }
-        this.errorMessage = this.errorText
-        return false
-      }
-      if (this.type === "telephone") {
-        if (validator.validateTelephone(this.fieldValue)) {
-          this.errorMessage = ""
-          return true
-        }
-        this.errorMessage = this.errorText
-        return false
-      }
-      if (this.type === "email") {
-        if (validator.validateEmail(this.fieldValue)) {
-          this.errorMessage = ""
-          return true
-        }
-        this.errorMessage = this.errorText
-        return false
-      }
-      if (this.type === "url") {
-        if (validator.validateURL(this.fieldValue)) {
+      if (this.type === "notes") {
+        if (validator.validateNotes(this.fieldValue)) {
           this.errorMessage = ""
           return true
         }
@@ -152,7 +116,7 @@ export default {
   font-size: inherit;
   font-weight: 100;
   line-height: 1.4;
-  height: 34px;
+  //height: 34px;
   border: none;
   box-shadow: none;
   background: none;

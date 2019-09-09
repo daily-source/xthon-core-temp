@@ -125,16 +125,19 @@
         v-on:next:field="openEdition('notes')"
         v-on:previous:field="openEdition('nonprofitTelephone')"
       ></EditableTextFieldBasic>
-      <EditableTextFieldBasic
+      <EditableTextFieldBasicMultiline
         label="Notes:"
         ref="notes"
         error-text="This field can't be empty."
-        :required="false"
+        :required="true"
         type="notes"
+        resize="none"
+        rows="4"
+        height="auto"
         :value="form.notes"
         v-on:input:change="updateUserField('notes', $event)"
         v-on:previous:field="openEdition('nonprofitWebsite')"
-      ></EditableTextFieldBasic>
+      ></EditableTextFieldBasicMultiline>
     </section>
     <div class="form-submit-wrapper" @click.prevent="submitForm()">
       <button class="button is-large is-danger"
@@ -154,6 +157,7 @@ export default {
   props: ["nonprofit"],
   components: {
     EditableTextFieldBasic: () => import("Components/input/EditableTextFieldBasic.vue"),
+    EditableTextFieldBasicMultiline: () => import("Components/input/EditableTextFieldBasicMultiline.vue"),
     DropDownCountries: () => import('Components/general/DropDownCountries.vue'),
     DropDownStates: () => import('Components/general/DropDownStates.vue')
   },

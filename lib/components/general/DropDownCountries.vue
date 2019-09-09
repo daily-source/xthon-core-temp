@@ -4,7 +4,7 @@
       <label :for="`input-editable_${_uid}`" ref="label">{{label}}</label>
     </div>
     <vue-select
-      :autocomplete="autocomplete || 'on'"
+      :autocomplete="autocomplete ? `${autocomplete}` : 'on'"
       :options='countries'
       v-model='selected'
       label='name'

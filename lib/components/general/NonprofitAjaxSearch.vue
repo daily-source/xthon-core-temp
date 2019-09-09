@@ -116,13 +116,35 @@ export default {
       height: 38px;
       flex: 1;
       display: flex;
-      border: 1px solid $color-text;
+      border: 1px solid rgba(60, 60, 60, 0.26);
       .clear {
         bottom: 14px;
         line-height: 36px;
       }
       .open-indicator {
         bottom: 7px;
+      }
+      .vs__selected-options {
+        margin: 4px 0 0;
+        font-weight: 100;
+      }
+      .vs__actions {
+        //align-items: center;
+        .clear {
+          font-size: 1.25rem;
+          font-weight: 400;
+        }
+        .open-indicator:before {
+          border-width: 2px 2px 0 0;
+          height: 9px;
+          width: 9px;
+          color: rgba(60, 60, 60, 0.26) !important;
+          border-color: rgba(60, 60, 60, 0.26) !important;
+        }
+        .spinner {
+          width: 4em !important;
+          height: 4em !important;
+        }
       }
       @include tablet {
         .open-indicator {
@@ -164,17 +186,6 @@ export default {
   &.standalone {
     margin: 40px auto;
     max-width: 600px;
-
-    .v-select {
-      .dropdown-toggle {
-        .clear {
-          
-        }
-        .open-indicator {
-          bottom: 7px;
-        }      
-      }
-    }
   }
 }
 
