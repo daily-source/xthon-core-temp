@@ -11,7 +11,6 @@
         <p class="is-centered">To create your fundraiser, you need to sign up for a free account or log in if you have already one.</p>
       </div>
     </NewRegisterOrLoginModal>
-
     <slot name="heading"><h1>Change the world in 3 easy steps:</h1></slot>
     <div class="container">
       <div class="columns combo-wrapper is-multiline bubbles-wrapper">
@@ -26,7 +25,7 @@
     <div class="container">
       <div class="form-wrapper">
         <section class="form-section">
-          <div class="columns form-column__wrapper is-multiline">
+          <div class="columns is-multiline row-wrapper">
             <div class="column is-6-tablet inputLabel"><label>Donations will go to this nonprofit:</label></div>
             <NonprofitAjaxSearch
               v-if="canRender"
@@ -40,7 +39,7 @@
               </div>
             </transition>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
+          <div class="columns is-multiline row-wrapper">
             <div class="column is-6-tablet inputLabel"><label>Donation dates:</label></div>
             <Calendar
               type="date"
@@ -64,30 +63,34 @@
               </div>
             </transition>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
+          <div class="columns is-multiline row-wrapper">
             <div class="column is-6-tablet inputLabel"><label>Running for:</label></div>
-            <div class="column is-centered nonprofit-total-days-wrapper inputDaysAndGoal"><span style="font-style: italic; font-weight: 100;">{{totalDays}}</span></div>
+            <div class="column is-centered nonprofit-total-days-wrapper inputDaysAndGoalAndHours"><span>{{form.totalDays | numberToDays}}</span></div>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
+          <div class="columns is-multiline">
             <div class="column is-6-tablet inputLabel"><label>Goal:</label></div>
-            <Slider
-              step="50"
-              min="200"
-              max="3000"
-              is-circle="true"
-              is-large="true"
-              print-output="true"
-              :goal="form.goal ? form.goal : null"
-              v-on:updateGoal="updateGoal($event)"
-              ref="goal"
-            ></Slider>
-            <transition name="slide-fade">
-              <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="goalErrorMessage">
-                <span class="editable-error-message">{{goalErrorMessage}}</span>
+            <div class="column is-centered slider-wrapper">
+              <div class="custom-control--slider inputDaysAndGoalAndHours">
+                <span>{{form.goal | numberToUsd}}</span>
+                <Slider
+                  class="coloredSlider"
+                  step="50"
+                  min="200"
+                  max="3000"
+                  :initValue="form.goal ? form.goal.toString() : null"
+                  v-on:updateVal="updateGoal($event)"
+                  ref="goal"
+                  :colored="true"
+                ></Slider>
+                <transition name="slide-fade">
+                  <div class="editable-error-message-wrapper" v-if="goalErrorMessage">
+                    <span class="editable-error-message">{{goalErrorMessage}}</span>
+                  </div>
+                </transition>
               </div>
-            </transition>
+            </div>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
+          <div class="columns is-multiline row-wrapper">
             <div class="column is-6-tablet inputLabel"><label>Name of the fundraiser</label></div>
             <div class="column is-centered fundraiser-name-wrapper">
               <input :autocomplete="Math.random()" class="input-editable-value" type="text" name="fundraiser-name" placeholder="Fundraiser's name" v-model="form.name">
@@ -98,90 +101,81 @@
               </div>
             </transition>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
-            <div class="column is-6-tablet inputLabel"><label>Purpose</label></div>
-            <div class="column is-centered fundraiser-name-wrapper">
-              <textarea :autocomplete="Math.random()" class="input-editable-value" type="text" name="fundraiser-purpose" placeholder="Fundraiser's purpose" v-model="form.purpose" rows="4" cols="50" style="height: auto; resize:none;"></textarea>
-            </div>
-            <transition name="slide-fade">
-              <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="purposeErrorMessage">
-                <span class="editable-error-message">{{purposeErrorMessage}}</span>
+          <div class="columns is-multiline">
+            <div class="column is-6-tablet inputLabel"><label>I will volunteer:</label></div>
+            <div class="column is-centered slider-wrapper">
+              <div class="custom-control--slider inputDaysAndGoalAndHours">
+                <span class="inputDaysAndGoalAndHours">{{form.hours | numberToHours}}</span>
+                <Slider
+                  step="1"
+                  min="10"
+                  max="500"
+                  :initValue="form.hours ? form.hours.toString() : null"
+                  v-on:updateVal="updateHours($event)"
+                  ref="hours"
+                ></Slider>
+                <transition name="slide-fade">
+                  <div class="editable-error-message-wrapper" v-if="hoursErrorMessage">
+                    <span class="editable-error-message">{{hoursErrorMessage}}</span>
+                  </div>
+                </transition>
               </div>
-            </transition>
+            </div>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
-            <div class="column is-6-tablet inputLabel">
-              <label class="label">I will volunteer
-                <div class="control inline-field">
-                  <input class="input" type="number" min="0" max="9999" name="number-of-hours" placeholder="100" v-model="form.hours">
-                </div>
-                hours for:
-              </label>
+          <div class="columns is-multiline">
+            <div class="column is-6-tablet inputLabel"><label></label></div>
+            <div class="column" style="padding: 0;">
+              <div class="column has-text-left">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="same">
+                same nonprofit as above
+              </div>
+              <div class="column has-text-left">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
+                a different nonprofit:
+                <transition name="fade">
+                  <div class="column has-text-left" style="padding-left: 0; padding-right: 0;" v-if="form.nonprofitIs === 'different'">
+                    <input class="input-editable-value" type="text" name="project_action" placeholder="Enter the name of a nonprofit" v-model="form.differentNonprofit">
+                  </div>
+                </transition>
+                <transition name="slide-fade">
+                  <div class="column editable-error-message-wrapper" style="padding-left: 0; padding-right: 0; padding-bottom: 0;" 
+                    v-if="form.nonprofitIs === 'different' && targetNonprofitErrorMessage"
+                  ><span class="editable-error-message">{{targetNonprofitErrorMessage}}</span></div>
+                </transition>
+              </div>
+              <div class="column has-text-left">
+                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
+                independent service:
+                <transition name="fade">
+                  <div class="column has-text-left" style="padding-left: 0; padding-right: 0;" v-if="form.nonprofitIs === 'independent'">
+                    <input class="input-editable-value" type="text" name="project_action" placeholder="Enter what you will be doing" v-model="form.independentNonprofit">
+                  </div>
+                </transition>
+                <transition name="slide-fade">
+                  <div class="column editable-error-message-wrapper" style="padding-left: 0; padding-right: 0;padding-bottom: 0;"
+                    v-if="form.nonprofitIs === 'independent' && targetNonprofitErrorMessage"
+                  ><span class="editable-error-message">{{targetNonprofitErrorMessage}}</span></div>
+                </transition>
+              </div>
               <transition name="slide-fade">
-                <div class="editable-error-message" v-if="hoursErrorMessage">
-                  {{hoursErrorMessage}}
+                <div class="column editable-error-message-wrapper" v-if="nonprofitIsErrorMessage">
+                  <span class="editable-error-message">{{nonprofitIsErrorMessage}}</span>
                 </div>
               </transition>
             </div>
           </div>
-          <div class="columns form-column__wrapper">
-            <div class="column is-6-tablet is-offset-3 has-text-left">
-              <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="same">
-                same nonprofit as above
-              </label>
-            </div>
+          <div class="columns is-multiline">
+            <div class="column is-6-tablet inputLabel"><label></label></div>
+            <p class="column help">To find volunteer opportunities, <a rel="noopener" href="http://aqua.dailysource.org/donation/helpcreatethis" target="_blank">click here</a></p>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
-            <div class="column is-6-tablet is-offset-3 has-text-left">
-              <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="different">
-                a different nonprofit:
-              </label>
-            <transition name="fade">
-              <div class="column is-6-tablet is-offset-3 has-text-left" v-if="form.nonprofitIs === 'different'">
-                <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="Enter name of a nonprofit" v-model="form.differentNonprofit">
-                </div>
-              </div>
-            </transition>
-            </div>
-            <transition name="slide-fade">
-              <div class="column is-7 is-offset-5 editable-error-message is-padded-top"
-                v-if="form.nonprofitIs === 'different' && targetNonprofitErrorMessage"
-              >{{targetNonprofitErrorMessage}}</div>
-            </transition>
-
+          <div class="form-submit-wrapper" @click.prevent="submitForm()">
+            <button
+              class="button is-success xis-large"
+              @click.prevent="validateSubmit()"
+              id="form-action"
+              :disabled="submitButtonDisabled"
+              >{{submitButtonLabel}}</button>
           </div>
-          <div class="columns form-column__wrapper is-multiline">
-            <div class="column is-6-tablet is-offset-3 has-text-left">
-              <label class="radio">
-                <input type="radio" name="non-profit-is" v-model="form.nonprofitIs" value="independent">
-                independent service:
-              </label>
-            </div>
-            <transition name="fade">
-              <div class="column is-7 form-column__input-column" v-if="form.nonprofitIs === 'independent'">
-                <div class="control">
-                  <input class="input" type="text" name="project_action" placeholder="Enter what you will be doing" v-model="form.independentNonprofit">
-                </div>
-              </div>
-            </transition>
-            <transition name="slide-fade">
-              <div class="column is-7 is-offset-5 editable-error-message is-padded-top"
-                v-if="form.nonprofitIs === 'independent' && targetNonprofitErrorMessage"
-              >{{targetNonprofitErrorMessage}}</div>
-            </transition>
-          </div>
-          <div class="editable-error-message form-column__left-padded ">{{nonprofitIsErrorMessage}}</div>
-          <p class="help pad-more">To find volunteer opportunities, <a rel="noopener" href="http://aqua.dailysource.org/donation/helpcreatethis" target="_blank">click here</a></p>
-          <button
-            class="button is-success is-large"
-            type="submit"
-            @click.prevent="validateSubmit()"
-            id="form-action"
-            :disabled="formIsEmpty"
-            >{{submitButtonLabel}}</button>
         </section>
       </div>
     </div>
@@ -189,6 +183,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   props: ["submitButtonLabel"],
   /**
@@ -226,18 +222,22 @@ export default {
   },
   data () {
     return {
-      form: {},
+      form: {
+        totalDays: 0,
+        goal: 0,
+        hours: 0,
+        nonprofitIs: "same"
+      },
       canRender: false,
       nonprofitErrorMessage: "",
       nonprofitIsErrorMessage: "",
       dateErrorMessage: "",
       goalErrorMessage: "",
       nameErrorMessage: "",
-      purposeErrorMessage: "",
       hoursErrorMessage: "",
       targetNonprofitErrorMessage: "",
       showLoginModal: false,
-      totalDays: "0 days"
+      submitButtonDisabled: true
     }
   },
   /**
@@ -260,13 +260,19 @@ export default {
     updateDates (dates) {
       this.form.dates = dates
       this.validateDates()
-      this.validateAllFields()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     updateGoal (goal) {
-      this.form.goal = parseInt(goal)
+      Vue.set(this.form, 'goal', parseInt(goal))
       this.validateGoal()
-      this.validateAllFields()
+      this.validateForm()
+      this.syncFormWithLocalStorage()
+    },
+    updateHours (hours) {
+      this.form.hours = parseInt(hours)
+      this.validateHours()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     validateNonprofit () {
@@ -300,7 +306,7 @@ export default {
     validateGoal () {
       const goal = this.form.goal
       if (!(goal && parseInt(goal) > 0)) {
-        this.goalErrorMessage = "Please enter the goal."
+        this.goalErrorMessage = "Please set your fundraising goal."
         return false
       } else {
         this.goalErrorMessage = ""
@@ -310,20 +316,20 @@ export default {
     validateName () {
       const name = this.form.name
       if (!name) {
-        this.nameErrorMessage = "Please enter the name."
+        this.nameErrorMessage = "Please enter a name for this fundraiser."
         return false
       } else {
         this.nameErrorMessage = ""
         return true
       }
     },
-    validatePurpose () {
-      const purpose = this.form.purpose
-      if (!(purpose && purpose.length >= 1)) {
-        this.purposeErrorMessage = "Please enter the purpose."
+    validateHours () {
+      const hours = this.form.hours
+      if (!(hours && parseInt(hours) > 0)) {
+        this.hoursErrorMessage = "The number of hours is required."
         return false
       } else {
-        this.purposeErrorMessage = ""
+        this.hoursErrorMessage = ""
         return true
       }
     },
@@ -333,28 +339,15 @@ export default {
         var endObj = new Date(dates.end)
         var startObj = new Date(dates.start)
         var diff = (endObj.getTime() - startObj.getTime()) / (1000 * 3600 * 24) + 1
-        this.form.totalDays = diff+" days"
-        if (diff === 1) this.form.totalDays = diff+" day"
+        this.form.totalDays = diff
       } else {
-        this.form.totalDays = "0 days"
-      }
-      this.totalDays = this.form.totalDays
-    },
-    validateHours () {
-      const hours = this.form.hours
-      if (!hours) {
-        this.hoursErrorMessage = "This field is required"
-        return false
-      } else {
-        this.hoursErrorMessage = ""
-        return true
+        this.form.totalDays = 0
       }
     },
     validateNonprofitIs () {
       const nonprofitIs = this.form.nonprofitIs
-      console.log("validating nonrpfit", nonprofitIs)
       if (!nonprofitIs) {
-        this.nonprofitIsErrorMessage = "Please choose one of the options above"
+        this.nonprofitIsErrorMessage = "Please choose one of the options above."
         return false
       } else {
         this.nonprofitIsErrorMessage = ""
@@ -364,7 +357,7 @@ export default {
     validateTargetNonprofit () {
       if (this.form.nonprofitIs === "different") {
         if (!this.form.differentNonprofit) {
-          this.targetNonprofitErrorMessage = "This field is required"
+          this.targetNonprofitErrorMessage = "This field is required."
           return false
         } else {
           this.targetNonprofitErrorMessage = ""
@@ -372,7 +365,7 @@ export default {
         }
       } else if (this.form.nonprofitIs === "independent") {
         if (!this.form.independentNonprofit) {
-          this.targetNonprofitErrorMessage = "This field is required"
+          this.targetNonprofitErrorMessage = "This field is required."
           return false
         } else {
           this.targetNonprofitErrorMessage = ""
@@ -382,17 +375,16 @@ export default {
         return true
       }
     },
-    validateAllFields () {
-      console.log("validating all fields", this.form)
+    validateForm () {
       this.syncFormWithLocalStorage()
-      if (this.validateNonprofit() && this.validateDates() && this.validateGoal() && this.validateName() && this.validatePurpose() && this.validateHours() && this.validateNonprofitIs() && this.validateTargetNonprofit()) {
-        return true
+      if (this.validateNonprofit() && this.validateDates() && this.validateGoal() && this.validateName() && this.validateHours() && this.validateNonprofitIs() && this.validateTargetNonprofit()) {
+        this.submitButtonDisabled = false
       } else {
-        return false
+        this.submitButtonDisabled = true
       }
     },
     validateSubmit () {
-      if (!this.validateAllFields()) {
+      if (!this.validateForm()) {
         return
       }
       if (this.isLoggedIn) {
@@ -421,7 +413,7 @@ export default {
     },
     setNonprofit (event) {
       this.form.nonprofit = event
-      this.validateAllFields()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     syncFormWithLocalStorage () {
@@ -429,15 +421,17 @@ export default {
     },
     clearFormLocalStorage () {
       window.localStorage.removeItem("nonprofitForm")
-      this.form = {}
+      this.form = {
+        totalDays: 0,
+        goal: 0,
+        hours: 0,
+        nonprofitIs: "same"
+      }
     }
   },
   computed: {
     loggedIn () {
       return this.$store.state.user.loggedIn
-    },
-    formIsEmpty () {
-      return Object.keys(this.form).length === 0
     },
     isLoggedIn () {
       return this.$store.state.user.loggedIn
@@ -445,58 +439,43 @@ export default {
   },
   watch: {
     "form.nonprofit": function (newObj) {
-      if (!this.formIsEmpty) {
-        this.validateNonprofit()
-        this.validateAllFields()
-      }
+      this.validateNonprofit()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.dates": function (newVal) {
-      if (!this.formIsEmpty) {
-        this.validateDates()
-        this.validateAllFields()
-      }
+      this.validateDates()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.goal": function (newVal) {
-      if (!this.formIsEmpty) {
-        this.validateGoal()
-        this.validateAllFields()
-      }
+      this.validateGoal()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.name": function (newVal) {
-      if (!this.formIsEmpty) {
-        this.validateName()
-        this.validateAllFields()
-      }
-      this.syncFormWithLocalStorage()
-    },
-    "form.purpose": function (newVal) {
-      if (!this.formIsEmpty) {
-        this.validatePurpose()
-        this.validateAllFields()
-      }
+      this.validateName()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.hours": function (newVal) {
-      if (!this.formIsEmpty) {
-        this.validateHours()
-        this.validateAllFields()
-      }
+      this.validateHours()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.nonprofitIs": function (newVal) {
-      if (!this.formIsEmpty) {
         this.validateTargetNonprofit()
-        this.validateAllFields()
-      }
+        this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.differentNonprofit": function (newObj) {
+      this.validateTargetNonprofit()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     },
     "form.independentNonprofit": function (newObj) {
+      this.validateTargetNonprofit()
+      this.validateForm()
       this.syncFormWithLocalStorage()
     }
   }
@@ -504,124 +483,40 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.form-column {
-  &__wrapper {
-    margin-top: 0;
-    @include tablet {
-      line-height: 42px;
-    }
-
-    .column {
-      padding-top: 0;
-      padding-bottom: 0;
-      margin-bottom: 5px;
-      @include tablet {
-        margin-bottom: 0;
-      }
-    }
-  }
-  &__label-column {
-    text-align: left;
-    .label {
-    }
-  }
-  &__input-column {
-
-  }
-  &__button-column {
-    .button {
-      display: block;
-      width: 100%;
-      border-radius: 20px !important;
-    }
-  }
-  &__extra-padded {
-    margin-bottom: 35px;
-  }
-  &__left-padded {
-    padding-left: 80px;
-    padding-right: 0;
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-
-.inline-field {
-  display: inline-block;
-  margin: 0 5px 10px;
-  width: 65px;
-}
-
-.radio-fields {
-  display: block;
-}
-
 .page-wrapper {
   background-color: $white;
   color: #363636;
   text-align: center;
 }
-
 h1 {
   color: $color-emphasis;
   margin-bottom: 40px;
 }
-
 .combo-wrapper {
   justify-content: center;
   max-width: $max-combo-wrapper-width;
   margin: 0 auto;
-
   @include tablet {
     display: flex;
     padding: 0 7%;
   }
 }
-
 .form-wrapper {
   max-width: 760px;
   margin: 20px auto 0;
-
-  button[type=submit] {
-    margin: 30px 0 30px;
-  }
-
-  label {
-    font-size: 20px;
-  }
-
-  input,
-  button,
-  .button {
+  color: #4a4a4a;
+  button {
     font-size: 18px;
   }
 }
-
 .help {
   color: $color-medium-gray;
   font-style: italic;
   font-size: 17px;
-
   @include tablet {
     text-align: left;
   }
 }
-
-.pad-more {
-  margin-top: 20px;
-}
-
-.label {
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-.is-padded-top {
-  margin-top: 1em;
-}
-.is-pulled-left {
-  text-align: left;
-}
-
 .bubbles-wrapper {
   @include tablet {
     padding: 0 2%;
@@ -629,6 +524,12 @@ h1 {
 }
 .editable-error-message-wrapper {
   text-align: left;
+  margin-bottom: 0 !important;
+  margin-top: -10px;
+  .editable-error-message {
+    font-weight: 100;
+    font-size: .8rem;
+  }
 }
 .input-editable-value {
   width: 100%;
@@ -650,12 +551,20 @@ h1 {
     text-align: right !important;
   }
 }
-</style>
-<style lang="scss">
-  .inputDaysAndGoal {
+.inputDaysAndGoalAndHours {
+  font-style: italic;
+  font-weight: 100;
   text-align: center;
   @include tablet {
     text-align: left !important;
   }
+}
+.row-wrapper {
+  align-items: center;
+}
+</style>
+<style lang="scss">
+.coloredSlider input[type=range]::-webkit-slider-runnable-track {
+  background: -webkit-linear-gradient(left, white 0%, $color-emphasis 66%, #ffa500 99.5%, rgba(60, 60, 60, 0.26) 100%) !important;
 }
 </style>
