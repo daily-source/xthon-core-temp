@@ -185,3 +185,9 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.service-mark {
+  vertical-align: super;
+  font-size: .8rem;
+}
+</style>
