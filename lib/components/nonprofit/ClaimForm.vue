@@ -129,7 +129,7 @@
         label="Notes:"
         ref="notes"
         error-text="This field can't be empty."
-        :required="true"
+        :required="false"
         type="notes"
         resize="none"
         rows="4"
@@ -287,6 +287,17 @@ export default {
     left: 0;
     background: white;
     opacity: 0.8;
+  }
+}
+</style>
+<style lang="scss">
+.editable-error-message-wrapper {
+  text-align: left;
+  margin-bottom: 0 !important;
+  margin-top: -10px;
+  .editable-error-message {
+    font-weight: 100;
+    font-size: .8rem;
   }
 }
 </style>
