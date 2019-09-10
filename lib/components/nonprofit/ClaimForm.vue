@@ -140,7 +140,7 @@
       ></EditableTextFieldBasicMultiline>
     </section>
     <div class="form-submit-wrapper" @click.prevent="submitForm()">
-      <button class="button is-large is-danger"
+      <button class="button is-success"
         :disabled="submitButtonDisabled"
       >Claim</button>
     </div>
@@ -255,6 +255,9 @@ export default {
 .form-submit-wrapper {
   margin: 20px auto;
   text-align: center;
+  .button {
+    font-size: 18px;
+  }
 }
 .custom-amount-input {
   &:disabled {
