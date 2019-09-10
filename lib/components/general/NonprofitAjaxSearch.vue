@@ -126,7 +126,9 @@ export default {
       }
       .vs__selected-options {
         margin: 4px 0 0;
-        font-weight: 100;
+        input {
+          font-weight: 100;
+        }
       }
       .vs__actions {
         //align-items: center;
