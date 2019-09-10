@@ -59,6 +59,9 @@ export default {
       padding: 0 7px !important;
       height: 34px;
     }
+    .datetimepicker-dummy-input {
+      font-weight: 100;
+    }
   }
   .datetimepicker-container:before,
   .datetimepicker-container:after {
