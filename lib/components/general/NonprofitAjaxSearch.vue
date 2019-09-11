@@ -135,6 +135,7 @@ export default {
         .clear {
           font-size: 1.25rem;
           font-weight: 400;
+          color: rgba(60, 60, 60, 0.26) !important;
         }
         .open-indicator:before {
           border-width: 2px 2px 0 0;

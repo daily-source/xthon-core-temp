@@ -52,6 +52,9 @@ export default {
 }
 </script>
 <style lang="scss">
+  .calendar-wrapper {
+    height: 58px;
+  }
   .datetimepicker-dummy {
     .datetimepicker-dummy-wrapper {
       border: 1px solid rgba(60, 60, 60, 0.26) !important;
@@ -120,5 +123,8 @@ export default {
   }
   .datepicker-year:hover, .datepicker-month:hover {
     border: .1rem solid $color-emphasis-alt !important;
+  }
+  .custom-control--datepicker {
+    height: 38px;
   }
 </style>

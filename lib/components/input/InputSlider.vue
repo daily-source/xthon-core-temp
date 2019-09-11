@@ -54,7 +54,7 @@ export default {
 .slider-wrapper {
   input[type=range] {
     -webkit-appearance: none;
-    margin: 10px 0 !important;
+    height: 34px;
     width: 100% !important;
   }
   input[type=range]:focus {

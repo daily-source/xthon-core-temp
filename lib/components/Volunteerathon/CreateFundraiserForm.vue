@@ -71,12 +71,12 @@
             <div class="column is-6-tablet inputLabel"><label>Goal:</label></div>
             <div class="column is-centered slider-wrapper">
               <div class="custom-control--slider inputDaysAndGoalAndHours">
-                <span>{{form.goal | numberToUsd}}</span>
+                <span>{{form.goal | centsToUsd}}</span>
                 <Slider
-                  class="coloredSlider"
-                  step="50"
-                  min="200"
-                  max="3000"
+                  class="slider coloredSlider"
+                  step="500"
+                  min="20000"
+                  max="300000"
                   :initValue="form.goal ? form.goal.toString() : null"
                   v-on:updateVal="updateGoal($event)"
                   ref="goal"
@@ -107,6 +107,7 @@
               <div class="custom-control--slider inputDaysAndGoalAndHours">
                 <span class="inputDaysAndGoalAndHours">{{form.hours | numberToHours}}</span>
                 <Slider
+                  class="slider"
                   step="1"
                   min="10"
                   max="500"
@@ -168,7 +169,7 @@
             <div class="column is-6-tablet inputLabel"><label></label></div>
             <p class="column help">To find volunteer opportunities, <a rel="noopener" href="http://aqua.dailysource.org/donation/helpcreatethis" target="_blank">click here</a></p>
           </div>
-          <div class="form-submit-wrapper" @click.prevent="submitForm()">
+          <div class="form-submit-wrapper">
             <button
               class="button is-success xis-large"
               @click.prevent="validateSubmit()"
@@ -379,8 +380,10 @@ export default {
       this.syncFormWithLocalStorage()
       if (this.validateNonprofit() && this.validateDates() && this.validateGoal() && this.validateName() && this.validateHours() && this.validateNonprofitIs() && this.validateTargetNonprofit()) {
         this.submitButtonDisabled = false
+        return true
       } else {
         this.submitButtonDisabled = true
+        return false
       }
     },
     validateSubmit () {
@@ -389,10 +392,10 @@ export default {
       }
       if (this.isLoggedIn) {
         console.log("form: ", this.form)
-        this.$store.dispatch("SUBMIT_NONPROFIT_FORM", { form: this.form })
+        this.$store.dispatch("SUBMIT_FUNDRAISER_FORM", { form: this.form })
           .then(data => {
             this.userDialogModal = false
-            this.clearFormLocalStorage()
+            this.clearFormLocalStorage() //TEMP, Enable so form erases correctly
 
             // remove auto-triggered actions and redirection
             localStorage.removeItem("redirect_to_url")
@@ -525,8 +528,9 @@ h1 {
 .editable-error-message-wrapper {
   text-align: left;
   margin-bottom: 0 !important;
-  margin-top: -10px;
+  margin-top: -8px;
   .editable-error-message {
+    font-style: normal !important;
     font-weight: 100;
     font-size: .8rem;
   }
@@ -564,6 +568,12 @@ h1 {
 }
 </style>
 <style lang="scss">
+.slider {
+  padding: 0.4rem 0;
+  input[type=range].slider {
+    margin: 0;
+  }
+}
 .coloredSlider input[type=range]::-webkit-slider-runnable-track {
   background: -webkit-linear-gradient(left, white 0%, $color-emphasis 66%, #ffa500 99.5%, rgba(60, 60, 60, 0.26) 100%) !important;
 }
