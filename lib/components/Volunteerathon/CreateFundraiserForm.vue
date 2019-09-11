@@ -200,7 +200,7 @@ export default {
     NewRegisterOrLoginModal: () => import("Components/general/NewRegisterOrLoginModal.vue")
   },
   mounted () {
-    this.clearFormLocalStorage() //TEMP, remove it so form properly saves
+    //this.clearFormLocalStorage() //TEMP, remove it so form properly saves
     this.canRender = true
     let storedForm = window.localStorage.getItem("nonprofitForm")
     if (storedForm) {
