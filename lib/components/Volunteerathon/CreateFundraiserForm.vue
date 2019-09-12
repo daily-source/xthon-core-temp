@@ -392,17 +392,19 @@ export default {
       }
       if (this.isLoggedIn) {
         console.log("form: ", this.form)
+        this.submitButtonDisabled = true
         this.$store.dispatch("SUBMIT_FUNDRAISER_FORM", { form: this.form })
           .then(data => {
             this.userDialogModal = false
             this.clearFormLocalStorage() //TEMP, Enable so form erases correctly
-
+            this.submitButtonDisabled = false
             // remove auto-triggered actions and redirection
             localStorage.removeItem("redirect_to_url")
             localStorage.removeItem("action_to_trigger")
           })
           .catch(err => {
             this.userDialogModal = false
+            this.submitButtonDisabled = false
             console.log("error: ", err)
           })
       } else {

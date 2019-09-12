@@ -71,11 +71,14 @@ export default {
   },
   methods: {
     userCan(per) {
-      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
-        return true
-      } else {
-        return false
+      if (this.$store.state.user.loggedIn == true) {
+        if (this.$store.state.user.data.permissions != undefined && JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+          return true
+        } else {
+          return false
+        }
       }
+      return false
     },
     loadMoreComments () {
       this.$emit("loadMoreComments")

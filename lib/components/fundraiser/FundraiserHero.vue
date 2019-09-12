@@ -41,7 +41,7 @@
             </p>
             <slot name="copytext">
               <p>
-                {{fundraiser.User.firstName}} will volunteer {{fundraiser.fundraiserDetails.hours}} hours {{fundraiser.communityWork}} for <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`">{{fundraiser.Nonprofit.NAME}}</router-link> to raise money for the same nonprofit                
+                {{fundraiser.User.firstName}} will volunteer {{fundraiser.hours}} hours {{fundraiser.communityWork}} for <router-link :to="`/nonprofit/${fundraiser.NonprofitId}`">{{fundraiser.Nonprofit.NAME}}</router-link> to raise money for the same nonprofit.
               </p>
             </slot>
             <p class="fundraiser-pledge__subheading">
@@ -56,11 +56,11 @@
             </DonateAction>
           </div>
           <div class="progress-bar fundraiser-pledge__progress-wrapper">
-            <ProgressBar :details="fundraiser.fundraiserDetails" size="large" />
+            <ProgressBar :details="fundraiser" size="large" />
           </div>
           <div class="fundraiser-pledge__more-stats">
-            <div class="fundraiser-pledge__goal">Goal: {{fundraiser.fundraiserDetails.goal | centsToUsd}}</div>
-            <div class="fundraiser-pledge__goal">Days left: {{fundraiser.fundraiserDetails.daysLeft}}</div>
+            <div class="fundraiser-pledge__goal">Goal: {{fundraiser.goal | centsToUsd}}</div>
+            <div class="fundraiser-pledge__goal">Days left: {{fundraiser.daysLeft}}</div>
           </div>
         </div>
       </div>
@@ -108,11 +108,14 @@ export default {
   },
   methods: {
     userCan(per) {
-      if (JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
-        return true
-      } else {
-        return false
+      if (this.$store.state.user.loggedIn == true) {
+        if (this.$store.state.user.data.permissions != undefined && JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
+          return true
+        } else {
+          return false
+        }
       }
+      return false
     },
     openEdition () {
       this.$emit("edit:open")

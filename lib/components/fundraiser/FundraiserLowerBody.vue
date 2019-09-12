@@ -22,16 +22,16 @@
           <ul>
             <li @click="currentTab = 1" :class="{'is-active': currentTab === 1}"><a>Home</a></li>
             <li @click="loadMoreDonationsAndSwitchTab()" :class="{'is-active': currentTab === 2}">
-              <a>Donors ({{fundraiser.counters.donationsCount}})</a>
+              <a>Donors ({{fundraiser.donationsCount}})</a>
             </li>
             <li @click="currentTab = 3" :class="{'is-active': currentTab === 3}">
-              <a>Shares ({{fundraiser.shared_count}})</a>
+              <a>Shares ({{fundraiser.sharedCount}})</a>
             </li>
             <li @click="currentTab = 4" :class="{'is-active': currentTab === 4}">
-              <a>Comments ({{fundraiser.counters.commentsCount}})</a>
+              <a>Comments ({{fundraiser.commentsCount}})</a>
             </li>
             <li @click="currentTab = 5" :class="{'is-active': currentTab === 5}">
-              <a>Updates ({{fundraiser.counters.updatesCount}})</a>
+              <a>Updates ({{fundraiser.updatesCount}})</a>
             </li>
           </ul>
         </div>
@@ -80,7 +80,7 @@
                   <div class="user-optional__updates-wrapper">
                     <FundraiserUpdates
                       :updates="updates"
-                      :count="fundraiser.counters.updatesCount"
+                      :count="fundraiser.updatesCount"
                       :fundraiser-id="fundraiser.id"
                       :key="'updates_' + fundraiser.id"
                       maxchar="700"
@@ -165,7 +165,7 @@
                   <div class="user-optional__updates-wrapper">
                     <FundraiserUpdates
                       :updates="updates"
-                      :count="fundraiser.counters.updatesCount"
+                      :count="fundraiser.updatesCount"
                       :fundraiser-id="fundraiser.id"
                       maxchar="700" />
                     <button class="button is-warning is-load-more" @click="loadMoreUpdates(true)" v-if="moreUpdates">Load more updates</button>
@@ -268,7 +268,7 @@ export default {
   computed: {
     // temporary computed property
     moreDonations () {
-      return this.$store.state.donations.byAmount.data.length < this.$store.state.fundraiser.counters.donationsCount
+      return this.$store.state.donations.byAmount.data.length < this.$store.state.fundraiser.donationsCount
     },
 
     fundraiserId () {
@@ -279,17 +279,17 @@ export default {
     },
     moreDonationsByDate () {
       if (this.mounted) {
-        return this.donationsByDate.length < this.$store.state.fundraiser.counters.donationsCount &&
+        return this.donationsByDate.length < this.$store.state.fundraiser.donationsCount &&
                 this.donationsByDate.length < this.$refs.DonorsListByDate._props.limit
       } else {
         return false
       }
     },
     moreUpdates () {
-      return this.$store.state.updates.data.length < this.$store.state.fundraiser.counters.updatesCount
+      return this.$store.state.updates.data.length < this.$store.state.fundraiserupdatesCount
     },
     moreComments () {
-      return this.$store.state.comments.data.length < this.$store.state.fundraiser.counters.commentsCount
+      return this.$store.state.comments.data.length < this.$store.state.fundraiser.commentsCount
     },
     donationsByAmount () {
       return this.$store.state.donations["byAmount"].data
@@ -313,7 +313,7 @@ export default {
      * This was abstracted to a function so that it can be reused.
      */
     loadMoreComments (paginated = false) {
-      if (this.fundraiser.counters.commentsCount === 0) {
+      if (this.fundraiser.commentsCount === 0) {
         return
       }
       return this.$store.dispatch("FETCH_COMMENTS", { fundraiserId: this.fundraiserId, paginated: paginated })
