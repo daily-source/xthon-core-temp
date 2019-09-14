@@ -116,7 +116,6 @@ export default {
   font-size: inherit;
   font-weight: 100;
   line-height: 1.4;
-  //height: 34px;
   border: none;
   box-shadow: none;
   background: none;
@@ -127,7 +126,6 @@ export default {
   &:hover {
     cursor: pointer;
   }
-  //background: rgba($color-light-gray, 0.5);
 }
 .action-icon-wrapper {
   display: inline-block;

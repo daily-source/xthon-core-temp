@@ -63,7 +63,7 @@ export default {
 <style scoped lang="scss">
 .frequency {
   flex: 1;
-  margin-top: 30px;
+  //margin-top: 30px;
 
   @include tablet {
     padding: 0 100px;

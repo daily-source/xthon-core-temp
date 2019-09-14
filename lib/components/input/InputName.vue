@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line is-multiline">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6 form-column__label-column input-label">
         <label :for="`input-name-first_${_uid}`" class="label">First name:</label>
       </div>
-      <div class="column is-5 form-column__input-column">
-        <div class="control input-wrapper">
+      <div class="column is-4 form-column__input-column">
+        <div class="control input-wrapper customMargin">
           <Icons icon="user" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input class="input" type="text" placeholder=""
+          <input class="custom-editable-value" type="text" placeholder=""
             :required="required"
             v-model="form.firstname"
             autocomplete="given-name"
@@ -16,18 +16,18 @@
           />
         </div>
       </div>
-      <div class="column is-5 is-offset-5" v-if="firstnameErrorMessage">
-        <span class="error-message">{{firstnameErrorMessage}}</span>
+      <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="firstnameErrorMessage">
+        <span class="editable-error-message">{{firstnameErrorMessage}}</span>
       </div>
     </div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line is-multiline">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6 form-column__label-column input-label">
         <label :for="`input-name-last_${_uid}`" class="label">Last name:</label>
       </div>
-      <div class="column is-5 form-column__input-column">
-        <div class="control input-wrapper">
+      <div class="column is-4 form-column__input-column">
+        <div class="control input-wrapper customMargin">
           <Icons icon="user" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input class="input" type="text" placeholder=""
+          <input class="custom-editable-value" type="text" placeholder=""
             :required="required"
             autocomplete="family-name"
             v-model:value="form.lastname"
@@ -36,8 +36,8 @@
           />
         </div>
       </div>
-      <div class="column is-5 is-offset-5" v-if="lastnameErrorMessage">
-        <span class="error-message">{{lastnameErrorMessage}}</span>
+      <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="lastnameErrorMessage">
+        <span class="editable-error-message">{{lastnameErrorMessage}}</span>
       </div>
     </div>
     
@@ -79,7 +79,7 @@ export default {
       clearTimeout(this.firstnameTimeout)
       this.firstnameTimeout = setTimeout(() => {
         if (!validator.validateName(this.form.firstname)) {
-          this.firstnameErrorMessage = "This field is required"
+          this.firstnameErrorMessage = "This field is required."
         } else {
           this.firstnameErrorMessage = ""
         }
@@ -90,7 +90,7 @@ export default {
       clearTimeout(this.lastnameTimeout)
       this.lastnameTimeout = setTimeout(() => {
         if (!validator.validateName(this.form.lastname)) {
-          this.lastnameErrorMessage = "This field is required"
+          this.lastnameErrorMessage = "This field is required."
         } else {
           this.lastnameErrorMessage = ""
         }
@@ -111,5 +111,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.input-wrapper {
+  max-width: 200px;
+}
+.custom-editable-value {
+  width: 100%;
+  font-size: inherit;
+  font-weight: 100;
+  line-height: 1.4;
+  height: 34px;
+  border: none;
+  box-shadow: none;
+  background: none;
+  border: 1px solid rgba(60,60,60,.26);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  padding-left: 35px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.customMargin {
+  margin: auto;
+  @include tablet {
+    margin-left: 0;
+  }
+}
 </style>

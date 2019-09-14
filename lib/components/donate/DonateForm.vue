@@ -341,7 +341,6 @@ export default {
 .centered {
   text-align: center;
 }
-
 .form-submit-wrapper {
   margin: 20px auto;
   text-align: center;
@@ -351,7 +350,6 @@ export default {
     color: rgba($color-text, 0.2);
   }
 }
-
 .billing-info {
   h2 {
     display: flex;
@@ -376,17 +374,28 @@ export default {
     }
   }
 }
-
 .form-column__input-column {
-  padding-bottom: 0;
-  padding-top: 0;
+  //padding-bottom: 0;
+  //padding-top: 0;
 }
-
 .instructions {
   font-size: 14px;
   @include tablet {
     font-size: 16px;
   }
 }
-
+</style>
+<style lang="scss">
+  .editable-error-message-wrapper {
+  text-align: center;
+  @include tablet {
+    text-align: left;
+  }
+  margin-bottom: 0 !important;
+  margin-top: -10px;
+  .editable-error-message {
+    font-weight: 100;
+    font-size: .8rem;
+  }
+}
 </style>

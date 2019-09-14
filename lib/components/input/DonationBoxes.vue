@@ -9,7 +9,7 @@
           {{box | usd}}
         </div>
       </div>
-      <div class="amount-box amount-box-giving-levels column is-6 is-6-mobile" v-for="level in givingLevels" v-if="givingLevels">
+      <div class="amount-box amount-box-giving-levels column is-4 is-6-mobile" v-for="level in givingLevels" v-if="givingLevels">
         <div
           class="amount-box__inner"
           :class="{'selected': level.amount === donation.amount && !donation.isCustomAmount}"
@@ -20,16 +20,16 @@
       </div>
     </div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line custom-amount-wrapper">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6 form-column__label-column input-label">
         <label class="label" :for="`custom-amount-input_${_uid}`">
           <input class="pad-right" type="checkbox" v-model="donation.isCustomAmount">
           Other amount:
         </label>
       </div>
-      <div class="column is-3 form-column__input-column">
+      <div class="column is-3 form-column__input-column customMargin" style="max-width: 100px;">
         <div class="control input-wrapper">
           <Icons icon="usd" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input :id="`custom-amount-input_${_uid}`" class="input custom-amount-input" type="number" name="amount" :placeholder="donation.customAmount" v-model="donation.customAmount" :disabled="!donation.isCustomAmount">
+          <input :id="`custom-amount-input_${_uid}`" class="custom-amount-input" type="number" name="amount" :placeholder="donation.customAmount" v-model="donation.customAmount" :disabled="!donation.isCustomAmount">
         </div>
       </div>
     </div>
@@ -79,6 +79,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.custom-amount-input {
+  width: 100%;
+  font-size: inherit;
+  font-weight: 100;
+  line-height: 1.4;
+  height: 34px;
+  border: none;
+  box-shadow: none;
+  background: none;
+  border: 1px solid rgba(60,60,60,.26);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  padding-left: 25px;
+  &:hover {
+    cursor: pointer;
+  }
+}
 .boxes-wrapper {
   margin: -.25rem;
   margin-bottom: 10px;
@@ -123,5 +140,10 @@ export default {
 .pad-right {
   margin-right: 5px;
 }
-
+.customMargin {
+  margin: auto;
+  @include tablet {
+    margin-left: 0;
+  }
+}
 </style>
