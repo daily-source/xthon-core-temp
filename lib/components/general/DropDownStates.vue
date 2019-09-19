@@ -11,7 +11,8 @@
       :type="type || 'dropdown'"
       :required="required"
       placeholder='Click or type here to select a state'
-      class="column is-5-tablet editable-field-wrapper"
+      class="column is-5-tablet editable-field-wrapper customMargin"
+      style="max-width: 300px;"
       ref="input"
       v-on:change="vueSelectInputChange($event)"
       v-on:search:blur="doNothingIfTheValueHasntChanged($event)"
@@ -161,6 +162,12 @@ export default {
   text-align: center;
   @include tablet {
     text-align: right !important;
+  }
+}
+.customMargin {
+  margin: auto;
+  @include tablet {
+    margin-left: 0;
   }
 }
 </style>

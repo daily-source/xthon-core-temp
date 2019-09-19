@@ -104,7 +104,7 @@
       </div>
       <div>
         <div class="form-submit-wrapper" @click.prevent="submitDonate()">
-          <button class="button is-large is-danger"
+          <button class="button is-success"
             :disabled="submitButtonDisabled"
           >
             {{submitButtonLabel || 'Donate'}}</button>

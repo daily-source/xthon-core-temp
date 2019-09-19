@@ -170,7 +170,7 @@
           </div>
           <div class="form-submit-wrapper">
             <button
-              class="button is-success xis-large"
+              class="button is-success"
               @click.prevent="validateSubmit()"
               id="form-action"
               :disabled="submitButtonDisabled"

@@ -51,7 +51,7 @@
         </div>
         <div v-if="!socialLogin">
           <div class="form-submit-wrapper" @click.prevent="submitPassword()">
-            <button class="button is-large is-danger"
+            <button class="button is-success"
               :disabled="submitButtonDisabled"
             >Submit</button>
           </div>

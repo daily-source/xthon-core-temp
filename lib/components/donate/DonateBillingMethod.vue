@@ -80,7 +80,9 @@
             />
           </div>
         </div>
-        <div class="column is-4 form-column__input-column save-method">
+      </div>
+      <div class="centered is-gift-wrapper">
+        <div>
           <label class="checkbox">
             <input type="checkbox"
               name="payment-method"
@@ -299,5 +301,9 @@ select {
   @include tablet {
     margin-left: 0;
   }
+}
+.is-gift-wrapper {
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 </style>

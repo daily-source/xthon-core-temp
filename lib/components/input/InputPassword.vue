@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line password-input-wrapper is-multiline" v-if="requireCurrentPassword">
-      <div class="column is-6 form-column__label-column input-label">
+      <div class="column is-6-tablet form-column__label-column input-label">
         <label :for="`input-current-password_${_uid}`" class="label">Current password:</label>
       </div>
       <div class="column is-6 form-column__input-column">
@@ -33,18 +33,18 @@
           >
         </div>
       </div>
-      <div class="column is-5 is-offset-5" v-if="passwordErrorMessage || errorMessage">
-        <span class="error-message">{{passwordErrorMessage}}{{errorMessage}}</span>
+      <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="passwordErrorMessage || errorMessage">
+        <span class="editable-error-message">{{passwordErrorMessage}}{{errorMessage}}</span>
       </div>
     </div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line password-input-wrapper is-multiline" v-if="duplicate">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6-tablet form-column__label-column input-label">
         <label :for="`input-password-confirmation_${_uid}`" class="label">{{label}} confirmation:</label>
       </div>
       <div class="column is-5 form-column__input-column">
         <div class="control input-wrapper">
           <Icons icon="lock" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input class="input" type="password" name="action" placeholder=""
+          <input class="custom-editable-value" type="password" name="action" placeholder=""
             :required="required"
             v-model="form.passwordConfirmation"
             autocomplete="current-password new-password" 
@@ -53,8 +53,8 @@
           >
         </div>
       </div>
-      <div class="column is-5 is-offset-5" v-if="passwordConfirmationErrorMessage || errorMessage">
-        <span class="error-message">{{passwordConfirmationErrorMessage}}{{errorMessage}}</span>
+      <div class="column is-6-tablet is-offset-6-tablet editable-error-message-wrapper" v-if="passwordConfirmationErrorMessage || errorMessage">
+        <span class="editable-error-message">{{passwordConfirmationErrorMessage}}{{errorMessage}}</span>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <div class="column is-offset-3 is-3-tablet inputLabel">
       <label :for="`input-editable_${_uid}`">{{label}}</label>
     </div>
-    <div class="column is-5-tablet editable-field-wrapper">
+    <div class="column is-6-tablet editable-field-wrapper customMargin" style="max-width: 300px;">
       <div v-if="disabledEdition" class="disabled-edition">
         {{fieldValue}} <span class="small">(Cannnot be modified)</span>
       </div>
@@ -209,6 +209,12 @@ export default {
   text-align: center;
   @include tablet {
     text-align: right !important;
+  }
+}
+.customMargin {
+  margin: auto;
+  @include tablet {
+    margin-left: 0;
   }
 }
 </style>

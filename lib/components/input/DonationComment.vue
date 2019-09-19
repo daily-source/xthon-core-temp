@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="centered is-gift-wrapper" v-if="fundraiser">
+  <div class="centered is-gift-wrapper">
+    <div v-if="fundraiser">
       <label class="checkbox" :for="`anonymous-donation_${_uid}`">
         <input type="checkbox" v-model="donation.isAnonymous" :id="`anonymous-donation_${_uid}`">
           Make donation anonymously
