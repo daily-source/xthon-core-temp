@@ -21,7 +21,7 @@
           <figure class="fundraiser-nonprofit__logo" v-if="fundraiser.Nonprofit">
             <img class="fundraiser-nonprofit__img" :src="fundraiser.Nonprofit.logo_square" alt="">
           </figure>
-          <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`" v-html="fundraiser.Nonprofit.data.name || fundraiser.Nonprofit.NAME"></router-link>
+          <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`" v-html="fundraiser.Nonprofit.name || fundraiser.Nonprofit.NAME"></router-link>
         </h2>
       </div>
       <p v-if="editing" class="is-centered">
@@ -41,7 +41,7 @@ export default {
     closeEdition () {
       this.$emit("edit:close")
     }
-  }
+  },
 }
 </script>
 

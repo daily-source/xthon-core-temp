@@ -374,10 +374,6 @@ export default {
     }
   }
 }
-.form-column__input-column {
-  //padding-bottom: 0;
-  //padding-top: 0;
-}
 .instructions {
   font-size: 14px;
   @include tablet {

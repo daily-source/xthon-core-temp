@@ -367,25 +367,25 @@ body.no-scroll {
 
 /* form */
 .input-line {
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
   &:first-child {
-    margin-top: 0px;
+    //margin-top: 0px;
   }
   @include tablet {
-    margin-bottom: 25px !important;
+    //margin-bottom: 25px !important;
 
     &.custom-amount-wrapper {
-      margin-bottom: 20px;
+      //margin-bottom: 20px;
     }
   }
   &.email-input-wrapper {
-    margin-bottom: 0;
+    //margin-bottom: 0;
     @include tablet {
-      margin-bottom: 10px;
+      //margin-bottom: 10px;
     }
   }
   &:last-child {
-    margin-bottom: 25px !important;
+    //margin-bottom: 25px !important;
   }
 }
 
@@ -415,8 +415,8 @@ body.no-scroll {
 }
 
 .form-column__input-column {
-  padding-bottom: 0;
-  padding-top: 0;
+  //padding-bottom: 0;
+  //padding-top: 0;
 }
 
 .label {

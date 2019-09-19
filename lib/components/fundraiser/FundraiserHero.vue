@@ -13,6 +13,7 @@
               :is-background="true"
               :src="item"
               :key="_uid + item"
+              v-if="fundraiser.media.images.length"
               v-for="(item, index) in fundraiser.media.images"
             ></LazyLoadedImage>
             <div class="fundraiser-photo-section__photo fundraiser-photo-section__video plyr-wrapper" v-for="(item, index) in fundraiser.media.videos">
@@ -36,12 +37,36 @@
       <div class="column is-one-third-desktop fundraiser-content__right">
         <div class="fundraiser-pledge">
           <div class="fundraiser-pledge__heading" v-if="fundraiser.User">
-            <p class="button-wrapper" v-if="canEdit">
+            <p class="button-wrapper" v-if="canEdit" >
               <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing && userCan('edit:fundraiser-fields')">Edit this fundraiser</a>
+            </p>
+            <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-fields') && canEdit">
+              <span>Approval: </span>
+              <span :class="{ 'acceptedColor': approvalStatus === 'Accepted', 'pendingColor': approvalStatus === 'Pending', 'rejectedColor': approvalStatus === 'Rejected' }">{{approvalStatus}}</span>
+            </p>
+             <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-fields') && canEdit && approvalStatus === 'Accepted'">
+              <span>Status: </span>
+              <span :class="{ 'draftColor': publishStatus.label === 'Draft', 'publishedColor': publishStatus.label === 'Published' }">{{publishStatus.label}}</span>
+            </p>
+            <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-publish-status') && canEdit && approvalStatus === 'Accepted'">
+              <v-select
+                :options="publishStatuses"
+                :searchable="false"
+                :value="publishStatus"
+                class="dropdown-status"
+                label="label"
+                v-model='publishStatus'
+                ref="publishStatus"
+                :selectOnTab="true"
+              >
+                <template slot="option" slot-scope="option">
+                    {{ option.label }}
+                </template>
+              </v-select>
             </p>
             <slot name="copytext">
               <p>
-                {{fundraiser.User.firstName}} will volunteer {{fundraiser.hours}} hours {{fundraiser.communityWork}} for <router-link :to="`/nonprofit/${fundraiser.NonprofitId}`">{{fundraiser.Nonprofit.NAME}}</router-link> to raise money for the same nonprofit.
+                {{fundraiser.User.firstName}} will volunteer {{fundraiser.hours}} hours for <router-link :to="`/nonprofit/${fundraiser.NonprofitId}`">{{fundraiser.Nonprofit.NAME}}</router-link> to raise money for the same nonprofit.
               </p>
             </slot>
             <p class="fundraiser-pledge__subheading">
@@ -82,14 +107,17 @@ import DonateAction from "Components/general/DonateAction.vue"
 import ProgressBar from "Components/general/ProgressBar.vue"
 import Flickity from "Components/plugins/Flickity.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
+import Vue from 'vue'
+import vSelect from 'vue-select'
 
 export default {
   props: [ "fundraiser", "canEdit", "editing" ],
   components: {
     DonateAction,
+    ProgressBar,
     Flickity,
     LazyLoadedImage,
-    ProgressBar,
+    vSelect,
     MediaEditor: () => import("Components/input/MediaEditor.vue"),
     InlineImageEditor: () => import("Components/input/InlineImageEditor.vue"),
     VuePlyrWrapper: () => import("Components/general/VuePlyrWrapper.vue")
@@ -103,7 +131,10 @@ export default {
         pageDots: this.fundraiser.media.images.length || this.fundraiser.media.videos.length ? true : false,
         wrapAround: true,
         autoPlay: false
-      }
+      },
+      approvalStatus: this.fundraiser.approvalStatus ? this.fundraiser.approvalStatus : 'Pending',
+      publishStatus: {label: this.fundraiser.publishStatus} ? {label: this.fundraiser.publishStatus} : {label: 'Draft'},
+      publishStatuses: [{label: 'Published'}, {label: 'Draft'}]
     }
   },
   methods: {
@@ -119,6 +150,11 @@ export default {
     },
     openEdition () {
       this.$emit("edit:open")
+    }
+  },
+  watch: {
+    'publishStatus': function (newVal) {
+      this.$emit("publishStatus:selected", newVal.label)
     }
   },
 
@@ -348,5 +384,50 @@ export default {
     }
   }
 }
-
+.dropdown-status {
+  input {
+    opacity: 1 !important;
+    font-weight: 100 !important;
+  }
+  .clear {
+    font-size: 1.25rem !important;
+    font-weight: 400 !important;
+    margin-bottom: -1px !important;
+  }
+  .open-indicator:before {
+    border-width: 2px 2px 0 0;
+    height: 9px;
+    width: 9px;
+    color: rgba(60, 60, 60, 0.26) !important;
+    border-color: rgba(60, 60, 60, 0.26) !important;
+  }
+}
+.acceptedColor {
+  color: $color-text-green;
+}
+.pendingColor {
+  color: $color-text-yellow;
+}
+.rejectedColor {
+  color: $color-text-red;
+}
+.draftColor {
+  color: $color-text-blue;
+}
+.publishedColor {
+  color: $color-text-green;
+}
+</style>
+<style lang="scss">
+.v-select {
+  .dropdown-toggle {
+    min-width: 160px !important;
+    .clear {
+      visibility: hidden !important;
+    }
+  }
+  .dropdown-menu {
+    right: 0 !important;
+  }
+}
 </style>

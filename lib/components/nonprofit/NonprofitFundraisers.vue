@@ -23,7 +23,7 @@
             <p>
               By <span>{{fundraiser.User.firstName}} {{fundraiser.User.lastName}}</span><br>
             </p>
-            <ProgressBar :details="fundraiser.fundraiserDetails" size="small"/>
+            <ProgressBar :details="fundraiser" size="small"/>
           </div>
         </div>
       </div>

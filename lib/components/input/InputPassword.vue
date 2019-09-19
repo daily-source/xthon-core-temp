@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line password-input-wrapper is-multiline" v-if="requireCurrentPassword">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6 form-column__label-column input-label">
         <label :for="`input-current-password_${_uid}`" class="label">Current password:</label>
       </div>
-      <div class="column is-5 form-column__input-column">
-        <div class="control input-wrapper">
+      <div class="column is-6 form-column__input-column">
+        <div class="control input-wrapper customMargin" style="max-width: 200px;">
           <Icons icon="lock" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input class="input" type="password" name="action" placeholder=""
+          <input class="custom-editable-value" type="password" name="action" placeholder=""
             :required="required"
             v-model="form.currentPassword"
             autocomplete="current-password" 
@@ -18,13 +18,13 @@
       </div>
     </div>
     <div class="columns form-column__wrapper form-column__extra-padded input-line password-input-wrapper is-multiline">
-      <div class="column is-5 form-column__label-column input-label">
+      <div class="column is-6 form-column__label-column input-label">
         <label :for="`input-password_${_uid}`" class="label">{{label}}:</label>
       </div>
-      <div class="column is-5 form-column__input-column">
-        <div class="control input-wrapper">
+      <div class="column is-6 form-column__input-column">
+        <div class="control input-wrapper customMargin" style="max-width: 200px;">
           <Icons icon="lock" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
-          <input class="input" type="password" name="action" placeholder=""
+          <input class="custom-editable-value" type="password" name="action" placeholder=""
             :required="required"
             v-model="form.password"
             autocomplete="current-password new-password" 
@@ -148,5 +148,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.custom-editable-value {
+  width: 100%;
+  font-size: inherit;
+  font-weight: 100;
+  line-height: 1.4;
+  height: 34px;
+  border: none;
+  box-shadow: none;
+  background: none;
+  border: 1px solid rgba(60,60,60,.26);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  padding-left: 35px;
+  &:hover {
+    cursor: pointer;
+  }
+}
 </style>

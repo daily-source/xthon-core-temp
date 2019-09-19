@@ -50,7 +50,6 @@
               label-to="End"
               :min-date="today() | formatDate"
               v-on:updateDates="updateDates($event)"
-              v-on:clear="handleClear($event)"
               :start-date="form.dates ? new Date(form.dates.start) : null"
               :end-date="form.dates ? new Date(form.dates.end) : null"
               date-format="MM/DD/YYYY"
@@ -177,6 +176,13 @@
               :disabled="submitButtonDisabled"
               >{{submitButtonLabel}}</button>
           </div>
+          <div
+            key="error-block"
+            v-if="loggedIn && (createStatus === 'error')"
+            class="message"
+          >
+            <h4 class="has-text-centered">There was an error submitting the form. Please try again.</h4>
+          </div>
         </section>
       </div>
     </div>
@@ -201,7 +207,6 @@ export default {
     NewRegisterOrLoginModal: () => import("Components/general/NewRegisterOrLoginModal.vue")
   },
   mounted () {
-    //this.clearFormLocalStorage() //TEMP, remove it so form properly saves
     this.canRender = true
     let storedForm = window.localStorage.getItem("nonprofitForm")
     if (storedForm) {
@@ -238,19 +243,11 @@ export default {
       hoursErrorMessage: "",
       targetNonprofitErrorMessage: "",
       showLoginModal: false,
-      submitButtonDisabled: true
+      submitButtonDisabled: true,
+      createStatus: ""
     }
   },
-  /**
-   * TODO: validate form, submit data to api, display thank you or error dialog.
-   */
   methods: {
-    validateForm () {
-
-    },
-    handleClear (event) {
-      console.log('event: ', event)
-    },
     closeLoginModal () {
       this.showLoginModal = false
     },
@@ -391,21 +388,20 @@ export default {
         return
       }
       if (this.isLoggedIn) {
-        console.log("form: ", this.form)
         this.submitButtonDisabled = true
         this.$store.dispatch("SUBMIT_FUNDRAISER_FORM", { form: this.form })
           .then(data => {
-            this.userDialogModal = false
-            this.clearFormLocalStorage() //TEMP, Enable so form erases correctly
+            this.createStatus = ''
+            this.clearFormLocalStorage()
             this.submitButtonDisabled = false
             // remove auto-triggered actions and redirection
             localStorage.removeItem("redirect_to_url")
             localStorage.removeItem("action_to_trigger")
+            this.$emit('form:success', { id: data.data.id })
           })
           .catch(err => {
-            this.userDialogModal = false
+            this.createStatus = 'error'
             this.submitButtonDisabled = false
-            console.log("error: ", err)
           })
       } else {
         this.showLoginModal = true
@@ -426,12 +422,13 @@ export default {
     },
     clearFormLocalStorage () {
       window.localStorage.removeItem("nonprofitForm")
-      this.form = {
+      /*this.form = {
         totalDays: 0,
         goal: 0,
         hours: 0,
-        nonprofitIs: "same"
-      }
+        nonprofitIs: "same",
+        dates: null
+      }*/
     }
   },
   computed: {
@@ -511,6 +508,13 @@ h1 {
   margin: 20px auto 0;
   color: #4a4a4a;
   button {
+    font-size: 18px;
+  }
+}
+.form-submit-wrapper {
+  margin: 20px auto;
+  text-align: center;
+  .button {
     font-size: 18px;
   }
 }

@@ -4,7 +4,7 @@
       <div class="column is-6 form-column__label-column input-label">
         <label :for="`input-name-first_${_uid}`" class="label">First name:</label>
       </div>
-      <div class="column is-4 form-column__input-column">
+      <div class="column is-6 form-column__input-column">
         <div class="control input-wrapper customMargin">
           <Icons icon="user" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
           <input class="custom-editable-value" type="text" placeholder=""

@@ -20,8 +20,8 @@
               v-on:input:password="form.password = $event; errorMessage = ''"
             ></InputPassword>
             <div class="columns form-column__wrapper form-column__extra-padded input-line password-input-wrapper">
-              <div class="column is-5 form-column__label-column input-label"></div>
-              <div class="column is-5 form-column__input-column">
+              <div class="column is-6 form-column__label-column input-label"></div>
+              <div class="column is-6 form-column__input-column">
                 <ModalForgetPassword></ModalForgetPassword>
               </div>
             </div>
