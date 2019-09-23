@@ -71,14 +71,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      if (this.$store.state.user.loggedIn == true) {
-        if (this.$store.state.user.data.permissions != undefined && JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
-          return true
-        } else {
-          return false
-        }
-      }
-      return false
+      return this.$store.dispatch('USER_CAN', { permission: per })
     },
     loadMoreComments () {
       this.$emit("loadMoreComments")

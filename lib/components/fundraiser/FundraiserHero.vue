@@ -40,30 +40,6 @@
             <p class="button-wrapper" v-if="canEdit" >
               <a class="button is-light is-rounded is-medium" @click="openEdition()" v-if="!editing && userCan('edit:fundraiser-fields')">Edit this fundraiser</a>
             </p>
-            <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-fields') && canEdit">
-              <span>Approval: </span>
-              <span :class="{ 'acceptedColor': approvalStatus === 'Accepted', 'pendingColor': approvalStatus === 'Pending', 'rejectedColor': approvalStatus === 'Rejected' }">{{approvalStatus}}</span>
-            </p>
-             <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-fields') && canEdit && approvalStatus === 'Accepted'">
-              <span>Status: </span>
-              <span :class="{ 'draftColor': publishStatus.label === 'Draft', 'publishedColor': publishStatus.label === 'Published' }">{{publishStatus.label}}</span>
-            </p>
-            <p class="button-wrapper has-text-right" v-if="!editing && userCan('edit:fundraiser-publish-status') && canEdit && approvalStatus === 'Accepted'">
-              <v-select
-                :options="publishStatuses"
-                :searchable="false"
-                :value="publishStatus"
-                class="dropdown-status"
-                label="label"
-                v-model='publishStatus'
-                ref="publishStatus"
-                :selectOnTab="true"
-              >
-                <template slot="option" slot-scope="option">
-                    {{ option.label }}
-                </template>
-              </v-select>
-            </p>
             <slot name="copytext">
               <p>
                 {{fundraiser.User.firstName}} will volunteer {{fundraiser.hours}} hours for <router-link :to="`/nonprofit/${fundraiser.NonprofitId}`">{{fundraiser.Nonprofit.NAME}}</router-link> to raise money for the same nonprofit.
@@ -106,9 +82,7 @@
 import DonateAction from "Components/general/DonateAction.vue"
 import ProgressBar from "Components/general/ProgressBar.vue"
 import Flickity from "Components/plugins/Flickity.vue"
-import LazyLoadedImage from "Components/plugins/LazyLoadedImage.js"
-import Vue from 'vue'
-import vSelect from 'vue-select'
+import LazyLoadedImage from "Components/plugins/LazyLoadedImage"
 
 export default {
   props: [ "fundraiser", "canEdit", "editing" ],
@@ -117,7 +91,6 @@ export default {
     ProgressBar,
     Flickity,
     LazyLoadedImage,
-    vSelect,
     MediaEditor: () => import("Components/input/MediaEditor.vue"),
     InlineImageEditor: () => import("Components/input/InlineImageEditor.vue"),
     VuePlyrWrapper: () => import("Components/general/VuePlyrWrapper.vue")
@@ -131,30 +104,15 @@ export default {
         pageDots: this.fundraiser.media.images.length || this.fundraiser.media.videos.length ? true : false,
         wrapAround: true,
         autoPlay: false
-      },
-      approvalStatus: this.fundraiser.approvalStatus ? this.fundraiser.approvalStatus : 'Pending',
-      publishStatus: {label: this.fundraiser.publishStatus} ? {label: this.fundraiser.publishStatus} : {label: 'Draft'},
-      publishStatuses: [{label: 'Published'}, {label: 'Draft'}]
+      }
     }
   },
   methods: {
     userCan(per) {
-      if (this.$store.state.user.loggedIn == true) {
-        if (this.$store.state.user.data.permissions != undefined && JSON.stringify(this.$store.state.user.data.permissions).indexOf(per) > -1) {
-          return true
-        } else {
-          return false
-        }
-      }
-      return false
+      return this.$store.dispatch('USER_CAN', { permission: per })
     },
     openEdition () {
       this.$emit("edit:open")
-    }
-  },
-  watch: {
-    'publishStatus': function (newVal) {
-      this.$emit("publishStatus:selected", newVal.label)
     }
   },
 
@@ -400,34 +358,6 @@ export default {
     width: 9px;
     color: rgba(60, 60, 60, 0.26) !important;
     border-color: rgba(60, 60, 60, 0.26) !important;
-  }
-}
-.acceptedColor {
-  color: $color-text-green;
-}
-.pendingColor {
-  color: $color-text-yellow;
-}
-.rejectedColor {
-  color: $color-text-red;
-}
-.draftColor {
-  color: $color-text-blue;
-}
-.publishedColor {
-  color: $color-text-green;
-}
-</style>
-<style lang="scss">
-.v-select {
-  .dropdown-toggle {
-    min-width: 160px !important;
-    .clear {
-      visibility: hidden !important;
-    }
-  }
-  .dropdown-menu {
-    right: 0 !important;
   }
 }
 </style>

@@ -24,9 +24,33 @@
           <router-link :to="`/nonprofit/${fundraiser.Nonprofit.EIN}`" v-html="fundraiser.Nonprofit.name || fundraiser.Nonprofit.NAME"></router-link>
         </h2>
       </div>
-      <p v-if="editing" class="is-centered">
+      <div v-if="editing" class="is-centered">
         <a class="button is-light is-rounded is-medium" @click="closeEdition()">Stop editing</a>
-      </p>
+        <div style="text-align: center;">
+          <span>Status: </span>
+          <span :class="{ 'draftColor': fundraiser.status === 'draft', 'pendingColor': fundraiser.status === 'pending', 'publishedColor': fundraiser.status === 'published' }">{{fundraiser.status}}</span>
+        </div>
+        <a class="button is-light is-rounded is-medium" @click="emitStatus('published')" v-if="userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">Publish my Fundraiser</a>
+
+        <a class="button is-light is-rounded is-medium" @click="emitStatus('draft')" v-if="userCan('edit:fundraiser-status') && fundraiser.status != 'draft'">Draft my Fundraiser</a>
+        <!--
+        <div v-if="editing && userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">
+          <v-select
+            :options="statuses"
+            :searchable="false"
+            :value="status"
+            class="dropdown-status"
+            label="label"
+            v-model='status'
+            ref="status"
+          >
+            <template slot="option" slot-scope="option">
+                {{ option.label }}
+            </template>
+          </v-select>
+        </div>
+        -->
+      </div>
     </div>
   </div>
 </template>
@@ -38,8 +62,14 @@ export default {
     InlineFieldEditor: () => import("Components/input/InlineFieldEditor.vue")
   },
   methods: {
+    userCan(per) {
+      return this.$store.dispatch('USER_CAN', { permission: per })
+    },
     closeEdition () {
       this.$emit("edit:close")
+    },
+    emitStatus (status) {
+      this.$emit("status:selected", status)
     }
   },
 }
@@ -128,5 +158,27 @@ export default {
 }
 .is-centered {
   text-align: center;
+}
+.pendingColor {
+  color: $color-text-yellow;
+}
+.draftColor {
+  color: $color-text-blue;
+}
+.publishedColor {
+  color: $color-text-green;
+}
+</style>
+<style lang="scss">
+.v-select {
+  .dropdown-toggle {
+    min-width: 160px !important;
+    .clear {
+      visibility: hidden !important;
+    }
+  }
+  .dropdown-menu {
+    right: 0 !important;
+  }
 }
 </style>
