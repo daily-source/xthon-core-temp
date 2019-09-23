@@ -32,7 +32,7 @@
         </div>
         <a class="button is-light is-rounded is-medium" @click="emitStatus('published')" v-if="userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">Publish my Fundraiser</a>
 
-        <a class="button is-light is-rounded is-medium" @click="emitStatus('draft')" v-if="userCan('edit:fundraiser-status') && fundraiser.status != 'draft'">Draft my Fundraiser</a>
+        <a class="button is-light is-rounded is-medium" @click="emitStatus('draft')" v-if="userCan('edit:fundraiser-status') && fundraiser.status != 'draft' && fundraiser.status != 'pending'">Draft my Fundraiser</a>
         <!--
         <div v-if="editing && userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">
           <v-select
