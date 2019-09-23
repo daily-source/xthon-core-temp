@@ -13,15 +13,14 @@
               :key="`fundraiser-${site.slug}`"
               class="fundraiser-grid__col has-text-centered"
             >
-              <a 
-                :href="site.url || '#'"
-                target='_blank'
+              <fundraiser-grid-link 
+                :fundraiser='site'
               >
-                <img
+                <img 
                   :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${site.fileName}`"
                   :id="`${site.slug}-img`"
                 />
-              </a>
+              </fundraiser-grid-link>
             </div>
           </div>
         </div>
@@ -35,15 +34,14 @@
               :key="`fundraiser-${site.slug}`"
               class="fundraiser-grid__col has-text-centered"
             >
-              <a 
-                :href="site.url || '#'"
-                target='_blank'
+              <fundraiser-grid-link 
+                :fundraiser='site'
               >
                 <img 
                   :src="`https://maxgood-logos.s3-us-west-2.amazonaws.com/${site.fileName}`"
                   :id="`${site.slug}-img`"
                 />
-              </a>
+              </fundraiser-grid-link>
             </div>
           </div>
         </div>
@@ -74,6 +72,10 @@ export default {
       type: String,
       required: true,
     },
+  },
+
+  components: {
+    FundraiserGridLink: () => import('Components/MaximumGood/FundraiserGridLink'),
   },
 
   data () {
