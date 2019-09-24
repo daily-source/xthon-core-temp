@@ -8,14 +8,18 @@
     </div>
     <transition name="slide-fade" v-if="!donation.isAnonymous">
       <div class="columns form-column__wrapper form-column__extra-padded input-line comment-input-wrapper" v-if="fundraiser && fundraiser.User">
-        <div class="column is-5 form-column__label-column input-label comment-input-label">
+        <div class="column is-6 form-column__label-column input-label comment-input-label input-label">
           <label :for="`comment-textarea_${_uid}`" class="label">Add a comment to appear next to your donation on {{fundraiser.User.firstName}}'s page:</label>
         </div>
-        <div class="column is-5 form-column__input-column">
-          <div class="control input-wrapper">
+        <div class="column is-6 form-column__input-column">
+          <div class="control input-wrapper customMargin">
             <textarea class="comment-input"
               :id="`comment-textarea_${_uid}`"
               name="comment"
+              style="resize: none;"
+              resize="none"
+              rows="4"
+              height="auto"
               placeholder=""
               v-model="donation.comment"
             ></textarea>
@@ -64,21 +68,42 @@ export default {
   margin: 10px 0;
 }
 .comment-input-label {
-  align-self: flex-start;
+  //align-self: flex-start;
   .label {
+    max-width: 250px;
     line-height: 1.2;
-    text-align: right;
+    text-align: center;
+    @include tablet {
+      text-align: right;
+    }
   }
 }
 .comment-input {
-  padding: 10px;
   width: 100%;
-  font-size: 17px;
+  font-size: inherit;
+  font-weight: 100;
+  line-height: 1.4;
+  border: none;
+  box-shadow: none;
+  background: none;
+  border: 1px solid rgba(60,60,60,.26);
+  border-radius: 4px;
+  margin: 4px 0 0;
+  padding: 0 7px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .centered {
   text-align: center;
 }
-
-
-
+.input-wrapper {
+  max-width: 200px;
+}
+.customMargin {
+  margin: auto;
+  @include tablet {
+    margin-left: 0;
+  }
+}
 </style>

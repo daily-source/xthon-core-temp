@@ -41,8 +41,8 @@
       <div class="column is-6-tablet form-column__label-column input-label">
         <label :for="`input-password-confirmation_${_uid}`" class="label">{{label}} confirmation:</label>
       </div>
-      <div class="column is-5 form-column__input-column">
-        <div class="control input-wrapper">
+      <div class="column is-6 form-column__input-column">
+        <div class="control input-wrapper customMargin" style="max-width: 200px;">
           <Icons icon="lock" class="input-icon" iconwidth="20px" iconheight="20px" color="#999"></Icons>
           <input class="custom-editable-value" type="password" name="action" placeholder=""
             :required="required"

@@ -45,7 +45,7 @@
         <div class="column is-3 form-column__input-column">
           <div class="columns auto-margin">
             <select
-              class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"
+              class="column is-one-quarter-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"
               v-bind:value="payment.expirationMonth"
               v-on:input="$emit('input:month', $event.target.value)"
               :value="1"
@@ -53,7 +53,7 @@
               <option v-for="month in [1,2,3,4,5,6,7,8,9,10,11,12]" :value="month">{{month}}</option>
             </select>
             <select
-              class="column is-one-quarter-mobile is-one-quarter-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"
+              class="column is-one-quarter-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"
               v-bind:value="payment.expirationYear"
               v-on:input="$emit('input:year', $event.target.value)"
               :value="getYearArray()[0]"

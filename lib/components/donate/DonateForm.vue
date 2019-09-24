@@ -238,9 +238,17 @@ export default {
     validateAllFields () {
       const validEmail = validator.validateEmail(this.donation.email)
       const validUnlogged = validEmail && this.donation.lastName && this.donation.firstName && this.newPaymentMethodIsValid
+      console.log("this.loggedIn", this.loggedIn)
+      console.log("this.newPaymentMethodIsValid", this.newPaymentMethodIsValid)
+      console.log("this.donation.isNewPaymentMethod", this.donation.isNewPaymentMethod)
+      console.log("-------")
       const validLoggedNewPayment = this.loggedIn && this.newPaymentMethodIsValid && this.donation.isNewPaymentMethod
+      console.log("validate form", this.donation)
       const validStoredPayment = this.donation.storedPaymentMethod ? validator.validateExpirationDate(this.donation.storedPaymentMethod.expirationMonth, this.donation.storedPaymentMethod.expirationYear) : false
+      //console.log("validStoredPayment", validStoredPayment)
       const validLoggedStoredPayment = this.loggedIn && !this.donation.isNewPaymentMethod && validStoredPayment
+      //console.log("validLoggedStoredPayment", validLoggedStoredPayment)
+
 
       if (validUnlogged || validLoggedNewPayment || validLoggedStoredPayment) {
         this.submitButtonDisabled = false
