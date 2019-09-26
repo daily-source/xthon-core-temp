@@ -195,6 +195,7 @@ export default {
 
   .how-much__label {
     margin-bottom: 1em;
+    font-weight: 700;
   }
 
 	.total-select-input {

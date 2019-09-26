@@ -1,5 +1,5 @@
 <template>
-  <div :class="`version_${version}`">
+  <div :class="`version_${version} giveitup-form`">
     <section id="choices" class="section" >
       <div class="container">
         <h3 class="has-text-centered has-text-primary">Pick what to give up or use less of:</h3>
@@ -62,7 +62,7 @@
           <div class="total-raised-container my-3">
             You will raise:
             <span class="total has-text-success align-middle">
-              {{ (total ? total : 0) | currencyFormat }}
+              {{ (total ? total : 0) | usdCurrencyFormat }}
             </span>
           </div>
           <div class="nonprofit-select-container is-flex align-items-center">
@@ -152,7 +152,7 @@ export default {
     ChoiceCheckbox,
     HowMuchInput,
     CustomChoice,
-    NonprofitAjaxSearch: () => import('Components/GiveItUp/NonprofitAjaxSearch.vue'),
+    NonprofitAjaxSearch: () => import('Components/general/NonprofitAjaxSearch.vue'),
   },
 
   data() {
@@ -471,4 +471,22 @@ export default {
       }
     }
 	}
+</style>
+
+<style lang="scss">
+.giveitup-form {
+  .v-select {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #363636;
+
+    .dropdown-toggle {
+      border: 1px solid rgba(60,60,60,.26)
+    }
+
+    input[type=search] {
+      font-size: 1rem;
+    }
+  }
+}
 </style>
