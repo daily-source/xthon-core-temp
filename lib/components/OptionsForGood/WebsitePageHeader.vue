@@ -19,23 +19,17 @@
           </div>
         </div>
         <div class="logo__wrapper">
-          <div class="logo__loader" v-if='isLogoLoading'>
-            <loader />
-          </div>
-          <div class="logo__img-wrapper" v-else>
-            <router-link to="/" exact>
-              <img class="logo" :src="logo" alt="logo" width="300" height="53">
-            </router-link>
+          <div class="logo__img-wrapper">
+            <website-page-header-logo 
+              :logo='logo'
+            />
           </div>
         </div>
         <div class="logo__wrapper centered">
-          <div class="logo__loader" v-if='isLogoLoading'>
-            <loader />
-          </div>
-          <div class="logo__img-wrapper" v-else>
-            <router-link to="/" exact>
-              <img class="logo" :src="logo" alt="logo" width="300" height="53">
-            </router-link>
+          <div class="logo__img-wrapper">
+            <website-page-header-logo 
+              :logo='logo'
+            />
           </div>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
@@ -47,7 +41,7 @@
         <div class="max-good" @click="toggleOtherMaxGoodSites()" :class="{ 'active': showingMaxGoodSites }">
           <span class="small">Powered by </span>
           <div class="max-good__submenu-wrapper">
-            <img src="Public/max-good-logo-150x18.png" width="150" height="18" alt="">
+            <img :src="require('Public/max-good-logo-150x18.png')" width="150" height="18" alt="">
             <ul class="other-max-good-sites">
               <li>
                 <span class="other-sites-arrow" :class="{ 'turn': showingMaxGoodSites }">
@@ -321,6 +315,7 @@
 <script>
 import Icons from "Components/general/Icons.vue"
 import LogInModal from "Components/general/LogInModal.vue"
+import imagesloaded from 'imagesloaded'
 
 export default {
   name: "AppHeader",
@@ -328,6 +323,7 @@ export default {
     Icons,
     LogInModal,
     Loader: () => import('Components/Shared/Loader'),
+    WebsitePageHeaderLogo: () => import('Components/OptionsForGood/WebsitePageHeaderLogo')
   },
 
   props: {
@@ -341,7 +337,7 @@ export default {
       default: false,
     },
     logo: {
-      type: String,
+      type: Object,
       required: false,
     },
     isLogoLoading: {
