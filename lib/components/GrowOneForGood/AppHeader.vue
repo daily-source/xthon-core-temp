@@ -20,7 +20,7 @@
         <div class="logo__wrapper">
           <div class='logo' v-if='!generic'>
             <router-link to="/">
-              <img class="logo" :src="require('Public/grow-one-for-good.jpg')" alt="logo" width="300" height="53">
+              <img class="logo" src="https://maxgood-logos.s3-us-west-2.amazonaws.com/grow-one-for-good.png" alt="logo" width="300" height="53">
             </router-link>
           </div>
           <div class='logo__slider' v-else>
@@ -43,7 +43,7 @@
         <div class="logo__wrapper centered">
           <div class='logo' v-if='!generic'>
             <router-link to="/">
-              <img class="logo" :src="require('Public/grow-one-for-good.jpg')" alt="logo" width="300" height="53">
+              <img class="logo" src="https://maxgood-logos.s3-us-west-2.amazonaws.com/grow-one-for-good.png" alt="logo" width="300" height="53">
             </router-link>
           </div>
           <div class='logo__slider' v-else>
