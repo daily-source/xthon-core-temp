@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import * as userUtils from "Core/util/userUtils.js"
 export default {
   props: [ "fundraiser", "editing" ],
   components: {
@@ -63,7 +64,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     },
     closeEdition () {
       this.$emit("edit:close")

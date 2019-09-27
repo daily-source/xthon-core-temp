@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import * as userUtils from "Core/util/userUtils.js"
 export default {
   data () {
     return {
@@ -131,7 +132,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     },
     openEdition (fieldName) {
       this.$refs[fieldName].openEdition()

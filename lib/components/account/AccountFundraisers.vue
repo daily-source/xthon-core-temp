@@ -31,7 +31,8 @@
             <tr>
               <th>Fundraiser</th>
               <th>Raised</th>
-              <th>Started</th>
+              <th>Starts</th>
+              <th>Ends</th>
               <th>Donors count</th>
             </tr>
           </thead>
@@ -40,9 +41,10 @@
               <td>
                 <router-link :to="`/fundraiser/${fundraiser.id}`">{{fundraiser.name}}</router-link>
               </td>
-              <td>{{fundraiser.fundraiserDetails.donated | centsToUsd}}</td>
-              <td>{{fundraiser.fundraiserDetails.timestamp | formattedDate}}</td>
-              <td>{{fundraiser.fundraiserDetails.donors}}</td>
+              <td>{{fundraiser.donated | centsToUsd}}</td>
+              <td>{{fundraiser.startDate | formattedDate}}</td>
+              <td>{{fundraiser.endDate | formattedDate}}</td>
+              <td>{{fundraiser.donorsCount}}</td>
             </tr>
           </tbody>
         </table>

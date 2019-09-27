@@ -8,16 +8,21 @@
         @click.native="$emit('goto:account')">Manage your Account</router-link>
     </div>
     <ul class="user-management-links__list-wrapper" v-else>
+      <li><span>Account type: <em>{{this.$store.state.user.data.account}}</em></span></li>
+      <li><span>––––––––––––––––</span></li>
       <li><router-link to="/account/settings">Settings »</router-link></li>
       <li><router-link to="/account/donations">Donation history »</router-link></li>
       <li><router-link to="/account/fundraisers">My Fundraisers »</router-link></li>
       <li><router-link to="/account/nonprofits">My Nonprofits »</router-link></li>
+      <li><span>––––––––––––––––</span></li>
+      <li v-if="loggedIn && userCan('admin:fundraisers')"><router-link to="/account/settings" >Admin Fundraisers »</router-link></li>
     </ul>
   </div>
 </template>
 
 <script>
 import Icons from "Components/general/Icons.vue"
+import * as userUtils from "Core/util/userUtils.js"
 
 export default {
   props: ["layout"],
@@ -29,9 +34,9 @@ export default {
       return this.$store.state.user.loggedIn
     },
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     }
-  }
+  },
 }
 </script>
 
@@ -50,8 +55,11 @@ export default {
     li {
       font-size: 20px;
     }
-    a.router-link-active {
+    a.router-link-active, span {
       color: $color-medium-gray;
+      em {
+        font-size: 1rem;
+      }
     }
   }
 }

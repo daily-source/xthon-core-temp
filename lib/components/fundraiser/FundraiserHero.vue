@@ -83,6 +83,7 @@ import DonateAction from "Components/general/DonateAction.vue"
 import ProgressBar from "Components/general/ProgressBar.vue"
 import Flickity from "Components/plugins/Flickity.vue"
 import LazyLoadedImage from "Components/plugins/LazyLoadedImage"
+import * as userUtils from "Core/util/userUtils.js"
 
 export default {
   props: [ "fundraiser", "canEdit", "editing" ],
@@ -109,7 +110,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     },
     openEdition () {
       this.$emit("edit:open")

@@ -28,11 +28,11 @@
                 <router-link :to="`/nonprofit/${nonprofit.EIN}`">{{nonprofit.NAME || nonprofit.data.name}}</router-link>
               </td>
               <td>
-                <span v-if="nonprofit.data">{{nonprofit.data.donated | centsToUsd}}</span>
+                <span v-if="nonprofit.data">{{nonprofit.raised | centsToUsd}}</span>
                 <span v-else>{{ 0 | centsToUsd }}</span>
               </td>
               <td>
-                <span v-if="nonprofit.data">{{nonprofit.data.donorsCount}}</span>
+                <span v-if="nonprofit.data">{{nonprofit.donorsCount}}</span>
                 <span v-else>0</span>
               </td>
             </tr>

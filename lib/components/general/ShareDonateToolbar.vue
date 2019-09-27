@@ -51,6 +51,7 @@
 import DonateAction from "Components/general/DonateAction.vue"
 import Icons from "Components/general/Icons.vue"
 import ShareBox from "Components/general/ShareBox.vue"
+import * as userUtils from "Core/util/userUtils.js"
 
 export default {
   props: [ "allowComment", "allowReporting", "commentId", "urlParams", "text", "via", "title", "trigger", "fundraiserId", "updateId" ],
@@ -82,7 +83,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     },
     openShareBox () {
       this.toggleShareBox(true)

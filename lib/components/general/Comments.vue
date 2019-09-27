@@ -54,6 +54,7 @@
 import Comment from "Components/general/Comment.vue"
 import CommentReply from "Components/general/CommentReply.vue"
 import arrayToTree from "array-to-tree"
+import * as userUtils from "Core/util/userUtils.js"
 
 export default {
   props: [ "comments", "moreComments", "fundraiserId" ],
@@ -71,7 +72,7 @@ export default {
   },
   methods: {
     userCan(per) {
-      return this.$store.dispatch('USER_CAN', { permission: per })
+      return userUtils.userCan(per, this.$store.state.user)
     },
     loadMoreComments () {
       this.$emit("loadMoreComments")
