@@ -282,14 +282,14 @@
       order: -2;
 
       img {
-        max-width: 272px;
-        max-height: 49px;        
+        max-width: 100px;
+        max-height: initial;  
       }
 
       @include tablet {
         img {
-          max-width: 300px;
-          max-height: 53px;        
+          max-width: 140px;
+          max-height: initial;        
         }        
       }
 
