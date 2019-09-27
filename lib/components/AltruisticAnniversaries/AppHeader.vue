@@ -276,10 +276,10 @@
       order: unset;
       opacity: 0;
 
-      img {
-        max-width: 272px;
-        max-height: 49px;        
-      }
+    }
+    img {
+      max-width: 200px;
+      max-height: initial;        
     }
 
     &.centered {
