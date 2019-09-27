@@ -273,11 +273,10 @@
       width: auto;
       order: unset;
       opacity: 0;
+    }
 
-      img {
-        max-width: 272px;
-        max-height: auto;        
-      }
+    img {
+      max-width: 150px;
     }
 
     &.centered {
@@ -346,17 +345,11 @@
     .logo__wrapper {
       opacity: 1;
       order: -2;
-
+      
       img {
-        max-width: 272px;
-      }
-
-      @include tablet {
-        img {
-          max-width: 150px;
-          max-height: auto;       
-        }        
-      }
+        max-width: 150px;
+        max-height: auto;       
+      }        
 
       &.centered {
         opacity: 0;
