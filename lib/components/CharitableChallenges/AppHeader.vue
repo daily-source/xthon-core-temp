@@ -275,8 +275,8 @@
       opacity: 0;
 
       img {
-        max-width: 272px;
-        max-height: 49px;        
+        max-width: 260px;
+        max-height: initial;        
       }
     }
 
@@ -354,7 +354,7 @@
 
       @include tablet {
         img {
-          max-width: 250px;
+          max-width: 260px;
           max-height: none;
         }        
       }
