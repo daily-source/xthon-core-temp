@@ -267,16 +267,21 @@
 
     @include mobile {
       padding-left: 9px;
+
+    }
+
+    img {
+      max-width: 150px;
+
+      @include desktop {
+        max-width: 200px;
+      }
     }
 
     @include desktop {
       width: auto;
       order: unset;
       opacity: 0;
-
-      img {
-        max-width: 272px;
-      }
     }
 
     &.centered {
@@ -347,7 +352,7 @@
       order: -2;
 
       img {
-        max-width: 272px;
+        max-width: 200px;
       }
 
       @include tablet {
