@@ -275,8 +275,8 @@
       opacity: 0;
 
       img {
-        max-width: 272px;
-        max-height: 49px;        
+        max-width: 195px;
+        max-height: initial;        
       }
     }
 
