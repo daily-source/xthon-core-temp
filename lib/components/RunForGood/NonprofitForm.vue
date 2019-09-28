@@ -392,6 +392,7 @@ export default {
   background-color: $white;
   color: #363636;
   text-align: center;
+  padding-bottom: 1.625em;
 }
 
 h1 {
