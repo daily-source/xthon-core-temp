@@ -275,7 +275,7 @@
       opacity: 0;
 
       img {
-        max-width: 150px;
+        max-width: 140px;
         max-height: none;        
       }
     }
@@ -348,13 +348,13 @@
       order: -2;
 
       img {
-        max-width: 150px;
+        max-width: 120px;
         max-height: none;        
       }
 
       @include tablet {
         img {
-          max-width: 150px;
+          max-width: 140px;
           max-height: none;        
         }        
       }
