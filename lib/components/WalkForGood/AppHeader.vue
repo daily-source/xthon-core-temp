@@ -3,7 +3,7 @@
     <div class="container is-fluid">
       <div class="header__inner">
         <div class="random-words">
-          <router-link to="/explore">ExploreXY</router-link>
+          <router-link to="/explore">Explore</router-link>
         </div>
         <div class="random-words">
           <router-link to='#'>Do One Now</router-link>
@@ -17,12 +17,12 @@
         </div>
         <div class="logo__wrapper">
           <router-link to="/" exact>
-            <img class="logo" :src="require('Public/walk-for-good-logo-300x73.png')" alt="logo">
+            <img class="logo" src="https://maxgood-logos.s3-us-west-2.amazonaws.com/walk-for-good.png" alt="logo">
           </router-link>
         </div>
         <div class="logo__wrapper centered">
           <router-link to="/" exact>
-            <img class="logo" :src="require('Public/walk-for-good-logo-300x73.png')" alt="logo">
+            <img class="logo" src="https://maxgood-logos.s3-us-west-2.amazonaws.com/walk-for-good.png" alt="logo">
           </router-link>
         </div>
         <div class="user-space__logged--in modal-trigger" :class="{'login-highlight': loggedIn}">
@@ -237,8 +237,7 @@
       opacity: 0;
 
       img {
-        max-width: 272px;
-        width: 250px;
+        max-width: 200px;
         height: auto;    
       }
     }
@@ -276,14 +275,14 @@
       order: -2;
 
       img {
-        max-width: 272px;
-        max-height: 49px;        
+        max-width: 180px;
+        max-height: initial;        
       }
 
       @include tablet {
         img {
-          max-width: 300px;
-          max-height: 53px;        
+          max-width: 220px;
+          max-height: initial;        
         }        
       }
 

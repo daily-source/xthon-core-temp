@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div class="page-wrapper walk-for-good-form">
     <div class="container">
       <slot name="heading"></slot>
       <div class="columns combo-wrapper is-multiline bubbles-wrapper" v-if="bubbles">
@@ -226,6 +226,7 @@ export default {
   background-color: $white;
   color: #363636;
   text-align: center;
+  padding-bottom: 1.375rem;
 }
 
 h1 {
@@ -304,5 +305,13 @@ h1 {
 
 .radio + .radio {
   margin-left: 0;
+}
+</style>
+
+<style lang="scss">
+.walk-for-good-form {
+  .nonprofit-search-field-wrapper .v-select .dropdown-toggle {
+    border: 1px solid rgba(60,60,60,.26)
+  }
 }
 </style>
