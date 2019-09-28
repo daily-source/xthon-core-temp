@@ -274,10 +274,11 @@
       order: unset;
       opacity: 0;
 
-      img {
-        max-width: 272px;
-        max-height: 49px;        
-      }
+    }
+
+    img {
+      max-width: 120px;
+      max-height: initial;        
     }
 
     &.centered {
@@ -354,8 +355,8 @@
 
       @include tablet {
         img {
-          max-width: 150px;
-          max-height: none;        
+          max-width: 120px;
+          max-height: initial;        
         }        
       }
 
