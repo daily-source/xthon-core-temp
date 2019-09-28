@@ -246,7 +246,7 @@
       max-width: 150px;
 
       @include desktop {
-        max-width: 200px;
+        max-width: 130px;
         max-height: auto;    
       }
     }
@@ -268,6 +268,7 @@
 
 .random-words {
   padding: 0 5px;
+  color: $color-emphasis;
 }
 
 .page-layout {
