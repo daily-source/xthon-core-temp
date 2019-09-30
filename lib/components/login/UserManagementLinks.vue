@@ -15,7 +15,7 @@
       <li><router-link to="/account/fundraisers">My Fundraisers »</router-link></li>
       <li><router-link to="/account/nonprofits">My Nonprofits »</router-link></li>
       <li><span>––––––––––––––––</span></li>
-      <li v-if="loggedIn && userCan('admin:fundraisers')"><router-link to="/account/settings" >Admin Fundraisers »</router-link></li>
+      <li v-if="loggedIn && userCan('admin:fundraisers')"><router-link to="/admin/fundraisers" >Admin Fundraisers »</router-link></li>
     </ul>
   </div>
 </template>

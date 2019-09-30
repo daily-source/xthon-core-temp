@@ -4,6 +4,7 @@
       :spinner="userDialogSpinner"
       :state="userDialogModal"
       :diseable-close= "userDialogDisableClose"
+      v-on:modal:close="closeUserDialog()"
     >
       <div slot="header">{{userDialogHeading}}</div> 
       <div slot="content"><p>{{userDialogMessage}}</p></div> 
@@ -73,6 +74,11 @@ export default {
     Modal: () => import("Components/general/Modal.vue"),
     NonprofitForm: () => import("Components/Volunteerathon/NonprofitForm.vue"),
     UserDialog: () => import("Components/general/UserDialog.vue")
+  },
+  methods: {
+    closeUserDialog() {
+      this.userDialogModal = false
+    }
   },
   computed: {
     userData () {

@@ -28,28 +28,11 @@
         <a class="button is-light is-rounded is-medium" @click="closeEdition()">Stop editing</a>
         <div style="text-align: center;">
           <span>Status: </span>
-          <span :class="{ 'draftColor': fundraiser.status === 'draft', 'pendingColor': fundraiser.status === 'pending', 'publishedColor': fundraiser.status === 'published' }">{{fundraiser.status}}</span>
+          <span :class="{ 'draftColor': fundraiser.status === 'draft', 'pendingColor': fundraiser.status === 'pending', 'publishedColor': fundraiser.status === 'published', 'blockedColor': fundraiser.status === 'blocked' }">{{fundraiser.status}}</span>
         </div>
-        <a class="button is-light is-rounded is-medium" @click="emitStatus('published')" v-if="userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">Publish my Fundraiser</a>
-
-        <a class="button is-light is-rounded is-medium" @click="emitStatus('draft')" v-if="userCan('edit:fundraiser-status') && fundraiser.status != 'draft' && fundraiser.status != 'pending'">Draft my Fundraiser</a>
-        <!--
-        <div v-if="editing && userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">
-          <v-select
-            :options="statuses"
-            :searchable="false"
-            :value="status"
-            class="dropdown-status"
-            label="label"
-            v-model='status'
-            ref="status"
-          >
-            <template slot="option" slot-scope="option">
-                {{ option.label }}
-            </template>
-          </v-select>
-        </div>
-        -->
+        <a class="button is-danger is-rounded is-medium" @click="shouldPublish" v-if="userCan('edit:fundraiser-status') && fundraiser.status === 'draft'">Publish my Fundraiser</a>
+        <em v-if="fundraiser.status === 'pending'">And admin will check your fundraiser before being published.</em>
+        <em v-if="fundraiser.status === 'blocked'">If you think this is an error, contact an admin please.</em>
       </div>
     </div>
   </div>
@@ -68,6 +51,11 @@ export default {
     },
     closeEdition () {
       this.$emit("edit:close")
+    },
+    shouldPublish () {
+      if (confirm("Are you sure you want to publish? There's no going back.")) {
+        this.emitStatus ('pending')
+      }
     },
     emitStatus (status) {
       this.$emit("status:selected", status)
@@ -169,17 +157,10 @@ export default {
 .publishedColor {
   color: $color-text-green;
 }
-</style>
-<style lang="scss">
-.v-select {
-  .dropdown-toggle {
-    min-width: 160px !important;
-    .clear {
-      visibility: hidden !important;
-    }
-  }
-  .dropdown-menu {
-    right: 0 !important;
-  }
+.blockedColor {
+  color: $color-text-red;
+}
+em {
+  font-size: 0.8rem;
 }
 </style>
