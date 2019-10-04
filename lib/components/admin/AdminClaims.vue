@@ -9,51 +9,77 @@
       <div slot="header">{{userDialogHeading}}</div> 
       <div slot="content"><p>{{userDialogMessage}}</p></div> 
     </UserDialog>
-
     <section class="fundraisers-section">
-      <div v-if="allFundraisersAdmin && allFundraisersAdmin.length">
+      <div v-if="allClaimsAdmin && allClaimsAdmin.length">
         <table class="table is-striped is-fullwidth fundraisers-table">
           <thead>
             <tr>
-              <th>Fundraiser</th>
-              <th>Nonprofit EIN</th>
-              <th>User</th>
+              <th>Form</th>
+              <th v-if="viewClaim" colspan="3">Details</th>
+              <th v-if="!viewClaim">Nonprofit EIN</th>
+              <th v-if="!viewClaim">User</th>
+              <th v-if="!viewClaim">Date</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="fundraiser in allFundraisersAdmin" :key="fundraiser.id">
+            <tr v-for="claim in allClaimsAdmin" :key="claim.id" v-if="!viewClaim">
               <td>
-                <router-link :to="`/fundraiser/${fundraiser.id}`">{{fundraiser.name}}</router-link>
+                <button @click="toggleClaim(claim.id)">View</button>
               </td>
               <td>
-                <router-link :to="`/nonprofit/${fundraiser.NonprofitId}`">{{fundraiser.NonprofitId}}</router-link>
+                <router-link :to="`/nonprofit/${claim.NonprofitId}`">{{claim.NonprofitId}}</router-link>
               </td>
               <td>
-                {{`${fundraiser.User.firstName} ${fundraiser.User.lastName}`}}
+                {{`${claim.User.firstName} ${claim.User.lastName}`}}
               </td>
-              <td v-if="fundraiser.status === 'pending' || fundraiser.status === 'published' || fundraiser.status === 'blocked'">
+              <td>
+                {{claim.createdAt | formattedDate}}
+              </td>
+              <td>
                 <v-select
                   :options="statuses"
                   :searchable="false"
-                  :value="{label: `${fundraiser.status}`}"
+                  :value="{label: `${claim.status}`}"
                   class="dropdown-status"
                   label="label"
-                  :ref="fundraiser.id"
-                  @input="updateStatus(fundraiser.id, $event)"
+                  :ref="claim.id"
+                  @input="updateStatus(claim.id, $event)"
                 >
                   <template slot="option" slot-scope="option">
                       {{ option.label }}
                   </template>
                 </v-select>
               </td>
-              <td v-else>{{fundraiser.status}}</td>
+            </tr>
+            <tr v-for="claim in allClaimsAdmin" :key="claim.id" v-if="viewClaim && claim.id === currentViewId">
+              <td>
+                <button @click="toggleClaim(null)">Close</button>
+              </td>
+              <td v-if="viewClaim" colspan="3">
+                <strong><em>User:</em></strong> {{claim.User.firstName}} {{claim.User.lastName}}<br><strong><em>Date:</em></strong> {{claim.createdAt | formattedDate}}<br><strong><em>Mailing 1:</em></strong> {{claim.claim.mailing1}}<br><strong><em>Mailing 2:</em></strong> {{claim.claim.mailing2}}<br><strong><em>Name:</em></strong> {{claim.claim.country.name}}<br><strong><em>State:</em></strong> {{claim.claim.state}}<br><strong><em>City:</em></strong> {{claim.claim.city}}<br><strong><em>Zip:</em></strong> {{claim.claim.zip}}<br><strong><em>Telephone:</em></strong> {{claim.claim.telephone}}<br><strong><em>Nonprofit email:</em></strong> {{claim.claim.nonprofitEmail}}<br><strong><em>Nonprofit telephone:</em></strong> {{claim.claim.nonprofitTelephone}}<br><strong><em>Nonprofit website:</em></strong> {{claim.claim.nonprofitWebsite}}<br><strong><em>Notes:</em></strong> {{claim.claim.notes}}
+              </td>
+              <td>
+                <v-select
+                  :options="statuses"
+                  :searchable="false"
+                  :value="{label: `${claim.status}`}"
+                  class="dropdown-status"
+                  label="label"
+                  :ref="claim.id"
+                  @input="updateStatus(claim.id, $event)"
+                >
+                  <template slot="option" slot-scope="option">
+                      {{ option.label }}
+                  </template>
+                </v-select>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div v-else>
-        <p>No fundraisers.</p>
+        <p>No claims.</p>
       </div>
     </section>
   </div>
@@ -64,7 +90,7 @@ import Vue from 'vue'
 import vSelect from 'vue-select'
 import * as userUtils from "Core/util/userUtils.js"
 export default {
-  name: "adminFundraisers",
+  name: "adminClaims",
   data () {
     return {
       userDialogModal: false,
@@ -72,7 +98,9 @@ export default {
       userDialogMessage: "",
       userDialogSpinner: false,
       userDialogDisableClose: false,
-      statuses: [{label: 'pending'}, {label: 'published'}, {label: 'blocked'}]
+      statuses: [{label: 'pending'}, {label: 'approved'}, {label: 'disapproved'}],
+      viewClaim: false,
+      currentViewId: null
     }
   },
   components: {
@@ -81,16 +109,16 @@ export default {
     vSelect
   },
   computed: {
-    allFundraisersAdmin () {
-      return this.$store.state.allFundraisersAdmin.data
-    }
+    allClaimsAdmin () {
+      return this.$store.state.allClaimsAdmin.data
+    },
   },
   mounted () {
-    this.loadFundraisersAdmin()
+    this.loadClaimsAdmin()
   },
   methods: {
-    loadFundraisersAdmin (paginated = false) {
-      return this.$store.dispatch("FETCH_ALL_FUNDRAISERS_ADMIN", { filter: '', token: this.$store.state.user.tokenData.accessToken })
+    loadClaimsAdmin (paginated = false) {
+      return this.$store.dispatch("FETCH_ALL_CLAIMS_ADMIN", { filter: '', token: this.$store.state.user.tokenData.accessToken })
         .then(data => {
           return data
         })
@@ -98,16 +126,20 @@ export default {
           return err
         })
     },
+    toggleClaim(id) {
+      this.currentViewId = id
+      this.viewClaim = !this.viewClaim
+    },
     userCan(per) {
       return userUtils.userCan(per, this.$store.state.user)
     },
     validatestatus (label) {
-      if (label && label === "pending" || label === "published" || label === "blocked") {
+      if (label && label === "pending" || label === "approved" || label === "disapproved") {
         return true
       }
       return false
     },
-    updateStatus (fundraiserId, event) {
+    updateStatus (claimId, event) {
       if (!this.validatestatus(event.label)) {return false}
       var status = event.label
       return new Promise((resolve, reject) => {
@@ -117,17 +149,17 @@ export default {
           this.userDialogMessage = ""
           this.userDialogDisableClose = true
           var route = []
-          route.name = 'fundraiser'
+          route.name = 'claim'
           route.params = []
-          route.params.id = fundraiserId
-          this.$store.dispatch("SAVE_FUNDRAISER_STATUS", {
-            location: "fundraiser.status",
+          route.params.id = claimId
+          this.$store.dispatch("SAVE_CLAIM_STATUS", {
+            location: "claim.status",
             route: route,
             value: status
           })
             .then(() => {
               this.userDialogModal = false
-              this.loadFundraisersAdmin()
+              this.loadClaimsAdmin()
               resolve(status)
             })
             .catch(err => {

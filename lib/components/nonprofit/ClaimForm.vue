@@ -240,7 +240,6 @@ export default {
   },
   watch: {
     claimStatus: function (newVal) {
-      console.log('new val: ', newVal)
       this.$emit(`claim:${newVal}`)
     }
   }
