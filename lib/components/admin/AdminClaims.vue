@@ -17,6 +17,7 @@
               <th>Form</th>
               <th v-if="viewClaim" colspan="3">Details</th>
               <th v-if="!viewClaim">Nonprofit EIN</th>
+              <th v-if="!viewClaim">Nonprofit status</th>
               <th v-if="!viewClaim">User</th>
               <th v-if="!viewClaim">Date</th>
               <th>Status</th>
@@ -29,6 +30,9 @@
               </td>
               <td>
                 <router-link :to="`/nonprofit/${claim.NonprofitId}`">{{claim.NonprofitId}}</router-link>
+              </td>
+              <td>
+                {{claim.Nonprofit.status}}
               </td>
               <td>
                 {{`${claim.User.firstName} ${claim.User.lastName}`}}
@@ -44,7 +48,7 @@
                   class="dropdown-status"
                   label="label"
                   :ref="claim.id"
-                  @input="updateStatus(claim.id, $event)"
+                  @input="updateStatus(claim.id, {label: `${claim.status}`}, $event)"
                 >
                   <template slot="option" slot-scope="option">
                       {{ option.label }}
@@ -139,43 +143,48 @@ export default {
       }
       return false
     },
-    updateStatus (claimId, event) {
+    updateStatus (claimId, current, event) {
       if (!this.validatestatus(event.label)) {return false}
       var status = event.label
-      return new Promise((resolve, reject) => {
-        if (this.validatestatus(status)) {
-          this.userDialogModal = true
-          this.userDialogHeading = "Updating status..."
-          this.userDialogMessage = ""
-          this.userDialogDisableClose = true
-          var route = []
-          route.name = 'claim'
-          route.params = []
-          route.params.id = claimId
-          this.$store.dispatch("SAVE_CLAIM_STATUS", {
-            location: "claim.status",
-            route: route,
-            value: status
-          })
-            .then(() => {
-              this.userDialogModal = false
-              this.loadClaimsAdmin()
-              resolve(status)
+      if (confirm(`Are you sure you want to change account to ${status}`)) {
+        return new Promise((resolve, reject) => {
+          if (this.validatestatus(status)) {
+            this.userDialogModal = true
+            this.userDialogHeading = "Updating status..."
+            this.userDialogMessage = ""
+            this.userDialogDisableClose = true
+            var route = []
+            route.name = 'claim'
+            route.params = []
+            route.params.id = claimId
+            this.$store.dispatch("SAVE_CLAIM_STATUS", {
+              location: "claim.status",
+              route: route,
+              value: status
             })
-            .catch(err => {
-              this.userDialogModal = true
-              this.userDialogHeading = "Error"
-              this.userDialogMessage = err
-              this.userDialogDisableClose = false
-              this.userDialogSpinner = false
-              reject(err)
-            })
-        } else {
-          this.errorMessage = this.errorText
-          this.userDialogModal = false
-          resolve()
-        }
-      })
+              .then(() => {
+                this.userDialogModal = false
+                this.loadClaimsAdmin()
+                resolve(status)
+              })
+              .catch(err => {
+                this.$refs[claimId][0].value = current
+                this.userDialogModal = true
+                this.userDialogHeading = "Error"
+                this.userDialogMessage = err
+                this.userDialogDisableClose = false
+                this.userDialogSpinner = false
+                reject(err)
+              })
+          } else {
+            this.errorMessage = this.errorText
+            this.userDialogModal = false
+            resolve()
+          }
+        })
+      } else {
+        this.$refs[claimId][0].value = current
+      }
     },
     closeUserDialog() {
       this.userDialogModal = false
